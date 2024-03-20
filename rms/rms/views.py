@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
-
 def index(request):
     return render(request, "myapp/index.html", {})
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -26,7 +24,6 @@ def login_view(request):
 
     else:
         return render(request, 'myapp/index2.html')
-
 
 def admin_page(request):
     return render(request, 'admin_page.html')
