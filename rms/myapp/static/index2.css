@@ -1,0 +1,69 @@
+/* Style for the sign-in window */
+.sign-in-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#A49877;
+    padding: 90px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 150px;
+    height: 200px;
+    text-align: center;
+  }
+  
+  /* Style for the sign-in form */
+  .sign-in-form {
+    margin-top: 3px;
+  }
+
+  .sign-in-form input[type="password"]{
+    margin-top: -30px;
+  }
+  /* Style for form inputs */
+  .sign-in-form input[type="text"],
+  .sign-in-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px;
+    background-color: #A49877;
+    color: #fafafa;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  
+  /* Style for submit button */
+  .sign-in-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+  .me,.sign-in-form input[type="text"]{
+    margin-bottom: 47px;
+    margin-top: -46px;
+  }
+
+  .me{
+    font-size: 30px;
+  }
+
+  .cp{
+    color: #000000;
+    font-size: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  .cp:hover {
+    color: #ffffff;
+    cursor: pointer;
+  }

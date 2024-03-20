@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>One Bite Foods</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        line-height: normal;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      style="
+        width: 100%;
+        position: relative;
+        background-color: #fff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        height: 1024px;
+        overflow: hidden;
+        text-align: left;
+        font-size: 128px;
+        color: #000;
+        font-family: 'Great Vibes';
+      "
+    >
+      <img
+        style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        "
+        alt=""
+        src="{% static 'images/wallpaperflare-1@2x.png' %}"
+      />
+
+      <div
+        style="
+          position: fixed;
+          top: 225px;
+          left: 223px;
+          display: inline-block;
+          width: 485px;
+          height: 164px;
+        "
+      >
+        One Bite Foods
+      </div>
+
+      <div style="
+    position: fixed;
+    top: 217px;
+    left: 748px;
+    font-size: 35px;
+    display: inline-block;
+
+
+         ">" Welcome to OneBite Foods, <br> &nbsp; &nbsp; &nbsp;where culinary excellence meets effortless <br> elegance in the heart of Kathmandu city.<br> &nbsp; &nbsp; Your dining experience awaits at our <br>oasis of gastronomic delight! "</div>
+
+      <div style = "
+        position: fixed;
+        top: 476px;
+    left: 821px;
+  font-size: 48px;
+  display: inline-block;
+  width: 256px;
+  height: 60px;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 10px 5px 2px 1px;
+      "
+          onclick="window.location.href='{% static 'index2.html' %}'" class="lets-get-started">Let’s get started</div>
+      <div style="
+        position: fixed;
+        top: 553px;
+    left: 847px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+      "
+      > Are you a Customer? </div>
+      <div class="cust2" style="
+       position: fixed;
+       top: 553px;
+    left: 980px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  cursor: pointer;
+     "
+           onclick="window.location.href='{% static 'customer_signup.html' %}'" >Click here </div>
+    </div>
+  </body>
+</html>
+
