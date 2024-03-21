@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+        {% load static %}
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title>Login</title>
-    <link rel="stylesheet" href="index2.css" />
+   <link rel="stylesheet" href="{% static 'index2.css' %}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
@@ -35,17 +37,25 @@
             object-fit: cover;
           "
           alt=""
-          src='images/image-1@2x.png'
+          src="{% static 'images/image-1@2x.png' %}"
         />
     <div class="sign-in-window">
         <div class="me" style="color: white;">Login</div>
-        <form class="sign-in-form" action="{% url 'User' %}" method="post">
+        <form class="sign-in-form" action="{% url 'admin_page' %}" method="post" >
+            {% csrf_token %}
             <input type="text" name="username" placeholder="Username" required />
             <input type="password" name="password" placeholder="Password" required />
             <input type="submit" value="Login" />
           </form>
-          <div class="cp" onclick="window.location.href='customer_signup.html' " > Get Redirected to Customers Page</div>
+         <div class="cp" onclick="window.location.href='{% url 'customer_signup' %}'"  > Get Redirected to Customers Page</div>
     </div>
-    </div>
+</div>
   </body>
 </html>
+
+
+
+
+
+
+
