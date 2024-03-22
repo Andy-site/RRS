@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="first push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rms/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
@@ -167,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711023143611</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="first push">
+      <option name="closed" value="true" />
+      <created>1711095307016</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711095307016</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,7 +191,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dfgdg" />
-    <option name="LAST_COMMIT_MESSAGE" value="dfgdg" />
+    <MESSAGE value="first push" />
+    <option name="LAST_COMMIT_MESSAGE" value="first push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
