@@ -2,64 +2,77 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import User
 
 
 def index(request):
     return render(request, "myapp/index.html", {})
 
 
-def index2(request):
-    return render(request, "myapp/index2.html", {})
-
-
-def basic(request):
-    return render(request, "myapp/basic.html", {})
+def index2_boot(request):
+    return render(request, "myapp/index2_boot.html", {})
 
 
 def cp(request):
-    return render(request, "myapp/cust_page.html", {})
+    return render(request, "myapp/cust_copy.html", {})
+
+
+def ap(request):
+    return render(request, "myapp/admin_page.html", {})
+
+
+def common(request):
+    return render(request, "myapp/common.html", {})
 
 
 def admin_page(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request, user)
-            return render(request, 'myapp/admin_page.html')
+            return redirect("ap")
         else:
-            return redirect("/basic")
-    else:
-        # If it's not a POST request, just render the admin login page
-        return render(request, 'myapp/index2.html')
+            messages.error(request, "Invalid Credentials, Please Try Again!!")
+            return redirect("index2_boot")
+    return HttpResponse('admin_page')
 
 
 def handle1(request):
     if request.method == 'POST':
         username = request.POST['username']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
         email = request.POST['email']
-        pass1 = request.POST['pass1']
-        pass2 = request.POST['pass2']
+        phone = request.POST['phone']
+        password = request.POST['password']
 
         if len(username) > 10:
             messages.error(request, "Username must be under 10 characters")
-            return redirect("cp")
+            return redirect("common")
         if not username.isalnum():
             messages.error(request, "Username must be alphanumeric!")
-            return redirect("cp")
-        if pass1 != pass2:
-            messages.error(request, "Password do not match")
-            return redirect("cp")
+            return redirect("common")
 
-        myuser = User.objects.create_user(username, email, pass1)
-        myuser.first_name = fname
-        myuser.last_name = lname
+        myuser = User.objects.create_user(username, email, password)
         myuser.save()
         messages.success(request, "Your account has been successfully created!")
-        return redirect("cp")
+        return redirect("common")
     else:
         return HttpResponse('404 - Not Found')
+
+
+def handle2(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged in!")
+            return redirect("common")
+        else:
+            messages.error(request, "Invalid Credentials, Please Try Again!!")
+            return redirect("common")
+    return HttpResponse('handle2')
