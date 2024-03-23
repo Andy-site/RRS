@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+import re
 
 
 def index(request):
@@ -23,6 +24,22 @@ def ap(request):
 
 def common(request):
     return render(request, "myapp/common.html", {})
+
+
+def home(request):
+    return render(request, "myapp/home.html", {})
+
+
+def about(request):
+    return render(request, "myapp/aboutus.html", {})
+
+
+def menu(request):
+    return render(request, "myapp/menu.html", {})
+
+
+def reviews(request):
+    return render(request, "myapp/reviews.html", {})
 
 
 def admin_page(request):
@@ -49,15 +66,25 @@ def handle1(request):
 
         if len(username) > 10:
             messages.error(request, "Username must be under 10 characters")
-            return redirect("common")
+            return redirect("home")
         if not username.isalnum():
             messages.error(request, "Username must be alphanumeric!")
-            return redirect("common")
+            return redirect("home")
+
+        # Email validation
+        pattern = r'\b[A-Za-z0-9._%+-]+@gmail.com\b'
+        if not re.match(pattern, email):
+            messages.error(request, "Email must be in the format abcd@gmail.com")
+            return redirect("home")
+
+        if not phone.isdigit():
+            messages.error(request, "Phone number must be numeric!")
+            return redirect("home")
 
         myuser = User.objects.create_user(username, email, password)
         myuser.save()
         messages.success(request, "Your account has been successfully created!")
-        return redirect("common")
+        return redirect("home")
     else:
         return HttpResponse('404 - Not Found')
 
