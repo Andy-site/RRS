@@ -15,7 +15,7 @@
     />
 
     <style>
-        body {
+ body {
             margin: 0;
             line-height: normal;
             overflow: hidden;
@@ -44,20 +44,92 @@
         .buttons button:hover {
             background-color: #45a049;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
         .wel{
-        margin-top: 50px;
-        margin-left: 100px;
-        font-size: 60px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-      }
+            margin-top: 50px;
+            margin-left: 100px;
+            font-size: 60px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        {% block css %}{% endblock %}
+
     </style>
   </head>
   <body>
-   <div class="wel">Welcome, {{request.user}} </div>
+  {% block welcome%}
+    <div class="wel">Welcome, {{request.user}} </div>
+    {% endblock %}
         <div class="buttons">
-        <button onclick="window.location.href='/index2_boot'">Switch User</button>
-        <button onclick="window.location.href='/'">Logout</button>
+       <button onclick="openModal()">Logout</button>
     </div>
 
+        <button class="dashboard-button" onclick="window.location.href='{% url 'ap' %}'">Dashboard</button>
+    <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
+{% block content %}{% endblock %}
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Do you really want to go to the landing page?</p>
+            <button onclick="confirmLogout()">Yes</button>
+            <button onclick="closeModal()">No</button>
+        </div>
+    </div>
+{% block js %}{% endblock %}
+    <script>
+        // Open the modal
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        // Close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // Redirect if confirmed
+        function confirmLogout() {
+            window.location.href = "{% url 'lout1' %}";
+        }
+
+        function redirect(){
+        window.location.href="{% url 'manage_table' %}";
+        }
+    </script>
   </body>
 </html>

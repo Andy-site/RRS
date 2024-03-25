@@ -3,6 +3,8 @@
 {% block title%} Home {% endblock %}
 
 {% block body%}
+
+
 <button style="background-color: #4CAF50; /* Green */
   position: absolute;
   border: none;
@@ -17,25 +19,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   left: 607px;
-  top: 371px;">Make A Reservation</button>
+  top: 371px;"
+
+        onclick="window.location.href='{% url 'reservation' %}'" class="connect-link" data-toggle="modal" data-target="#loginModal" > Make A Reservation </button>
 
 
-<!-- Modal -->
-<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="reservationModalLabel">Make A Reservation</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Your reservation form goes here -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 {% endblock %}

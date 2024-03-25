@@ -1,13 +1,47 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from .models import MyUser123
 import re
+from .models import Table
+
+
+def get_tables(request):
+    if request.method == 'GET':
+        date = request.GET.get('date')
+        size = int(request.GET.get('size', 0))
+
+        tables = Table.objects.filter(date=date, size=size).values('number', 'reserved')
+
+        # Serialize the queryset into JSON format
+        table_data = list(tables)
+
+        # Return JSON response
+        return JsonResponse(table_data, safe=False)
+    else:
+        # Handle invalid request method
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+def update_table_status(request):
+    if request.method == 'POST':
+        table_id = request.POST.get('table_id')
+        reserved = request.POST.get('reserved')
+        # Update table status in the database
+        table = Table.objects.get(id=table_id)
+        table.reserved = reserved
+        table.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 
 def index(request):
     return render(request, "myapp/index.html", {})
+
+
+def test(request):
+    return render(request, "myapp/test.html", {})
 
 
 def index2_boot(request):
@@ -40,6 +74,18 @@ def menu(request):
 
 def reviews(request):
     return render(request, "myapp/reviews.html", {})
+
+
+def reservation(request):
+    if request.user.is_authenticated:
+        return render(request, "myapp/reservation.html", {})
+    else:
+        messages.error(request, "Please login through the connect section")
+        return render(request, "myapp/home.html", {})
+
+
+def manage_table(request):
+    return render(request, "myapp/ap_1.html", {})
 
 
 def admin_page(request):
@@ -81,7 +127,7 @@ def handle1(request):
             messages.error(request, "Phone number must be numeric!")
             return redirect("home")
 
-        myuser = User.objects.create_user(username, email, password)
+        myuser = MyUser123.objects.create_user(username=username, email=email, phone=phone, password=password)
         myuser.save()
         messages.success(request, "Your account has been successfully created!")
         return redirect("home")
@@ -97,9 +143,33 @@ def handle2(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, "Successfully Logged in!")
-            return redirect("common")
+            messages.success(request, f"Welcome, {request.user.username} to One Bite Foods!")
+            return redirect("home")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("common")
+            return redirect("home")
     return HttpResponse('handle2')
+
+
+def handler(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        user = authenticate(username=username)
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.error(request, "Please Sign In from Connect Section!!")
+            return redirect("home")
+    return HttpResponse('handler')
+
+
+def lout(request):
+    logout(request)
+    messages.success(request, "Successfully Logged Out")
+    return redirect('home')
+
+
+def lout1(request):
+    logout(request)
+    return redirect('index2_boot')

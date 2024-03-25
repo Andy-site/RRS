@@ -6,12 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="second push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rms/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/migrations/0002_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index2_boot.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/index2_boot.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/rms/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/rms/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,15 +68,15 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
+      <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
       <recent name="$PROJECT_DIR$/rms/myapp" />
-      <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/rms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rms/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myap" />
-      <recent name="$PROJECT_DIR$/rms/myapp" />
       <recent name="$PROJECT_DIR$/rms/rms" />
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
     </key>
@@ -195,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711124542850</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="second push">
+      <option name="closed" value="true" />
+      <created>1711175058080</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711175058080</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

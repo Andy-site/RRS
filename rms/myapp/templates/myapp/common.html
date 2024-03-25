@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>{% block title%}  {% endblock %}</title>
             <style>
 
@@ -35,22 +34,34 @@ border-top-left-radius: 5px !important;
 
 .btn-dark {
 color: #fff;
-background-color: #0d6efd;
-border-color: #0d6efd;
+background-color: #28a745;
+border-color: #28a745;
 }
 
 
 .btn-dark:hover {
 color: #fff;
-background-color: #0d6efd;
-border-color: #0d6efd;
+background-color: #28a745;
+border-color: #28a745;
 }
 
+a {
+    color: #28a745;
+    text-decoration: underline;
+}
+a:hover{
+ color: #28a745;
+}
 
 .nav-pills{
 
 display:table !important;
 width:100%;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #28a745;
 }
 
 .nav-pills .nav-link {
@@ -59,9 +70,9 @@ border-bottom: 1px solid #0d6efd40;
 
 }
 
-.nav-item{
-display: table-cell;
-background: #0d6efd2e;
+.nav-item {
+    display: table-cell;
+    background: #0dfd462e;
 }
 
 
@@ -96,7 +107,9 @@ margin-top: 20px;
 .connect-link:hover {
     color: green;
 }
-
+#dropdownMenu a {
+    text-decoration: none;
+  }
         </style>
 </head>
 <body>
@@ -114,12 +127,23 @@ margin-top: 20px;
 
 <!-- to trigger Login modal -->
 <div id="connect-links-container" style="position: absolute; top: 45px; left: 1367px;">
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onclick="window.location.href='{% url 'home' %}';">Home</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onclick="window.location.href='{% url 'about' %}';">About Us</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onclick="window.location.href='{% url 'menu' %}';">Menu</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onclick="window.location.href='{% url 'reviews' %}';">Reviews</span>
+    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'reviews' %}');">Reviews</span>
+
+    {% if user.is_authenticated %}
+    <div style="cursor: pointer;" onclick="toggleDropdown()">
+        {{ request.user }}
+        <div id="dropdownMenu" style="display: none; ">
+            <a href="{% url 'lout' %}">Logout</a>
+        </div>
+    </div>
+    {% else %}
     <span class="connect-link" data-toggle="modal" data-target="#loginModal" style="display: block; margin-bottom: 10px;">Connect</span>
+    {% endif %}
 </div>
+
 
 
 
@@ -209,7 +233,23 @@ margin-top: 20px;
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function toggleDropdown() {
+  var dropdownMenu = document.getElementById("dropdownMenu");
+  if (dropdownMenu.style.display === "none") {
+    dropdownMenu.style.display = "block";
+  } else {
+    dropdownMenu.style.display = "none";
+  }
+}
+</script>
 
+<script>
+function preventDefaultAndNavigate(url) {
+    event.preventDefault();
+    window.location.href = url;
+}
+</script>
 
 </body>
 </html>
