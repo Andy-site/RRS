@@ -7,6 +7,7 @@ class TableManager(models.Manager):
 
 
 class Table(models.Model):
+    id = models.AutoField(primary_key=True)  # Add this line
     date = models.DateField()
     size = models.IntegerField()
     number = models.IntegerField(default=0)

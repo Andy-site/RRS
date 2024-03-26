@@ -4,35 +4,120 @@
     <meta charset="UTF-8">
     <title>Reservation</title>
     <style>
-        table, th, td {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #table-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .table {
+            margin: 10px;
+            padding: 20px;
             border: 1px solid black;
-            border-collapse: collapse;
+            border-radius: 8px;
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        .reserved {
+            background-color: #FF6347; /* Tomato */
+        }
+        .unreserved {
+            background-color: #32CD32; /* LimeGreen */
         }
     </style>
 </head>
 <body>
-<h8>RESERVATION</h8>
-<p>Select a table from the list below:</p>
-<table id="tableList">
-    <tr>
-        <th>Table Number</th>
-        <th>Seats</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    <!-- You would generate the following rows based on your actual data -->
-    <tr>
-        <td>1</td>
-        <td>4</td>
-        <td>Available</td>
-        <td><button>Book</button></td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>2</td>
-        <td>Occupied</td>
-        <td></td>
-    </tr>
-</table>
+    <form id="table-form">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+        <label for="size">Table Size:</label>
+        <select name="size" id="size">
+            <option value="1">Table of 1</option>
+            <option value="2">Table of 2</option>
+            <option value="4">Table of 4</option>
+            <option value="6">Table of 6</option>
+            <option value="8">Table of 8</option>
+        </select>
+        <button type="submit">Show Tables</button>
+    </form>
+
+    <div id="table-container">
+        <!-- Table data will be inserted here -->
+    </div>
+
+    <script>
+        document.getElementById('table-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the selected date and table size
+            var date = document.getElementById('date').value;
+            var size = parseInt(document.getElementById('size').value);
+
+            // Fetch table data from the server
+            fetch(`/get-tables/?date=${date}&size=${size}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Get the table container element
+                    var tableContainer = document.getElementById('table-container');
+
+                    // Clear previous table elements
+                    tableContainer.innerHTML = '';
+
+                    // Create and append table elements based on server response
+                    data.forEach(function(tableData) {
+                        var tableElement = document.createElement('div');
+                        tableElement.textContent = `Table no.${tableData.number}`;
+                        tableElement.className = 'table';
+
+                        if (tableData.reserved) {
+                            tableElement.classList.add('reserved');
+                        } else {
+                            tableElement.classList.add('unreserved');
+                        }
+
+                        tableContainer.appendChild(tableElement);
+                    });
+                });
+        });
+    </script>
 </body>
 </html>

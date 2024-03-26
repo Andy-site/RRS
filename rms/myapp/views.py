@@ -5,15 +5,26 @@ from django.shortcuts import render, redirect
 from .models import MyUser123
 import re
 from .models import Table
+from django.core.exceptions import ValidationError
+from django.utils.dateparse import parse_date
+import json
 
 
 def get_tables(request):
     if request.method == 'GET':
-        date = request.GET.get('date')
+        # Get date and size parameters from the request
+        date_str = request.GET.get('date')
         size = int(request.GET.get('size', 0))
 
-        tables = Table.objects.filter(date=date, size=size).values('number', 'reserved')
+        # Validate the date format
+        try:
+            date = parse_date(date_str)
+        except ValidationError:
+            return JsonResponse({'error': 'Invalid date format. Date must be in YYYY-MM-DD format.'}, status=400)
 
+        # Query the database for tables
+        # tables = Table.objects.filter(date=date, size=size).values('number', 'reserved')
+        tables = Table.objects.filter(date=date, size=size).values('id', 'number', 'reserved')  # Include 'id'
         # Serialize the queryset into JSON format
         table_data = list(tables)
 
@@ -25,15 +36,30 @@ def get_tables(request):
 
 
 def update_table_status(request):
-    if request.method == 'POST':
-        table_id = request.POST.get('table_id')
-        reserved = request.POST.get('reserved')
-        # Update table status in the database
-        table = Table.objects.get(id=table_id)
-        table.reserved = reserved
-        table.save()
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
+
+    try:
+        data = json.loads(request.body)  # Parse JSON data from request body
+        print("Data is: ", data)
+        for table_data in data:
+            table_id = table_data.get('id')  # Get table_id from POST data
+            if table_id is None:
+                return JsonResponse({'success': False, 'message': 'Missing table ID in request'}, status=400)
+
+            table_id = int(table_id)  # Attempt to convert to integer
+            reserved = table_data.get('reserved')
+
+            table = Table.objects.get(pk=table_id)  # Use primary key (pk) for clarity
+            table.reserved = reserved
+            table.save()
+
         return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+
+    except ValueError:  # Handle invalid table_id format
+        return JsonResponse({'success': False, 'message': 'Invalid table ID format'}, status=400)
+    except Table.DoesNotExist:  # Handle table not found
+        return JsonResponse({'success': False, 'message': 'Table does not exist'}, status=404)
 
 
 def index(request):
