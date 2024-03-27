@@ -11,7 +11,8 @@
             padding: 0;
         }
         form {
-            margin: 20px;
+            width: 300px;
+            height: 200px;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -45,7 +46,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 470px;
+            margin-left: -50px;
         }
         .table {
             margin: 10px;
@@ -63,10 +65,24 @@
         .unreserved {
             background-color: #32CD32; /* LimeGreen */
         }
+        h4{
+        position: absolute;
+        font-size: 30px;
+        left: 600px;
+        top: 100px;
+
+        }
+        .F1{
+        position: absolute;
+        left: 550px;
+        top: 200px;
+        }
     </style>
 </head>
 <body>
-    <form id="table-form">
+<h4>Reserve a Table</h4>
+<div class="F1">
+       <form id="table-form">
         <label for="date">Date:</label>
         <input type="date" id="date" name="date">
         <label for="size">Table Size:</label>
@@ -80,44 +96,57 @@
         <button type="submit">Show Tables</button>
     </form>
 
+</div>
+
+
     <div id="table-container">
         <!-- Table data will be inserted here -->
     </div>
 
-    <script>
-        document.getElementById('table-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+<script>
+    document.getElementById('table-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-            // Get the selected date and table size
-            var date = document.getElementById('date').value;
-            var size = parseInt(document.getElementById('size').value);
+        // Get the selected date and table size
+        var date = document.getElementById('date').value;
+        var size = parseInt(document.getElementById('size').value);
 
-            // Fetch table data from the server
-            fetch(`/get-tables/?date=${date}&size=${size}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Get the table container element
-                    var tableContainer = document.getElementById('table-container');
+        // Fetch table data from the server
+        fetch(`/get-tables/?date=${date}&size=${size}`)
+            .then(response => response.json())
+            .then(data => {
+                // Get the table container element
+                var tableContainer = document.getElementById('table-container');
 
-                    // Clear previous table elements
-                    tableContainer.innerHTML = '';
+                // Clear previous table elements
+                tableContainer.innerHTML = '';
 
-                    // Create and append table elements based on server response
-                    data.forEach(function(tableData) {
-                        var tableElement = document.createElement('div');
-                        tableElement.textContent = `Table no.${tableData.number}`;
-                        tableElement.className = 'table';
+                // Create and append table elements based on server response
+                data.forEach(function(tableData) {
+                    var tableElement = document.createElement('div');
+                    tableElement.textContent = `Table no.${tableData.number}`;
+                    tableElement.className = 'table';
 
-                        if (tableData.reserved) {
-                            tableElement.classList.add('reserved');
-                        } else {
-                            tableElement.classList.add('unreserved');
-                        }
+                    if (tableData.reserved) {
+                        tableElement.classList.add('reserved');
+                        tableElement.addEventListener('click', function() {
+                            alert('This table is already booked.');
+                        });
+                    } else {
+                        tableElement.classList.add('unreserved');
+                        tableElement.addEventListener('click', function() {
+                            if (confirm('Do you really wish to book this table?')) {
+                                // Code to book the table goes here
+                                alert('Table booked successfully!');
+                            }
+                        });
+                    }
 
-                        tableContainer.appendChild(tableElement);
-                    });
+                    tableContainer.appendChild(tableElement);
                 });
-        });
-    </script>
+            });
+    });
+</script>
+
 </body>
 </html>
