@@ -23,6 +23,7 @@ urlpatterns = [
     path('manage_table/', views.manage_table, name='manage_table'),
     path('get-tables/', views.get_tables, name='get_tables'),
     path('update_table_status/', views.update_table_status, name='update_table_status'),
+    path('rev/', views.rev, name='rev'),
 ]
 
 

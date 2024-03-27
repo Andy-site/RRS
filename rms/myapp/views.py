@@ -66,6 +66,10 @@ def index(request):
     return render(request, "myapp/index.html", {})
 
 
+def rev(request):
+    return render(request, "myapp/feed_rev.html", {})
+
+
 def test(request):
     return render(request, "myapp/test.html", {})
 

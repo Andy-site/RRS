@@ -31,19 +31,7 @@
             margin-top: 20px;
             margin-left: 100px;
         }
-        .buttons button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-        }
-        .buttons button:hover {
-            background-color: #45a049;
-        }
+
         .modal {
             display: none;
             position: fixed;
@@ -80,17 +68,27 @@
             cursor: pointer;
         }
         .wel{
-            margin-top: 50px;
-            margin-left: 100px;
+            position:absolute;
+           top: 50px;
+            left: 220px;
             font-size: 60px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
 
         }
 
+        .all{
+              position: absolute;
+              top: 150px;
+              left: 50px;
+              display: flex;
+              flex-direction: column; /* Arrange items vertically */
+        }
+
             .dashboard-button,
-    .make-reservation-button {
+    .make-reservation-button,.logout-button,.reviews-button {
         padding: 10px 20px;
         margin-right: 10px;
+        margin-bottom: 10px;
         font-size: 18px;
         cursor: pointer;
         border: none;
@@ -100,7 +98,7 @@
     }
 
     .dashboard-button:hover,
-    .make-reservation-button:hover {
+    .make-reservation-button:hover,.logout-button, .reviews-button {
         background-color: #45a049; /* Darker green color on hover */
     }
 
@@ -111,14 +109,18 @@
   </head>
   <body>
   {% block welcome%}
-    <div class="wel">Welcome, {{request.user}} </div>
+    <div class="wel">Welcome, {{request.user}}! </div>
     {% endblock %}
-        <div class="buttons">
-       <button onclick="openModal()">Logout</button>
-    </div>
 
+  <div class="all">
         <button class="dashboard-button" onclick="window.location.href='{% url 'ap' %}'">Dashboard</button>
     <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
+   <button class="reviews-button" onclick="window.location.href='{% url 'rev' %}'">Reviews</button>
+             <button class="logout-button" onclick="openModal()">Logout</button>
+
+  </div>
+
+
 {% block content %}{% endblock %}
     <!-- The Modal -->
     <div id="myModal" class="modal">
