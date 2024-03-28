@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('index2_boot/', views.index2_boot, name='index2_boot'),
-    path('cp/', views.cp, name='cp'),
     path('ap/', views.ap, name='ap'),
     path('admin_page/', views.admin_page, name='admin_page'),
     path('handle1/', views.handle1, name='handle1'),
@@ -14,7 +13,6 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('menu/', views.menu, name='menu'),
-    path('reviews/', views.reviews, name='reviews'),
     path('test/', views.test, name='test'),
     path('handler/', views.handler, name='handler'),
     path('lout/', views.lout, name='lout'),
@@ -23,7 +21,10 @@ urlpatterns = [
     path('manage_table/', views.manage_table, name='manage_table'),
     path('get-tables/', views.get_tables, name='get_tables'),
     path('update_table_status/', views.update_table_status, name='update_table_status'),
-    path('rev/', views.rev, name='rev'),
+    path('rev123/', views.rev123, name='rev123'),
+    path('admin_rev/', views.admin_rev, name='admin_rev'),
+    path('submit_review/', views.submit_review, name='submit_review'),
+
 ]
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser123, Table
+from .models import MyUser123, Table, Rev
 
 
 class MyUser123Admin(admin.ModelAdmin):
@@ -15,3 +15,10 @@ class TableAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Table, TableAdmin)  # Register the model with its admin class
+
+
+class RevAdmin(admin.ModelAdmin):
+    list_display = ('username', 'text')
+
+
+admin.site.register(Rev, RevAdmin)

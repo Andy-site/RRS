@@ -135,7 +135,7 @@ margin-top: 20px;
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'reviews' %}');">Reviews</span>
+    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
 
     {% if user.is_authenticated %}
     <div style="cursor: pointer;" onclick="toggleDropdown()">
@@ -168,6 +168,8 @@ margin-top: 20px;
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
 <div class="d-flex justify-content-center align-items-center mt-5">
+
+
 
 
         <div class="card">

@@ -6,6 +6,16 @@ class TableManager(models.Manager):
     pass
 
 
+class RevManager(models.Manager):
+    def create_user(self, username, text=None, **extra_fields):
+        if not username:
+            raise ValueError('The username must be set')
+
+        user = self.model(username=username, text=text, **extra_fields)
+        user.save(using=self._db)
+        return user
+
+
 class Table(models.Model):
     id = models.AutoField(primary_key=True)  # Add this line
     date = models.DateField()
@@ -14,6 +24,14 @@ class Table(models.Model):
     reserved = models.BooleanField(default=False)
 
     objects = TableManager()
+
+
+class Rev(models.Model):
+    # id = models.AutoField(primary_key=True)  # Add this line
+    username = models.CharField(max_length=150, unique=True)
+    text = models.CharField(max_length=300, unique=True)
+
+    objects = RevManager()
 
 
 class MyUserManager(BaseUserManager):

@@ -2,7 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
-from .models import MyUser123
+from django.views.decorators.http import require_POST
+
+from .models import MyUser123,Rev
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -62,12 +64,60 @@ def update_table_status(request):
         return JsonResponse({'success': False, 'message': 'Table does not exist'}, status=404)
 
 
+def submit_review(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:  # Check if user is authenticated
+            # Retrieve username
+            username = request.user.username
+        else:
+            # If user is not authenticated, display an error message
+            messages.error(request, "You must be logged in to submit a review.")
+            return redirect("home")  # Redirect the user to the login page
+
+        # Retrieve review text from the form
+        text = request.POST.get('text', '')  # Assuming 'text' is the name of the field in your form
+
+        if not text:  # Check if review text is empty
+            # If review text is empty, display an error message
+            messages.error(request, "Review text cannot be empty.")
+            return redirect("home")  # Redirect the user to the home page
+
+        # Create Rev object and save it
+        my_review = Rev.objects.create(username=username, text=text)
+
+        # Display success message
+        messages.success(request, "Your thoughts have been successfully preserved!")
+
+        # Redirect to home page
+        return redirect("home")
+    else:
+        # If request method is not POST, return 404
+        return HttpResponse('404 - Not Found')
+
+
+def admin_reviews(request):
+    # Fetch all reviews from the database
+    reviews = Rev.objects.all()
+
+    # Pass the reviews to the template context
+    context = {
+        'reviews': reviews
+    }
+
+    # Render the template with the reviews
+    return render(request, 'myapp/admin_reviews.html', context)
+
+
 def index(request):
     return render(request, "myapp/index.html", {})
 
 
-def rev(request):
-    return render(request, "myapp/feed_rev.html", {})
+def rev123(request):
+    return render(request, "myapp/cust_rev.html", {})
+
+
+def admin_rev(request):
+    return render(request, "myapp/admin_rev.html", {})
 
 
 def test(request):
@@ -76,10 +126,6 @@ def test(request):
 
 def index2_boot(request):
     return render(request, "myapp/index2_boot.html", {})
-
-
-def cp(request):
-    return render(request, "myapp/cust_copy.html", {})
 
 
 def ap(request):
@@ -100,10 +146,6 @@ def about(request):
 
 def menu(request):
     return render(request, "myapp/menu.html", {})
-
-
-def reviews(request):
-    return render(request, "myapp/reviews.html", {})
 
 
 def reservation(request):
