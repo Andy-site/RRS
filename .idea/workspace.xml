@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="fifth push @Piyush_Dev">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Before creating three brances this was the master/main branch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rms/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/cust_copy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/feed_rev.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/cust_rev.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reviews.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711538972172</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Before creating three brances this was the master/main branch">
+      <option name="closed" value="true" />
+      <created>1711603511102</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1711603511102</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,7 +298,8 @@
     <MESSAGE value="third push" />
     <MESSAGE value="foutrh  push @Piyush_Dev" />
     <MESSAGE value="fifth push @Piyush_Dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="fifth push @Piyush_Dev" />
+    <MESSAGE value="Before creating three brances this was the master/main branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Before creating three brances this was the master/main branch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
