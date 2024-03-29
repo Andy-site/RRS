@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="check">
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="final in master" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -282,7 +280,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711603511102</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="check">
+      <option name="closed" value="true" />
+      <created>1711683059828</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1711683059828</updated>
+    </task>
+    <task id="LOCAL-00023" summary="final in master">
+      <option name="closed" value="true" />
+      <created>1711683118989</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1711683118989</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,7 +318,9 @@
     <MESSAGE value="foutrh  push @Piyush_Dev" />
     <MESSAGE value="fifth push @Piyush_Dev" />
     <MESSAGE value="Before creating three brances this was the master/main branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before creating three brances this was the master/main branch" />
+    <MESSAGE value="check" />
+    <MESSAGE value="final in master" />
+    <option name="LAST_COMMIT_MESSAGE" value="final in master" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
