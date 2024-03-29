@@ -143,11 +143,19 @@ def menu(request):
     return render(request, "myapp/menu.html", {})
 
 
+def take_away(request):
+    if request.user.is_authenticated:
+        return render(request, "myapp/take_away.html", {})
+    else:
+        messages.error(request, "Please login through the connect section for Take-Away")
+        return render(request, "myapp/home.html", {})
+
+
 def reservation(request):
     if request.user.is_authenticated:
         return render(request, "myapp/reservation.html", {})
     else:
-        messages.error(request, "Please login through the connect section")
+        messages.error(request, "Please login through the connect section to book a Table!")
         return render(request, "myapp/home.html", {})
 
 
@@ -204,13 +212,20 @@ def handle1(request):
 
 def handle2(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        username_or_email = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Check if the input is an email
+        if '@gmail.com' in username_or_email:
+            # If it's an email, try to authenticate with email
+            user = authenticate(email=username_or_email, password=password)
+        else:
+            # Otherwise, try to authenticate with username
+            user = authenticate(username=username_or_email, password=password)
 
         if user is not None:
             login(request, user)
-            messages.success(request, f"Welcome, {request.user.username} to One Bite Foods!")
+            messages.success(request, f"Welcome, {user.username} to One Bite Foods!")
             return redirect("home")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")

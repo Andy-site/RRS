@@ -21,7 +21,7 @@
 
       }
 .all{
-margin-top: -210px;
+margin-top: 1px;
 margin-left: -40px;
 
 }
@@ -29,12 +29,136 @@ margin-left: -40px;
     border-radius: 50%;
 }
 
+.why-us .box {
+  padding: 50px 30px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all ease-in-out 0.3s;
+  height: 100%;
+}
+
+.why-us .box span {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+.why-us .box h4 {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0;
+  margin: 20px 0;
+  color: #6c665c;
+}
+
+.why-us .box p {
+  color: #aaaaaa;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.why-us .box:hover {
+  background: #28a745;
+  padding: 30px 30px 70px 30px;
+  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+.why-us .box:hover span,
+.why-us .box:hover h4,
+.why-us .box:hover p {
+  color: #fff;
+}
+
+.allme{
+margin-top: 300px;
+
+}
+
+
                  {% endblock %}
 
 
 
 
 {% block body%}
+
+
+<div class="allme">
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Why choose <span>Our Restaurant</span></h2>
+          <p>May we achieve what we desire, as every moment unfolds with its own set of challenges and opportunities. Let us embrace all experiences with ease and find joy and fulfillment in every aspect of life.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box">
+              <span>01</span>
+              <h4>Delicious</h4>
+              <p>Discover exquisite flavors at our restaurant, where every dish is a culinary masterpiece</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>02</span>
+              <h4>Ambiance</h4>
+              <p>Immerse yourself in the cozy ambiance, where every detail enhances your dining experience</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>03</span>
+              <h4> Service</h4>
+              <p>Experience unparalleled hospitality with our attentive service, ensuring every visit is memorable and delightful</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="all">
     <div
       style="

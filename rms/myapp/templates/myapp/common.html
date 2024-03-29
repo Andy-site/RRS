@@ -12,7 +12,7 @@
             <style>
 
             body{
-background-color: #f8f9fa;
+background-color: #e9ecef;
 }
 
 
@@ -106,7 +106,7 @@ margin-top: 20px;
 }
 
 .connect-link {
-    color: black;
+    color: white;
     cursor: pointer;
 }
 
@@ -120,22 +120,26 @@ element.style {
 .connect-link:hover {
     color: green;
 }
-#dropdownMenu a {
+#dropdownMenu {
     text-decoration: none;
+    display: block;
+     margin-bottom: 20px;
+     margin-left:50px;
+     margin-top: 50px;
   }
 
 #connect-links-container {
-background-color: red;
-font-size:20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Black with 80% opacity */
+    font-size: 20px;
     position: absolute;
     display: flex;
     top: 50px;
     left: 430px;
-    justify-content: space-between; /* Distribute items evenly along the main axis */
-    width: 600px; /* Adjust the width as needed */
+    width: 620px;
+    border-radius: 10px; /* Adjust the value as needed */
 }
 
-<!--THis one to be resolved -->
+
 
 
                 {% block css %}
@@ -156,21 +160,18 @@ font-size:20px;
 
 
 <!-- to trigger Login modal -->
-<div id="connect-links-container" >
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
-    <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
+<div id="connect-links-container">
+    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+    <span class="connect-link" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
 
     {% if user.is_authenticated %}
-    <div style="cursor: pointer;" onclick="toggleDropdown()">
+    <div style="cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;" onclick="confirmLogout()">
         {{ request.user }}
-        <div id="dropdownMenu" style="display: none; ">
-            <a href="{% url 'lout' %}">Logout</a>
-        </div>
     </div>
     {% else %}
-    <span class="connect-link" data-toggle="modal" data-target="#loginModal" style="display: block; margin-bottom: 10px;">Connect</span>
+    <span class="connect-link" data-toggle="modal" data-target="#loginModal" style="display: block;margin-bottom: 5px; margin-left: 50px; margin-top: 22px; ">Connect</span>
     {% endif %}
 </div>
 
@@ -213,7 +214,7 @@ font-size:20px;
 
                   <div class="form px-4 pt-5">
                      <form action="/handle2/" method='post'>
-                    <input type="text" name="username" class="form-control" placeholder="Email or Phone" autocomplete="off">
+                    <input type="text" name="username" class="form-control" placeholder="Username or Email" autocomplete="off">
 
                     <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
                          {% csrf_token %}
@@ -283,6 +284,13 @@ function preventDefaultAndNavigate(url) {
 }
 </script>
 
-
+<script>
+    function confirmLogout() {
+        var logout = confirm("Do you really want to logout?");
+        if (logout) {
+            window.location.href = "{% url 'lout' %}";
+        }
+    }
+</script>
 </body>
 </html>

@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin_rev/', views.admin_rev, name='admin_rev'),
     path('submit_review/', views.submit_review, name='submit_review'),
     path('admin_rev123/', views.admin_rev123, name='admin_rev123'),
+    path('take_away/', views.take_away, name='take_away'),
 
 ]
 
