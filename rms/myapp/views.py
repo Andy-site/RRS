@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-from .models import MyUser123,Rev
+from .models import MyUser123, Rev
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -64,6 +64,14 @@ def update_table_status(request):
         return JsonResponse({'success': False, 'message': 'Table does not exist'}, status=404)
 
 
+def admin_rev123(request):
+    # Fetch all reviews from the database
+    reviews = Rev.objects.all()
+
+    # Pass the reviews to the template context
+    return render(request, 'myapp/admin_rev.html', {'reviews': reviews})
+
+
 def submit_review(request):
     if request.method == 'POST':
         if request.user.is_authenticated:  # Check if user is authenticated
@@ -93,19 +101,6 @@ def submit_review(request):
     else:
         # If request method is not POST, return 404
         return HttpResponse('404 - Not Found')
-
-
-def admin_reviews(request):
-    # Fetch all reviews from the database
-    reviews = Rev.objects.all()
-
-    # Pass the reviews to the template context
-    context = {
-        'reviews': reviews
-    }
-
-    # Render the template with the reviews
-    return render(request, 'myapp/admin_reviews.html', context)
 
 
 def index(request):

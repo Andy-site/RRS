@@ -1,3 +1,255 @@
 {% extends 'myapp/common.html' %}
 
 {% block title%} About Us {% endblock %}
+               {% block css %}
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap"
+    />
+      body {
+        margin: 0;
+        line-height: normal;
+
+      }
+.all{
+margin-top: -210px;
+margin-left: -40px;
+
+}
+.img-round {
+    border-radius: 50%;
+}
+
+                 {% endblock %}
+
+
+
+
+{% block body%}
+<div class="all">
+    <div
+      style="
+        width: 100%;
+        position: relative;
+        background-color: #fff;
+        height: 1024px;
+        overflow: hidden;
+        text-align: left;
+        font-size: 26px;
+          background-color: #e9ecef;
+        font-family: Inter;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 585px;
+          left: 63px;
+          border-radius: 140px 140px 41px 41px;
+          background-color: #53ec62;
+          width: 492px;
+          height: 362px;
+        "
+      ></div>
+      <b
+        style="
+          position: absolute;
+          top: 401px;
+          left: 756px;
+          font-size: 60px;
+          line-height: 131.02%;
+          display: inline-block;
+          width: 635px;
+        "
+        >What Our Customers Say About Us</b
+      >
+      <div
+        style="
+          position: absolute;
+          top: 588px;
+          left: 756px;
+          line-height: 159%;
+          font-weight: 500;
+          color: #555;
+          display: inline-block;
+          width: 655px;
+        "
+      >
+        “I had the pleasure of one bite at Foodi last night, and I'm still
+        raving about the experience! The attention to detail in presentation and
+        service was impeccable”
+      </div>
+<a href="{% url 'rev123' %}" style="text-decoration: none; color: black;">
+    <div style="position: absolute; top: 778px; left: 994px; font-weight: 600; cursor: pointer;">
+        Customer Feedback
+    </div>
+</a>
+
+      <div
+        style="
+          position: absolute;
+          top: 822px;
+          left: 1033px;
+          font-size: 24px;
+          font-weight: 600;
+          color: #454545;
+        "
+      >
+        4.9
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 822px;
+          left: 1088px;
+          font-size: 24px;
+          font-weight: 500;
+          color: #807e7e;
+        "
+      >
+        (18.6k Reviews)
+      </div>
+      <img
+        style="
+          position: absolute;
+          top: 824px;
+          left: 994px;
+          width: 24px;
+          height: 24px;
+          overflow: hidden;
+        "
+        alt=""
+       src="/static/images/fisrstar.svg"
+      />
+
+      <div
+        style="position: absolute; top: 585px; left: 227px; font-weight: 600"
+      >
+        Chef Image
+      </div>
+      <img class="img-round"
+        style="
+          position: absolute;
+          top: 778px;
+          left: 756px;
+          width: 80px;
+          height: 80px;
+          object-fit: contain;
+        "
+        alt=""
+        src="/static/images/i1.png"
+      />
+
+      <img class="img-round"
+        style="
+          position: absolute;
+          top: 778px;
+          left: 813px;
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+        "
+        alt=""
+         src="/static/images/i2.png"
+      />
+
+      <img class="img-round"
+        style="
+          position: absolute;
+          top: 778px;
+          left: 870px;
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+        "
+        alt=""
+         src="/static/images/i3.png"
+      />
+
+      <img
+        style="
+          position: absolute;
+          top: 216px;
+          left: 63px;
+          width: 466px;
+          height: 731px;
+          object-fit: contain;
+        "
+        alt=""
+         src="/static/images/mask-group@2x.png"
+      />
+
+      <div
+        style="
+          position: absolute;
+          top: 710.9px;
+          left: 29px;
+          font-size: 44px;
+          font-weight: 500;
+          text-align: center;
+          transform: rotate(-17.03deg);
+          transform-origin: 0 0;
+        "
+      >
+        😋
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 688px;
+          left: 571.5px;
+          font-size: 40px;
+          font-weight: 500;
+          text-align: center;
+          transform: rotate(80.99deg);
+          transform-origin: 0 0;
+        "
+      >
+        🍕
+      </div>
+      <img
+        style="
+          position: absolute;
+          top: 887px;
+          left: 380px;
+          border-radius: 50px;
+          width: 230px;
+          height: 79px;
+        "
+        alt=""
+         src="/static/images/rectangle-41.svg"
+      />
+
+      <div
+        style="
+          position: absolute;
+          top: 926px;
+          left: 427px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #202020;
+        "
+      >
+        Our Best Chef 😁
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+

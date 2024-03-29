@@ -1,19 +1,31 @@
-{% extends 'admin/base_site.html' %}
-
+{% extends 'myapp/admin_page.html' %}
+{% block welcome %}{% endblock %}
 {% block title %}{% endblock %}
 
-{% block content %}
- <div class="reviews-container">
-        <h1>Reviews</h1>
-        {% if reviews %}
-            <ul class="review-list">
-                {% for review in reviews %}
-                    <li class="review-item">
-                        <p><strong>{{ review.username }}</strong>: {{ review.text }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No reviews available.</p>
-        {% endif %}
+
+ {% block css %}
+ .review-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .username {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .text {
+            color: #333;
+        }
 {% endblock %}
+
+{% block content %}
+    <h1>Reviews</h1>
+    {% for review in reviews %}
+        <div class="review-box">
+            <div class="username">{{ review.username }}</div>
+            <div class="text">{{ review.text }}</div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+

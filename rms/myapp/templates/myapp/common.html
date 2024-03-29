@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    {% block head%}  {% endblock %}
           {% load static %}
     <meta charset="UTF-8">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>{% block title%}  {% endblock %}</title>
 
@@ -106,12 +109,34 @@ margin-top: 20px;
     color: black;
     cursor: pointer;
 }
+
+element.style {
+    position: absolute;
+    top: 45px;
+    left: 1367px;
+
+
+}
 .connect-link:hover {
     color: green;
 }
 #dropdownMenu a {
     text-decoration: none;
   }
+
+#connect-links-container {
+background-color: red;
+font-size:20px;
+    position: absolute;
+    display: flex;
+    top: 50px;
+    left: 430px;
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    width: 600px; /* Adjust the width as needed */
+}
+
+
+
 
                 {% block css %}
                  {% endblock %}
@@ -131,7 +156,7 @@ margin-top: 20px;
 
 
 <!-- to trigger Login modal -->
-<div id="connect-links-container" style="position: absolute; top: 45px; left: 1367px;">
+<div id="connect-links-container" >
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
     <span class="connect-link" style="display: block; margin-bottom: 10px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>

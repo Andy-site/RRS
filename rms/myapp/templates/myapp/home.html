@@ -3,7 +3,12 @@
 {% block title%} Home {% endblock %}
 
 {% block body%}
-
+<div class="image-container">
+    <img src="/static/images/image1.jpg" alt="Image 1" class="active">
+    <img src="/static/images/image2.jpg" alt="Image 2">
+    <img src="/static/images/image3.png" alt="Image 3">
+    <img src="/static/images/image4.jpg" alt="Image 4">
+</div>
 
 <button style="background-color: #4CAF50; /* Green */
   position: absolute;
@@ -20,9 +25,48 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   left: 607px;
   top: 371px;"
+  onclick="window.location.href='{% url 'reservation' %}'" class="connect-link" data-toggle="modal" data-target="#loginModal"> Make A Reservation </button>
 
-        onclick="window.location.href='{% url 'reservation' %}'" class="connect-link" data-toggle="modal" data-target="#loginModal" > Make A Reservation </button>
+<style>
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Adjust as needed */
+        overflow: hidden;
+    }
 
+    .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0; /* Initially hide all images */
+<!--        transition: opacity 1s ease-in-out; /* Add a smooth transition */-->
+    }
 
+    .image-container img.active {
+        opacity: 1; /* Show the active image */
+    }
+</style>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var images = document.querySelectorAll('.image-container img');
+        var index = 0;
+
+        function showImage(index) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].classList.remove('active');
+            }
+            images[index].classList.add('active');
+        }
+
+        setInterval(function() {
+            index = (index + 1) % images.length;
+            showImage(index);
+        }, 4000); // Change interval as needed (in milliseconds)
+    });
+</script>
 {% endblock %}
