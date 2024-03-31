@@ -198,9 +198,6 @@ def complete_order(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 
-
-
-
 def index(request):
     return render(request, "myapp/index.html", {})
 
