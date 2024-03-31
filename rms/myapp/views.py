@@ -209,6 +209,8 @@ def rev123(request):
 def admin_rev(request):
     return render(request, "myapp/admin_rev.html", {})
 
+# just for push
+
 
 def test(request):
     return render(request, "myapp/test.html", {})
