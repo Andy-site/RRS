@@ -10,6 +10,7 @@ from .models import Table
 from django.core.exceptions import ValidationError
 from django.utils.dateparse import parse_date
 import json
+from django.db.models import Count, Q
 
 
 def get_tables(request):
@@ -152,6 +153,54 @@ def display_orders(request):
     return render(request, 'myapp/admin_reservation_control.html', {'orders': orders})
 
 
+def order_details_view(request):
+    # Count the number of completed orders
+    completed_orders_count = Order.objects.filter(completed=True).count()
+
+    # Pass the count to the template context
+    context = {
+        'PIYUSH': "Hello, this is PIYUSH!",
+        # 'completed_orders_count': completed_orders_count,
+    }
+
+    return render(request, 'myapp/admin_dash.html', context)
+
+
+def save_order(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        is_checked = request.POST.get('is_checked') == 'true'  # Convert string to boolean
+
+        order = Order.objects.get(pk=order_id)
+
+        # Update the confirmed status based on the checkbox state
+        if is_checked:
+            order.confirmed = True
+        else:
+            order.confirmed = False
+
+        order.save()
+
+        # Return JSON response with the confirmed status
+        return JsonResponse({'status': 'success', 'confirmed': order.confirmed})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+def complete_order(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        order = Order.objects.get(pk=order_id)
+        order.completed = not order.completed  # Toggle the completed status
+        order.save()
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+
+
+
+
 def index(request):
     return render(request, "myapp/index.html", {})
 
@@ -166,6 +215,10 @@ def admin_rev(request):
 
 def test(request):
     return render(request, "myapp/test.html", {})
+
+
+def ad(request):
+    return render(request, "myapp/admin_dash.html", {})
 
 
 def index2_boot(request):
@@ -312,8 +365,4 @@ def name(request):
     return render(request, "myapp/admin_reservation_control.html", {})
 
 
-def complete_order(request, order_id):
-    order = Order.objects.get(pk=order_id)
-    order.completed = True
-    order.save()
-    return redirect('name')
+

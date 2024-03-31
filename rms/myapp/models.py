@@ -16,7 +16,8 @@ class Order(models.Model):
     time = models.TimeField()
     number_of_people = models.IntegerField()
     message = models.TextField()
-    completed = models.BooleanField(default=False)
+    confirmed = models.BooleanField(default=False)  # New field
+    completed = models.BooleanField(default=False)  # New field
 
     objects = OrderManager()
 
