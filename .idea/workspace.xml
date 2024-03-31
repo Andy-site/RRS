@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
-      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rms/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -331,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711851167418</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
+      <option name="closed" value="true" />
+      <created>1711868856084</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711868856084</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
