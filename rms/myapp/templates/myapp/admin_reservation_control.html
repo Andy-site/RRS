@@ -52,6 +52,11 @@
     background-color: red;
 }
 
+/* CSS for completed row */
+.completed-row {
+    background-color: #f2f2f2; /* Light grey background */
+    text-decoration: line-through; /* Line through the text */
+}
 
 
 
@@ -75,7 +80,8 @@
         </thead>
         <tbody>
             {% for order in orders %}
-                <tr>
+                <tr {% if order.completed %}class="completed-row"{% endif %} >
+<!--                    order_id = {{ order.id }}-->
                     <td>{{ order.id }}</td>
                     <td>{{ order.username }}</td>
                     <td>{{ order.date }}</td>
@@ -84,54 +90,84 @@
                     <td>{{ order.message }}</td>
                     <td>
                         <!-- Single checkbox with label -->
-                        <input type="checkbox" id="confirm_checkbox_{{ order.id }}" class="confirmation-checkbox" name="confirm_checkbox" value="{{ order.id }}">
-                        <label for="confirm_checkbox_{{ order.id }}"></label>
+
+                         <input type="checkbox" id="confirm_checkbox_{{ order.id }}" class="confirmation-checkbox" name="confirm_checkbox" value="{{ order.id }}" {% if order.confirmed %}checked{% endif %}>
+                            <label for="confirm_checkbox_{{ order.id }}"></label>
                     </td>
                     <td>
-                        <!-- Save button -->
-                        <button onclick="saveOrder({{ order.id }})">Send Email</button>
-                        <!-- Completed button -->
+                        <!-- Update the onclick events to pass order.id -->
+                        <button onclick="saveOrder({{ order.id }})">Confirm</button>
+                        <button id="complete_order_button_{{ order.id }}" onclick="completeOrder({{ order.id }})">Completed</button>
 
-                        <button onclick="completeOrder({{ order.id }})">Completed</button>
+
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <!-- Section to display the count of uncompleted orders -->
-    <div id="uncompletedCountSection">
-        Number of Uncompleted Orders: <span id="uncompletedCount"></span>
-    </div>
 
 
-   <script>
-// script.js
-function completeOrder(orderId) {
-    // Send an AJAX request to mark the order as completed
-    fetch(`/complete_order/${orderId}/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken') // Ensure to include CSRF token
+<!-- Add this script in your template -->
+<script>
+function saveOrder(orderId) {
+    // Check if the checkbox is checked (green tick)
+    var isChecked = $('#confirm_checkbox_' + orderId).is(':checked');
+
+    // Make AJAX request to save_order view
+    $.ajax({
+        type: 'POST',
+        url: '{% url "save_order" %}',
+        data: {
+            'order_id': orderId,
+            'is_checked': isChecked,  // Send whether the checkbox is checked
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
         },
-    })
-    .then(response => {
-        if (response.ok) {
-            // Update the UI to reflect the completion status
-            var checkbox = document.getElementById('confirm_checkbox_' + orderId);
-            checkbox.disabled = true;
-            updateUncompletedCount(); // Update the count of uncompleted orders
-        } else {
-            console.error('Failed to mark order as completed');
+        success: function(data) {
+            // Update the checkbox state based on the confirmed status returned from the server
+            var confirmed = data.confirmed;
+            $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
+
+            // Reload the page to reflect changes (optional)
+            // location.reload();
         }
-    })
-    .catch(error => {
-        console.error('Error marking order as completed:', error);
     });
 }
 
-    </script>
+
+
+
+
+    function completeOrder(orderId) {
+    // Make AJAX request to complete_order view
+    $.ajax({
+        type: 'POST',
+        url: '{% url "complete_order" %}',
+        data: {'order_id': orderId, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function(data) {
+            // Find the row that contains the button and add the 'completed-row' class
+            $('#complete_order_button_' + orderId).closest('tr').addClass('completed-row');
+        }
+    });
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 {% endblock %}
 
 

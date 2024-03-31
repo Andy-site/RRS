@@ -161,6 +161,12 @@
     background-color: #45a049;
 }
 
+.au{
+
+margin-left:300px;
+margin-top: 300px;
+}
+
 
         {% block css %}
 
@@ -169,12 +175,10 @@
     </style>
   </head>
   <body>
-  {% block welcome%}
-    <div class="wel">Welcome, {{request.user}}! </div>
-    {% endblock %}
+
 
   <div class="all">
-        <button class="dashboard-button" onclick="window.location.href='{% url 'ap' %}'">Dashboard</button>
+        <button class="dashboard-button" onclick="window.location.href='{% url 'ad' %}'">Dashboard</button>
       <button class="logout-button"onclick="window.location.href='{% url 'admin_menu' %}'"> Menu</button>
     <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
    <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Reviews</button>
@@ -196,6 +200,7 @@
             <button onclick="closeModal()">No</button>
         </div>
     </div>
+
 
 
 
