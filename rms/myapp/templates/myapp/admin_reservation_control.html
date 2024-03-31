@@ -1,0 +1,138 @@
+{% extends 'myapp/admin_page.html' %}
+{% block welcome %}{% endblock %}
+{% block title %}Order Details{% endblock %}
+
+{% block css %}
+    /* CSS styles for table */
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-left: 280px;
+        margin-top: 200px;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .pp{
+    position: absolute;
+    font-size: 30px;
+    left: 650px;
+    top: 76px;
+    }
+
+    /* Style for the checkbox */
+    .confirmation-checkbox {
+        transform: scale(1.5); /* Adjust size as needed */
+    }
+
+    /* Style for the checked checkbox */
+    .confirmation-checkbox:checked + label::after {
+        content: '\2714'; /* Unicode character for checkmark */
+        color: green;
+    }
+
+    /* Style for the unchecked checkbox */
+    .confirmation-checkbox + label::after {
+        content: '\2718'; /* Unicode character for cross mark */
+        color: red;
+    }
+    /* CSS for green row */
+.green-row {
+    background-color: green;
+}
+
+/* CSS for red row */
+.red-row {
+    background-color: red;
+}
+
+
+
+
+
+{% endblock %}
+
+{% block content %}
+<div class="pp">Order Details</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Username</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Number of People</th>
+                <th>Message</th>
+                <th>Confirm</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.username }}</td>
+                    <td>{{ order.date }}</td>
+                    <td>{{ order.time }}</td>
+                    <td>{{ order.number_of_people }}</td>
+                    <td>{{ order.message }}</td>
+                    <td>
+                        <!-- Single checkbox with label -->
+                        <input type="checkbox" id="confirm_checkbox_{{ order.id }}" class="confirmation-checkbox" name="confirm_checkbox" value="{{ order.id }}">
+                        <label for="confirm_checkbox_{{ order.id }}"></label>
+                    </td>
+                    <td>
+                        <!-- Save button -->
+                        <button onclick="saveOrder({{ order.id }})">Send Email</button>
+                        <!-- Completed button -->
+
+                        <button onclick="completeOrder({{ order.id }})">Completed</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Section to display the count of uncompleted orders -->
+    <div id="uncompletedCountSection">
+        Number of Uncompleted Orders: <span id="uncompletedCount"></span>
+    </div>
+
+
+   <script>
+// script.js
+function completeOrder(orderId) {
+    // Send an AJAX request to mark the order as completed
+    fetch(`/complete_order/${orderId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken') // Ensure to include CSRF token
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            // Update the UI to reflect the completion status
+            var checkbox = document.getElementById('confirm_checkbox_' + orderId);
+            checkbox.disabled = true;
+            updateUncompletedCount(); // Update the count of uncompleted orders
+        } else {
+            console.error('Failed to mark order as completed');
+        }
+    })
+    .catch(error => {
+        console.error('Error marking order as completed:', error);
+    });
+}
+
+    </script>
+{% endblock %}
+
+
+

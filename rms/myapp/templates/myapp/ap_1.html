@@ -1,28 +1,6 @@
 {% extends 'myapp/admin_page.html' %}
 {% block welcome %}{% endblock %}
 
-{% block content %}
-    <h1>Manage Tables</h1>
-    <form method="post" id="table-form">
-        {% csrf_token %}
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" name="date"><br>
-        <label for="table">Table Size:</label><br>
-        <select name="table" id="table">
-            <option value="1">Table of 1</option>
-            <option value="2">Table of 2</option>
-            <option value="4">Table of 4</option>
-            <option value="6">Table of 6</option>
-            <option value="8">Table of 8</option>
-        </select><br>
-        <input type="submit" value="Show Tables">
-        <button type="button" id="apply-changes">Apply Changes</button>
-    </form>
-    <div id="table-container">
-        <!-- This is where you'll dynamically generate the table elements based on the selected date and table size. Each table element should have a class of either 'reserved' or 'unreserved'. -->
-    </div>
-{% endblock %}
-
 {% block css %}
 body {
     font-family: Arial, sans-serif;
@@ -31,16 +9,19 @@ body {
     padding: 20px;
 }
 
-h1 {
-   margin-bottom: 20px;
-    margin-left: 610px;
-    color: #28a745;
-}
+
+.pp12{
+        position: absolute;
+        font-size: 30px;
+        left: 650px;
+        top: 76px;
+        }
 
 form {
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+margin-left:490px;
+    margin-top: 150px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -103,6 +84,29 @@ input[type="submit"],
 }
 {% endblock %}
 
+
+{% block content %}
+<div class="pp12">Manage Table</div>
+
+    <form method="post" id="table-form">
+        {% csrf_token %}
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br>
+        <label for="table">Table Size:</label><br>
+        <select name="table" id="table">
+            <option value="1">Table of 1</option>
+            <option value="2">Table of 2</option>
+            <option value="4">Table of 4</option>
+            <option value="6">Table of 6</option>
+            <option value="8">Table of 8</option>
+        </select><br>
+        <input type="submit" value="Show Tables">
+        <button type="button" id="apply-changes">Apply Changes</button>
+    </form>
+    <div id="table-container">
+        <!-- This is where you'll dynamically generate the table elements based on the selected date and table size. Each table element should have a class of either 'reserved' or 'unreserved'. -->
+    </div>
+{% endblock %}
 
 {% block js %}
 <script>

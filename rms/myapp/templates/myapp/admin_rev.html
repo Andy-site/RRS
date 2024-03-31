@@ -1,31 +1,60 @@
 {% extends 'myapp/admin_page.html' %}
 {% block welcome %}{% endblock %}
-{% block title %}{% endblock %}
+{% block title %}Reviews{% endblock %}
 
 
  {% block css %}
- .review-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+        /* CSS styles for table */
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin-left: 280px;
+            margin-top: 200px;
         }
-        .username {
-            font-weight: bold;
-            margin-bottom: 5px;
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
         }
-        .text {
-            color: #333;
+        th {
+            background-color: #f2f2f2;
+        }
+        .pp{
+        position: absolute;
+        font-size: 30px;
+        left: 650px;
+        top: 76px;
         }
 {% endblock %}
 
 {% block content %}
-    <h1>Reviews</h1>
-    {% for review in reviews %}
-        <div class="review-box">
-            <div class="username">{{ review.username }}</div>
-            <div class="text">{{ review.text }}</div>
-        </div>
-    {% endfor %}
+<div class="pp">Reviews</div>
+    <table>
+        <thead>
+            <tr>
+                 <th>ID</th>
+                <th>Username</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ review.username }}</td>
+                    <td>{{ review.text }}</td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
+
+
+
+
+
+
+
 
 

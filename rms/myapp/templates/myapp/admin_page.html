@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+
     <title>One Bite Foods</title>
     <!-- <link rel="stylesheet" href="index2.css" /> -->
     <link
@@ -101,6 +102,64 @@
     .make-reservation-button:hover,.logout-button, .reviews-button {
         background-color: #45a049; /* Darker green color on hover */
     }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin-top:250px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Adjust width as needed */
+    max-width: 400px; /* Set maximum width for better responsiveness */
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}
 
 
         {% block css %}
@@ -116,11 +175,12 @@
 
   <div class="all">
         <button class="dashboard-button" onclick="window.location.href='{% url 'ap' %}'">Dashboard</button>
+      <button class="logout-button"onclick="window.location.href='{% url 'admin_menu' %}'"> Menu</button>
     <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
    <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Reviews</button>
-       <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Dine-In</button>
-       <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Reservation</button>
-             <button class="logout-button" onclick="openModal()">Logout</button>
+       <button class="reviews-button" onclick="window.location.href='{% url 'dine_in' %}'">Dine-In</button>
+       <button class="reviews-button" onclick="window.location.href='{% url 'display_orders' %}'">Reservation</button>
+      <button class="logout-button" onclick="openModal()">Logout</button>
 
   </div>
 
@@ -136,6 +196,12 @@
             <button onclick="closeModal()">No</button>
         </div>
     </div>
+
+
+
+
+
+
 {% block js %}{% endblock %}
     <script>
         // Open the modal
@@ -157,5 +223,6 @@
         window.location.href="{% url 'manage_table' %}";
         }
     </script>
+
   </body>
 </html>

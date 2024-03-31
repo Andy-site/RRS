@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser123, Table, Rev
+from .models import MyUser123, Table, Rev, Order
 
 
 class MyUser123Admin(admin.ModelAdmin):
@@ -22,3 +22,10 @@ class RevAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Rev, RevAdmin)
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('date', 'time', 'number_of_people', 'message')
+
+
+admin.site.register(Order, OrderAdmin)

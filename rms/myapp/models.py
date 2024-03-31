@@ -6,6 +6,21 @@ class TableManager(models.Manager):
     pass
 
 
+class OrderManager(models.Manager):
+    pass
+
+
+class Order(models.Model):
+    username = models.CharField(max_length=150, default=None)
+    date = models.DateField()
+    time = models.TimeField()
+    number_of_people = models.IntegerField()
+    message = models.TextField()
+    completed = models.BooleanField(default=False)
+
+    objects = OrderManager()
+
+
 class RevManager(models.Manager):
     def create_user(self, username, text=None, **extra_fields):
         if not username:
@@ -14,6 +29,7 @@ class RevManager(models.Manager):
         user = self.model(username=username, text=text, **extra_fields)
         user.save(using=self._db)
         return user
+    pass
 
 
 class Table(models.Model):

@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-from .models import MyUser123, Rev
+from .models import MyUser123, Rev, Order
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -64,14 +64,6 @@ def update_table_status(request):
         return JsonResponse({'success': False, 'message': 'Table does not exist'}, status=404)
 
 
-def admin_rev123(request):
-    # Fetch all reviews from the database
-    reviews = Rev.objects.all()
-
-    # Pass the reviews to the template context
-    return render(request, 'myapp/admin_rev.html', {'reviews': reviews})
-
-
 def submit_review(request):
     if request.method == 'POST':
         if request.user.is_authenticated:  # Check if user is authenticated
@@ -103,6 +95,63 @@ def submit_review(request):
         return HttpResponse('404 - Not Found')
 
 
+def display_reviews(request):
+    # Fetch all reviews from the database
+    reviews = Rev.objects.all()
+    print(reviews)
+    # Render the reviews in a template
+    return render(request, 'myapp/admin_rev.html', {'reviews': reviews})
+
+
+def book(request):
+    if request.method == 'POST':
+        # Check if the request method is POST (meaning the form was submitted)
+        username = request.user.username
+        # Get the username of the logged-in user
+
+        # Retrieve the order details from the form
+        date = request.POST.get('order-date', '')
+        time = request.POST.get('order-time', '')
+        nop = request.POST.get('number-of-people', '')
+        msg = request.POST.get('order-message', '')
+
+        # Check if any of the fields are empty
+        if not (date and time and nop and msg):
+            # If any field is empty, display an error message
+            messages.error(request, "Kindly fill up all the fields in the form to confirm the order.")
+            return redirect("home")  # Redirect to the home page or wherever appropriate
+
+        # Create a Rev object with the retrieved data
+        my_review = Order.objects.create(username=username, date=date, time=time, number_of_people=nop, message=msg)
+
+        # Display a success message
+        messages.success(request, "Kindly Check your Gmail for confirmation! We will reach you ASAP!!")
+
+        # Redirect to the home page after successfully saving the order
+        return redirect("home")
+    else:
+        # If the request method is not POST, return a 404 response
+        return HttpResponse('404 - Not Found')
+
+
+def display_orders(request):
+    # Fetch all orders from the database
+    orders = Order.objects.all()
+
+    # Fetch username, phone number, and email from UserDetails for each order
+    for order in orders:
+        try:
+            user_details = MyUser123.objects.get(username=order.username)
+            order.phone_number = user_details.phone
+            order.email = user_details.email
+        except MyUser123.DoesNotExist:
+            # Handle the case where UserDetails for the username does not exist
+            pass
+
+    # Render the orders in a template
+    return render(request, 'myapp/admin_reservation_control.html', {'orders': orders})
+
+
 def index(request):
     return render(request, "myapp/index.html", {})
 
@@ -121,6 +170,10 @@ def test(request):
 
 def index2_boot(request):
     return render(request, "myapp/index2_boot.html", {})
+
+
+def dine_in(request):
+    return render(request, "myapp/dine_in.html", {})
 
 
 def ap(request):
@@ -212,16 +265,10 @@ def handle1(request):
 
 def handle2(request):
     if request.method == 'POST':
-        username_or_email = request.POST.get('username')
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Check if the input is an email
-        if '@gmail.com' in username_or_email:
-            # If it's an email, try to authenticate with email
-            user = authenticate(email=username_or_email, password=password)
-        else:
-            # Otherwise, try to authenticate with username
-            user = authenticate(username=username_or_email, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
@@ -255,3 +302,18 @@ def lout(request):
 def lout1(request):
     logout(request)
     return redirect('index2_boot')
+
+
+def admin_menu(request):
+    return render(request, "myapp/admin_menu.html", {})
+
+
+def name(request):
+    return render(request, "myapp/admin_reservation_control.html", {})
+
+
+def complete_order(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    order.completed = True
+    order.save()
+    return redirect('name')

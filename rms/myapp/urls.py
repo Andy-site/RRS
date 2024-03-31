@@ -24,8 +24,16 @@ urlpatterns = [
     path('rev123/', views.rev123, name='rev123'),
     path('admin_rev/', views.admin_rev, name='admin_rev'),
     path('submit_review/', views.submit_review, name='submit_review'),
-    path('admin_rev123/', views.admin_rev123, name='admin_rev123'),
     path('take_away/', views.take_away, name='take_away'),
+    path('book/', views.book, name='book'),
+    path('orders/', views.display_orders, name='display_orders'),
+    path('reviews/', views.display_reviews, name='display_reviews'),
+    path('dine_in/', views.dine_in, name='dine_in'),
+    path('admin_menu/', views.admin_menu, name='admin_menu'),
+
+
+
+
 
 ]
 

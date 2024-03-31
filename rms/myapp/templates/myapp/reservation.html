@@ -11,8 +11,9 @@
             padding: 0;
         }
         form {
+        margin-left:-300px;
             width: 300px;
-            height: 200px;
+            height: 300px;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -20,7 +21,7 @@
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 13px;
         }
         input[type="date"],
         select {
@@ -31,7 +32,18 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
-        button {
+        .b1 {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 90px;
+            margin-top: 50px;
+        }
+
+                .b2 {
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
@@ -39,15 +51,18 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        button:hover {
+
+
+
+        .b1:hover,.b2:hover {
             background-color: #45a049;
         }
         #table-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 470px;
-            margin-left: -50px;
+            margin-top: 550px;
+            margin-left: -650px;
         }
         .table {
             margin: 10px;
@@ -65,22 +80,62 @@
         .unreserved {
             background-color: #32CD32; /* LimeGreen */
         }
-        h4{
+        .d2{
         position: absolute;
         font-size: 30px;
-        left: 600px;
-        top: 100px;
+        left: 300px;
+        top: 130px;
 
         }
+
+                .d1{
+        position: absolute;
+        font-size: 30px;
+        left: 1000px;
+        top: 130px;
+
+        }
+
+
+
         .F1{
         position: absolute;
         left: 550px;
         top: 200px;
         }
+
+
+               .F2{
+        position: absolute;
+        left: 1260px;
+        top: 200px;
+        }
+
+        #l1{
+        position: absolute;
+        margin-left: 150px;
+        margin-top:-54px;
+        }
+
+             .l2{
+        position: absolute;
+        margin-left: 90px;
+
+        }
+
+
     </style>
 </head>
 <body>
-<h4>Reserve a Table</h4>
+<div class="d1">
+    Confirm Your Order
+</div>
+
+
+<div class="d2">
+    Table Availability
+</div>
+
 <div class="F1">
        <form id="table-form">
         <label for="date">Date:</label>
@@ -93,7 +148,7 @@
             <option value="6">Table of 6</option>
             <option value="8">Table of 8</option>
         </select>
-        <button type="submit">Show Tables</button>
+        <button class = "b1" type="submit">Show Tables</button>
     </form>
 
 </div>
@@ -102,6 +157,29 @@
     <div id="table-container">
         <!-- Table data will be inserted here -->
     </div>
+
+
+
+<!--for confirming to book a table providing all details-->
+<div class="F2">
+    <form id="order-form"  action="/book/"  class="form" method='post'>
+            {% csrf_token %}
+        <label for="order-date">Date:</label>
+        <input type="date" id="order-date" name="order-date">
+        <label for="order-time">Time:</label>
+        <input type="time" id="order-time" name="order-time">
+        <label id = 'l1' for="number-of-people">Number of People:</label>
+        <input class= 'l2' type="number" id="number-of-people" name="number-of-people" min="1" max="8">
+        <label for="order-message">Message:</label>
+        <textarea id="order-message" name="order-message" rows="4"></textarea>
+        <button class = "b2" type="submit">Confirm Order</button>
+    </form>
+
+</div>
+
+
+
+
 
 <script>
     document.getElementById('table-form').addEventListener('submit', function(event) {
