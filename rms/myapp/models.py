@@ -30,6 +30,7 @@ class RevManager(models.Manager):
         user = self.model(username=username, text=text, **extra_fields)
         user.save(using=self._db)
         return user
+
     pass
 
 
@@ -67,13 +68,8 @@ class MyUserManager(BaseUserManager):
 
     def create_superuser(self, username, email=None, phone=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
-
         return self.create_user(username, email, phone, password, **extra_fields)
 
 
