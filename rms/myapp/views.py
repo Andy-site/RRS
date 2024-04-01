@@ -99,7 +99,7 @@ def submit_review(request):
 def display_reviews(request):
     # Fetch all reviews from the database
     reviews = Rev.objects.all()
-    print(reviews)
+
     # Render the reviews in a template
     return render(request, 'myapp/admin_rev.html', {'reviews': reviews})
 
@@ -155,12 +155,11 @@ def display_orders(request):
 
 def order_details_view(request):
     # Count the number of completed orders
-    completed_orders_count = Order.objects.filter(completed=True).count()
+    completed_orders_count = Order.objects.filter(completed=False).count()
 
     # Pass the count to the template context
     context = {
-        'PIYUSH': "Hello, this is PIYUSH!",
-        # 'completed_orders_count': completed_orders_count,
+        'completed_orders_count': completed_orders_count,
     }
 
     return render(request, 'myapp/admin_dash.html', context)
@@ -198,19 +197,12 @@ def complete_order(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 
-
-
-
 def index(request):
     return render(request, "myapp/index.html", {})
 
 
 def rev123(request):
     return render(request, "myapp/cust_rev.html", {})
-
-
-def admin_rev(request):
-    return render(request, "myapp/admin_rev.html", {})
 
 
 def test(request):
@@ -277,7 +269,7 @@ def admin_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect("ap")
+            return redirect("ad")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")
             return redirect("index2_boot")
@@ -325,7 +317,7 @@ def handle2(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, f"Welcome, {user.username} to One Bite Foods!")
+            messages.success(request, f"Welcome to One Bite Foods, {user.username}!")
             return redirect("home")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")

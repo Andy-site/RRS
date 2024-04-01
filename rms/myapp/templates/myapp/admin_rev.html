@@ -2,9 +2,9 @@
 {% block welcome %}{% endblock %}
 {% block title %}Reviews{% endblock %}
 
+{% block css %}
 
- {% block css %}
-        /* CSS styles for table */
+      /* CSS styles for table */
         table {
             width: 70%;
             border-collapse: collapse;
@@ -25,36 +25,25 @@
         left: 650px;
         top: 76px;
         }
+
 {% endblock %}
 
 {% block content %}
-<div class="pp">Reviews</div>
+    <div class="pp">Reviews</div>
     <table>
         <thead>
             <tr>
-                 <th>ID</th>
                 <th>Username</th>
                 <th>Message</th>
             </tr>
         </thead>
         <tbody>
             {% for review in reviews %}
-                <tr>
-                    <td>{{ order.id }}</td>
-                    <td>{{ review.username }}</td>
-                    <td>{{ review.text }}</td>
-                </tr>
-
+            <tr>
+                <td>{{ review.username }}</td>
+                <td>{{ review.text }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
 {% endblock %}
-
-
-
-
-
-
-
-
-
