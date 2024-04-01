@@ -1,123 +1,123 @@
-{% extends 'myapp/common.html' %}
+<!--{% extends 'myapp/common.html' %}-->
 
-{% block title%} Home {% endblock %}
+<!--{% block title%} Home {% endblock %}-->
 
-{% block body%}
-<div class="image-container">
-    <img src="/static/images/image1.png" alt="Image 1" class="active">
-    <img src="/static/images/image2.png" alt="Image 2">
-    <img src="/static/images/image3.png" alt="Image 3">
-    <img src="/static/images/image4.jpg" alt="Image 4">
-</div>
+<!--{% block body%}-->
+<!--<div class="image-container">-->
+<!--    <img src="/static/images/image1.png" alt="Image 1" class="active">-->
+<!--    <img src="/static/images/image2.png" alt="Image 2">-->
+<!--    <img src="/static/images/image3.png" alt="Image 3">-->
+<!--    <img src="/static/images/image4.jpg" alt="Image 4">-->
+<!--</div>-->
 
-      <img
-        style="
-          position: absolute;
-          top: 340px;
-          left: 624px;
-          width: 240px;
-          height: 190px;
-          overflow: hidden;
-        "
-        alt=""
-       src="/static/images/logo1.png"
-      />
+<!--      <img-->
+<!--        style="-->
+<!--          position: absolute;-->
+<!--          top: 340px;-->
+<!--          left: 624px;-->
+<!--          width: 240px;-->
+<!--          height: 190px;-->
+<!--          overflow: hidden;-->
+<!--        "-->
+<!--        alt=""-->
+<!--       src="/static/images/logo1.png"-->
+<!--      />-->
 
-<button style="background-color: white; /* White */
-            position: absolute;
-            border: none;
-            color: #4CAF50; /* Green */
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-           left: 477px;
-            top: 571px;"
-            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"
-  onclick="window.location.href='{% url 'reservation' %}'" > Make A Reservation </button>
+<!--<button style="background-color: white; /* White */-->
+<!--            position: absolute;-->
+<!--            border: none;-->
+<!--            color: #4CAF50; /* Green */-->
+<!--            padding: 15px 32px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--            font-size: 16px;-->
+<!--            margin: 4px 2px;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);-->
+<!--           left: 477px;-->
+<!--            top: 571px;"-->
+<!--            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"-->
+<!--            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"-->
+<!--  onclick="window.location.href='{% url 'reservation' %}'" > Make A Reservation </button>-->
 
-<button style="background-color: white; /* White */
-            position: absolute;
-            border: none;
-            color: #4CAF50; /* Green */
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            left: 757px;
-            top: 571px;
-width:200px;"
-            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"
-            onclick="window.location.href='{% url 'take_away' %}'" >Take-Away</button>
+<!--<button style="background-color: white; /* White */-->
+<!--            position: absolute;-->
+<!--            border: none;-->
+<!--            color: #4CAF50; /* Green */-->
+<!--            padding: 15px 32px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--            font-size: 16px;-->
+<!--            margin: 4px 2px;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);-->
+<!--            left: 757px;-->
+<!--            top: 571px;-->
+<!--width:200px;"-->
+<!--            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"-->
+<!--            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"-->
+<!--            onclick="window.location.href='{% url 'take_away' %}'" >Take-Away</button>-->
 
 
-<div class="intro"> Savor every bite & create<br> unforgettable moments </div>
+<!--<div class="intro"> Savor every bite & create<br> unforgettable moments </div>-->
 
-<style>
-    .intro{
-    position: absolute;
-    top: 270px;
-    left:540px;
-    font-size: 35px;
-    color:white;
-
-    }
-    .image-container {
-        position: relative;
-        width: 100%;
-        height: 100vh; /* Adjust as needed */
-        overflow: hidden;
-    }
-.alert {
-margin-top:-742px;
-margin-left:60px;
+<!--<style>-->
+<!--    .intro{-->
 <!--    position: absolute;-->
-    padding: 1rem 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-}
-    .image-container img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0; /* Initially hide all images */
-<!--        transition: opacity 1s ease-in-out; /* Add a smooth transition */-->
-    }
+<!--    top: 270px;-->
+<!--    left:540px;-->
+<!--    font-size: 35px;-->
+<!--    color:white;-->
 
-    .image-container img.active {
-        opacity: 1; /* Show the active image */
-    }
-</style>
+<!--    }-->
+<!--    .image-container {-->
+<!--        position: relative;-->
+<!--        width: 100%;-->
+<!--        height: 100vh; /* Adjust as needed */-->
+<!--        overflow: hidden;-->
+<!--    }-->
+<!--.alert {-->
+<!--margin-top:-742px;-->
+<!--margin-left:60px;-->
+<!--&lt;!&ndash;    position: absolute;&ndash;&gt;-->
+<!--    padding: 1rem 1rem;-->
+<!--    border: 1px solid transparent;-->
+<!--    border-radius: .25rem;-->
+<!--}-->
+<!--    .image-container img {-->
+<!--        position: absolute;-->
+<!--        top: 0;-->
+<!--        left: 0;-->
+<!--        width: 100%;-->
+<!--        height: 100%;-->
+<!--        object-fit: cover;-->
+<!--        opacity: 0; /* Initially hide all images */-->
+<!--&lt;!&ndash;        transition: opacity 1s ease-in-out; /* Add a smooth transition */&ndash;&gt;-->
+<!--    }-->
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var images = document.querySelectorAll('.image-container img');
-        var index = 0;
+<!--    .image-container img.active {-->
+<!--        opacity: 1; /* Show the active image */-->
+<!--    }-->
+<!--</style>-->
 
-        function showImage(index) {
-            for (var i = 0; i < images.length; i++) {
-                images[i].classList.remove('active');
-            }
-            images[index].classList.add('active');
-        }
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        var images = document.querySelectorAll('.image-container img');-->
+<!--        var index = 0;-->
 
-        setInterval(function() {
-            index = (index + 1) % images.length;
-            showImage(index);
-        }, 4000); // Change interval as needed (in milliseconds)
-    });
-</script>
-{% endblock %}
+<!--        function showImage(index) {-->
+<!--            for (var i = 0; i < images.length; i++) {-->
+<!--                images[i].classList.remove('active');-->
+<!--            }-->
+<!--            images[index].classList.add('active');-->
+<!--        }-->
+
+<!--        setInterval(function() {-->
+<!--            index = (index + 1) % images.length;-->
+<!--            showImage(index);-->
+<!--        }, 4000); // Change interval as needed (in milliseconds)-->
+<!--    });-->
+<!--</script>-->
+<!--{% endblock %}-->
