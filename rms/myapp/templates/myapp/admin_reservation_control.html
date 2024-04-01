@@ -110,6 +110,7 @@
 
 <!-- Add this script in your template -->
 <script>
+// Function to save order details
 function saveOrder(orderId) {
     // Check if the checkbox is checked (green tick)
     var isChecked = $('#confirm_checkbox_' + orderId).is(':checked');
@@ -117,22 +118,23 @@ function saveOrder(orderId) {
     // Make AJAX request to save_order view
     $.ajax({
         type: 'POST',
-        url: '{% url "save_order" %}',
+        url: '{% url "save_order" %}', // URL to the save_order view
         data: {
-            'order_id': orderId,
+            'order_id': orderId, // Sending order ID
             'is_checked': isChecked,  // Send whether the checkbox is checked
-            'csrfmiddlewaretoken': '{{ csrf_token }}'
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF token for security
         },
         success: function(data) {
             // Update the checkbox state based on the confirmed status returned from the server
-            var confirmed = data.confirmed;
-            $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
+            var confirmed = data.confirmed; // Get confirmation status from server response
+            $('#confirm_checkbox_' + orderId).prop('checked', confirmed); // Update checkbox state
 
             // Reload the page to reflect changes (optional)
             // location.reload();
         }
     });
 }
+
 
 
 
