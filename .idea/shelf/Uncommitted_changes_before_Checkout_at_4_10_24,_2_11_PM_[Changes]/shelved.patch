@@ -1,0 +1,1000 @@
+Index: rms/myapp/templates/myapp/common.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\n    {% block head%}  {% endblock %}\n          {% load static %}\n    <meta charset=\"UTF-8\">\n\n        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <title>{% block title%}  {% endblock %}</title>\n\n            <style>\n\n            body{\nbackground-color: #e9ecef;\n}\n\n.btn-primary {\n    color: #fff;\n    background-color: #28a745;\n    border-color: #28a745;\n}\n.btn-primary:hover {\n    color: #28a745;\n    background-color: #fff;\n    border-color: #fff;\n}\n\n\n.card{\n\nwidth: 400px;\nborder:none;\n\n}\n\n\n\n\n.btr{\n\nborder-top-right-radius: 5px !important;\n}\n\n\n.btl{\n\nborder-top-left-radius: 5px !important;\n}\n\n.btn-dark {\ncolor: #fff;\nbackground-color: #28a745;\nborder-color: #28a745;\n}\n\n\n.btn-dark:hover {\ncolor: #fff;\nbackground-color: #28a745;\nborder-color: #28a745;\n}\n\na {\n    color: #28a745;\n    text-decoration: underline;\n}\na:hover{\n color: #28a745;\n}\n\n.nav-pills{\n\ndisplay:table !important;\nwidth:100%;\n}\n\n.nav-pills .nav-link.active, .nav-pills .show>.nav-link {\n    color: #fff;\n    background-color: #28a745;\n}\n\n.nav-pills .nav-link {\nborder-radius: 0px;\nborder-bottom: 1px solid #0d6efd40;\n\n}\n\n.nav-item {\n    display: table-cell;\n    background: #0dfd462e;\n}\n\n\n.form{\n\npadding: 10px;\nheight: 300px;\n}\n\n.form input{\n\nmargin-bottom: 12px;\nborder-radius: 3px;\n}\n\n\n.form input:focus{\n\nbox-shadow: none;\n}\n\n\n.form button{\n\nmargin-top: 20px;\n}\n\n.connect-link {\n    color: white;\n    cursor: pointer;\n}\n\nelement.style {\n    position: absolute;\n    top: 45px;\n    left: 1367px;\n\n\n}\n.connect-link:hover {\n    color: green;\n}\n#dropdownMenu {\n    text-decoration: none;\n    display: block;\n     margin-bottom: 20px;\n     margin-left:50px;\n     margin-top: 50px;\n  }\n\n#connect-links-container {\n    background-color: rgba(0, 0, 0, 0.1); /* Black with 80% opacity */\n    font-size: 20px;\n    position: absolute;\n    display: flex;\n    top: 50px;\n    left: 430px;\n    width: 620px;\n    border-radius: 10px; /* Adjust the value as needed */\n}\n.me:hover {\n    color: red !important;\n}\n\n\n\n\n\n                {% block css %}\n                 {% endblock %}\n        </style>\n</head>\n<body>\n\n{% block body%}  {% endblock %}\n\n\n<!-- Logout Confirmation Modal -->\n<div class=\"modal fade\" id=\"logoutModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"logoutModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"logoutModalLabel\">Confirm Logout</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        Are you sure you want to logout?\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" onclick=\"logout()\">Logout</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n<!-- to trigger Login modal -->\n<div id=\"connect-links-container\">\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; \" onmousedown=\"preventDefaultAndNavigate('{% url 'home' %}');\">Home</span>\n    <span class=\"connect-link\" style=\"display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'about' %}');\">About Us</span>\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'menu' %}');\">Menu</span>\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'rev123' %}');\">Reviews</span>\n\n{% if user.is_authenticated %}\n<div class=\"me\" style=\"cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;\" data-toggle=\"modal\" data-target=\"#logoutModal\">\n    {{ request.user }}\n</div>\n{% else %}\n<span class=\"connect-link\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"display: block;margin-bottom: 5px; margin-left: 50px; margin-top: 22px; \">Connect</span>\n{% endif %}\n\n</div>\n\n\n\n\n\n      {% if messages %}\n      <div class=\"container\">\n         {% for message in messages %}\n         <div class=\"alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show\" role=\"alert\">\n          <strong>{{ message }}</strong>\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n         </div>\n          {% endfor %}\n          </div>\n      {% endif %}\n\n\n\n<div class=\"modal\" id=\"loginModal\" tabindex=\"-1\" aria-labelledby=\"loginModal\" aria-hidden=\"true\">\n    <div class=\"d-flex justify-content-center align-items-center mt-5\">\n        <div class=\"card\">\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Connect with us</h5>\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n            <ul class=\"nav nav-pills mb-3\" id=\"pills-tab\" role=\"tablist\">\n                <li class=\"nav-item text-center\">\n                    <a class=\"nav-link active btl\" id=\"pills-home-tab\" data-toggle=\"pill\" href=\"#pills-home\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\">Login</a>\n                </li>\n                <li class=\"nav-item text-center\">\n                    <a class=\"nav-link btr\" id=\"pills-profile-tab\" data-toggle=\"pill\" href=\"#pills-profile\" role=\"tab\" aria-controls=\"pills-profile\" aria-selected=\"false\">Signup</a>\n                </li>\n            </ul>\n            <div class=\"tab-content\" id=\"pills-tabContent\">\n                <div class=\"tab-pane fade show active\" id=\"pills-home\" role=\"tabpanel\" aria-labelledby=\"pills-home-tab\">\n                    <div class=\"form px-4 pt-5\">\n                        <form action=\"/handle2/\" method='post'>\n                            <input type=\"text\" name=\"username\" class=\"form-control\" placeholder=\"Username\" autocomplete=\"off\">\n                            <input type=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"off\">\n                            {% csrf_token %}\n                            <button class=\"btn btn-dark btn-block\">Login</button>\n                        </form>\n                    </div>\n                </div>\n                <div class=\"tab-pane fade\" id=\"pills-profile\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n                    <div class=\"form px-4\">\n                        <form action=\"/handle1/\" method='post'>\n                            <input type=\"text\" name=\"username\" class=\"form-control\" placeholder=\"Name\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"email\" class=\"form-control\" placeholder=\"Email\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"phone\" class=\"form-control\" placeholder=\"Phone\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"off\">\n                            {% csrf_token %}\n                            <button class=\"btn btn-dark btn-block\">Signup</button>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n\n<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" ></script>\n<script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js\" ></script>\n<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\" ></script>\n\n\n\n<script>\nfunction toggleDropdown() {\n  var dropdownMenu = document.getElementById(\"dropdownMenu\");\n  if (dropdownMenu.style.display === \"none\") {\n    dropdownMenu.style.display = \"block\";\n  } else {\n    dropdownMenu.style.display = \"none\";\n  }\n}\n</script>\n\n<script>\nfunction preventDefaultAndNavigate(url) {\n    event.preventDefault();\n    window.location.href = url;\n}\n</script>\n\n<script>\n\nfunction logout() {\n    // Perform logout action, for example, redirect to logout URL\n   window.location.href = \"{% url 'lout' %}\";\n}\n\n</script>\n\n\n\n\n\n\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/rms/myapp/templates/myapp/common.html b/rms/myapp/templates/myapp/common.html
+--- a/rms/myapp/templates/myapp/common.html	(revision 91dd691086a7d2cbf370e75a76e47285eda4ce42)
++++ b/rms/myapp/templates/myapp/common.html	(date 1712737538789)
+@@ -85,6 +85,9 @@
+ border-bottom: 1px solid #0d6efd40;
+ 
+ }
++.connect-link.active {
++    color: green; /* Setting the active link color */
++}
+ 
+ .nav-item {
+     display: table-cell;
+@@ -194,12 +197,14 @@
+ 
+ 
+ 
++
++
+ <!-- to trigger Login modal -->
+ <div id="connect-links-container">
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+-    <span class="connect-link" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
++    <span class="connect-link {% if request.path == '/home/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
++    <span class="connect-link {% if request.path == '/about/' %}active{% endif %}" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
++    <span class="connect-link {% if request.path == '/menu/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
++    <span class="connect-link {% if request.path == '/rev123/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
+ 
+ {% if user.is_authenticated %}
+ <div class="me" style="cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;" data-toggle="modal" data-target="#logoutModal">
+@@ -213,8 +218,6 @@
+ 
+ 
+ 
+-
+-
+       {% if messages %}
+       <div class="container">
+          {% for message in messages %}
+Index: rms/myapp/templates/myapp/menu.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends 'myapp/common.html' %}\n\n{% block title%} Menu  {% endblock %}\n\n  {% block head%}\n\n\n<style>\n  .button {\n  display: inline-block;\n  padding: 10px 20px;\n  font-size: 16px;\n  text-align: center;\n  text-decoration: none;\n  cursor: pointer;\n  border: none;\n  border-radius: 5px;\n  color: #fff;\n  background-color: #4CAF50; /* Green */\n  transition: background-color 0.3s ease;\n}\n\n/* Button Hover Effect */\n.button:hover {\n  background-color: #45a049; /* Darker Green */\n}\n</style>\n{% endblock %}\n\n\n\n\n\n{% block body%}\n\n\n<button class=\"button\">Order Now</button>\n\n\n\n\n\n\n{% endblock %}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/rms/myapp/templates/myapp/menu.html b/rms/myapp/templates/myapp/menu.html
+--- a/rms/myapp/templates/myapp/menu.html	(revision 91dd691086a7d2cbf370e75a76e47285eda4ce42)
++++ b/rms/myapp/templates/myapp/menu.html	(date 1712737541109)
+@@ -3,42 +3,741 @@
+ {% block title%} Menu  {% endblock %}
+ 
+   {% block head%}
++<link
++      rel="stylesheet"
++      href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
++    />
++    <link
++      rel="stylesheet"
++      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
++    />
++    <link
++      rel="stylesheet"
++      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap"
++    />
++{% endblock %}
++
++
++
+ 
+ 
+-<style>
+-  .button {
+-  display: inline-block;
+-  padding: 10px 20px;
+-  font-size: 16px;
+-  text-align: center;
+-  text-decoration: none;
+-  cursor: pointer;
+-  border: none;
+-  border-radius: 5px;
+-  color: #fff;
+-  background-color: #4CAF50; /* Green */
+-  transition: background-color 0.3s ease;
+-}
+-
+-/* Button Hover Effect */
+-.button:hover {
+-  background-color: #45a049; /* Darker Green */
+-}
+-</style>
+-{% endblock %}
+-
+-
+-
+-
+-
+-{% block body%}
+-
++
++  {% block css %}
++      body {
++        margin: 0;
++        line-height: normal;
++
++      }
++{% endblock %}
++
++
++{% block body%}
++<div
++      style="
++        width: 100%;
++        position: relative;
++        background-color: #fff;
++        height: 1611px;
++        overflow: hidden;
++        text-align: left;
++        font-size: 30px;
++         background-color: #e9ecef;
++        font-family: Inter;
++      "
++    >
++      <div
++        style="
++          position: absolute;
++          top: 184px;
++          left: 62px;
++          font-size: 36px;
++          font-weight: 600;
++          display: inline-block;
++          width: 518px;
++          height: 89px;
++        "
++      >
++        What would you like to order
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 412px;
++          left: 843px;
++          font-size: 36px;
++          font-weight: 600;
++          display: inline-block;
++          width: 240px;
++          height: 71px;
++        "
++      >
++        <p style="margin: 0">Desserts</p>
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 530px;
++          left: 843px;
++          font-size: 36px;
++          font-weight: 600;
++          display: inline-block;
++          width: 240px;
++          height: 71px;
++        "
++      >
++        <p style="margin: 0">Drinks</p>
++      </div>
++      <b
++        style="
++          position: absolute;
++          top: 249px;
++          left: 62px;
++          display: inline-block;
++          color: #a49f9f;
++          width: 447px;
++          height: 66px;
++        "
++        >Order what you want..</b
++      >
++      <div
++        style="
++          position: absolute;
++          top: 173px;
++          left: 572px;
++          font-size: 48px;
++          font-weight: 600;
++          color: #1ded0b;
++          display: inline-block;
++          width: 280px;
++          height: 76px;
++        "
++      >
++        Today ?
++      </div>
++      <img
++        style="
++          position: absolute;
++          top: 333px;
++          left: 490px;
++          width: 139px;
++          height: 102px;
++          object-fit: cover;
++        "
++        alt=""
++        src="/static/images/pngwing-4@2x.png"
++      />
++
++      <div
++        style="
++          position: absolute;
++          top: 340px;
++          left: 22px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.1);
++          width: 326px;
++          height: 326px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 569px;
++          left: 121px;
++          font-weight: 600;
++          color: #1e1e1e;
++          text-align: center;
++        "
++      >
++        Main Dish
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 379px;
++          left: 109px;
++          border-radius: 50%;
++          background-color: #c1f1c6;
++          width: 153px;
++          height: 153px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 537px;
++          left: 133px;
++          font-size: 22px;
++          font-weight: 500;
++          color: #555;
++          text-align: center;
++        "
++      >
++        (86 dishes)
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 478px;
++          left: 151px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(12px);
++          width: 71px;
++          height: 15px;
++        "
++      ></div>
++      <img
++        style="
++          position: absolute;
++          top: 405px;
++          left: 116px;
++          width: 139px;
++          height: 102px;
++          object-fit: cover;
++        "
++        alt=""
++         src="/static/images/pngwing-4@2x.png"
++      />
++
++      <div
++        style="
++          position: absolute;
++          top: 340px;
++          left: 385px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.1);
++          width: 326px;
++          height: 326px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 566px;
++          left: 461px;
++          font-weight: 600;
++          color: #1e1e1e;
++        "
++      >
++        Break Fast
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 379px;
++          left: 445px;
++          border-radius: 50%;
++          background-color: #c1f1c6;
++          width: 153px;
++          height: 153px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 537px;
++          left: 456px;
++          font-size: 22px;
++          font-weight: 500;
++          color: #555;
++          text-align: center;
++        "
++      >
++        (12 break fast)
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 463.8px;
++          left: 473.7px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(10px);
++          width: 64px;
++          height: 14px;
++          transform: rotate(-3.19deg);
++          transform-origin: 0 0;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 445.5px;
++          left: 534.5px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(10px);
++          width: 41.2px;
++          height: 22.1px;
++          transform: rotate(36.38deg);
++          transform-origin: 0 0;
++        "
++      ></div>
++      <img
++        style="
++          position: absolute;
++          top: 417px;
++          left: 466px;
++          width: 110px;
++          height: 72px;
++          object-fit: cover;
++        "
++        alt=""
++          src="/static/images/pngwing-6@2x.png"
++
++      />
++
++      <div
++        style="
++          position: absolute;
++          top: 344px;
++          left: 737px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.1);
++          width: 326px;
++          height: 326px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 566px;
++          left: 848px;
++          font-weight: 600;
++          color: #1e1e1e;
++        "
++      >
++        Dessert
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 383px;
++          left: 823px;
++          border-radius: 50%;
++          background-color: #c1f1c6;
++          width: 153px;
++          height: 153px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 541px;
++          left: 842px;
++          font-size: 22px;
++          font-weight: 500;
++          color: #555;
++          text-align: center;
++        "
++      >
++        (48 dessert)
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 491px;
++          left: 877px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(10px);
++          width: 46px;
++          height: 13px;
++        "
++      ></div>
++      <img
++        style="
++          position: absolute;
++          top: 411px;
++          left: 844px;
++          width: 111px;
++          height: 98px;
++          object-fit: cover;
++        "
++        alt=""
++          src="/static/images/pngwing-3@2x.png"
++      />
++
++      <div
++        style="
++          position: absolute;
++          top: 340px;
++          left: 1094px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.1);
++          width: 326px;
++          height: 326px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 568px;
++          left: 1188px;
++          font-weight: 600;
++          color: #1e1e1e;
++        "
++      >
++        Full Menu
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 379px;
++          left: 1180px;
++          border-radius: 50%;
++          background-color: #c1f1c6;
++          width: 153px;
++          height: 153px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 537px;
++          left: 1204px;
++          font-size: 22px;
++          font-weight: 500;
++          color: #555;
++          text-align: center;
++        "
++      >
++        (255 Items)
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 484px;
++          left: 1238px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(10px);
++          width: 30px;
++          height: 12px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 487px;
++          left: 1262px;
++          border-radius: 50%;
++          background-color: #2b2b2b;
++          filter: blur(10px);
++          width: 30px;
++          height: 12px;
++        "
++      ></div>
++      <img
++        style="
++          position: absolute;
++          top: 409px;
++          left: 1218px;
++          width: 77px;
++          height: 92px;
++          object-fit: cover;
++        "
++        alt=""
++               src="/static/images/pngwing-7@2x.png"
++      />
++
++      <b
++        style="
++          position: absolute;
++          top: 808px;
++          left: 90px;
++          font-size: 20px;
++          letter-spacing: 0.18em;
++          text-transform: uppercase;
++          color: #ff6868;
++        "
++        >Special Dishes</b
++      >
++      <b
++        style="
++          position: absolute;
++          top: 857px;
++          left: 85px;
++          font-size: 60px;
++          line-height: 131.52%;
++          display: inline-block;
++          width: 580px;
++        "
++        >Standout Dishes From Our Menu</b
++      >
++      <div
++        style="
++          position: absolute;
++          top: calc(50% - 2638.5px);
++          left: 1253px;
++          font-size: 20px;
++          font-weight: 500;
++          font-family: Poppins;
++          color: #fff;
++        "
++      >
++        About Us
++      </div>
++      <b
++        style="
++          position: absolute;
++          top: 42px;
++          left: 39px;
++          font-size: 40px;
++          display: flex;
++          font-family: Poppins;
++          color: #100e0e;
++          text-align: center;
++          align-items: center;
++          justify-content: center;
++          width: 160px;
++          height: 38px;
++        "
++        >LOGO</b
++      >
++      <div
++        style="
++          position: absolute;
++          top: 1072px;
++          left: 2px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 9px 42px rgba(0, 0, 0, 0.08);
++          width: 446px;
++          height: 523px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 1072px;
++          left: calc(50% - 232px);
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 9px 42px rgba(0, 0, 0, 0.08);
++          width: 446px;
++          height: 523px;
++        "
++      ></div>
++      <div
++        style="
++          position: absolute;
++          top: 1072px;
++          left: 973px;
++          border-radius: 40px;
++          background-color: #fff;
++          box-shadow: 2px 9px 42px rgba(0, 0, 0, 0.08);
++          width: 446px;
++          height: 523px;
++        "
++      ></div>
++      <div
++        style="position: absolute; top: 1410px; left: 48px; font-weight: 600"
++      >
++        Fattoush salad
++      </div>
++      <div
++        style="position: absolute; top: 1410px; left: 534px; font-weight: 600"
++      >
++        Vegetable salad
++      </div>
++      <div
++        style="position: absolute; top: 1410px; left: 1019px; font-weight: 600"
++      >
++        Egg vegi salad
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1520px;
++          left: 48px;
++          font-weight: 600;
++          font-size: 24px;
++          color: #ff6868;
++        "
++      >
++        <span>$</span>
++        <span style="font-size: 30px; color: #000">24.00</span>
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1520px;
++          left: 534px;
++          font-weight: 600;
++          font-size: 24px;
++          color: #ff6868;
++        "
++      >
++        <span>$</span>
++        <span style="font-size: 30px; color: #000">26.00</span>
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1520px;
++          left: 366px;
++          font-size: 24px;
++          font-weight: 600;
++          color: #454545;
++        "
++      >
++        4.9
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1520px;
++          left: 853px;
++          font-size: 24px;
++          font-weight: 600;
++          color: #454545;
++        "
++      >
++        4.6
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1520px;
++          left: 1338px;
++          font-size: 24px;
++          font-weight: 600;
++          color: #454545;
++        "
++      >
++        4.5
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1465px;
++          left: 48px;
++          font-size: 22px;
++          font-weight: 600;
++          color: #555;
++        "
++      >
++        Description of the item
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1465px;
++          left: 534px;
++          font-size: 22px;
++          font-weight: 600;
++          color: #555;
++        "
++      >
++        Description of the item
++      </div>
++      <div
++        style="
++          position: absolute;
++          top: 1465px;
++          left: 1019px;
++          font-size: 22px;
++          font-weight: 600;
++          color: #555;
++        "
++      >
++        Description of the item
++      </div>
++      <img
++        style="
++          position: absolute;
++          top: 1523px;
++          left: 327px;
++          width: 24px;
++          height: 24px;
++          overflow: hidden;
++        "
++        alt=""
++             src="/static/images/fisrstar.svg"
++      />
+ 
+-<button class="button">Order Now</button>
++      <img
++        style="
++          position: absolute;
++          top: 1523px;
++          left: 814px;
++          width: 24px;
++          height: 24px;
++          overflow: hidden;
++        "
++        alt=""
++            src="/static/images/fisrstar.svg"
++      />
+ 
++      <img
++        style="
++          position: absolute;
++          top: 1523px;
++          left: 1299px;
++          width: 24px;
++          height: 24px;
++          overflow: hidden;
++        "
++        alt=""
++         src="/static/images/fisrstar.svg"
++      />
+ 
++      <div
++        style="
++          position: absolute;
++          top: 1517px;
++          left: 1019px;
++          font-weight: 600;
++          font-size: 24px;
++          color: #ff6868;
++        "
++      >
++        <span>$</span>
++        <span style="font-size: 30px; color: #010101">23.00</span>
++      </div>
++      <img
++        style="
++          position: absolute;
++          top: 1109px;
++          left: 87px;
++          width: 276px;
++          height: 276px;
++          object-fit: cover;
++        "
++        alt=""
++         src="/static/images/fattoush-salad@2x.png"
++      />
+ 
++      <img
++        style="
++          position: absolute;
++          top: 1109px;
++          left: 572px;
++          width: 276px;
++          height: 276px;
++          object-fit: cover;
++        "
++        alt=""
++          src="/static/images/vegetable-salad@2x.png"
++      />
+ 
+-
++      <img
++        style="
++          position: absolute;
++          top: 1107px;
++          left: 1056px;
++          width: 276px;
++          height: 278px;
++          object-fit: cover;
++        "
++        alt=""
++                  src="/static/images/egg-salad@2x.png"
++      />
++    </div>
+ 
+ {% endblock %}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"Before creating three brances this was the master/main branch\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n        <option value=\"HTML File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Merge.Settings\">\n    <option name=\"BRANCH\" value=\"origin/dashboard_details_Django_Backend\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\n      <list>\n        <option value=\"piyush &lt;piyushphuyal77@gmail.com&gt;\" />\n      </list>\n    </option>\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"2dxLXWE4hlnEyG0rlyUW7MX8IL3\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\n    &quot;Python.main.executor&quot;: &quot;Debug&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;responsiveness__and__coding__standard&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static/images\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myap\" />\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\n      <module name=\"RMS\" />\n      <option name=\"ENV_FILES\" value=\"\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\n      <option name=\"PARAMETERS\" value=\"\" />\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\n      <option name=\"MODULE_MODE\" value=\"false\" />\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\n      <option name=\"INPUT_FILE\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"\" />\n      <created>1710944822890</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710944822890</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710955906052</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710955906052</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710956360652</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710956360652</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710957187631</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710957187631</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711012208988</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711012208988</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711012224290</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711012224290</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711023143611</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711023143611</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"first push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711095307016</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711095307016</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"first push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711095335201</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711095335201</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711124529971</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711124529971</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711124542850</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711124542850</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711175058080</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711175058080</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711369294639</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711369294639</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"third push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711369316852</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711369316852</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453297033</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453297033</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453310972</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453310972</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453331934</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453331934</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711505251355</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711505251355</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538921028</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538921029</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538950245</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538950246</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538972172</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538972172</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"Before creating three brances this was the master/main branch\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711603511102</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711603511102</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"check\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711683059828</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711683059828</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"final in master\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711683118989</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711683118989</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"final in master\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711724938686</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711724938686</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711850798489</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711850798489</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711851154066</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711851154066</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711851167418</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711851167418</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711868856084</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711868856084</updated>\n    </task>\n    <task id=\"LOCAL-00029\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711868866661</created>\n      <option name=\"number\" value=\"00029\" />\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711868866661</updated>\n    </task>\n    <task id=\"LOCAL-00030\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711884915129</created>\n      <option name=\"number\" value=\"00030\" />\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711884915129</updated>\n    </task>\n    <task id=\"LOCAL-00031\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711885069033</created>\n      <option name=\"number\" value=\"00031\" />\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711885069033</updated>\n    </task>\n    <task id=\"LOCAL-00032\" summary=\"Fixed Minor Bugs and Its Completed Now!\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711887116018</created>\n      <option name=\"number\" value=\"00032\" />\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711887116018</updated>\n    </task>\n    <task id=\"LOCAL-00033\" summary=\"Trying to merge django backend work from this branch to the master1\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711963071490</created>\n      <option name=\"number\" value=\"00033\" />\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711963071490</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"34\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"dfgdg\" />\n    <MESSAGE value=\"first push\" />\n    <MESSAGE value=\"second push\" />\n    <MESSAGE value=\"third push\" />\n    <MESSAGE value=\"foutrh  push @Piyush_Dev\" />\n    <MESSAGE value=\"fifth push @Piyush_Dev\" />\n    <MESSAGE value=\"Before creating three brances this was the master/main branch\" />\n    <MESSAGE value=\"check\" />\n    <MESSAGE value=\"final in master\" />\n    <MESSAGE value=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\" />\n    <MESSAGE value=\"Fixed Minor Bugs and Its Completed Now!\" />\n    <MESSAGE value=\"Trying to merge django backend work from this branch to the master1\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Trying to merge django backend work from this branch to the master1\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\n          <url>file://$PROJECT_DIR$/main.py</url>\n          <line>8</line>\n          <option name=\"timeStamp\" value=\"1\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 91dd691086a7d2cbf370e75a76e47285eda4ce42)
++++ b/.idea/workspace.xml	(date 1712737541225)
+@@ -4,7 +4,14 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Before creating three brances this was the master/main branch" />
++    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Before creating three brances this was the master/main branch">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_19_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_19_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rms/db.sqlite3" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/static/images/image1.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/static/images/image2.png" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -18,9 +25,6 @@
+       </list>
+     </option>
+   </component>
+-  <component name="Git.Merge.Settings">
+-    <option name="BRANCH" value="origin/dashboard_details_Django_Backend" />
+-  </component>
+   <component name="Git.Settings">
+     <option name="PREVIOUS_COMMIT_AUTHORS">
+       <list>
+@@ -29,10 +33,24 @@
+     </option>
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="piyush" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;Toya01&quot;
++  }
++}</component>
++  <component name="GithubPullRequestsUISettings">
++    <option name="selectedUrlAndAccountId">
++      <UrlAndAccount>
++        <option name="accountId" value="a0161de5-70bb-44ec-8891-365c4a432ef4" />
++        <option name="url" value="https://github.com/PIYUSHPHUYAL/RRS.git" />
++      </UrlAndAccount>
++    </option>
+   </component>
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="CurrentFile" />
+@@ -55,18 +73,18 @@
+     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
+     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;responsiveness__and__coding__standard&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;dashboard__details__html__css&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dell/PycharmProjects/fxgfx/RRS/rms/myapp/static/images&quot;,
+     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+   }
+ }</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Dell\PycharmProjects\fxgfx\RRS\rms\myapp\static\images" />
+       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
+       <recent name="$PROJECT_DIR$/rms/myapp/static" />
+       <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
+       <recent name="$PROJECT_DIR$/rms/myapp" />
+-      <recent name="$PROJECT_DIR$/rms/rms" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/rms/myapp/static" />
+@@ -103,7 +121,7 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
++        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -332,55 +350,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1711851167418</updated>
+     </task>
+-    <task id="LOCAL-00028" summary="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
++    <task id="LOCAL-00028" summary="Before creating three brances this was the master/main branch">
+       <option name="closed" value="true" />
+-      <created>1711868856084</created>
++      <created>1711869716525</created>
+       <option name="number" value="00028" />
+       <option name="presentableId" value="LOCAL-00028" />
+       <option name="project" value="LOCAL" />
+-      <updated>1711868856084</updated>
+-    </task>
+-    <task id="LOCAL-00029" summary="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
+-      <option name="closed" value="true" />
+-      <created>1711868866661</created>
+-      <option name="number" value="00029" />
+-      <option name="presentableId" value="LOCAL-00029" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1711868866661</updated>
++      <updated>1711869716525</updated>
+     </task>
+-    <task id="LOCAL-00030" summary="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
+-      <option name="closed" value="true" />
+-      <created>1711884915129</created>
+-      <option name="number" value="00030" />
+-      <option name="presentableId" value="LOCAL-00030" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1711884915129</updated>
+-    </task>
+-    <task id="LOCAL-00031" summary="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS">
+-      <option name="closed" value="true" />
+-      <created>1711885069033</created>
+-      <option name="number" value="00031" />
+-      <option name="presentableId" value="LOCAL-00031" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1711885069033</updated>
+-    </task>
+-    <task id="LOCAL-00032" summary="Fixed Minor Bugs and Its Completed Now!">
+-      <option name="closed" value="true" />
+-      <created>1711887116018</created>
+-      <option name="number" value="00032" />
+-      <option name="presentableId" value="LOCAL-00032" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1711887116018</updated>
+-    </task>
+-    <task id="LOCAL-00033" summary="Trying to merge django backend work from this branch to the master1">
+-      <option name="closed" value="true" />
+-      <created>1711963071490</created>
+-      <option name="number" value="00033" />
+-      <option name="presentableId" value="LOCAL-00033" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1711963071490</updated>
+-    </task>
+-    <option name="localTasksCounter" value="34" />
++    <option name="localTasksCounter" value="29" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -401,13 +379,11 @@
+     <MESSAGE value="third push" />
+     <MESSAGE value="foutrh  push @Piyush_Dev" />
+     <MESSAGE value="fifth push @Piyush_Dev" />
+-    <MESSAGE value="Before creating three brances this was the master/main branch" />
+     <MESSAGE value="check" />
+     <MESSAGE value="final in master" />
+     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
+-    <MESSAGE value="Fixed Minor Bugs and Its Completed Now!" />
+-    <MESSAGE value="Trying to merge django backend work from this branch to the master1" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Trying to merge django backend work from this branch to the master1" />
++    <MESSAGE value="Before creating three brances this was the master/main branch" />
++    <option name="LAST_COMMIT_MESSAGE" value="Before creating three brances this was the master/main branch" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
