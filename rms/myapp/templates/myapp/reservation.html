@@ -122,6 +122,22 @@
         margin-left: 90px;
 
         }
+.back-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #45a049;
+}
 
 
     </style>
@@ -178,7 +194,7 @@
 </div>
 
 
-
+<a href="/home" class="back-btn">Back to Home</a>
 
 
 <script>
@@ -213,9 +229,8 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
-                            if (confirm('Do you really wish to book this table?')) {
-                                // Code to book the table goes here
-                                alert('Table booked successfully!');
+                            if (confirm('Please Book the Table from Confirm your Order section!')) {
+
                             }
                         });
                     }

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+from datetime import date
 
 from .models import MyUser123, Rev, Order
 import re
@@ -357,4 +358,23 @@ def name(request):
     return render(request, "myapp/admin_reservation_control.html", {})
 
 
+def add_tables_for_day(request):
+    # Get today's date
+    today = date.today()
+
+    # Check if tables for today already exist
+    existing_tables = Table.objects.filter(date=today)
+
+    if not existing_tables:
+        # If tables for today don't exist, create them
+        table_sizes = [1, 2, 4, 6, 8]  # Table sizes
+        table_numbers = [666, 777, 999, 6969, 1012]  # Table numbers
+
+        for size in table_sizes:
+            for number in table_numbers:
+                table = Table.objects.create(date=today, size=size, number=number)
+
+        return JsonResponse({'status': 'success', 'message': 'Tables added for the day.'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Tables for the day already exist.'})
 
