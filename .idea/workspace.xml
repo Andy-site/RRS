@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed Minor Bugs and Its Completed Now!">
-      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
