@@ -1,9 +1,78 @@
 {% extends 'myapp/admin_page.html' %}
 {% block title %}Order Details{% endblock %}
 
+{% block css %}
+.add-table-btn {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Text alignment */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    font-size: 16px; /* Font size */
+    margin: 40px 0px 0px 620px;
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 8px; /* Rounded corners */
+    transition-duration: 0.4s; /* Animation duration */
+    position: relative; /* Position for tooltip */
+}
+
+.add-table-btn:hover {
+    background-color: #45a049; /* Darker green background on hover */
+}
+
+.add-table-btn:hover::after {
+    content: "Add tables for the day"; /* Text content of tooltip */
+    position: absolute; /* Position relative to the button */
+    bottom: 125%; /* Adjust the distance from the button */
+    left: 50%; /* Align the tooltip horizontally */
+    transform: translateX(-50%); /* Center the tooltip horizontally */
+    background-color: #555; /* Background color of tooltip */
+    color: #fff; /* Text color of tooltip */
+    padding: 5px 10px; /* Padding of tooltip */
+    border-radius: 6px; /* Rounded corners of tooltip */
+    font-size: 14px; /* Font size of tooltip */
+    opacity: 0; /* Hide the tooltip initially */
+    transition: opacity 0.3s; /* Fade-in transition */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.add-table-btn:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
+
+{% endblock %}
+
 {% block content %}
     <div class="wel">Welcome, {{ request.user }}! </div>
     <div class="au">Number of Active Orders: {{ completed_orders_count }}</div>
-{% endblock %}
+    <button class="add-table-btn">Add Table</button>
 
-<!--TOYA-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.add-table-btn').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: '{% url "add_tables_for_day" %}',
+            success: function(response) {
+                if (response.status === 'success') {
+                    alert(response.message);  // Show success message
+                    location.reload();  // Reload the page to reflect added tables
+                } else {
+                    alert(response.message);  // Show error message
+                }
+            },
+            error: function(xhr, errmsg, err) {
+                alert('Error occurred. Please try again later.');
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+{% endblock %}

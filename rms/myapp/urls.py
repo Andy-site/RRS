@@ -35,6 +35,8 @@ urlpatterns = [
     path('complete_order/', views.complete_order, name='complete_order'),
     path('ad/', views.ad, name='ad'),
     path('admin_rev/', views.display_reviews, name='admin_rev'),
+    path('add-tables/', views.add_tables_for_day, name='add_tables_for_day'),
+
 
 
 
