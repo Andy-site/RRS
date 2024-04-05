@@ -214,10 +214,6 @@ def ad(request):
     return render(request, "myapp/admin_dash.html", {})
 
 
-def index2_boot(request):
-    return render(request, "myapp/index2_boot.html", {})
-
-
 def dine_in(request):
     return render(request, "myapp/dine_in.html", {})
 
@@ -273,7 +269,7 @@ def admin_page(request):
             return redirect("ad")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("index2_boot")
+            return redirect("index")
     return HttpResponse('admin_page')
 
 
