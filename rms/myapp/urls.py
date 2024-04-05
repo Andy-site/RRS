@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
 
     path('', views.index, name='index'),
-    path('index2_boot/', views.index2_boot, name='index2_boot'),
     path('ap/', views.ap, name='ap'),
     path('admin_page/', views.admin_page, name='admin_page'),
     path('handle1/', views.handle1, name='handle1'),
@@ -36,6 +35,7 @@ urlpatterns = [
     path('ad/', views.ad, name='ad'),
     path('admin_rev/', views.display_reviews, name='admin_rev'),
     path('add-tables/', views.add_tables_for_day, name='add_tables_for_day'),
+
 
 
 

@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed Minor Bugs and Its Completed Now!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/rms/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/rms/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/static/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index2_boot.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +63,7 @@
     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dashboard__details__Django__Backend&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;responsiveness__and__coding__standard&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
@@ -107,7 +111,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
