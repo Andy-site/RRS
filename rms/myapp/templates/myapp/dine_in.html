@@ -2,26 +2,205 @@
 {% block welcome %}{% endblock %}
 {% block title %}Dine-In{% endblock %}
 
+{% block css %}
+.pp {
+    position: absolute;
+    font-size: 30px;
+    left: 650px;
+    top: 76px;
+}
 
- {% block css %}
-        .pp{
-        position: absolute;
-        font-size: 30px;
-        left: 650px;
-        top: 76px;
-        }
+.dropdown-box {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.meme {
+    position: absolute;
+    top: 200px;
+    left: 250px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1;
+    width: 150px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+#foodsList {
+    position: absolute;
+    top: 170px;
+    left: 550px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+.btn {
+    position: absolute;
+    top: 350px;
+    left: 300px;
+}
+
+.btn2 {
+    position: absolute;
+    top: 450px;
+    left: 300px;
+}
+
+/* Selected Orders Styling */
+#selectedOrders {
+    position: absolute;
+    left: 1100px;
+    top: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#selectedOrders h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#ordersList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#ordersList li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+}
+
+#ordersList li:last-child {
+    border-bottom: none;
+}
+
+#ordersList li span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.scrollable-table {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;
+    width: 100%; /* Ensure the div takes the full width of its container */
+}
+
 {% endblock %}
 
 {% block content %}
 <div class="pp">Dine-In</div>
 
+<form method="post" id="foodForm">
+    {% csrf_token %}
+    <input type="hidden" name="food_type" id="foodTypeInput">
+</form>
+
+<div id="foodsList">
+    <div class="scrollable-table">
+    <!-- Display the foods in a table here -->
+    {% if foods %}
+        <table>
+            <tr>
+                <th>Food Type</th>
+                <th>Food</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            {% for food in foods %}
+                <tr>
+                    <td>{{ food.type }}</td>
+                    <td>{{ food.food }}</td>
+                    <td>{{ food.price }}</td>
+                    <td><input type="number" name="quantity" min="1" value="0"></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+</div>
+<div id="selectedOrders">
+    <h3>Selected Orders:</h3>
+    <ul id="ordersList">
+        <!-- Selected orders will be displayed here -->
+    </ul>
+</div>
+
+<button class="btn" onclick="submitOrder()">Check</button>
+<button class="btn2" onclick="confirmOrder()">Confirm</button>
+
+<script>
+    function submitOrder() {
+        // Collect the selected foods and quantities
+        var ordersList = document.getElementById('ordersList');
+        ordersList.innerHTML = ''; // Clear the list
+        var foodsTable = document.getElementById('foodsList').getElementsByTagName('table')[0];
+        var rows = foodsTable.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName('td');
+            var foodName = cells[1].innerText; // Get the food name from the second column
+            var quantityInput = cells[3].getElementsByTagName('input')[0];
+            var quantity = quantityInput.value;
+            if (quantity > 0) {
+                var listItem = document.createElement('li');
+                listItem.textContent = foodName + ': ' + quantity;
+                ordersList.appendChild(listItem);
+            }
+        }
+    }
+
+        function confirmOrder() {
+        // Display a confirmation alert
+        alert("Your order has been confirmed!");
+    }
+</script>
+
 {% endblock %}
-
-
-
-
-
-
-
-
-
