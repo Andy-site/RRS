@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from datetime import date
 
-from .models import MyUser123, Rev, Order
+from .models import MyUser123, Rev, Order , Food
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -214,10 +214,6 @@ def ad(request):
     return render(request, "myapp/admin_dash.html", {})
 
 
-def index2_boot(request):
-    return render(request, "myapp/index2_boot.html", {})
-
-
 def dine_in(request):
     return render(request, "myapp/dine_in.html", {})
 
@@ -273,7 +269,7 @@ def admin_page(request):
             return redirect("ad")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("index2_boot")
+            return redirect("index")
     return HttpResponse('admin_page')
 
 
@@ -377,4 +373,10 @@ def add_tables_for_day(request):
         return JsonResponse({'status': 'success', 'message': 'Tables added for the day.'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Tables for the day already exist.'})
+
+
+def dine(request):
+    foods = Food.objects.all() # Assuming Food is your model
+    return render(request, 'myapp/dine_in.html', {'foods': foods})
+
 

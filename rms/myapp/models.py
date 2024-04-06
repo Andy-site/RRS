@@ -10,6 +10,10 @@ class OrderManager(models.Manager):
     pass
 
 
+class FoodManager(models.Manager):
+    pass
+
+
 class Order(models.Model):
     username = models.CharField(max_length=150, default=None)
     date = models.DateField()
@@ -20,6 +24,14 @@ class Order(models.Model):
     completed = models.BooleanField(default=False)  # New field
 
     objects = OrderManager()
+
+
+class Food(models.Model):
+    type = models.CharField(default=None)
+    food = models.CharField()
+    price = models.IntegerField()
+
+    objects = FoodManager()
 
 
 class RevManager(models.Manager):

@@ -1,117 +1,333 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      {% load static %}
+<head>
+    {% load static %}
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+   <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title>One Bite Foods</title>
-    <link rel="stylesheet" href="{% static 'index.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-    />
-
-    <style>
-      body {
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+    body {
         margin: 0;
         line-height: normal;
         overflow: hidden;
-      }
-    </style>
-  </head>
+    }
 
-  <body>
-    <div
-      style="
-        width: 100%;
+    .modal-login {
+        color: #636363;
+        width: 350px;
+    }
+
+    .modal-login .modal-content {
+        padding: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .modal-login .modal-header {
+        border-bottom: none;
         position: relative;
-        background-color: #fff;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        height: 1024px;
+        justify-content: center;
+    }
+
+    .modal-login h4 {
+        text-align: center;
+        font-size: 26px;
+    }
+
+    .modal-login .form-group {
+        position: relative;
+    }
+
+    .modal-login i {
+        position: absolute;
+        left: 13px;
+        top: 11px;
+        font-size: 18px;
+    }
+
+    .modal-login .form-control {
+        padding-left: 40px;
+    }
+
+    .modal-login .form-control:focus {
+        border-color: #00ce81;
+    }
+
+    .modal-login .form-control, .modal-login .btn {
+        min-height: 40px;
+        border-radius: 3px;
+    }
+
+    .modal-login .hint-text {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .modal-login .close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    .modal-login .btn, .modal-login .btn:active {
+        border: none;
+        background: #00ce81 !important;
+        line-height: normal;
+    }
+
+    .modal-login .btn:hover, .modal-login .btn:focus {
+        background: #00bf78 !important;
+    }
+
+    .modal-login .modal-footer {
+        background: #ecf0f1;
+        border-color: #dee4e7;
+        text-align: center;
+        margin: 0 -20px -20px;
+        border-radius: 5px;
+        font-size: 13px;
+        justify-content: center;
+    }
+
+    .modal-login .modal-footer a {
+        color: #999;
+    }
+
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
+
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Use viewport height to cover the entire screen */
         overflow: hidden;
-        text-align: left;
-        font-size: 128px;
-        color: #000;
-        font-family: 'Great Vibes';
-      "
-    >
-      <img
-        style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        "
-        alt=""
-        src="{% static 'images/wallpaperflare-1@2x.png' %}"
-      />
+    }
 
-      <div
-        style="
-          position: fixed;
-          top: 225px;
-          left: 223px;
-          display: inline-block;
-          width: 485px;
-          height: 164px;
-        "
-      >
-        One Bite Foods
-      </div>
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the area without distortion */
+        position: absolute;
+        opacity: 0; /* Initially hide all images */
+        transition: opacity 1s; /* Smooth transition effect */
+    }
 
-      <div style="
-    position: fixed;
-    top: 217px;
-    left: 748px;
-    font-size: 35px;
-    display: inline-block;
+    .image-container img.active {
+        opacity: 1; /* Show the active image */
+    }
 
-
-         ">" Welcome to OneBite Foods, <br> &nbsp; &nbsp; &nbsp;where culinary excellence meets effortless <br> elegance in the heart of Kathmandu city.<br> &nbsp; &nbsp; Your dining experience awaits at our <br>oasis of gastronomic delight! "</div>
-
-      <div style = "
+    .lets-get-started {
         position: fixed;
+        color: white;
         top: 476px;
-    left: 821px;
-  font-size: 48px;
-  display: inline-block;
-  width: 256px;
-  height: 60px;
-  border: none;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 12px;
-  padding: 10px 5px 2px 1px;
-      "
-          onclick="window.location.href='{% url 'index2_boot' %}'" class="lets-get-started">Let’s get started</div>
+        left: 621px;
+        font-size: 48px;
+        display: inline-block;
+        width: 256px;
+        height: 60px;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 12px;
+        padding: 10px 5px 2px 1px;
+    }
 
-      <div style="
+    .cust2 {
         position: fixed;
         top: 553px;
-    left: 847px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-      "
-      > Are you a Customer? </div>
-      <div class="cust2" style="
-       position: fixed;
-       top: 553px;
-    left: 980px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  cursor: pointer;
-     "
-           onclick="window.location.href='{% url 'home' %}'" >Click here </div>
-    </div>
-  </body>
-</html>
+        left: 650px;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 11px;
+        cursor: pointer;
+    }
 
+    .lets-get-started, .cust2 {
+    font-size: 4vw; /* Adjust the multiplier as needed */
+}
+
+
+.obf{
+position: fixed;
+ top: 225px;
+ left: 353px;
+ color: white;
+ display: inline-block;
+  width: 785px;
+   height: 164px;
+
+}
+
+
+.all{
+width: 100%;
+ position: relative;
+ background-color: #fff;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 128px;
+  color: #000;
+  font-family: 'Great Vibes';
+}
+
+
+
+    body {
+    margin: 0;
+    line-height: normal;
+}
+
+/* Adjustments for responsiveness */
+@media only screen and (max-width: 768px) {
+    .modal-login {
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .lets-get-started, .cust2 {
+        font-size: 4vw;
+    }
+
+    .obf {
+        font-size: 6vw;
+        top: 30%;
+        left: 20%;
+    }
+
+    .all {
+        font-size: 4vw;
+    }
+
+    .image-container {
+        height: 40vh;
+    }
+
+    .modal-footer {
+        font-size: 3vw;
+    }
+}
+
+/* Adjustments for larger screens */
+@media only screen and (min-width: 1200px) {
+    .obf {
+        font-size: 3vw;
+        top: 20%;
+        left: 30%;
+    }
+
+    .all {
+        font-size: 2vw;
+    }
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+
+      {% if messages %}
+      <div class="container">
+         {% for message in messages %}
+         <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+         </div>
+          {% endfor %}
+          </div>
+      {% endif %}
+
+<div class="image-container">
+    <img src="/static/images/slide_1.jpg" alt="Image 1" class="active">
+    <img src="/static/images/slide_2.jpg" alt="Image 2">
+    <img src="/static/images/slide_3.jpg" alt="Image 3">
+</div>
+
+
+<div class="all">
+
+    <div class="obf">
+        One Bite Foods
+    </div>
+
+
+    <div onclick="$('#myModal').modal('show');"  class="lets-get-started">Let’s get started</div>
+
+    <div class="cust2" onclick="window.location.href='{% url 'home' %}'">Get Redirected to <span style="color: white;" onmouseover="this.style.color='green'" onmouseout="this.style.color='white'">Customer Page</span></div>
+
+    </div>
+
+
+
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Admin Login</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                  <form action="{% url 'admin_page' %}" method="post">
+                            {% csrf_token %}
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" placeholder="Username" required="required" name="username" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control" placeholder="Password" required="required"  name="password" >
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="home">Redirect to Customer Page?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var images = document.querySelectorAll('.image-container img');
+        var index = 0;
+
+        function showImage(index) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].classList.remove('active');
+            }
+            images[index].classList.add('active');
+        }
+
+        setInterval(function() {
+            index = (index + 1) % images.length;
+            showImage(index);
+        }, 4000); // Change interval as needed (in milliseconds)
+    });
+</script>
+
+</body>
+</html>

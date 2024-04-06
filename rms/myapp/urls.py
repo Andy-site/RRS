@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
 
     path('', views.index, name='index'),
-    path('index2_boot/', views.index2_boot, name='index2_boot'),
     path('ap/', views.ap, name='ap'),
     path('admin_page/', views.admin_page, name='admin_page'),
     path('handle1/', views.handle1, name='handle1'),
@@ -29,13 +28,15 @@ urlpatterns = [
     path('orders/', views.display_orders, name='display_orders'),
     path('ad/', views.order_details_view, name='order_details_view'),
     path('reviews/', views.display_reviews, name='display_reviews'),
-    path('dine_in/', views.dine_in, name='dine_in'),
+    path('dine_in/', views.dine, name='dine_in'),
     path('admin_menu/', views.admin_menu, name='admin_menu'),
     path('save_order/', views.save_order, name='save_order'),
     path('complete_order/', views.complete_order, name='complete_order'),
     path('ad/', views.ad, name='ad'),
     path('admin_rev/', views.display_reviews, name='admin_rev'),
     path('add-tables/', views.add_tables_for_day, name='add_tables_for_day'),
+    path('foods/', views.dine, name='dine'),
+
 
 
 
