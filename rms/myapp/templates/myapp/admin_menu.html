@@ -1,16 +1,230 @@
 {% extends 'myapp/admin_page.html' %}
+
 {% block title %}Menu{% endblock %}
 
 {% block css %}
+.menu123 {
+    position: absolute;
+    font-size: 40px;
+    left: 650px;
+    top: 55px;
+}
 
+.menu {
+    position: absolute;
+    font-size: 20px; /* Adjust font size as needed */
+    left: 500px; /* Adjust left position as needed */
+    top: 185px;
+}
 
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    display: inline; /* Display menu items inline */
+    margin-right: 20px; /* Adjust margin between items as needed */
+}
+
+.menu a {
+    text-decoration: none;
+    color: black; /* Adjust link color as needed */
+}
+
+.carousel-container {
+    width: 800px; /* Adjust carousel width as needed */
+    overflow: hidden;
+    position: absolute;
+    left: 500px; /* Adjust left position as needed */
+    top: 300px; /* Adjust top position as needed */
+    height: 400px; /* Adjust carousel height as needed */
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column; /* Change to vertical direction */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    margin-bottom: 20px; /* Adjust margin between items as needed */
+}
+
+.carousel-item table {
+    width: 100%; /* Adjust table width */
+}
+
+.carousel-item img {
+    max-width: 100px; /* Adjust image width */
+}
 
 {% endblock %}
 
 {% block content %}
+<div class="menu123">Menu</div>
+<div class="menu">
+    <ul>
+        <li><a href="#" class="menu-link" data-target="starter">Starter</a></li>
+        <li><a href="#" class="menu-link" data-target="main-courses">Main Courses</a></li>
+        <li><a href="#" class="menu-link" data-target="drink">Drink</a></li>
+        <li><a href="#" class="menu-link" data-target="dessert">Dessert</a></li>
+    </ul>
+</div>
 
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="carousel-item" id="starter">
+            <h2>Starters</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Price</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Starter 1</td>
+                        <td>$5.99</td>
+                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 2</td>
+                        <td>$6.99</td>
+                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 3</td>
+                        <td>$7.99</td>
+                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 4</td>
+                        <td>$8.99</td>
+                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="carousel-item" id="main-courses">
+            <h2>Main Courses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Price</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                       <tr>
+                        <td>Starter 1</td>
+                        <td>$5.99</td>
+                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 2</td>
+                        <td>$6.99</td>
+                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 3</td>
+                        <td>$7.99</td>
+                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 4</td>
+                        <td>$8.99</td>
+                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="carousel-item" id="drink">
+            <h2>Drinks</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Drink Name</th>
+                        <th>Price</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                        <td>Starter 1</td>
+                        <td>$5.99</td>
+                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 2</td>
+                        <td>$6.99</td>
+                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 3</td>
+                        <td>$7.99</td>
+                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 4</td>
+                        <td>$8.99</td>
+                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="carousel-item" id="dessert">
+            <h2>Desserts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dessert Name</th>
+                        <th>Price</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                     <tr>
+                        <td>Starter 1</td>
+                        <td>$5.99</td>
+                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 2</td>
+                        <td>$6.99</td>
+                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 3</td>
+                        <td>$7.99</td>
+                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+                    </tr>
+                    <tr>
+                        <td>Starter 4</td>
+                        <td>$8.99</td>
+                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.menu-link').click(function(e) {
+        e.preventDefault();
+        var target = $(this).data('target');
+        var offset = $('#' + target).offset().top;
+        $('.carousel').css('transform', 'translateY(-' + offset + 'px)');
+    });
+});
+</script>
 {% endblock %}
-
-
 
