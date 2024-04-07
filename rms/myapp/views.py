@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from datetime import date
 
-from .models import MyUser123, Rev, Order
+from .models import MyUser123, Rev, Order , Food
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -373,4 +373,10 @@ def add_tables_for_day(request):
         return JsonResponse({'status': 'success', 'message': 'Tables added for the day.'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Tables for the day already exist.'})
+
+
+def dine(request):
+    foods = Food.objects.all() # Assuming Food is your model
+    return render(request, 'myapp/dine_in.html', {'foods': foods})
+
 
