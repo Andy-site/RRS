@@ -343,7 +343,7 @@ def lout(request):
 
 def lout1(request):
     logout(request)
-    return redirect('index2_boot')
+    return redirect('index')
 
 
 def admin_menu(request):
