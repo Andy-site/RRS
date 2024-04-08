@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed Minor Bugs for logging out of admin Page!">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="some changes in logo">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_8_24__7_11_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_8_24__7_11_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +62,7 @@
     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;responsiveness__and__coding__standard&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
@@ -106,7 +110,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
       </set>
     </attachedChunks>
   </component>

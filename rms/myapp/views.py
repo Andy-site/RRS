@@ -363,8 +363,8 @@ def add_tables_for_day(request):
 
     if not existing_tables:
         # If tables for today don't exist, create them
-        table_sizes = [1, 2, 4, 6, 8]  # Table sizes
-        table_numbers = [666, 777, 999, 6969, 1012]  # Table numbers
+        table_sizes = [1, 2, 4, 6, 8, 9]  # Table sizes
+        table_numbers = [666, 777, 999, 6969, 1012, 1234]  # Table numbers
 
         for size in table_sizes:
             for number in table_numbers:
