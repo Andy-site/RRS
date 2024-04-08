@@ -11,11 +11,14 @@
     text-decoration: none; /* Remove underline */
     display: inline-block;
     font-size: 16px; /* Font size */
-    margin: 40px 0px 0px 620px;
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+    bottom: 20px; /* Adjust vertically */
     cursor: pointer; /* Cursor on hover */
     border-radius: 8px; /* Rounded corners */
     transition-duration: 0.4s; /* Animation duration */
-    position: relative; /* Position for tooltip */
+    top: 470px;
+    left: 705px;
 }
 
 .add-table-btn:hover {
@@ -71,8 +74,5 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-
 
 {% endblock %}
