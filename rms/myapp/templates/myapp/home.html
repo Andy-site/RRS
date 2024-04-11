@@ -5,9 +5,9 @@
 {% block body%}
 <div class="image-container">
     <img src="/static/images/image10.jpg" alt="Image 1" class="active">
-    <img src="/static/images/image9.jpg" alt="Image 2">
-    <img src="/static/images/image3.png" alt="Image 3">
-    <img src="/static/images/image4.jpg" alt="Image 4">
+    <img src="/static/images/image9.jpg" alt="Image 2"   class="active1">
+    <img src="/static/images/image3.png" alt="Image 3" class="active1">
+    <img src="/static/images/image4.jpg" alt="Image 4"class="active1">
 </div>
 
 <button style="background-color: white; /* White */
@@ -48,22 +48,27 @@ width:200px;"
             onclick="window.location.href='{% url 'take_away' %}'" >Take-Away</button>
 
 
-<div class="intro"> Savor every bite & create<br> unforgettable moments </div>
+<div
+
+        class="intro"> Relish every bite, create lasting memories
+</div>
 
 <style>
     .intro{
     position: absolute;
-    top: 270px;
-    left:540px;
-    font-size: 35px;
+    top: 279px;
+    left: 273px;
+    font-size: 48px;
+    font-weight: bold;
     color:white;
-
+    font-family: 'Georgia', serif;
     }
     .image-container {
         position: relative;
         width: 100%;
         height: 100vh; /* Adjust as needed */
         overflow: hidden;
+        filter: brightness(80%);
     }
 .alert {
 margin-top:-742px;
