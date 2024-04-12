@@ -8,24 +8,11 @@
     <img src="/static/images/image9.jpg" alt="Image 2">
     <img src="/static/images/image3.png" alt="Image 3">
     <img src="/static/images/image4.jpg" alt="Image 4">
-</div>
-      <img
-        style="
-          position: absolute;
-          top: 340px;
-          left: 624px;
-          width: 240px;
-          height: 190px;
-          overflow: hidden;
-        "
-        alt=""
-       src="/static/images/logo1.png"
-      />
 
-<button style="background-color: white; /* White */
+<button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
             position: absolute;
             border: none;
-            color: #4CAF50; /* Green */
+            color: black; /* Text color set to black */
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -34,16 +21,17 @@
             margin: 4px 2px;
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-           left: 477px;
+            left: 565px;
             top: 571px;"
             onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"
-  onclick="window.location.href='{% url 'reservation' %}'" > Make A Reservation </button>
+            onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
+            onclick="window.location.href='{% url 'reservation' %}'"> Make A Reservation </button>
 
-<button style="background-color: white; /* White */
+
+<button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
             position: absolute;
             border: none;
-            color: #4CAF50; /* Green */
+            color: black; /* Text color set to black */
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -52,25 +40,31 @@
             margin: 4px 2px;
             cursor: pointer;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            left: 757px;
+            left: 825px;
             top: 571px;
-width:200px;"
+            width: 200px;"
             onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='white'; this.style.color='#4CAF50';"
-            onclick="window.location.href='{% url 'take_away' %}'" >Take-Away</button>
-
+            onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
+            onclick="window.location.href='{% url 'take_away' %}'">Take-Away</button>
 
 <div class="intro"> Savor every bite & create<br> unforgettable moments </div>
 
 <style>
-    .intro{
+.intro {
     position: absolute;
     top: 270px;
-    left:540px;
-    font-size: 35px;
-    color:white;
+    left: 540px;
+    font-size: 45px;
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text */
+    letter-spacing: 2px; /* Increases spacing between letters */
+    transition: transform 0.3s ease; /* Adds transition effect to transform property */
+}
 
-    }
+.intro:hover {
+    transform: scale(1.1); /* Scales the text on hover */
+}
     .image-container {
         position: relative;
         width: 100%;

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Made Menu and The confirmation Sessions" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed Minor Bugs for logging out of admin Page!">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_24__8_46_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_1_24__8_46_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_7_24__7_08_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_7_24__7_08_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/static/images/piyush.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/static/images/vegetable-salad@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,17 +64,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/adamp/PycharmProjects/RRS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\adamp\PycharmProjects\RRS\rms\myapp\static\images" />
       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
       <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp" />
-      <recent name="$PROJECT_DIR$/rms/rms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
@@ -380,23 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711963071490</updated>
     </task>
-    <task id="LOCAL-00034" summary="Made Responsive adding few features!">
+    <task id="LOCAL-00034" summary="Fixed Minor Bugs for logging out of admin Page!">
       <option name="closed" value="true" />
-      <created>1712312215474</created>
+      <created>1712496809164</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1712312215474</updated>
+      <updated>1712496809164</updated>
     </task>
-    <task id="LOCAL-00035" summary="Made Menu and The confirmation Sessions">
-      <option name="closed" value="true" />
-      <created>1712382942120</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1712382942120</updated>
-    </task>
-    <option name="localTasksCounter" value="36" />
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,9 +423,8 @@
     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
     <MESSAGE value="Fixed Minor Bugs and Its Completed Now!" />
     <MESSAGE value="Trying to merge django backend work from this branch to the master1" />
-    <MESSAGE value="Made Responsive adding few features!" />
-    <MESSAGE value="Made Menu and The confirmation Sessions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Menu and The confirmation Sessions" />
+    <MESSAGE value="Fixed Minor Bugs for logging out of admin Page!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Minor Bugs for logging out of admin Page!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

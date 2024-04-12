@@ -153,6 +153,9 @@ element.style {
     color: red !important;
 }
 
+.connect-link.active {
+    color: green; /* Setting the active link color */
+}
 
 
 
@@ -196,10 +199,10 @@ element.style {
 
 <!-- to trigger Login modal -->
 <div id="connect-links-container">
-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
-    <span class="connect-link" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
+    <span class="connect-link {% if request.path == '/home/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+    <span class="connect-link {% if request.path == '/about/' %}active{% endif %}" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+    <span class="connect-link {% if request.path == '/menu/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+    <span class="connect-link {% if request.path == '/rev123/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
 
 {% if user.is_authenticated %}
 <div class="me" style="cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;" data-toggle="modal" data-target="#logoutModal">
@@ -210,6 +213,7 @@ element.style {
 {% endif %}
 
 </div>
+
 
 
 

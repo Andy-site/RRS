@@ -1,0 +1,498 @@
+Index: rms/myapp/templates/myapp/admin_menu.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends 'myapp/admin_page.html' %}\n\n{% block title %}Menu{% endblock %}\n\n{% block css %}\n.menu123 {\n    position: absolute;\n    font-size: 40px;\n    left: 650px;\n    top: 55px;\n}\n\n.menu {\n    position: absolute;\n    font-size: 20px; /* Adjust font size as needed */\n    left: 500px; /* Adjust left position as needed */\n    top: 185px;\n}\n\n.menu ul {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n}\n\n.menu li {\n    display: inline; /* Display menu items inline */\n    margin-right: 20px; /* Adjust margin between items as needed */\n}\n\n.menu a {\n    text-decoration: none;\n    color: black; /* Adjust link color as needed */\n}\n\n.carousel-container {\n    width: 800px; /* Adjust carousel width as needed */\n    overflow: hidden;\n    position: absolute;\n    left: 500px; /* Adjust left position as needed */\n    top: 300px; /* Adjust top position as needed */\n    height: 400px; /* Adjust carousel height as needed */\n}\n\n.carousel {\n    display: flex;\n    flex-direction: column; /* Change to vertical direction */\n    transition: transform 0.5s ease-in-out;\n}\n\n.carousel-item {\n    flex: 0 0 auto;\n    margin-bottom: 20px; /* Adjust margin between items as needed */\n}\n\n.carousel-item table {\n    width: 100%; /* Adjust table width */\n}\n\n.carousel-item img {\n    max-width: 100px; /* Adjust image width */\n}\n\n{% endblock %}\n\n{% block content %}\n<div class=\"menu123\">Menu</div>\n<div class=\"menu\">\n    <ul>\n        <li><a href=\"#\" class=\"menu-link\" data-target=\"starter\">Starter</a></li>\n        <li><a href=\"#\" class=\"menu-link\" data-target=\"main-courses\">Main Courses</a></li>\n        <li><a href=\"#\" class=\"menu-link\" data-target=\"drink\">Drink</a></li>\n        <li><a href=\"#\" class=\"menu-link\" data-target=\"dessert\">Dessert</a></li>\n    </ul>\n</div>\n\n<div class=\"carousel-container\">\n    <div class=\"carousel\">\n        <div class=\"carousel-item\" id=\"starter\">\n            <h2>Starters</h2>\n            <table>\n                <thead>\n                    <tr>\n                        <th>Food Name</th>\n                        <th>Price</th>\n                        <th>Picture</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>Starter 1</td>\n                        <td>$5.99</td>\n                        <td><img src=\"starter1.jpg\" alt=\"Starter 1\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 2</td>\n                        <td>$6.99</td>\n                        <td><img src=\"starter2.jpg\" alt=\"Starter 2\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 3</td>\n                        <td>$7.99</td>\n                        <td><img src=\"starter3.jpg\" alt=\"Starter 3\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 4</td>\n                        <td>$8.99</td>\n                        <td><img src=\"starter4.jpg\" alt=\"Starter 4\"></td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n        <div class=\"carousel-item\" id=\"main-courses\">\n            <h2>Main Courses</h2>\n            <table>\n                <thead>\n                    <tr>\n                        <th>Food Name</th>\n                        <th>Price</th>\n                        <th>Picture</th>\n                    </tr>\n                </thead>\n                <tbody>\n                                       <tr>\n                        <td>Starter 1</td>\n                        <td>$5.99</td>\n                        <td><img src=\"starter1.jpg\" alt=\"Starter 1\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 2</td>\n                        <td>$6.99</td>\n                        <td><img src=\"starter2.jpg\" alt=\"Starter 2\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 3</td>\n                        <td>$7.99</td>\n                        <td><img src=\"starter3.jpg\" alt=\"Starter 3\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 4</td>\n                        <td>$8.99</td>\n                        <td><img src=\"starter4.jpg\" alt=\"Starter 4\"></td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n        <div class=\"carousel-item\" id=\"drink\">\n            <h2>Drinks</h2>\n            <table>\n                <thead>\n                    <tr>\n                        <th>Drink Name</th>\n                        <th>Price</th>\n                        <th>Picture</th>\n                    </tr>\n                </thead>\n                <tbody>\n                                      <tr>\n                        <td>Starter 1</td>\n                        <td>$5.99</td>\n                        <td><img src=\"starter1.jpg\" alt=\"Starter 1\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 2</td>\n                        <td>$6.99</td>\n                        <td><img src=\"starter2.jpg\" alt=\"Starter 2\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 3</td>\n                        <td>$7.99</td>\n                        <td><img src=\"starter3.jpg\" alt=\"Starter 3\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 4</td>\n                        <td>$8.99</td>\n                        <td><img src=\"starter4.jpg\" alt=\"Starter 4\"></td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n        <div class=\"carousel-item\" id=\"dessert\">\n            <h2>Desserts</h2>\n            <table>\n                <thead>\n                    <tr>\n                        <th>Dessert Name</th>\n                        <th>Price</th>\n                        <th>Picture</th>\n                    </tr>\n                </thead>\n                <tbody>\n                                     <tr>\n                        <td>Starter 1</td>\n                        <td>$5.99</td>\n                        <td><img src=\"starter1.jpg\" alt=\"Starter 1\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 2</td>\n                        <td>$6.99</td>\n                        <td><img src=\"starter2.jpg\" alt=\"Starter 2\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 3</td>\n                        <td>$7.99</td>\n                        <td><img src=\"starter3.jpg\" alt=\"Starter 3\"></td>\n                    </tr>\n                    <tr>\n                        <td>Starter 4</td>\n                        <td>$8.99</td>\n                        <td><img src=\"starter4.jpg\" alt=\"Starter 4\"></td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n<script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>\n<script>\n$(document).ready(function() {\n    $('.menu-link').click(function(e) {\n        e.preventDefault();\n        var target = $(this).data('target');\n        var offset = $('#' + target).offset().top;\n        $('.carousel').css('transform', 'translateY(-' + offset + 'px)');\n    });\n});\n</script>\n{% endblock %}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/rms/myapp/templates/myapp/admin_menu.html b/rms/myapp/templates/myapp/admin_menu.html
+--- a/rms/myapp/templates/myapp/admin_menu.html	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ b/rms/myapp/templates/myapp/admin_menu.html	(date 1712571751547)
+@@ -3,228 +3,10 @@
+ {% block title %}Menu{% endblock %}
+ 
+ {% block css %}
+-.menu123 {
+-    position: absolute;
+-    font-size: 40px;
+-    left: 650px;
+-    top: 55px;
+-}
+-
+-.menu {
+-    position: absolute;
+-    font-size: 20px; /* Adjust font size as needed */
+-    left: 500px; /* Adjust left position as needed */
+-    top: 185px;
+-}
+-
+-.menu ul {
+-    list-style-type: none;
+-    padding: 0;
+-    margin: 0;
+-}
+-
+-.menu li {
+-    display: inline; /* Display menu items inline */
+-    margin-right: 20px; /* Adjust margin between items as needed */
+-}
+-
+-.menu a {
+-    text-decoration: none;
+-    color: black; /* Adjust link color as needed */
+-}
+-
+-.carousel-container {
+-    width: 800px; /* Adjust carousel width as needed */
+-    overflow: hidden;
+-    position: absolute;
+-    left: 500px; /* Adjust left position as needed */
+-    top: 300px; /* Adjust top position as needed */
+-    height: 400px; /* Adjust carousel height as needed */
+-}
+-
+-.carousel {
+-    display: flex;
+-    flex-direction: column; /* Change to vertical direction */
+-    transition: transform 0.5s ease-in-out;
+-}
+-
+-.carousel-item {
+-    flex: 0 0 auto;
+-    margin-bottom: 20px; /* Adjust margin between items as needed */
+-}
+-
+-.carousel-item table {
+-    width: 100%; /* Adjust table width */
+-}
+-
+-.carousel-item img {
+-    max-width: 100px; /* Adjust image width */
+-}
+ 
+ {% endblock %}
+ 
+ {% block content %}
+-<div class="menu123">Menu</div>
+-<div class="menu">
+-    <ul>
+-        <li><a href="#" class="menu-link" data-target="starter">Starter</a></li>
+-        <li><a href="#" class="menu-link" data-target="main-courses">Main Courses</a></li>
+-        <li><a href="#" class="menu-link" data-target="drink">Drink</a></li>
+-        <li><a href="#" class="menu-link" data-target="dessert">Dessert</a></li>
+-    </ul>
+-</div>
+ 
+-<div class="carousel-container">
+-    <div class="carousel">
+-        <div class="carousel-item" id="starter">
+-            <h2>Starters</h2>
+-            <table>
+-                <thead>
+-                    <tr>
+-                        <th>Food Name</th>
+-                        <th>Price</th>
+-                        <th>Picture</th>
+-                    </tr>
+-                </thead>
+-                <tbody>
+-                    <tr>
+-                        <td>Starter 1</td>
+-                        <td>$5.99</td>
+-                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 2</td>
+-                        <td>$6.99</td>
+-                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 3</td>
+-                        <td>$7.99</td>
+-                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 4</td>
+-                        <td>$8.99</td>
+-                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+-                    </tr>
+-                </tbody>
+-            </table>
+-        </div>
+-        <div class="carousel-item" id="main-courses">
+-            <h2>Main Courses</h2>
+-            <table>
+-                <thead>
+-                    <tr>
+-                        <th>Food Name</th>
+-                        <th>Price</th>
+-                        <th>Picture</th>
+-                    </tr>
+-                </thead>
+-                <tbody>
+-                                       <tr>
+-                        <td>Starter 1</td>
+-                        <td>$5.99</td>
+-                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 2</td>
+-                        <td>$6.99</td>
+-                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 3</td>
+-                        <td>$7.99</td>
+-                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 4</td>
+-                        <td>$8.99</td>
+-                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+-                    </tr>
+-                </tbody>
+-            </table>
+-        </div>
+-        <div class="carousel-item" id="drink">
+-            <h2>Drinks</h2>
+-            <table>
+-                <thead>
+-                    <tr>
+-                        <th>Drink Name</th>
+-                        <th>Price</th>
+-                        <th>Picture</th>
+-                    </tr>
+-                </thead>
+-                <tbody>
+-                                      <tr>
+-                        <td>Starter 1</td>
+-                        <td>$5.99</td>
+-                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 2</td>
+-                        <td>$6.99</td>
+-                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 3</td>
+-                        <td>$7.99</td>
+-                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 4</td>
+-                        <td>$8.99</td>
+-                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+-                    </tr>
+-                </tbody>
+-            </table>
+-        </div>
+-        <div class="carousel-item" id="dessert">
+-            <h2>Desserts</h2>
+-            <table>
+-                <thead>
+-                    <tr>
+-                        <th>Dessert Name</th>
+-                        <th>Price</th>
+-                        <th>Picture</th>
+-                    </tr>
+-                </thead>
+-                <tbody>
+-                                     <tr>
+-                        <td>Starter 1</td>
+-                        <td>$5.99</td>
+-                        <td><img src="starter1.jpg" alt="Starter 1"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 2</td>
+-                        <td>$6.99</td>
+-                        <td><img src="starter2.jpg" alt="Starter 2"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 3</td>
+-                        <td>$7.99</td>
+-                        <td><img src="starter3.jpg" alt="Starter 3"></td>
+-                    </tr>
+-                    <tr>
+-                        <td>Starter 4</td>
+-                        <td>$8.99</td>
+-                        <td><img src="starter4.jpg" alt="Starter 4"></td>
+-                    </tr>
+-                </tbody>
+-            </table>
+-        </div>
+-    </div>
+-</div>
+-
+-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+-<script>
+-$(document).ready(function() {
+-    $('.menu-link').click(function(e) {
+-        e.preventDefault();
+-        var target = $(this).data('target');
+-        var offset = $('#' + target).offset().top;
+-        $('.carousel').css('transform', 'translateY(-' + offset + 'px)');
+-    });
+-});
+-</script>
+ {% endblock %}
+ 
+Index: rms/myapp/templates/myapp/common.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\n    {% block head%}  {% endblock %}\n          {% load static %}\n    <meta charset=\"UTF-8\">\n\n        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <title>{% block title%}  {% endblock %}</title>\n\n            <style>\n\n            body{\nbackground-color: #e9ecef;\n}\n\n.btn-primary {\n    color: #fff;\n    background-color: #28a745;\n    border-color: #28a745;\n}\n.btn-primary:hover {\n    color: #28a745;\n    background-color: #fff;\n    border-color: #fff;\n}\n\n\n.card{\n\nwidth: 400px;\nborder:none;\n\n}\n\n\n\n\n.btr{\n\nborder-top-right-radius: 5px !important;\n}\n\n\n.btl{\n\nborder-top-left-radius: 5px !important;\n}\n\n.btn-dark {\ncolor: #fff;\nbackground-color: #28a745;\nborder-color: #28a745;\n}\n\n\n.btn-dark:hover {\ncolor: #fff;\nbackground-color: #28a745;\nborder-color: #28a745;\n}\n\na {\n    color: #28a745;\n    text-decoration: underline;\n}\na:hover{\n color: #28a745;\n}\n\n.nav-pills{\n\ndisplay:table !important;\nwidth:100%;\n}\n\n.nav-pills .nav-link.active, .nav-pills .show>.nav-link {\n    color: #fff;\n    background-color: #28a745;\n}\n\n.nav-pills .nav-link {\nborder-radius: 0px;\nborder-bottom: 1px solid #0d6efd40;\n\n}\n\n.nav-item {\n    display: table-cell;\n    background: #0dfd462e;\n}\n\n\n.form{\n\npadding: 10px;\nheight: 300px;\n}\n\n.form input{\n\nmargin-bottom: 12px;\nborder-radius: 3px;\n}\n\n\n.form input:focus{\n\nbox-shadow: none;\n}\n\n\n.form button{\n\nmargin-top: 20px;\n}\n\n.connect-link {\n    color: white;\n    cursor: pointer;\n}\n\nelement.style {\n    position: absolute;\n    top: 45px;\n    left: 1367px;\n\n\n}\n.connect-link:hover {\n    color: green;\n}\n#dropdownMenu {\n    text-decoration: none;\n    display: block;\n     margin-bottom: 20px;\n     margin-left:50px;\n     margin-top: 50px;\n  }\n\n#connect-links-container {\n    background-color: rgba(0, 0, 0, 0.1); /* Black with 80% opacity */\n    font-size: 20px;\n    position: absolute;\n    display: flex;\n    top: 50px;\n    left: 430px;\n    width: 620px;\n    border-radius: 10px; /* Adjust the value as needed */\n}\n.me:hover {\n    color: red !important;\n}\n\n\n\n\n\n                {% block css %}\n                 {% endblock %}\n        </style>\n</head>\n<body>\n\n{% block body%}  {% endblock %}\n\n\n<!-- Logout Confirmation Modal -->\n<div class=\"modal fade\" id=\"logoutModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"logoutModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"logoutModalLabel\">Confirm Logout</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        Are you sure you want to logout?\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" onclick=\"logout()\">Logout</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n<!-- to trigger Login modal -->\n<div id=\"connect-links-container\">\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; \" onmousedown=\"preventDefaultAndNavigate('{% url 'home' %}');\">Home</span>\n    <span class=\"connect-link\" style=\"display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'about' %}');\">About Us</span>\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'menu' %}');\">Menu</span>\n    <span class=\"connect-link\" style=\"display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;\" onmousedown=\"preventDefaultAndNavigate('{% url 'rev123' %}');\">Reviews</span>\n\n{% if user.is_authenticated %}\n<div class=\"me\" style=\"cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;\" data-toggle=\"modal\" data-target=\"#logoutModal\">\n    {{ request.user }}\n</div>\n{% else %}\n<span class=\"connect-link\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"display: block;margin-bottom: 5px; margin-left: 50px; margin-top: 22px; \">Connect</span>\n{% endif %}\n\n</div>\n\n\n\n\n\n      {% if messages %}\n      <div class=\"container\">\n         {% for message in messages %}\n         <div class=\"alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show\" role=\"alert\">\n          <strong>{{ message }}</strong>\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n         </div>\n          {% endfor %}\n          </div>\n      {% endif %}\n\n\n\n<div class=\"modal\" id=\"loginModal\" tabindex=\"-1\" aria-labelledby=\"loginModal\" aria-hidden=\"true\">\n    <div class=\"d-flex justify-content-center align-items-center mt-5\">\n        <div class=\"card\">\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Connect with us</h5>\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n            <ul class=\"nav nav-pills mb-3\" id=\"pills-tab\" role=\"tablist\">\n                <li class=\"nav-item text-center\">\n                    <a class=\"nav-link active btl\" id=\"pills-home-tab\" data-toggle=\"pill\" href=\"#pills-home\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\">Login</a>\n                </li>\n                <li class=\"nav-item text-center\">\n                    <a class=\"nav-link btr\" id=\"pills-profile-tab\" data-toggle=\"pill\" href=\"#pills-profile\" role=\"tab\" aria-controls=\"pills-profile\" aria-selected=\"false\">Signup</a>\n                </li>\n            </ul>\n            <div class=\"tab-content\" id=\"pills-tabContent\">\n                <div class=\"tab-pane fade show active\" id=\"pills-home\" role=\"tabpanel\" aria-labelledby=\"pills-home-tab\">\n                    <div class=\"form px-4 pt-5\">\n                        <form action=\"/handle2/\" method='post'>\n                            <input type=\"text\" name=\"username\" class=\"form-control\" placeholder=\"Username\" autocomplete=\"off\">\n                            <input type=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"off\">\n                            {% csrf_token %}\n                            <button class=\"btn btn-dark btn-block\">Login</button>\n                        </form>\n                    </div>\n                </div>\n                <div class=\"tab-pane fade\" id=\"pills-profile\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n                    <div class=\"form px-4\">\n                        <form action=\"/handle1/\" method='post'>\n                            <input type=\"text\" name=\"username\" class=\"form-control\" placeholder=\"Name\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"email\" class=\"form-control\" placeholder=\"Email\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"phone\" class=\"form-control\" placeholder=\"Phone\" autocomplete=\"off\">\n                            <input type=\"text\" name=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"off\">\n                            {% csrf_token %}\n                            <button class=\"btn btn-dark btn-block\">Signup</button>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n\n<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" ></script>\n<script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js\" ></script>\n<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js\" ></script>\n\n\n\n<script>\nfunction toggleDropdown() {\n  var dropdownMenu = document.getElementById(\"dropdownMenu\");\n  if (dropdownMenu.style.display === \"none\") {\n    dropdownMenu.style.display = \"block\";\n  } else {\n    dropdownMenu.style.display = \"none\";\n  }\n}\n</script>\n\n<script>\nfunction preventDefaultAndNavigate(url) {\n    event.preventDefault();\n    window.location.href = url;\n}\n</script>\n\n<script>\n\nfunction logout() {\n    // Perform logout action, for example, redirect to logout URL\n   window.location.href = \"{% url 'lout' %}\";\n}\n\n</script>\n\n\n\n\n\n\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/rms/myapp/templates/myapp/common.html b/rms/myapp/templates/myapp/common.html
+--- a/rms/myapp/templates/myapp/common.html	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ b/rms/myapp/templates/myapp/common.html	(date 1712570393959)
+@@ -153,6 +153,9 @@
+     color: red !important;
+ }
+ 
++.connect-link.active {
++    color: green; /* Setting the active link color */
++}
+ 
+ 
+ 
+@@ -196,10 +199,10 @@
+ 
+ <!-- to trigger Login modal -->
+ <div id="connect-links-container">
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+-    <span class="connect-link" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+-    <span class="connect-link" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
++    <span class="connect-link {% if request.path == '/home/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
++    <span class="connect-link {% if request.path == '/about/' %}active{% endif %}" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
++    <span class="connect-link {% if request.path == '/menu/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
++    <span class="connect-link {% if request.path == '/rev123/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
+ 
+ {% if user.is_authenticated %}
+ <div class="me" style="cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;" data-toggle="modal" data-target="#logoutModal">
+@@ -215,6 +218,7 @@
+ 
+ 
+ 
++
+       {% if messages %}
+       <div class="container">
+          {% for message in messages %}
+Index: rms/myapp/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.contrib import messages\nfrom django.contrib.auth import authenticate, login, logout\nfrom django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse\nfrom django.shortcuts import render, redirect\nfrom django.views.decorators.http import require_POST\nfrom datetime import date\n\nfrom .models import MyUser123, Rev, Order , Food\nimport re\nfrom .models import Table\nfrom django.core.exceptions import ValidationError\nfrom django.utils.dateparse import parse_date\nimport json\nfrom django.db.models import Count, Q\n\n\ndef get_tables(request):\n    if request.method == 'GET':\n        # Get date and size parameters from the request\n        date_str = request.GET.get('date')\n        size = int(request.GET.get('size', 0))\n\n        # Validate the date format\n        try:\n            date = parse_date(date_str)\n        except ValidationError:\n            return JsonResponse({'error': 'Invalid date format. Date must be in YYYY-MM-DD format.'}, status=400)\n\n        # Query the database for tables\n        # tables = Table.objects.filter(date=date, size=size).values('number', 'reserved')\n        tables = Table.objects.filter(date=date, size=size).values('id', 'number', 'reserved')  # Include 'id'\n        # Serialize the queryset into JSON format\n        table_data = list(tables)\n\n        # Return JSON response\n        return JsonResponse(table_data, safe=False)\n    else:\n        # Handle invalid request method\n        return JsonResponse({'error': 'Invalid request method'}, status=400)\n\n\ndef update_table_status(request):\n    if request.method != 'POST':\n        return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)\n\n    try:\n        data = json.loads(request.body)  # Parse JSON data from request body\n        print(\"Data is: \", data)\n        for table_data in data:\n            table_id = table_data.get('id')  # Get table_id from POST data\n            if table_id is None:\n                return JsonResponse({'success': False, 'message': 'Missing table ID in request'}, status=400)\n\n            table_id = int(table_id)  # Attempt to convert to integer\n            reserved = table_data.get('reserved')\n\n            table = Table.objects.get(pk=table_id)  # Use primary key (pk) for clarity\n            table.reserved = reserved\n            table.save()\n\n        return JsonResponse({'success': True})\n\n    except ValueError:  # Handle invalid table_id format\n        return JsonResponse({'success': False, 'message': 'Invalid table ID format'}, status=400)\n    except Table.DoesNotExist:  # Handle table not found\n        return JsonResponse({'success': False, 'message': 'Table does not exist'}, status=404)\n\n\ndef submit_review(request):\n    if request.method == 'POST':\n        if request.user.is_authenticated:  # Check if user is authenticated\n            # Retrieve username\n            username = request.user.username\n        else:\n            # If user is not authenticated, display an error message\n            messages.error(request, \"You must be logged in to submit a review.\")\n            return redirect(\"home\")  # Redirect the user to the login page\n\n        # Retrieve review text from the form\n        text = request.POST.get('text', '')  # Assuming 'text' is the name of the field in your form\n\n        if not text:  # Check if review text is empty\n            # If review text is empty, display an error message\n            messages.error(request, \"Review text cannot be empty.\")\n            return redirect(\"home\")  # Redirect the user to the home page\n\n        # Create Rev object and save it\n        my_review = Rev.objects.create(username=username, text=text)\n\n        # Display success message\n        messages.success(request, \"Your thoughts have been successfully preserved!\")\n\n        # Redirect to home page\n        return redirect(\"home\")\n    else:\n        # If request method is not POST, return 404\n        return HttpResponse('404 - Not Found')\n\n\ndef display_reviews(request):\n    # Fetch all reviews from the database\n    reviews = Rev.objects.all()\n\n    # Render the reviews in a template\n    return render(request, 'myapp/admin_rev.html', {'reviews': reviews})\n\n\ndef book(request):\n    if request.method == 'POST':\n        # Check if the request method is POST (meaning the form was submitted)\n        username = request.user.username\n        # Get the username of the logged-in user\n\n        # Retrieve the order details from the form\n        date = request.POST.get('order-date', '')\n        time = request.POST.get('order-time', '')\n        nop = request.POST.get('number-of-people', '')\n        msg = request.POST.get('order-message', '')\n\n        # Check if any of the fields are empty\n        if not (date and time and nop and msg):\n            # If any field is empty, display an error message\n            messages.error(request, \"Kindly fill up all the fields in the form to confirm the order.\")\n            return redirect(\"home\")  # Redirect to the home page or wherever appropriate\n\n        # Create a Rev object with the retrieved data\n        my_review = Order.objects.create(username=username, date=date, time=time, number_of_people=nop, message=msg)\n\n        # Display a success message\n        messages.success(request, \"Kindly Check your Gmail for confirmation! We will reach you ASAP!!\")\n\n        # Redirect to the home page after successfully saving the order\n        return redirect(\"home\")\n    else:\n        # If the request method is not POST, return a 404 response\n        return HttpResponse('404 - Not Found')\n\n\ndef display_orders(request):\n    # Fetch all orders from the database\n    orders = Order.objects.all()\n\n    # Fetch username, phone number, and email from UserDetails for each order\n    for order in orders:\n        try:\n            user_details = MyUser123.objects.get(username=order.username)\n            order.phone_number = user_details.phone\n            order.email = user_details.email\n        except MyUser123.DoesNotExist:\n            # Handle the case where UserDetails for the username does not exist\n            pass\n\n    # Render the orders in a template\n    return render(request, 'myapp/admin_reservation_control.html', {'orders': orders})\n\n\ndef order_details_view(request):\n    # Count the number of completed orders\n    completed_orders_count = Order.objects.filter(completed=False).count()\n\n    # Pass the count to the template context\n    context = {\n        'completed_orders_count': completed_orders_count,\n    }\n\n    return render(request, 'myapp/admin_dash.html', context)\n\n\ndef save_order(request):\n    if request.method == 'POST':\n        order_id = request.POST.get('order_id')\n        is_checked = request.POST.get('is_checked') == 'true'  # Convert string to boolean\n\n        order = Order.objects.get(pk=order_id)\n\n        # Update the confirmed status based on the checkbox state\n        if is_checked:\n            order.confirmed = True\n        else:\n            order.confirmed = False\n\n        order.save()\n\n        # Return JSON response with the confirmed status\n        return JsonResponse({'status': 'success', 'confirmed': order.confirmed})\n    else:\n        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})\n\n\ndef complete_order(request):\n    if request.method == 'POST':\n        order_id = request.POST.get('order_id')\n        order = Order.objects.get(pk=order_id)\n        order.completed = not order.completed  # Toggle the completed status\n        order.save()\n        return JsonResponse({'status': 'success'})\n    else:\n        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})\n\n\ndef index(request):\n    return render(request, \"myapp/index.html\", {})\n\n\ndef rev123(request):\n    return render(request, \"myapp/cust_rev.html\", {})\n\n\ndef test(request):\n    return render(request, \"myapp/test.html\", {})\n\n\ndef ad(request):\n    return render(request, \"myapp/admin_dash.html\", {})\n\n\ndef dine_in(request):\n    return render(request, \"myapp/dine_in.html\", {})\n\n\ndef ap(request):\n    return render(request, \"myapp/admin_page.html\", {})\n\n\ndef common(request):\n    return render(request, \"myapp/common.html\", {})\n\n\ndef home(request):\n    return render(request, \"myapp/home.html\", {})\n\n\ndef about(request):\n    return render(request, \"myapp/aboutus.html\", {})\n\n\ndef menu(request):\n    return render(request, \"myapp/menu.html\", {})\n\n\ndef take_away(request):\n    if request.user.is_authenticated:\n        return render(request, \"myapp/take_away.html\", {})\n    else:\n        messages.error(request, \"Please login through the connect section for Take-Away\")\n        return render(request, \"myapp/home.html\", {})\n\n\ndef reservation(request):\n    if request.user.is_authenticated:\n        return render(request, \"myapp/reservation.html\", {})\n    else:\n        messages.error(request, \"Please login through the connect section to book a Table!\")\n        return render(request, \"myapp/home.html\", {})\n\n\ndef manage_table(request):\n    return render(request, \"myapp/ap_1.html\", {})\n\n\ndef admin_page(request):\n    if request.method == 'POST':\n        username = request.POST['username']\n        password = request.POST['password']\n        user = authenticate(username=username, password=password)\n\n        if user is not None:\n            login(request, user)\n            return redirect(\"ad\")\n        else:\n            messages.error(request, \"Invalid Credentials, Please Try Again!!\")\n            return redirect(\"index\")\n    return HttpResponse('admin_page')\n\n\ndef handle1(request):\n    if request.method == 'POST':\n        username = request.POST['username']\n        email = request.POST['email']\n        phone = request.POST['phone']\n        password = request.POST['password']\n\n        if len(username) > 10:\n            messages.error(request, \"Username must be under 10 characters\")\n            return redirect(\"home\")\n        if not username.isalnum():\n            messages.error(request, \"Username must be alphanumeric!\")\n            return redirect(\"home\")\n\n        # Email validation\n        pattern = r'\\b[A-Za-z0-9._%+-]+@gmail.com\\b'\n        if not re.match(pattern, email):\n            messages.error(request, \"Email must be in the format abcd@gmail.com\")\n            return redirect(\"home\")\n\n        if not phone.isdigit():\n            messages.error(request, \"Phone number must be numeric!\")\n            return redirect(\"home\")\n\n        myuser = MyUser123.objects.create_user(username=username, email=email, phone=phone, password=password)\n        myuser.save()\n        messages.success(request, \"Your account has been successfully created!\")\n        return redirect(\"home\")\n    else:\n        return HttpResponse('404 - Not Found')\n\n\ndef handle2(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n\n        user = authenticate(username=username, password=password)\n\n        if user is not None:\n            login(request, user)\n            messages.success(request, f\"Welcome to One Bite Foods, {user.username}!\")\n            return redirect(\"home\")\n        else:\n            messages.error(request, \"Invalid Credentials, Please Try Again!!\")\n            return redirect(\"home\")\n    return HttpResponse('handle2')\n\n\ndef handler(request):\n    if request.method == 'POST':\n        username = request.POST['username']\n        user = authenticate(username=username)\n        if user is not None:\n            login(request, user)\n            return redirect(\"home\")\n        else:\n            messages.error(request, \"Please Sign In from Connect Section!!\")\n            return redirect(\"home\")\n    return HttpResponse('handler')\n\n\ndef lout(request):\n    logout(request)\n    messages.success(request, \"Successfully Logged Out\")\n    return redirect('home')\n\n\ndef lout1(request):\n    logout(request)\n    return redirect('index')\n\n\ndef admin_menu(request):\n    return render(request, \"myapp/admin_menu.html\", {})\n\n\ndef name(request):\n    return render(request, \"myapp/admin_reservation_control.html\", {})\n\n\ndef add_tables_for_day(request):\n    # Get today's date\n    today = date.today()\n\n    # Check if tables for today already exist\n    existing_tables = Table.objects.filter(date=today)\n\n    if not existing_tables:\n        # If tables for today don't exist, create them\n        table_sizes = [1, 2, 4, 6, 8]  # Table sizes\n        table_numbers = [666, 777, 999, 6969, 1012]  # Table numbers\n\n        for size in table_sizes:\n            for number in table_numbers:\n                table = Table.objects.create(date=today, size=size, number=number)\n\n        return JsonResponse({'status': 'success', 'message': 'Tables added for the day.'})\n    else:\n        return JsonResponse({'status': 'error', 'message': 'Tables for the day already exist.'})\n\n\ndef dine(request):\n    foods = Food.objects.all() # Assuming Food is your model\n    return render(request, 'myapp/dine_in.html', {'foods': foods})\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/rms/myapp/views.py b/rms/myapp/views.py
+--- a/rms/myapp/views.py	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ b/rms/myapp/views.py	(date 1712572609267)
+@@ -364,7 +364,7 @@
+     if not existing_tables:
+         # If tables for today don't exist, create them
+         table_sizes = [1, 2, 4, 6, 8]  # Table sizes
+-        table_numbers = [666, 777, 999, 6969, 1012]  # Table numbers
++        table_numbers = [666, 777, 999, 6969, 1012, 1234]  # Table numbers
+ 
+         for size in table_sizes:
+             for number in table_numbers:
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM__Changes_.xml	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ /dev/null	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]" date="1712106994734" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/3/2024 7:01 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_3_2024_7_01_AM_[Changes]/shelved.patch	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ /dev/null	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
+@@ -1,97 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"final in master\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_20_PM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_20_PM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_24__5_19_PM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_24__5_19_PM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Merge.Settings\">\r\n    <option name=\"BRANCH\" value=\"origin/dashboard_details_js\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"piyush &lt;piyushphuyal77@gmail.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2dxLXWE4hlnEyG0rlyUW7MX8IL3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"Python.main.executor\": \"Debug\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"last_opened_file_path\": \"/home/piyush/PycharmProjects/RMS/rms/myapp/static/images\",\r\n    \"settings.editor.selected.configurable\": \"terminal\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static/images\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/myap\" />\r\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"RMS\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"\" />\r\n      <created>1710944822890</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1710944822890</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710955906052</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710955906052</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710956360652</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710956360652</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1710957187631</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1710957187631</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711012208988</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711012208988</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711012224290</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711012224290</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"dfgdg\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711023143611</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711023143611</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"first push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711095307016</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711095307016</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"first push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711095335201</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711095335201</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"second push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711124529971</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711124529971</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"second push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711124542850</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711124542850</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"second push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711175058080</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711175058080</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"second push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711369294639</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711369294639</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"third push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711369316852</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711369316852</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"foutrh  push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711453297033</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711453297033</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"foutrh  push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711453310972</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711453310972</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"foutrh  push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711453331934</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711453331934</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"foutrh  push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711505251355</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711505251355</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"fifth push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711538921028</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711538921029</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"fifth push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711538950245</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711538950246</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"fifth push @Piyush_Dev\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711538972172</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711538972172</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Before creating three brances this was the master/main branch\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711603511102</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711603511102</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"check\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711683059828</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711683059828</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"final in master\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711683118989</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711683118989</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"final in master\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711724938686</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711724938686</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711850798489</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711850798489</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711851154066</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711851154066</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711851167418</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711851167418</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711868856084</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711868856084</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"Added meaningful commenst to the js\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711937886541</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711937886541</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Added meaningful commenst to the js\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1711938034683</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1711938034683</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"31\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"dfgdg\" />\r\n    <MESSAGE value=\"first push\" />\r\n    <MESSAGE value=\"second push\" />\r\n    <MESSAGE value=\"third push\" />\r\n    <MESSAGE value=\"foutrh  push @Piyush_Dev\" />\r\n    <MESSAGE value=\"fifth push @Piyush_Dev\" />\r\n    <MESSAGE value=\"Before creating three brances this was the master/main branch\" />\r\n    <MESSAGE value=\"check\" />\r\n    <MESSAGE value=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\" />\r\n    <MESSAGE value=\"final in master\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"final in master\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/main.py</url>\r\n          <line>8</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 951089a95492bd57450cc3bb5599d85c53dac61a)
+-+++ b/.idea/workspace.xml	(date 1711940490967)
+-@@ -4,9 +4,10 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="final in master">
+--      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_20_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_20_PM__Changes_.xml" afterDir="false" />
+-+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added meaningful commenst to the js">
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_18_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_2024_2_18_PM__Changes_.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_24__5_19_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_31_24__5_19_PM__Changes_.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_19_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_19_PM__Changes_.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-     </list>
+-@@ -34,7 +35,7 @@
+-     </option>
+-     <option name="RECENT_BRANCH_BY_REPOSITORY">
+-       <map>
+--        <entry key="$PROJECT_DIR$" value="master" />
+-+        <entry key="$PROJECT_DIR$" value="dashboard_details_js" />
+-       </map>
+-     </option>
+-     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-@@ -53,18 +54,18 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent"><![CDATA[{
+--  "keyToString": {
+--    "ASKED_ADD_EXTERNAL_FILES": "true",
+--    "DefaultHtmlFileTemplate": "HTML File",
+--    "Python.main.executor": "Debug",
+--    "RunOnceActivity.OpenProjectViewOnStart": "true",
+--    "RunOnceActivity.ShowReadmeOnStart": "true",
+--    "git-widget-placeholder": "master",
+--    "last_opened_file_path": "/home/piyush/PycharmProjects/RMS/rms/myapp/static/images",
+--    "settings.editor.selected.configurable": "terminal"
+-+  <component name="PropertiesComponent">{
+-+  &quot;keyToString&quot;: {
+-+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+-+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+-+    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
+-+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-+    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
+-+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+-   }
+--}]]></component>
+-+}</component>
+-   <component name="RecentsManager">
+-     <key name="CopyFile.RECENT_KEYS">
+-       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
+-@@ -361,7 +362,23 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1711938034683</updated>
+-     </task>
+--    <option name="localTasksCounter" value="31" />
+-+    <task id="LOCAL-00031" summary="Added meaningful commenst to the js">
+-+      <option name="closed" value="true" />
+-+      <created>1711940315360</created>
+-+      <option name="number" value="00031" />
+-+      <option name="presentableId" value="LOCAL-00031" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1711940315360</updated>
+-+    </task>
+-+    <task id="LOCAL-00032" summary="Added meaningful commenst to the js">
+-+      <option name="closed" value="true" />
+-+      <created>1711940429696</created>
+-+      <option name="number" value="00032" />
+-+      <option name="presentableId" value="LOCAL-00032" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1711940429696</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="33" />
+-     <servers />
+-   </component>
+-   <component name="Vcs.Log.Tabs.Properties">
+-@@ -386,7 +403,8 @@
+-     <MESSAGE value="check" />
+-     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
+-     <MESSAGE value="final in master" />
+--    <option name="LAST_COMMIT_MESSAGE" value="final in master" />
+-+    <MESSAGE value="Added meaningful commenst to the js" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Added meaningful commenst to the js" />
+-   </component>
+-   <component name="XDebuggerManager">
+-     <breakpoint-manager>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"Adjusted animation on landing page with JS\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/rms/myapp/templates/myapp/index.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/rms/myapp/templates/myapp/index.html\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n        <option value=\"HTML File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Merge.Settings\">\n    <option name=\"BRANCH\" value=\"origin/dashboard_details_Django_Backend\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\n      <list>\n        <option value=\"piyush &lt;piyushphuyal77@gmail.com&gt;\" />\n      </list>\n    </option>\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"admin_dashboard_adam\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"2dxLXWE4hlnEyG0rlyUW7MX8IL3\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\n    \"Python.main.executor\": \"Debug\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"git-widget-placeholder\": \"master\",\n    \"last_opened_file_path\": \"/home/piyush/PycharmProjects/RMS/rms/myapp/static/images\",\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.Mappings\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static/images\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/rms/myapp/static\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myapp/templates/myapp\" />\n      <recent name=\"$PROJECT_DIR$/rms/myap\" />\n      <recent name=\"$PROJECT_DIR$/rms/rms\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\n      <module name=\"RMS\" />\n      <option name=\"ENV_FILES\" value=\"\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\n      <option name=\"PARAMETERS\" value=\"\" />\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\n      <option name=\"MODULE_MODE\" value=\"false\" />\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\n      <option name=\"INPUT_FILE\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5\" name=\"Changes\" comment=\"\" />\n      <created>1710944822890</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1710944822890</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710955906052</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710955906052</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710956360652</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710956360652</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1710957187631</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1710957187631</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711012208988</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711012208988</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711012224290</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711012224290</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"dfgdg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711023143611</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711023143611</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"first push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711095307016</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711095307016</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"first push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711095335201</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711095335201</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711124529971</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711124529971</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711124542850</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711124542850</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711175058080</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711175058080</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"second push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711369294639</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711369294639</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"third push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711369316852</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711369316852</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453297033</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453297033</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453310972</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453310972</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711453331934</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711453331934</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"foutrh  push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711505251355</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711505251355</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538921028</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538921029</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538950245</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538950246</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"fifth push @Piyush_Dev\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711538972172</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711538972172</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"Before creating three brances this was the master/main branch\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711603511102</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711603511102</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"check\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711683059828</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711683059828</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"final in master\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711683118989</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711683118989</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"final in master\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711724938686</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711724938686</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711850798489</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711850798489</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711851154066</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711851154066</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711851167418</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711851167418</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711868856084</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711868856084</updated>\n    </task>\n    <task id=\"LOCAL-00029\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711868866661</created>\n      <option name=\"number\" value=\"00029\" />\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711868866661</updated>\n    </task>\n    <task id=\"LOCAL-00030\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711884915129</created>\n      <option name=\"number\" value=\"00030\" />\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711884915129</updated>\n    </task>\n    <task id=\"LOCAL-00031\" summary=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711885069033</created>\n      <option name=\"number\" value=\"00031\" />\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711885069033</updated>\n    </task>\n    <task id=\"LOCAL-00032\" summary=\"Fixed Minor Bugs and Its Completed Now!\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711887116018</created>\n      <option name=\"number\" value=\"00032\" />\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711887116018</updated>\n    </task>\n    <task id=\"LOCAL-00033\" summary=\"Trying to merge django backend work from this branch to the master1\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1711963071490</created>\n      <option name=\"number\" value=\"00033\" />\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1711963071490</updated>\n    </task>\n    <task id=\"LOCAL-00034\" summary=\"Fixed Minor Bugs for logging out of admin Page!\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712496809164</created>\n      <option name=\"number\" value=\"00034\" />\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712496809164</updated>\n    </task>\n    <task id=\"LOCAL-00035\" summary=\"Finals for Sprint1\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712539963026</created>\n      <option name=\"number\" value=\"00035\" />\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712539963026</updated>\n    </task>\n    <task id=\"LOCAL-00036\" summary=\"Adjusted animation on landing page with JS\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712569419073</created>\n      <option name=\"number\" value=\"00036\" />\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712569419073</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"37\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"dfgdg\" />\n    <MESSAGE value=\"first push\" />\n    <MESSAGE value=\"second push\" />\n    <MESSAGE value=\"third push\" />\n    <MESSAGE value=\"foutrh  push @Piyush_Dev\" />\n    <MESSAGE value=\"fifth push @Piyush_Dev\" />\n    <MESSAGE value=\"Before creating three brances this was the master/main branch\" />\n    <MESSAGE value=\"check\" />\n    <MESSAGE value=\"final in master\" />\n    <MESSAGE value=\"Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS\" />\n    <MESSAGE value=\"Fixed Minor Bugs and Its Completed Now!\" />\n    <MESSAGE value=\"Trying to merge django backend work from this branch to the master1\" />\n    <MESSAGE value=\"Fixed Minor Bugs for logging out of admin Page!\" />\n    <MESSAGE value=\"Finals for Sprint1\" />\n    <MESSAGE value=\"Adjusted animation on landing page with JS\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Adjusted animation on landing page with JS\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\n          <url>file://$PROJECT_DIR$/main.py</url>\n          <line>8</line>\n          <option name=\"timeStamp\" value=\"1\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 3736a89dc8a4ce1894da43a5582e8145c34a7b8d)
++++ b/.idea/workspace.xml	(date 1712754460451)
+@@ -4,9 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Adjusted animation on landing page with JS">
++    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Adjusted animation on landing page with JS(minor-change)">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_menu.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -51,18 +53,18 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_ADD_EXTERNAL_FILES": "true",
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "Python.main.executor": "Debug",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master",
+-    "last_opened_file_path": "/home/piyush/PycharmProjects/RMS/rms/myapp/static/images",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
+@@ -407,7 +409,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1712569419073</updated>
+     </task>
+-    <option name="localTasksCounter" value="37" />
++    <task id="LOCAL-00037" summary="Adjusted animation on landing page with JS(minor-change)">
++      <option name="closed" value="true" />
++      <created>1712569661832</created>
++      <option name="number" value="00037" />
++      <option name="presentableId" value="LOCAL-00037" />
++      <option name="project" value="LOCAL" />
++      <updated>1712569661832</updated>
++    </task>
++    <option name="localTasksCounter" value="38" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -437,7 +447,8 @@
+     <MESSAGE value="Fixed Minor Bugs for logging out of admin Page!" />
+     <MESSAGE value="Finals for Sprint1" />
+     <MESSAGE value="Adjusted animation on landing page with JS" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted animation on landing page with JS" />
++    <MESSAGE value="Adjusted animation on landing page with JS(minor-change)" />
++    <option name="LAST_COMMIT_MESSAGE" value="Adjusted animation on landing page with JS(minor-change)" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
