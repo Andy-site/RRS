@@ -280,6 +280,11 @@ def handle1(request):
         phone = request.POST['phone']
         password = request.POST['password']
 
+        # Check if any of the fields are empty
+        if not username or not email or not phone or not password:
+            messages.error(request, "Please don't leave any of the fields blank!")
+            return redirect("home")
+
         if len(username) > 10:
             messages.error(request, "Username must be under 10 characters")
             return redirect("home")
