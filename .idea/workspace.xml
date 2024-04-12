@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Before creating three brances this was the master/main branch">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bugs related to admin_dash">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" afterDir="false" />
     </list>
@@ -384,7 +384,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711963071490</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Fixed minor bugs related to admin_dash">
+      <option name="closed" value="true" />
+      <created>1712889203076</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1712889203076</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,7 +421,8 @@
     <MESSAGE value="Trying to merge django backend work from this branch to the master1" />
     <MESSAGE value="Added some functionalities" />
     <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
+    <MESSAGE value="Fixed minor bugs related to admin_dash" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bugs related to admin_dash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
