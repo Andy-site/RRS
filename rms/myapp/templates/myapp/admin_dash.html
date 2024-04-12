@@ -2,7 +2,6 @@
 {% block title %}Order Details{% endblock %}
 
 {% block css %}
-
 .add-table-btn {
     background-color: #4CAF50; /* Green background */
     border: none;
@@ -12,24 +11,15 @@
     text-decoration: none; /* Remove underline */
     display: inline-block;
     font-size: 16px; /* Font size */
-    margin: 0 auto; /* Center horizontally */
-    position: relative;
-    bottom: 20px; /* Adjust vertically */
+    margin: 40px 0px 0px 620px;
     cursor: pointer; /* Cursor on hover */
     border-radius: 8px; /* Rounded corners */
     transition-duration: 0.4s; /* Animation duration */
-    top: 180px;
-    left: 705px;
+    position: relative; /* Position for tooltip */
 }
 
-.active-orders {
-    background-color: #f0f0f0; /* Light gray background */
-    border: 1px solid #ddd; /* Gray border */
-    padding: 5px 10px; /* Padding */
-    border-radius: 8px; /* Rounded corners */
-    position: fixed; /* Fixed position */
-    top: 20px; /* Adjust top position */
-    left: 20px; /* Adjust left position */
+.add-table-btn:hover {
+    background-color: #45a049; /* Darker green background on hover */
 }
 
 .add-table-btn:hover::after {

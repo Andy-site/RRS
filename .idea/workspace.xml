@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="change in admin dashboard">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" afterDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Addecd missing syles on admin_dashboard">
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +31,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="responsiveness_and_coding_standard" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,6 +44,7 @@
 }</component>
   <component name="ProjectId" id="2dxLXWE4hlnEyG0rlyUW7MX8IL3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -59,17 +59,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/adamp/PycharmProjects/RRS/rms/myapp/static/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\adamp\PycharmProjects\RRS\rms\myapp\static\images" />
       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
       <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp" />
+      <recent name="$PROJECT_DIR$/rms/rms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
@@ -383,23 +383,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711963071490</updated>
     </task>
-    <task id="LOCAL-00034" summary="Fixed Minor Bugs for logging out of admin Page!">
+    <task id="LOCAL-00034" summary="Fixed minor bugs related to admin_dash">
       <option name="closed" value="true" />
-      <created>1712496809164</created>
+      <created>1712889203076</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1712496809164</updated>
+      <updated>1712889203076</updated>
     </task>
-    <task id="LOCAL-00035" summary="change in admin dashboard">
+    <task id="LOCAL-00035" summary="Addecd missing syles on admin_dashboard">
       <option name="closed" value="true" />
-      <created>1712888675690</created>
+      <created>1712889578035</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1712888675690</updated>
+      <updated>1712889578035</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Addecd missing syles on admin_dashboard">
+      <option name="closed" value="true" />
+      <created>1712889658221</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1712889658221</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,9 +434,11 @@
     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
     <MESSAGE value="Fixed Minor Bugs and Its Completed Now!" />
     <MESSAGE value="Trying to merge django backend work from this branch to the master1" />
-    <MESSAGE value="Fixed Minor Bugs for logging out of admin Page!" />
-    <MESSAGE value="change in admin dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="change in admin dashboard" />
+    <MESSAGE value="Added some functionalities" />
+    <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
+    <MESSAGE value="Fixed minor bugs related to admin_dash" />
+    <MESSAGE value="Addecd missing syles on admin_dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addecd missing syles on admin_dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
