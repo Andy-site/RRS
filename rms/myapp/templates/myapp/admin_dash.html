@@ -45,7 +45,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="wel">Welcome, {{ request.user }}! </div>
+
+    <div class="wel">
+        {% if request.session.admin_username %}
+        Welcome, {{ request.session.admin_username }}!
+    {% endif %}
+    </div>
     <div class="au">Number of Active Orders: {{ completed_orders_count }}</div>
     <button class="add-table-btn">Add Table</button>
 

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug related to credentials validation while signing up by a customer!">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,15 +416,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712889924941</updated>
     </task>
-    <task id="LOCAL-00038" summary="Fixed minor bug related to credentials validation while signing up by a customer!">
-      <option name="closed" value="true" />
-      <created>1712890687871</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1712890687871</updated>
-    </task>
-    <option name="localTasksCounter" value="39" />
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,8 +448,7 @@
     <MESSAGE value="Fixed minor bugs related to admin_dash" />
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
     <MESSAGE value="Fixed minor bug" />
-    <MESSAGE value="Fixed minor bug related to credentials validation while signing up by a customer!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug related to credentials validation while signing up by a customer!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
