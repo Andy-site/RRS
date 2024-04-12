@@ -11,14 +11,11 @@
     text-decoration: none; /* Remove underline */
     display: inline-block;
     font-size: 16px; /* Font size */
-    margin: 0 auto; /* Center horizontally */
-    position: relative;
-    bottom: 20px; /* Adjust vertically */
+    margin: 40px 0px 0px 620px;
     cursor: pointer; /* Cursor on hover */
     border-radius: 8px; /* Rounded corners */
     transition-duration: 0.4s; /* Animation duration */
-    top: 470px;
-    left: 705px;
+    position: relative; /* Position for tooltip */
 }
 
 .add-table-btn:hover {
@@ -46,7 +43,7 @@
 }
 
 {% endblock %}
-#gugu
+
 {% block content %}
     <div class="wel">Welcome, {{ request.user }}! </div>
     <div class="au">Number of Active Orders: {{ completed_orders_count }}</div>
@@ -74,5 +71,8 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+
 
 {% endblock %}
