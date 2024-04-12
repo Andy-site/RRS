@@ -14,6 +14,10 @@ class FoodManager(models.Manager):
     pass
 
 
+class StaffAdminManager(models.Manager):
+    pass
+
+
 class Order(models.Model):
     username = models.CharField(max_length=150, default=None)
     date = models.DateField()
@@ -102,3 +106,12 @@ class MyUser123(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_staff
+
+
+class Staff(models.Model):
+    objects = StaffAdminManager()
+    username = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.username

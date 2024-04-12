@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser123, Table, Rev, Order, Food
+from .models import MyUser123, Table, Rev, Order, Food, Staff
 
 
 class MyUser123Admin(admin.ModelAdmin):
@@ -32,7 +32,14 @@ admin.site.register(Order, OrderAdmin)
 
 
 class FoodAdmin(admin.ModelAdmin):
-    list_display = ('type','food', 'price')
+    list_display = ('type', 'food', 'price')
 
 
 admin.site.register(Food, FoodAdmin)
+
+
+class StaffAdmin(admin.ModelAdmin):
+    list_display = ('username', 'password')
+
+
+admin.site.register(Staff, StaffAdmin)

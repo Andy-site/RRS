@@ -3,174 +3,268 @@
 {% block title %}Order Details{% endblock %}
 
 {% block css %}
-    /* CSS styles for table */
-    table {
-        width: 80%;
-        border-collapse: collapse;
-        margin-left: 280px;
-        margin-top: 200px;
-    }
-    th, td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    th {
-        background-color: #f2f2f2;
+    /* CSS styles for the page */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
     }
 
-    .pp{
-    position: absolute;
-    font-size: 30px;
-    left: 650px;
-    top: 76px;
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    /* CSS styles for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 16px;
+        text-align: left;
+        border-bottom: 1px solid #f4f4f4;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
     }
 
     /* Style for the checkbox */
     .confirmation-checkbox {
         transform: scale(1.5); /* Adjust size as needed */
+        cursor: pointer;
     }
 
-    /* Style for the checked checkbox */
+    .confirmation-checkbox + label::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+
     .confirmation-checkbox:checked + label::after {
         content: '\2714'; /* Unicode character for checkmark */
         color: green;
     }
 
-    /* Style for the unchecked checkbox */
     .confirmation-checkbox + label::after {
         content: '\2718'; /* Unicode character for cross mark */
         color: red;
     }
-    /* CSS for green row */
-.green-row {
-    background-color: green;
-}
 
-/* CSS for red row */
-.red-row {
-    background-color: red;
-}
+    /* CSS for row styles */
+    .green-row {
+        background-color: #e5f9e5;
+    }
 
-/* CSS for completed row */
-.completed-row {
-    background-color: #f2f2f2; /* Light grey background */
-    text-decoration: line-through; /* Line through the text */
-}
+    .red-row {
+        background-color: #ffe5e5;
+    }
 
+    .completed-row {
+        background-color: #f4f4f4;
+        text-decoration: line-through;
+        color: #999;
+    }
 
+    /* CSS for buttons */
+    .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+        margin-right: 8px;
+    }
 
-
+    .btn:hover {
+        background-color: #45a049;
+    }
 {% endblock %}
 
 {% block content %}
-<div class="pp">Order Details</div>
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Username</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Number of People</th>
-                <th>Message</th>
-                <th>Confirm</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-                <tr {% if order.completed %}class="completed-row"{% endif %} >
-<!--                    order_id = {{ order.id }}-->
-                    <td>{{ order.id }}</td>
-                    <td>{{ order.username }}</td>
-                    <td>{{ order.date }}</td>
-                    <td>{{ order.time }}</td>
-                    <td>{{ order.number_of_people }}</td>
-                    <td>{{ order.message }}</td>
-                    <td>
-                        <!-- Single checkbox with label -->
-
-                         <input type="checkbox" id="confirm_checkbox_{{ order.id }}" class="confirmation-checkbox" name="confirm_checkbox" value="{{ order.id }}" {% if order.confirmed %}checked{% endif %}>
-                            <label for="confirm_checkbox_{{ order.id }}"></label>
-                    </td>
-                    <td>
-                        <!-- Update the onclick events to pass order.id -->
-                        <button onclick="saveOrder({{ order.id }})">Confirm</button>
-                        <button id="complete_order_button_{{ order.id }}" onclick="completeOrder({{ order.id }})">Completed</button>
-
-
-                    </td>
+    <div class="container">
+        <h1 class="page-title">Order Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Number of People</th>
+                    <th>Message</th>
+                    <th>Confirm</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr {% if order.completed %}class="completed-row"{% elif order.confirmed %}class="green-row"{% else %}class="red-row"{% endif %}>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.username }}</td>
+                        <td>{{ order.email }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.time }}</td>
+                        <td>{{ order.number_of_people }}</td>
+                        <td>{{ order.message }}</td>
+                        <td>
+                            <input type="checkbox" id="confirm_checkbox_{{ order.id }}" class="confirmation-checkbox" name="confirm_checkbox" value="{{ order.id }}" {% if order.confirmed %}checked{% endif %}>
+                            <label for="confirm_checkbox_{{ order.id }}"></label>
+                        </td>
+                        <td>
+                            <button class="btn" onclick="saveOrder({{ order.id }}) ; sendConfirmationEmail({{ order.id }}, '{{ order.username }}', '{{ order.email }}','{{ order.date }}', '{{ order.time }}', {{ order.number_of_people }}, '{{ order.message }}')">Confirm</button>
 
+                            <button class="btn" id="complete_order_button_{{ order.id }}" onclick="completeOrder({{ order.id }})">Completed</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-
-<!-- Add this script in your template -->
-<script>
-// Function to save order details
+    <!-- Add this script in your template -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Function to save order details
+       // Function to save order details
 function saveOrder(orderId) {
     // Check if the checkbox is checked (green tick)
     var isChecked = $('#confirm_checkbox_' + orderId).is(':checked');
 
-    // Make AJAX request to save_order view
-    $.ajax({
-        type: 'POST',
-        url: '{% url "save_order" %}', // URL to the save_order view
-        data: {
-            'order_id': orderId, // Sending order ID
-            'is_checked': isChecked,  // Send whether the checkbox is checked
-            'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF token for security
-        },
-        success: function(data) {
-            // Update the checkbox state based on the confirmed status returned from the server
-            var confirmed = data.confirmed; // Get confirmation status from server response
-            $('#confirm_checkbox_' + orderId).prop('checked', confirmed); // Update checkbox state
+    // Ask admin for confirmation before saving the order
+    if (isChecked) {
+        if (confirm('Do you really want to confirm this order?')) {
+            // Make AJAX request to save_order view
+            $.ajax({
+                type: 'POST',
+                url: '{% url "save_order" %}',
+                data: {
+                    'order_id': orderId,
+                    'is_checked': isChecked,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(data) {
+                    // Update the checkbox state based on the confirmed status returned from the server
+                    var confirmed = data.confirmed;
+                    $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
 
-            // Reload the page to reflect changes (optional)
-            // location.reload();
+                    // Send an email to the customer
+                    sendConfirmationEmail(orderId, data.username, data.email, data.date, data.time, data.number_of_people, data.message);
+                }
+            });
+        } else {
+            // Uncheck the checkbox if the admin cancels the confirmation
+            $('#confirm_checkbox_' + orderId).prop('checked', false);
         }
-    });
+    } else {
+        // Make AJAX request to save_order view
+        $.ajax({
+            type: 'POST',
+            url: '{% url "save_order" %}',
+            data: {
+                'order_id': orderId,
+                'is_checked': isChecked,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                // Update the checkbox state based on the confirmed status returned from the server
+                var confirmed = data.confirmed;
+                $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
+            }
+        });
+    }
+}
+
+function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeople, message) {
+    var isChecked = $('#confirm_checkbox_' + orderId).is(':checked');
+
+    // Check if the checkbox is checked (green tick)
+    if (isChecked) {
+        // Send confirmation email
+        $.ajax({
+            type: 'POST',
+            url: '{% url "send_confirmation_email" %}',
+            data: {
+                'order_id': orderId,
+                'username': username,
+                'email': email,
+                'date': date,
+                'time': time,
+                'number_of_people': numberOfPeople,
+                'message': message,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                // Handle success response
+                console.log('Email sent successfully!');
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                console.error('Failed to send email:', error);
+            }
+        });
+    } else {
+        // Send sorry email
+        $.ajax({
+            type: 'POST',
+            url: '{% url "send_sorry_email" %}', // Change to the appropriate URL for sending the sorry email
+            data: {
+                'order_id': orderId,
+                'username': username,
+                'email': email,
+                'date': date,
+                'time': time,
+                'number_of_people': numberOfPeople,
+                'message': message,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                // Handle success response
+                console.log('Sorry email sent successfully!');
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                console.error('Failed to send sorry email:', error);
+            }
+        });
+    }
 }
 
 
 
 
-
-<!--adam_JS@pIYUSH(CONTRIBUTOR)-->
-    function completeOrder(orderId) {
-    // Make AJAX request to complete_order view
-    $.ajax({
-        type: 'POST',
-        url: '{% url "complete_order" %}',
-        data: {'order_id': orderId, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-        success: function(data) {
-            // Find the row that contains the button and add the 'completed-row' class
-            $('#complete_order_button_' + orderId).closest('tr').addClass('completed-row');
+        function completeOrder(orderId) {
+            // Make AJAX request to complete_order view
+            $.ajax({
+                type: 'POST',
+                url: '{% url "complete_order" %}',
+                data: {'order_id': orderId, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                success: function(data) {
+                    // Find the row that contains the button and add the 'completed-row' class
+                    $('#complete_order_button_' + orderId).closest('tr').addClass('completed-row');
+                }
+            });
         }
-    });
-}
-
-
-
-
-
-
-
-
-</script>
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
+    </script>
 {% endblock %}
-
-
-

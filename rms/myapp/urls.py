@@ -10,7 +10,6 @@ urlpatterns = [
     path('handle1/', views.handle1, name='handle1'),
     path('handle2/', views.handle2, name='handle2'),
     path('common/', views.common, name='common'),
-    path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('menu/', views.menu, name='menu'),
     path('test/', views.test, name='test'),
@@ -36,7 +35,9 @@ urlpatterns = [
     path('admin_rev/', views.display_reviews, name='admin_rev'),
     path('add-tables/', views.add_tables_for_day, name='add_tables_for_day'),
     path('foods/', views.dine, name='dine'),
-
+    path('admin_login/', views.admin_login, name='admin_login'),
+    path('send_confirmation_email/', views.send_confirmation_email, name='send_confirmation_email'),
+    path('send_sorry_email/', views.send_sorry_email, name='send_sorry_email'),
 
 
 

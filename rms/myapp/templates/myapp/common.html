@@ -193,13 +193,9 @@ element.style {
 
 
 
-
-
-
-
 <!-- to trigger Login modal -->
 <div id="connect-links-container">
-    <span class="connect-link {% if request.path == '/home/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'home' %}');">Home</span>
+    <span class="connect-link {% if request.path == '/index/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; " onmousedown="preventDefaultAndNavigate('{% url 'index' %}');">Home</span>
     <span class="connect-link {% if request.path == '/about/' %}active{% endif %}" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
     <span class="connect-link {% if request.path == '/menu/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
     <span class="connect-link {% if request.path == '/rev123/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;" onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
