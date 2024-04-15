@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Addecd missing syles on admin_dashboard">
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,15 +407,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712889658221</updated>
     </task>
-    <task id="LOCAL-00037" summary="Fixed minor bug">
-      <option name="closed" value="true" />
-      <created>1712889924941</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1712889924941</updated>
-    </task>
-    <option name="localTasksCounter" value="38" />
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -447,8 +438,7 @@
     <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
     <MESSAGE value="Fixed minor bugs related to admin_dash" />
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
-    <MESSAGE value="Fixed minor bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addecd missing syles on admin_dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
