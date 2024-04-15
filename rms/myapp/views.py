@@ -4,14 +4,15 @@ from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from datetime import date
-
-from .models import MyUser123, Rev, Order , Food
+from django.core.mail import send_mail
+from .models import MyUser123, Rev, Order, Food, Staff
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
 from django.utils.dateparse import parse_date
 import json
 from django.db.models import Count, Q
+from django.conf import settings
 
 
 def get_tables(request):
@@ -74,7 +75,7 @@ def submit_review(request):
         else:
             # If user is not authenticated, display an error message
             messages.error(request, "You must be logged in to submit a review.")
-            return redirect("home")  # Redirect the user to the login page
+            return redirect("index")  # Redirect the user to the login page
 
         # Retrieve review text from the form
         text = request.POST.get('text', '')  # Assuming 'text' is the name of the field in your form
@@ -82,7 +83,7 @@ def submit_review(request):
         if not text:  # Check if review text is empty
             # If review text is empty, display an error message
             messages.error(request, "Review text cannot be empty.")
-            return redirect("home")  # Redirect the user to the home page
+            return redirect("index")  # Redirect the user to the home page
 
         # Create Rev object and save it
         my_review = Rev.objects.create(username=username, text=text)
@@ -91,7 +92,7 @@ def submit_review(request):
         messages.success(request, "Your thoughts have been successfully preserved!")
 
         # Redirect to home page
-        return redirect("home")
+        return redirect("index")
     else:
         # If request method is not POST, return 404
         return HttpResponse('404 - Not Found')
@@ -121,7 +122,7 @@ def book(request):
         if not (date and time and nop and msg):
             # If any field is empty, display an error message
             messages.error(request, "Kindly fill up all the fields in the form to confirm the order.")
-            return redirect("home")  # Redirect to the home page or wherever appropriate
+            return redirect("index")  # Redirect to the home page or wherever appropriate
 
         # Create a Rev object with the retrieved data
         my_review = Order.objects.create(username=username, date=date, time=time, number_of_people=nop, message=msg)
@@ -130,7 +131,7 @@ def book(request):
         messages.success(request, "Kindly Check your Gmail for confirmation! We will reach you ASAP!!")
 
         # Redirect to the home page after successfully saving the order
-        return redirect("home")
+        return redirect("index")
     else:
         # If the request method is not POST, return a 404 response
         return HttpResponse('404 - Not Found')
@@ -154,6 +155,52 @@ def display_orders(request):
     return render(request, 'myapp/admin_reservation_control.html', {'orders': orders})
 
 
+def send_confirmation_email(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        number_of_people = request.POST.get('number_of_people')
+        message = request.POST.get('message')
+
+        # Construct the email message
+        subject = 'Order Confirmation'
+        body = f'Dear {username},\n\nThank you for your order.\n\nOrder Details:\nOrder ID: {order_id}\nDate: {date}\nTime: {time}\nNumber of People: {number_of_people}\nMessage: {message}\n\nWe look forward to serving you. If you have any further questions, please don\'t hesitate to contact us.\n\nBest regards,\nOne Bites Foods'
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [email]
+
+        # Send the email
+        send_mail(subject, body, from_email, to_email, fail_silently=False)
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
+
+
+def send_sorry_email(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        number_of_people = request.POST.get('number_of_people')
+        message = request.POST.get('message')
+
+        # Construct the sorry email message
+        subject = 'Apologies for Inconvenience'
+        body = f'Dear {username},\n\nWe apologize, but we are unable to confirm your order at the moment.\n\nOrder Details:\nOrder ID: {order_id}\nDate: {date}\nTime: {time}\nNumber of People: {number_of_people}\nMessage: {message}\n\nPlease accept our apologies. You may check for availability at another time or contact us for further assistance.\n\nBest regards,\nOne Bites Foods'
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [email]
+
+        # Send the email
+        send_mail(subject, body, from_email, to_email, fail_silently=False)
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
 def order_details_view(request):
     # Count the number of completed orders
     completed_orders_count = Order.objects.filter(completed=False).count()
@@ -226,10 +273,6 @@ def common(request):
     return render(request, "myapp/common.html", {})
 
 
-def home(request):
-    return render(request, "myapp/home.html", {})
-
-
 def about(request):
     return render(request, "myapp/aboutus.html", {})
 
@@ -243,7 +286,7 @@ def take_away(request):
         return render(request, "myapp/take_away.html", {})
     else:
         messages.error(request, "Please login through the connect section for Take-Away")
-        return render(request, "myapp/home.html", {})
+        return render(request, "myapp/index.html", {})
 
 
 def reservation(request):
@@ -251,25 +294,33 @@ def reservation(request):
         return render(request, "myapp/reservation.html", {})
     else:
         messages.error(request, "Please login through the connect section to book a Table!")
-        return render(request, "myapp/home.html", {})
+        return render(request, "myapp/index.html", {})
 
 
 def manage_table(request):
     return render(request, "myapp/ap_1.html", {})
 
 
+def admin_login(request):
+    return render(request, "myapp/admin_cred.html", {})
+
+
 def admin_page(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect("ad")
-        else:
-            messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("index")
+        try:
+            admin_user = Staff.objects.get(username=username)
+            if admin_user.password == password:
+                # Perform login and store the admin username in the session
+                request.session['admin_username'] = admin_user.username
+                return JsonResponse({'success': True, 'username': admin_user.username})
+            else:
+                return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+        except Staff.DoesNotExist:
+            return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+
     return HttpResponse('admin_page')
 
 
@@ -280,27 +331,32 @@ def handle1(request):
         phone = request.POST['phone']
         password = request.POST['password']
 
+        # Check if any of the fields are empty
+        if not username or not email or not phone or not password:
+            messages.error(request, "Please don't leave any of the fields blank!")
+            return redirect("index")
+
         if len(username) > 10:
             messages.error(request, "Username must be under 10 characters")
-            return redirect("home")
+            return redirect("index")
         if not username.isalnum():
             messages.error(request, "Username must be alphanumeric!")
-            return redirect("home")
+            return redirect("index")
 
         # Email validation
         pattern = r'\b[A-Za-z0-9._%+-]+@gmail.com\b'
         if not re.match(pattern, email):
             messages.error(request, "Email must be in the format abcd@gmail.com")
-            return redirect("home")
+            return redirect("index")
 
         if not phone.isdigit():
             messages.error(request, "Phone number must be numeric!")
-            return redirect("home")
+            return redirect("index")
 
         myuser = MyUser123.objects.create_user(username=username, email=email, phone=phone, password=password)
         myuser.save()
         messages.success(request, "Your account has been successfully created!")
-        return redirect("home")
+        return redirect("index")
     else:
         return HttpResponse('404 - Not Found')
 
@@ -315,10 +371,10 @@ def handle2(request):
         if user is not None:
             login(request, user)
             messages.success(request, f"Welcome to One Bite Foods, {user.username}!")
-            return redirect("home")
+            return redirect("index")
         else:
             messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("home")
+            return redirect("index")
     return HttpResponse('handle2')
 
 
@@ -328,22 +384,21 @@ def handler(request):
         user = authenticate(username=username)
         if user is not None:
             login(request, user)
-            return redirect("home")
+            return redirect("index")
         else:
             messages.error(request, "Please Sign In from Connect Section!!")
-            return redirect("home")
+            return redirect("index")
     return HttpResponse('handler')
 
 
 def lout(request):
     logout(request)
     messages.success(request, "Successfully Logged Out")
-    return redirect('home')
+    return redirect('index')
 
 
 def lout1(request):
-    logout(request)
-    return redirect('index')
+    return redirect('admin_login')
 
 
 def admin_menu(request):
@@ -376,7 +431,8 @@ def add_tables_for_day(request):
 
 
 def dine(request):
-    foods = Food.objects.all() # Assuming Food is your model
+    foods = Food.objects.all()  # Assuming Food is your model
     return render(request, 'myapp/dine_in.html', {'foods': foods})
+
 
 

@@ -180,7 +180,7 @@ margin-top: 300px;
 
   <div class="all">
         <button class="dashboard-button" onclick="window.location.href='{% url 'ad' %}'">Dashboard</button>
-      <button class="logout-button"onclick="window.location.href='{% url 'admin_menu' %}'"> Menu</button>
+      <button class="logout-button" onclick="window.location.href='{% url 'admin_menu' %}'"> Menu</button>
     <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
    <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Reviews</button>
        <button class="reviews-button" onclick="window.location.href='{% url 'dine_in' %}'">Dine-In</button>
@@ -197,7 +197,7 @@ margin-top: 300px;
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <p>Do you really want to go to the login page?</p>
-            <button onclick="confirmLogout()">Yes</button>
+            <button onclick="logout()">Yes</button>
             <button onclick="closeModal()">No</button>
         </div>
     </div>
@@ -221,7 +221,7 @@ margin-top: 300px;
         }
 
         // Redirect if confirmed
-        function confirmLogout() {
+        function logout() {
             window.location.href = "{% url 'lout1' %}";
         }
 

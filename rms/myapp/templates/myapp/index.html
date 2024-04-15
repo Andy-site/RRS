@@ -1,353 +1,99 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>One Bite Foods</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% extends 'myapp/common.html' %}
+
+{% block title%} Home {% endblock %}
+
+{% block body%}
+<div class="image-container">
+    <img src="/static/images/image10.jpg" alt="Image 1" class="active">
+    <img src="/static/images/image9.jpg" alt="Image 2">
+    <img src="/static/images/image3.png" alt="Image 3">
+    <img src="/static/images/image4.jpg" alt="Image 4">
+
+<button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
+            position: absolute;
+            border: none;
+            color: black; /* Text color set to black */
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            left: 565px;
+            top: 571px;"
+            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
+            onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
+            onclick="window.location.href='{% url 'reservation' %}'"> Make A Reservation </button>
+
+
+<button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
+            position: absolute;
+            border: none;
+            color: black; /* Text color set to black */
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            left: 825px;
+            top: 571px;
+            width: 200px;"
+            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
+            onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
+            onclick="window.location.href='{% url 'take_away' %}'">Take-Away</button>
+
+<div class="intro"> Savor every bite & create<br> unforgettable moments </div>
+</div>
 <style>
-    body {
-        margin: 0;
-        line-height: normal;
-        overflow: hidden;
-    }
+.intro {
+    position: absolute;
+    top: 270px;
+    left: 540px;
+    font-size: 45px;
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text */
+    letter-spacing: 2px; /* Increases spacing between letters */
+    transition: transform 0.3s ease; /* Adds transition effect to transform property */
+}
 
-    .modal-login {
-        color: #636363;
-        width: 350px;
-    }
-
-    .modal-login .modal-content {
-        padding: 20px;
-        border-radius: 5px;
-        border: none;
-    }
-
-    .modal-login .modal-header {
-        border-bottom: none;
-        position: relative;
-        justify-content: center;
-    }
-
-    .modal-login h4 {
-        text-align: center;
-        font-size: 26px;
-    }
-
-    .modal-login .form-group {
-        position: relative;
-    }
-
-    .modal-login i {
-        position: absolute;
-        left: 13px;
-        top: 11px;
-        font-size: 18px;
-    }
-
-    .modal-login .form-control {
-        padding-left: 40px;
-    }
-
-    .modal-login .form-control:focus {
-        border-color: #00ce81;
-    }
-
-    .modal-login .form-control, .modal-login .btn {
-        min-height: 40px;
-        border-radius: 3px;
-    }
-
-    .modal-login .hint-text {
-        text-align: center;
-        padding-top: 10px;
-    }
-
-    .modal-login .close {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-    }
-
-    .modal-login .btn, .modal-login .btn:active {
-        border: none;
-        background: #00ce81 !important;
-        line-height: normal;
-    }
-
-    .modal-login .btn:hover, .modal-login .btn:focus {
-        background: #00bf78 !important;
-    }
-
-    .modal-login .modal-footer {
-        background: #ecf0f1;
-        border-color: #dee4e7;
-        text-align: center;
-        margin: 0 -20px -20px;
-        border-radius: 5px;
-        font-size: 13px;
-        justify-content: center;
-    }
-
-    .modal-login .modal-footer a {
-        color: #999;
-    }
-
-    .trigger-btn {
-        display: inline-block;
-        margin: 100px auto;
-    }
-
+.intro:hover {
+    transform: scale(1.1); /* Scales the text on hover */
+}
     .image-container {
         position: relative;
         width: 100%;
-        height: 100vh; /* Use viewport height to cover the entire screen */
+        height: 100vh; /* Adjust as needed */
         overflow: hidden;
     }
-
-   .image-container img {
-      position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s;
-    filter: blur(1.5px); /* Apply blur effect */
+.alert {
+margin-top:-742px;
+margin-left:60px;
+<!--    position: absolute;-->
+    padding: 1rem 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+    .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0; /* Initially hide all images */
+<!--        transition: opacity 1s ease-in-out; /* Add a smooth transition */-->
     }
 
     .image-container img.active {
-        opacity: 1;
+        opacity: 1; /* Show the active image */
     }
-    .image-container img.dark {
-    filter: brightness(70%); /* Adjust brightness value to make it slightly darker */
-    }
-
-
-
-    .lets-get-started {
-        position: fixed;
-        color: white; /* Changed color to white */
-        top: 450px;;
-        left: 430px;
-        transform: translate(-50%, -50%);
-        font-size: 60px; /* Adjusted font size */
-        cursor: pointer;
-        font-family: 'Courier New', Courier, monospace; /* Added font family */
-    }
-
-    .cust2 {
-        position: fixed;
-        top: calc(50% + 230px); /* Adjusted position */
-        left: 540px;
-        transform: translateX(-50%);
-        color: white;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 19px;
-        cursor: pointer;
-    }
-
-    .obf {
-        position: fixed;
-        top: 40%; /* Adjusted position */
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-family: 'Great Vibes';
-        font-size: 100px; /* Increased font size to 100px */
-        text-align: center;
-    }
-
-    .all {
-        width: 100%;
-        position: relative;
-        background-color: #fff;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        height: 1024px;
-        overflow: hidden;
-        text-align: left;
-        font-size: 128px;
-        color: #000;
-        font-family: 'Great Vibes';
-    }
-
-    body {
-        margin: 0;
-        line-height: normal;
-    }
-
-    /* Adjustments for responsiveness */
-    @media only screen and (max-width: 768px) {
-        .modal-login {
-            width: 90%;
-            max-width: 90%;
-        }
-
-        .lets-get-started, .cust2 {
-            font-size: 45px;
-        }
-
-        .obf {
-            font-size: 50px; /* Adjusted font size for smaller screens */
-        }
-
-        .all {
-            font-size: 4vw;
-        }
-
-        .image-container {
-            height: 40vh;
-        }
-
-        .modal-footer {
-            font-size: 3vw;
-        }
-    }
-
-    /* Adjustments for larger screens */
-    @media only screen and (min-width: 1200px) {
-        .obf {
-            font-size: 8.5vw; /* Adjusted font size for larger screens */
-        }
-
-        .all {
-            font-size: 2vw;
-        }
-    }
-
-         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .obf {
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-
-        /* Animation for Let's get started */
-        @keyframes slideInFromTop {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(0); }
-        }
-
-        .lets-get-started {
-            animation: slideInFromTop 1.5s ease-in-out forwards;
-        }
-
-        /* Animation for redirection link */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-
-        .cust2 {
-            animation: bounce 2s infinite;
-        }
-
-        /* Animation for Let's get started */
-    @keyframes slideInFromTop {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(0); }
-    }
-
-    .lets-get-started {
-        animation: slideInFromTop 1.5s ease-in-out forwards;
-        cursor: pointer; /* Add pointer cursor to indicate clickability */
-        text-decoration: underline; /* Add underline to indicate a link */
-        transition: color 0.3s; /* Smooth transition for color change */
-    }
-
-    .lets-get-started:hover {
-        color: green;
-    }
-
-
 </style>
-
-</head>
-<body>
-
-      {% if messages %}
-      <div class="container">
-         {% for message in messages %}
-         <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
-          <strong>{{ message }}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-         </div>
-          {% endfor %}
-          </div>
-      {% endif %}
-
-<div class="image-container">
-    <img src="/static/images/slide_1.jpg" alt="Image 1" class="active">
-    <img src="/static/images/slide_2.jpg" alt="Image 2" class="dark">
-    <img src="/static/images/slide_3.jpg" alt="Image 3">
-</div>
-
-
-
-<div class="all">
-
-    <div class="obf">
-        One Bite Foods
-    </div>
-
-
-    <div onclick="$('#myModal').modal('show');"  class="lets-get-started">Let’s get started</div>
-
-    <div class="cust2" onclick="window.location.href='{% url 'home' %}'">Get Redirected to <span style="color: white;" onmouseover="this.style.color='green'" onmouseout="this.style.color='white'">Customer Page</span></div>
-
-</div>
-
-
-
-
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-login">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Admin Login</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                  <form action="{% url 'admin_page' %}" method="post">
-                            {% csrf_token %}
-                    <div class="form-group">
-                        <i class="fa fa-user"></i>
-                        <input type="text" class="form-control" placeholder="Username" required="required" name="username" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control" placeholder="Password" required="required"  name="password" >
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="home">Redirect to Customer Page?</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -367,6 +113,4 @@
         }, 4000); // Change interval as needed (in milliseconds)
     });
 </script>
-
-</body>
-</html>
+{% endblock %}
