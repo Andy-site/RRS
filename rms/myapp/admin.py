@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser123, Table, Rev, Order, Food, Staff
+from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder
 
 
 class MyUser123Admin(admin.ModelAdmin):
@@ -43,3 +43,17 @@ class StaffAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Staff, StaffAdmin)
+
+
+class DineInOrderItemAdmin(admin.ModelAdmin):
+    list_display = ('order', 'food', 'quantity', 'created_at', 'updated_at')
+
+
+admin.site.register(DineInOrderItem, DineInOrderItemAdmin)
+
+
+class DineInOrderAdmin(admin.ModelAdmin):
+    list_display = ('table_number', 'created_at', 'updated_at')
+
+
+admin.site.register(DineInOrder, DineInOrderAdmin)

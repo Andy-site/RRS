@@ -3,29 +3,35 @@
 {% block title%} Home {% endblock %}
 
 {% block body%}
+
+
+
 <div class="image-container">
     <img src="/static/images/image10.jpg" alt="Image 1" class="active">
     <img src="/static/images/image9.jpg" alt="Image 2">
     <img src="/static/images/image3.png" alt="Image 3">
     <img src="/static/images/image4.jpg" alt="Image 4">
 
-<button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
-            position: absolute;
-            border: none;
-            color: black; /* Text color set to black */
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            left: 565px;
-            top: 571px;"
-            onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
-            onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
-            onclick="window.location.href='{% url 'reservation' %}'"> Make A Reservation </button>
+<button id="reservationButton" style="background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    left: 565px;
+    top: 571px;"
+    onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
+    onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
+    onclick="handleReservation()"> Make A Reservation </button>
+
+
+
 
 
 <button style="background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
@@ -45,10 +51,36 @@
             width: 200px;"
             onmouseover="this.style.backgroundColor='#4CAF50'; this.style.color='white';"
             onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='black';"
-            onclick="window.location.href='{% url 'take_away' %}'">Take-Away</button>
+            onclick="handleTakeaway()">Take-Away</button>
 
 <div class="intro"> Savor every bite & create<br> unforgettable moments </div>
 </div>
+
+<!-- Other HTML content -->
+
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="welcomeModalLabel">Welcome to One Bite Foods!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Hello, <span id="welcome-username"></span>! We're excited to have you on board.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Other HTML content -->
+
+
+
 <style>
 .intro {
     position: absolute;
@@ -112,5 +144,31 @@ margin-left:60px;
             showImage(index);
         }, 4000); // Change interval as needed (in milliseconds)
     });
+
+
+
+
+function handleReservation() {
+    // Check if the user is authenticated using Django's built-in user authentication system
+    if ('{{ request.user.is_authenticated }}' === 'True' ) {
+        // Redirect to reservation page
+        window.location.href = '{% url 'reservation' %}';
+    } else {
+        // Trigger the modal
+        $('#loginModal').modal('show');
+    }
+}
+
+function handleTakeaway() {
+    // Check if the user is authenticated using Django's built-in user authentication system
+    if ('{{ request.user.is_authenticated }}' === 'True' ) {
+        // Redirect to reservation page
+        window.location.href = '{% url 'take_away' %}';
+    } else {
+        // Trigger the modal
+        $('#loginModal').modal('show');
+    }
+}
+
 </script>
 {% endblock %}

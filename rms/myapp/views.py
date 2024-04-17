@@ -2,10 +2,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
 from datetime import date
 from django.core.mail import send_mail
-from .models import MyUser123, Rev, Order, Food, Staff
+from psycopg2 import DatabaseError, IntegrityError
+
+from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -13,6 +17,8 @@ from django.utils.dateparse import parse_date
 import json
 from django.db.models import Count, Q
 from django.conf import settings
+from datetime import timedelta
+import calendar
 
 
 def get_tables(request):
@@ -181,17 +187,11 @@ def send_confirmation_email(request):
 
 def send_sorry_email(request):
     if request.method == 'POST':
-        order_id = request.POST.get('order_id')
         username = request.POST.get('username')
         email = request.POST.get('email')
-        date = request.POST.get('date')
-        time = request.POST.get('time')
-        number_of_people = request.POST.get('number_of_people')
-        message = request.POST.get('message')
-
         # Construct the sorry email message
         subject = 'Apologies for Inconvenience'
-        body = f'Dear {username},\n\nWe apologize, but we are unable to confirm your order at the moment.\n\nOrder Details:\nOrder ID: {order_id}\nDate: {date}\nTime: {time}\nNumber of People: {number_of_people}\nMessage: {message}\n\nPlease accept our apologies. You may check for availability at another time or contact us for further assistance.\n\nBest regards,\nOne Bites Foods'
+        body = f'Dear {username},\n\nWe apologize, but we are unable to confirm your order at the moment.\n\nPlease accept our apologies. You may check for availability at another time or contact us for further assistance.\n\nBest regards,\nOne Bites Foods'
         from_email = settings.EMAIL_HOST_USER
         to_email = [email]
 
@@ -201,13 +201,17 @@ def send_sorry_email(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+
 def order_details_view(request):
     # Count the number of completed orders
     completed_orders_count = Order.objects.filter(completed=False).count()
+    completed_orders_count1 = DineInOrder.objects.filter(status='Preparing').count()
 
     # Pass the count to the template context
     context = {
         'completed_orders_count': completed_orders_count,
+        'completed_orders_count1': completed_orders_count1,
     }
 
     return render(request, 'myapp/admin_dash.html', context)
@@ -282,19 +286,11 @@ def menu(request):
 
 
 def take_away(request):
-    if request.user.is_authenticated:
-        return render(request, "myapp/take_away.html", {})
-    else:
-        messages.error(request, "Please login through the connect section for Take-Away")
-        return render(request, "myapp/index.html", {})
+    return render(request, "myapp/take_away.html", {})
 
 
 def reservation(request):
-    if request.user.is_authenticated:
-        return render(request, "myapp/reservation.html", {})
-    else:
-        messages.error(request, "Please login through the connect section to book a Table!")
-        return render(request, "myapp/index.html", {})
+    return render(request, "myapp/reservation.html", {})
 
 
 def manage_table(request):
@@ -333,49 +329,52 @@ def handle1(request):
 
         # Check if any of the fields are empty
         if not username or not email or not phone or not password:
-            messages.error(request, "Please don't leave any of the fields blank!")
-            return redirect("index")
+            return JsonResponse({'success': False, 'error_message': "Please don't leave any of the fields blank!"})
 
         if len(username) > 10:
-            messages.error(request, "Username must be under 10 characters")
-            return redirect("index")
+            return JsonResponse({'success': False, 'error_message': "Username must be under 10 characters"})
+
         if not username.isalnum():
-            messages.error(request, "Username must be alphanumeric!")
-            return redirect("index")
+            return JsonResponse({'success': False, 'error_message': "Username must be alphanumeric!"})
 
         # Email validation
-        pattern = r'\b[A-Za-z0-9._%+-]+@gmail.com\b'
+        pattern = r'\b[A-Za-z0-9._%+-]+@(?:gmail\.com|heraldcollege\.edu\.np)\b'
         if not re.match(pattern, email):
-            messages.error(request, "Email must be in the format abcd@gmail.com")
-            return redirect("index")
+            return JsonResponse({'success': False, 'error_message': "Email must be in the format abcd@gmail.com"})
 
         if not phone.isdigit():
-            messages.error(request, "Phone number must be numeric!")
-            return redirect("index")
+            return JsonResponse({'success': False, 'error_message': "Phone number must be numeric!"})
 
         myuser = MyUser123.objects.create_user(username=username, email=email, phone=phone, password=password)
         myuser.save()
-        messages.success(request, "Your account has been successfully created!")
-        return redirect("index")
+
+        # Authenticate the user and log them in
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True, 'message': "Your account has been successfully created!", 'stay_logged_in': True, 'username': user.username})
+        else:
+            return JsonResponse({'success': False, 'error_message': "Unable to log in the user"})
     else:
         return HttpResponse('404 - Not Found')
 
 
 def handle2(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
 
         user = authenticate(username=username, password=password)
-
         if user is not None:
-            login(request, user)
-            messages.success(request, f"Welcome to One Bite Foods, {user.username}!")
-            return redirect("index")
+            if user.is_staff:
+                login(request, user)
+                return JsonResponse({'success': True, 'username': user.username})
+            else:
+                return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
         else:
-            messages.error(request, "Invalid Credentials, Please Try Again!!")
-            return redirect("index")
-    return HttpResponse('handle2')
+            return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+
+    return HttpResponse('index')
 
 
 def handler(request):
@@ -393,8 +392,7 @@ def handler(request):
 
 def lout(request):
     logout(request)
-    messages.success(request, "Successfully Logged Out")
-    return redirect('index')
+    return JsonResponse({'success': True})
 
 
 def lout1(request):
@@ -409,25 +407,32 @@ def name(request):
     return render(request, "myapp/admin_reservation_control.html", {})
 
 
-def add_tables_for_day(request):
+def add_tables_for_30_days(request):
     # Get today's date
     today = date.today()
 
-    # Check if tables for today already exist
-    existing_tables = Table.objects.filter(date=today)
+    # Calculate the last day of the month
+    last_day_of_month = today.replace(day=calendar.monthrange(today.year, today.month)[1])
 
-    if not existing_tables:
-        # If tables for today don't exist, create them
+    # Check if tables for the entire month already exist
+    existing_tables = Table.objects.filter(date__gte=today, date__lte=last_day_of_month)
+    if existing_tables.exists():
+        return JsonResponse({'status': 'error', 'message': 'Tables already added for this month!'})
+
+    # Loop over the days in the month
+    for i in range(last_day_of_month.day):
+        # Calculate the date for the current iteration
+        current_date = today + timedelta(days=i)
+
+        # Create tables for the current date
         table_sizes = [1, 2, 4, 6, 8]  # Table sizes
         table_numbers = [666, 777, 999, 6969, 1012, 1234]  # Table numbers
 
         for size in table_sizes:
             for number in table_numbers:
-                table = Table.objects.create(date=today, size=size, number=number)
+                table = Table.objects.create(date=current_date, size=size, number=number)
 
-        return JsonResponse({'status': 'success', 'message': 'Tables added for the day.'})
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Tables for the day already exist.'})
+    return JsonResponse({'status': 'success', 'message': 'Tables added for the entire month.'})
 
 
 def dine(request):
@@ -435,4 +440,80 @@ def dine(request):
     return render(request, 'myapp/dine_in.html', {'foods': foods})
 
 
+@csrf_exempt
+def confirm_order(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        table_number = data['table_number']
+        order_items = data['order_items']
+        total_price = data['total_price']
 
+        # Create the DineInOrder
+        order = DineInOrder.objects.create(
+            table_number=table_number,
+            total_price=total_price
+        )
+
+        # Create the DineInOrderItems
+        for item in order_items:
+            DineInOrderItem.objects.create(
+                order=order,
+                food=item['food'],
+                quantity=item['quantity'],
+                price=item['price']
+            )
+
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+def admin_dashboard(request):
+    completed_orders_count = DineInOrder.objects.filter(completed=True).count()
+    return render(request, 'myapp/admin_page.html', {'completed_orders_count': completed_orders_count})
+
+
+def dine_in_details(request):
+    orders = DineInOrder.objects.all()
+    order_data = []
+    for order in orders:
+        order_items = DineInOrderItem.objects.filter(order=order)
+        order_data.append({
+            'id': order.id,
+            'table_number': order.table_number,
+            'total_price': str(order.total_price),
+            'status': order.status,
+            'canceled': order.canceled,
+            'items': list(order_items.values('food', 'quantity'))
+        })
+    return JsonResponse(order_data, safe=False)
+
+
+@csrf_exempt
+def cancel_order(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        order_id = data['order_id']
+        order = DineInOrder.objects.get(id=order_id)
+        order.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+@csrf_exempt
+def complete_orders(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        try:
+            order = DineInOrder.objects.get(pk=order_id)
+            if order.status == 'Preparing':
+                order.status = 'Completed'
+                order.save()
+                return JsonResponse({'status': 'success'})
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Order is not in the Preparing state'})
+        except DineInOrder.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Order not found'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
