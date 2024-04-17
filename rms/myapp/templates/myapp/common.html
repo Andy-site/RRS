@@ -250,24 +250,26 @@ element.style {
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="form px-4 pt-5">
-                        <form action="/handle2/" method='post'>
+                        <form id="admin-login-form" action="/handle2/" method='post'>
                             <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
                             <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
                             {% csrf_token %}
-                            <button class="btn btn-dark btn-block">Login</button>
+                            <button type="submit" class="btn btn-dark btn-block">Login</button>
                         </form>
+                         <div class="error-message text-danger"></div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="form px-4">
-                        <form action="/handle1/" method='post'>
+                        <form id="admin-login-form2" action="/handle1/" method='post'>
                             <input type="text" name="username" class="form-control" placeholder="Name" autocomplete="off">
                             <input type="text" name="email" class="form-control" placeholder="Email" autocomplete="off">
                             <input type="text" name="phone" class="form-control" placeholder="Phone" autocomplete="off">
                             <input type="text" name="password" class="form-control" placeholder="Password" autocomplete="off">
                             {% csrf_token %}
-                            <button class="btn btn-dark btn-block">Signup</button>
+                            <button type="submit" class="btn btn-dark btn-block">Signup</button>
                         </form>
+                        <div class="error-message2 text-danger"></div>
                     </div>
                 </div>
             </div>
@@ -275,10 +277,134 @@ element.style {
     </div>
 </div>
 
+<!-- Logout Success Modal -->
+<div class="modal fade" id="logoutSuccessModal" tabindex="-1" role="dialog" aria-labelledby="logoutSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutSuccessModalLabel">Logout Successful</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="logoutSuccessModalCloseBtn">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You have been successfully logged out.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="logoutSuccessModalCancelBtn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+
+
+
+<script>
+document.getElementById('admin-login-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}'
+    }
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    if (data.success) {
+      // Update the username in the welcome modal
+      document.getElementById('welcome-username').textContent = data.username;
+
+      // Hide the login modal
+      $('#loginModal').modal('hide');
+
+      // Show the welcome modal
+      var welcomeModal = document.getElementById('welcomeModal');
+      $(welcomeModal).modal('show');
+
+      // Add event listeners to the close and cancel buttons
+      var closeButton = welcomeModal.querySelector('.close');
+      var cancelButton = welcomeModal.querySelector('.btn-secondary');
+
+      closeButton.addEventListener('click', redirectToIndex);
+      cancelButton.addEventListener('click', redirectToIndex);
+    } else {
+      // Display the error message in the login modal
+      document.querySelector('.error-message').textContent = data.error_message;
+    }
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+});
+
+function redirectToIndex() {
+  // Redirect to the index page
+  window.location.href = "{% url 'index' %}";
+}
+</script>
+
+
+<script>
+document.getElementById('admin-login-form2').addEventListener('submit', function(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}'
+    }
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    if (data.success) {
+      // Update the username in the welcome modal
+      document.getElementById('welcome-username').textContent = data.username;
+
+      // Hide the login modal
+      $('#loginModal').modal('hide');
+
+      // Show the welcome modal
+      var welcomeModal = document.getElementById('welcomeModal');
+      $(welcomeModal).modal('show');
+
+      // Add event listeners to the close and cancel buttons
+      var closeButton = welcomeModal.querySelector('.close');
+      var cancelButton = welcomeModal.querySelector('.btn-secondary');
+
+      closeButton.addEventListener('click', redirectToIndex);
+      cancelButton.addEventListener('click', redirectToIndex);
+    } else {
+      // Display the error message in the login modal
+      document.querySelector('.error-message2').textContent = data.error_message;
+    }
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+});
+
+function redirectToIndex() {
+  // Redirect to the index page
+  window.location.href = "{% url 'index' %}";
+}
+</script>
+
 
 
 
@@ -301,12 +427,43 @@ function preventDefaultAndNavigate(url) {
 </script>
 
 <script>
-
 function logout() {
-    // Perform logout action, for example, redirect to logout URL
-   window.location.href = "{% url 'lout' %}";
-}
+  fetch("{% url 'lout' %}", {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}'
+    }
+  })
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    if (data.success) {
+      // Hide the logout modal
+      $('#logoutModal').modal('hide');
 
+      // Show the logout success modal
+      $('#logoutSuccessModal').modal('show');
+
+      // Add an event listener to the logout success modal's close button
+      var closeButton = document.getElementById('logoutSuccessModalCloseBtn');
+      closeButton.addEventListener('click', function() {
+        // Redirect to the index page
+        window.location.href = "{% url 'index' %}";
+      });
+
+      // Add an event listener to the logout success modal's cancel button
+      var cancelButton = document.getElementById('logoutSuccessModalCancelBtn');
+      cancelButton.addEventListener('click', function() {
+        // Redirect to the index page
+        window.location.href = "{% url 'index' %}";
+      });
+    }
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
+}
 </script>
 
 

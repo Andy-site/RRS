@@ -1,66 +1,165 @@
 {% extends 'myapp/admin_page.html' %}
-{% block title %}Order Details{% endblock %}
-
+{% block title %}Admin Dashboard{% endblock %}
 {% block css %}
 .add-table-btn {
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50;
     border: none;
-    color: white; /* White text */
-    padding: 15px 32px; /* Padding */
-    text-align: center; /* Text alignment */
-    text-decoration: none; /* Remove underline */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
     display: inline-block;
-    font-size: 16px; /* Font size */
+    font-size: 16px;
     margin: 40px 0px 0px 620px;
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 8px; /* Rounded corners */
-    transition-duration: 0.4s; /* Animation duration */
-    position: relative; /* Position for tooltip */
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    position: relative;
 }
 
 .add-table-btn:hover {
-    background-color: #45a049; /* Darker green background on hover */
+    background-color: #45a049;
 }
 
 .add-table-btn:hover::after {
-    content: "Add tables for the day"; /* Text content of tooltip */
-    position: absolute; /* Position relative to the button */
-    bottom: 125%; /* Adjust the distance from the button */
-    left: 50%; /* Align the tooltip horizontally */
-    transform: translateX(-50%); /* Center the tooltip horizontally */
-    background-color: #555; /* Background color of tooltip */
-    color: #fff; /* Text color of tooltip */
-    padding: 5px 10px; /* Padding of tooltip */
-    border-radius: 6px; /* Rounded corners of tooltip */
-    font-size: 14px; /* Font size of tooltip */
-    opacity: 0; /* Hide the tooltip initially */
-    transition: opacity 0.3s; /* Fade-in transition */
-    white-space: nowrap; /* Prevent text wrapping */
+    content: "Add tables for this month";
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
 }
 
 .add-table-btn:hover::after {
-    opacity: 1; /* Show the tooltip on hover */
+    opacity: 1;
 }
+
+.dine-in-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 40px 0px 0px 40px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.dine-in-btn:hover {
+    background-color: #0056b3;
+}
+
+.modal1 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Increase the width and height of the modal */
+.modal-content1 {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 70%; /* Adjust the width */
+    height: 70%; /* Adjust the height */
+    max-width: 800px; /* Limit maximum width */
+    max-height: 600px; /* Limit maximum height */
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header1 h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-button1 {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button1:hover,
+.close-button1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.active-dine-in{
+position: absolute;
+margin-left: 350px;}
 
 {% endblock %}
-
 {% block content %}
-
-    <div class="wel">
-        {% if request.session.admin_username %}
-        Welcome, {{ request.session.admin_username }}!
+<div class="wel">
+    {% if request.session.admin_username %}
+    Welcome, {{ request.session.admin_username }}!
     {% endif %}
+</div>
+<div class="au">Number of Active Reservation Orders: {{ completed_orders_count }}</div>
+<div class="active-dine-in">Number of Active Dine-In Orders: {{ completed_orders_count1 }}</div>
+<button class="add-table-btn">Add Table</button>
+<button class="dine-in-btn" onclick="showDineInDetails()">Dine-In Details</button>
+
+<!--DINE-IN DETAILS MODAL-->
+<div id="order-details-modal" class="modal1">
+    <div class="modal-content1">
+        <div class="modal-header1">
+            <h2>Dine-in-Orders</h2>
+            <span class="close-button1">&times;</span>
+        </div>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order No.</th>
+                    <th>Table No.</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="order-details-table-body">
+            </tbody>
+        </table>
     </div>
-    <div class="au">Number of Active Orders: {{ completed_orders_count }}</div>
-    <button class="add-table-btn">Add Table</button>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
     $('.add-table-btn').click(function() {
         $.ajax({
             type: 'GET',
-            url: '{% url "add_tables_for_day" %}',
+            url: '{% url "add_tables_for_30_days" %}',
             success: function(response) {
                 if (response.status === 'success') {
                     alert(response.message);  // Show success message
@@ -75,9 +174,93 @@ $(document).ready(function() {
         });
     });
 });
+
+function showDineInDetails() {
+    $.ajax({
+        type: 'GET',
+        url: '{% url "dine_in_details" %}',
+        success: function(data) {
+            var tableBody = $('#order-details-table-body');
+            tableBody.empty();
+            data.forEach(function(order) {
+                var row = $('<tr></tr>');
+                row.append($('<td></td>').text(order.id));
+                row.append($('<td></td>').text(order.table_number));
+                row.append($('<td></td>').text(order.items.map(function(item) { return item.food + ' x ' + item.quantity; }).join(', ')));
+                row.append($('<td></td>').text(order.total_price));
+                var statusCell = $('<td></td>');
+                if (order.status === 'Preparing') {
+                    statusCell.text('Preparing');
+                } else if (order.status === 'Completed') {
+                    statusCell.html('<s>Completed</s>');
+                    row.css('text-decoration', 'line-through');
+                }
+                row.append(statusCell);
+                var actionCell = $('<td></td>');
+                if (order.status === 'Preparing') {
+                    actionCell.append($('<button class="complete-button" title="Complete"><i class="fas fa-check"></i></button>').click(function() { completeOrder(order.id); }));
+                    actionCell.append($('<button class="cancel-button" title="Cancel"><i class="fas fa-times"></i></button>').click(function() { cancelOrder(order.id); }));
+                }
+
+                row.append(actionCell);
+                tableBody.append(row);
+            });
+            $('#order-details-modal').css('display', 'block');
+        },
+        error: function(xhr, status, error) {
+            alert('Error fetching dine-in details: ' + error);
+        }
+    });
+
+    // Add event listener to close the modal
+    var modal = document.getElementById("order-details-modal");
+    var closeButton = document.getElementsByClassName("close-button1")[0];
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+function completeOrder(orderId) {
+    $.ajax({
+        type: 'POST',
+        url: '{% url "complete_orders" %}',
+        data: {
+            'order_id': orderId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(data) {
+            if (data.status === 'success') {
+                alert('Order completed successfully.');
+                showDineInDetails(); // Refresh the dine-in details modal
+            } else {
+                alert('Error completing order: ' + data.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Error completing order: ' + error);
+        }
+    });
+}
+
+function cancelOrder(orderId) {
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cancel_order" %}',
+        data: JSON.stringify({ order_id: orderId }),
+        contentType: 'application/json; charset=utf-8',
+        success: function(data) {
+            alert('Order canceled successfully.');
+            showDineInDetails();
+        },
+        error: function(xhr, status, error) {
+            alert('Error canceling order: ' + error);
+        }
+    });
+}
 </script>
-
-
-
-
 {% endblock %}
