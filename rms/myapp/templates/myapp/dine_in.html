@@ -8,6 +8,9 @@
     font-size: 30px;
     left: 650px;
     top: 76px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .dropdown-box {
@@ -18,12 +21,21 @@
     width: 150px;
     text-align: center;
     background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.dropdown-box:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .meme {
     position: absolute;
     top: 200px;
     left: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-menu {
@@ -35,6 +47,7 @@
     padding: 5px;
     z-index: 1;
     width: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu a {
@@ -42,6 +55,7 @@
     padding: 5px;
     text-decoration: none;
     color: #333;
+    transition: background-color 0.3s;
 }
 
 .dropdown-menu a:hover {
@@ -52,9 +66,12 @@
     position: absolute;
     top: 170px;
     left: 550px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -69,15 +86,36 @@ th, td {
 
 th {
     background-color: #f2f2f2;
-    color: black;
+    color: #333;
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
 }
 
 input[type="number"] {
     width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn, .btn2 {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover, .btn2:hover {
+    background-color: #45a049;
 }
 
 .btn {
@@ -92,7 +130,6 @@ input[type="number"] {
     left: 300px;
 }
 
-/* Selected Orders Styling */
 #selectedOrders {
     position: absolute;
     left: 1100px;
@@ -100,7 +137,7 @@ input[type="number"] {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #selectedOrders h3 {
@@ -118,6 +155,9 @@ input[type="number"] {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #ordersList li:last-child {
@@ -128,10 +168,11 @@ input[type="number"] {
     font-weight: bold;
     margin-right: 10px;
 }
+
 .scrollable-table {
-    max-height: 300px; /* Adjust the height as needed */
+    max-height: 300px;
     overflow-y: auto;
-    width: 100%; /* Ensure the div takes the full width of its container */
+    width: 100%;
 }
 
 {% endblock %}
@@ -160,7 +201,7 @@ input[type="number"] {
                     <td>{{ food.type }}</td>
                     <td>{{ food.food }}</td>
                     <td>{{ food.price }}</td>
-                    <td><input type="number" name="quantity" min="1" value="0"></td>
+                    <td><input type="number" name="quantity" min="0" value="0"></td>
                 </tr>
             {% endfor %}
         </table>
@@ -172,35 +213,76 @@ input[type="number"] {
     <ul id="ordersList">
         <!-- Selected orders will be displayed here -->
     </ul>
+    <label for="tableNumber">Table Number:</label>
+    <input type="text" id="tableNumber" name="tableNumber" required>
 </div>
 
 <button class="btn" onclick="submitOrder()">Check</button>
 <button class="btn2" onclick="confirmOrder()">Confirm</button>
-
 <script>
-    function submitOrder() {
-        // Collect the selected foods and quantities
-        var ordersList = document.getElementById('ordersList');
-        ordersList.innerHTML = ''; // Clear the list
-        var foodsTable = document.getElementById('foodsList').getElementsByTagName('table')[0];
-        var rows = foodsTable.getElementsByTagName('tr');
-        for (var i = 1; i < rows.length; i++) {
-            var cells = rows[i].getElementsByTagName('td');
-            var foodName = cells[1].innerText; // Get the food name from the second column
-            var quantityInput = cells[3].getElementsByTagName('input')[0];
-            var quantity = quantityInput.value;
-            if (quantity > 0) {
-                var listItem = document.createElement('li');
-                listItem.textContent = foodName + ': ' + quantity;
-                ordersList.appendChild(listItem);
-            }
+
+function submitOrder() {
+    // Collect the selected foods, quantities, and prices
+    var ordersList = document.getElementById('ordersList');
+    ordersList.innerHTML = ''; // Clear the list
+    var foodsTable = document.getElementById('foodsList').getElementsByTagName('table')[0];
+    var rows = foodsTable.getElementsByTagName('tr');
+    var orderItems = [];
+    var totalPrice = 0;
+    for (var i = 1; i < rows.length; i++) {
+        var cells = rows[i].getElementsByTagName('td');
+        var foodName = cells[1].innerText; // Get the food name from the second column
+        var foodPrice = parseFloat(cells[2].innerText); // Get the food price from the third column
+        var quantityInput = cells[3].getElementsByTagName('input')[0];
+        var quantity = parseInt(quantityInput.value);
+        if (quantity > 0) {
+            var itemTotal = foodPrice * quantity;
+            totalPrice += itemTotal;
+            orderItems.push({
+                food: foodName,
+                quantity: quantity,
+                price: itemTotal
+            });
+            var listItem = document.createElement('li');
+            listItem.textContent = foodName + ': ' + quantity;
+            ordersList.appendChild(listItem);
         }
     }
+    return {
+        order_items: orderItems,
+        total_price: totalPrice
+    };
+}
 
-        function confirmOrder() {
-        // Display a confirmation alert
-        alert("Your order has been confirmed!");
-    }
+
+function confirmOrder() {
+    // Collect the order data
+    var orderData = submitOrder();
+    var tableNumber = document.getElementById('tableNumber').value;
+
+    // Send the order data to the server using AJAX
+    $.ajax({
+        type: 'POST',
+        url: '{% url "confirm_order" %}',
+        data: JSON.stringify({
+            table_number: tableNumber,
+            order_items: orderData.order_items,
+            total_price: orderData.total_price
+        }),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(response) {
+            alert('Order confirmed!');
+            // Clear the order list and table number input
+            document.getElementById('ordersList').innerHTML = '';
+            document.getElementById('tableNumber').value = '';
+        },
+        error: function(xhr, status, error) {
+            alert('Error confirming order: ' + error);
+        }
+    });
+}
+
 </script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}

@@ -3,8 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        /* styles.css */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .order-item button {
+            margin-left: 1rem;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container">
+    <h1>Takeaway</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Menu</h2>
+            <div id="menu-items"></div>
+        </div>
+        <div class="col-md-4">
+            <h2>Your Order</h2>
+            <div id="order-summary"></div>
+            <div class="form-group">
+                <label for="pickup-time">Pickup Time:</label>
+                <input type="datetime-local" class="form-control" id="pickup-time" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-location">Pickup Location:</label>
+                <input type="text" class="form-control" id="pickup-location" required>
+            </div>
+            <button class="btn btn-primary" id="place-order">Place Order</button>
+        </div>
+    </div>
+</div>
+<script>
+    // takeaway.js
+document.addEventListener('DOMContentLoaded', () => {
+  const menuItems = [
+    { id: 1, name: 'Margherita Pizza', price: 12.99, image: 'pizza.png' },
+    { id: 2, name: 'Chicken Curry', price: 14.99, image: 'pizza.png' },
+    { id: 3, name: 'Chocolate Cake', price: 6.99, image: 'pizza.png' },
+  ];
+
+  const menuContainer = document.getElementById('menu-items');
+  const orderSummary = document.getElementById('order-summary');
+  const placeOrderButton = document.getElementById('place-order');
+
+  let order = [];
+
+  function renderMenuItems() {
+    menuItems.forEach((item) => {
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('menu-item');
+
+      const image = document.createElement('img');
+      image.src = `/static/images/${item.image}`;
+      menuItem.appendChild(image);
+
+      const name = document.createElement('h3');
+      name.textContent = item.name;
+      menuItem.appendChild(name);
+
+      const price = document.createElement('p');
+      price.textContent = `$${item.price.toFixed(2)}`;
+      menuItem.appendChild(price);
+
+      const addButton = document.createElement('button');
+      addButton.classList.add('btn', 'btn-primary');
+      addButton.textContent = 'Add to Order';
+      addButton.addEventListener('click', () => addToOrder(item));
+      menuItem.appendChild(addButton);
+
+      menuContainer.appendChild(menuItem);
+    });
+  }
+
+  function addToOrder(item) {
+    order.push(item);
+    renderOrderSummary();
+  }
+
+  function removeFromOrder(index) {
+    order.splice(index, 1);
+    renderOrderSummary();
+  }
+
+  function renderOrderSummary() {
+    orderSummary.innerHTML = '';
+
+    order.forEach((item, index) => {
+      const orderItem = document.createElement('div');
+      orderItem.classList.add('order-item');
+
+      const itemName = document.createElement('span');
+      itemName.textContent = item.name;
+      orderItem.appendChild(itemName);
+
+      const itemPrice = document.createElement('span');
+      itemPrice.textContent = `$${item.price.toFixed(2)}`;
+      orderItem.appendChild(itemPrice);
+
+      const removeButton = document.createElement('button');
+      removeButton.classList.add('btn', 'btn-danger');
+      removeButton.textContent = 'Remove';
+      removeButton.addEventListener('click', () => removeFromOrder(index));
+      orderItem.appendChild(removeButton);
+
+      orderSummary.appendChild(orderItem);
+    });
+  }
+
+  placeOrderButton.addEventListener('click', () => {
+    const pickupTime = document.getElementById('pickup-time').value;
+    const pickupLocation = document.getElementById('pickup-location').value;
+
+    if (order.length > 0 && pickupTime && pickupLocation) {
+      // Send the order details to the server
+      fetch('{% url "place_order" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: order,
+          pickupTime,
+          pickupLocation,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(`Order confirmed! Your order number is: ${data.orderNumber}`);
+          order = [];
+          renderOrderSummary();
+        })
+        .catch((error) => {
+          console.error('Error placing order:', error);
+          alert('There was an error placing your order. Please try again later.');
+        });
+    } else {
+      alert('Please fill in all the required fields.');
+    }
+  });
+
+  renderMenuItems();
+});
+</script>
 </body>
 </html>

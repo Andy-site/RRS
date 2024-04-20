@@ -5,18 +5,12 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
     <title>One Bite Foods</title>
-    <!-- <link rel="stylesheet" href="index2.css" /> -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Great Vibes:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-    />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
  body {
+           font-family: Arial, sans-serif;
             margin: 0;
             line-height: normal;
             overflow: hidden;
@@ -72,7 +66,7 @@
         .wel{
             position:absolute;
            top: 50px;
-            left: 220px;
+            left: 320px;
             font-size: 60px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -167,6 +161,49 @@
 margin-left:300px;
 margin-top: 300px;
 }
+.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-top: 0;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .sidebar-menu {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 40px;
+      }
+
+      .sidebar-menu li {
+        margin-bottom: 20px;
+      }
+
+      .sidebar-menu li a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .sidebar-menu li a:hover {
+        background-color: #555;
+      }
+
+      .sidebar-menu li a i {
+        margin-right: 10px;
+      }
 
 
         {% block css %}
@@ -178,15 +215,17 @@ margin-top: 300px;
   <body>
 
 
-  <div class="all">
-        <button class="dashboard-button" onclick="window.location.href='{% url 'ad' %}'">Dashboard</button>
-      <button class="logout-button" onclick="window.location.href='{% url 'admin_menu' %}'"> Menu</button>
-    <button class="make-reservation-button" onclick="redirect()">Manage Table</button>
-   <button class="reviews-button" onclick="window.location.href='{% url 'admin_rev' %}'">Reviews</button>
-       <button class="reviews-button" onclick="window.location.href='{% url 'dine_in' %}'">Dine-In</button>
-       <button class="reviews-button" onclick="window.location.href='{% url 'display_orders' %}'">Reservation</button>
-      <button class="logout-button" onclick="openModal()">Logout</button>
-
+  <div class="sidebar">
+      <h2>One Bite Foods</h2>
+      <ul class="sidebar-menu">
+        <li><a href="{% url 'ad' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="{% url 'admin_menu' %}"><i class="fas fa-utensils"></i> Menu</a></li>
+        <li><a href="{% url 'manage_table' %}"><i class="fas fa-chair"></i> Manage Tables</a></li>
+        <li><a href="{% url 'admin_rev' %}"><i class="fas fa-star"></i> Reviews</a></li>
+        <li><a href="{% url 'dine_in' %}"><i class="fas fa-utensils"></i> Dine-In</a></li>
+        <li><a href="{% url 'display_orders' %}"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
+        <li><a href="#" onclick="openModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
   </div>
 
 

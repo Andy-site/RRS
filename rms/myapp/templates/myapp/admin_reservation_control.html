@@ -164,11 +164,18 @@ function saveOrder(orderId) {
                     'is_checked': isChecked,
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
-                success: function(data) {
-                    // Update the checkbox state based on the confirmed status returned from the server
-                    var confirmed = data.confirmed;
-                    $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
+            success: function(data) {
+                // Update the checkbox state based on the confirmed status returned from the server
+                var confirmed = data.confirmed;
+                $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
 
+                // Update the row's CSS class based on the confirmed status
+                var row = $('#confirm_checkbox_' + orderId).closest('tr');
+                if (confirmed) {
+                    row.removeClass('red-row').addClass('green-row');
+                } else {
+                    row.removeClass('green-row').addClass('red-row');
+                }
                     // Send an email to the customer
                     sendConfirmationEmail(orderId, data.username, data.email, data.date, data.time, data.number_of_people, data.message);
                 }
@@ -191,6 +198,14 @@ function saveOrder(orderId) {
                 // Update the checkbox state based on the confirmed status returned from the server
                 var confirmed = data.confirmed;
                 $('#confirm_checkbox_' + orderId).prop('checked', confirmed);
+
+                // Update the row's CSS class based on the confirmed status
+                var row = $('#confirm_checkbox_' + orderId).closest('tr');
+                if (confirmed) {
+                    row.removeClass('red-row').addClass('green-row');
+                } else {
+                    row.removeClass('green-row').addClass('red-row');
+                }
             }
         });
     }
@@ -252,19 +267,31 @@ function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeo
 }
 
 
-
-
-        function completeOrder(orderId) {
-            // Make AJAX request to complete_order view
-            $.ajax({
-                type: 'POST',
-                url: '{% url "complete_order" %}',
-                data: {'order_id': orderId, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                success: function(data) {
-                    // Find the row that contains the button and add the 'completed-row' class
-                    $('#complete_order_button_' + orderId).closest('tr').addClass('completed-row');
-                }
-            });
+function completeOrder(orderId) {
+    $.ajax({
+        type: 'POST',
+        url: '{% url "complete_order" %}',
+        data: {
+            'order_id': orderId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(data) {
+            if (data.status === 'success') {
+                alert('Order completed successfully.');
+                // Update the row's CSS class to "completed-row"
+                var row = $('#complete_order_button_' + orderId).closest('tr');
+                row.removeClass('green-row').removeClass('red-row').addClass('completed-row');
+                showDineInDetails(); // Refresh the dine-in details modal
+            } else {
+                alert('Error completing order: ' + data.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Error completing order: ' + error);
         }
+    });
+}
+
+
     </script>
 {% endblock %}
