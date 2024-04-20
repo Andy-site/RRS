@@ -117,17 +117,120 @@
 position: absolute;
 margin-left: 350px;}
 
+
+.dashboard-metrics {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.metric-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    margin: 130px 20px; /* T R B L */
+}
+
+.metric-card h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.metric-card p {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Admin Profile Icon */
+.admin-profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.admin-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.admin-profile-name {
+    font-weight: bold;
+}
+
+.admin-profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.admin-profile-dropdown.active {
+    display: block;
+}
+
+.admin-profile-dropdown a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+.admin-profile-dropdown a:hover {
+    background-color: #f5f5f5;
+}
 {% endblock %}
 {% block content %}
-<div class="wel">
-    {% if request.session.admin_username %}
-    Welcome, {{ request.session.admin_username }}!
-    {% endif %}
+<div class="admin-profile">
+    <div class="admin-profile-icon">{{ request.session.admin_username|slice:":1"|upper }}</div>
+    <span class="admin-profile-name">{{ request.session.admin_username }}</span>
+    <div class="admin-profile-dropdown">
+        <a href="#">Settings</a>
+        <a href="{% url 'lout1' %}">Logout</a>
+    </div>
 </div>
-<div class="au">Number of Active Reservation Orders: {{ completed_orders_count }}</div>
-<div class="active-dine-in">Number of Active Dine-In Orders: {{ completed_orders_count1 }}</div>
-<button class="add-table-btn">Add Table</button>
-<button class="dine-in-btn" onclick="showDineInDetails()">Dine-In Details</button>
+
+<div class="dashboard-metrics">
+    <div class="metric-card">
+        <h3>Active Reservations</h3>
+        <p>{{ completed_orders_count }}</p>
+    </div>
+    <div class="metric-card">
+        <h3>Active Dine-In Orders</h3>
+        <p>{{ completed_orders_count1 }}</p>
+    </div>
+</div>
+<div class="button-container">
+    <button class="add-table-btn">Add Table</button>
+    <button class="dine-in-btn" onclick="showDineInDetails()">Dine-In Details</button>
+</div>
 
 <!--DINE-IN DETAILS MODAL-->
 <div id="order-details-modal" class="modal1">
@@ -262,5 +365,19 @@ function cancelOrder(orderId) {
         }
     });
 }
+
+$(document).ready(function() {
+    $('.admin-profile').click(function() {
+        $('.admin-profile-dropdown').toggleClass('active');
+    });
+
+    // Close the dropdown when clicking outside
+    $(document).click(function(e) {
+        if (!$(e.target).closest('.admin-profile').length) {
+            $('.admin-profile-dropdown').removeClass('active');
+        }
+    });
+});
+
 </script>
 {% endblock %}

@@ -9,7 +9,7 @@ from datetime import date
 from django.core.mail import send_mail
 from psycopg2 import DatabaseError, IntegrityError
 
-from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem
+from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order11
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -19,6 +19,7 @@ from django.db.models import Count, Q
 from django.conf import settings
 from datetime import timedelta
 import calendar
+import uuid
 
 
 def get_tables(request):
@@ -352,7 +353,9 @@ def handle1(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True, 'message': "Your account has been successfully created!", 'stay_logged_in': True, 'username': user.username})
+            return JsonResponse(
+                {'success': True, 'message': "Your account has been successfully created!", 'stay_logged_in': True,
+                 'username': user.username})
         else:
             return JsonResponse({'success': False, 'error_message': "Unable to log in the user"})
     else:
@@ -517,3 +520,34 @@ def complete_orders(request):
             return JsonResponse({'status': 'error', 'message': 'Order not found'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+
+@csrf_exempt
+def place_order(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        items = data['items']
+        pickup_time = data['pickupTime']
+        pickup_location = data['pickupLocation']
+
+        # Generate a unique order number
+        order_number = generate_order_number()
+
+        # Create a new order and save it to the database
+        order = Order11.objects.create(
+            items=items,
+            pickup_time=pickup_time,
+            pickup_location=pickup_location,
+            order_number=order_number
+        )
+        order.save()
+
+        return JsonResponse({'orderNumber': order_number})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+def generate_order_number():
+    # Generate a unique order number using UUID
+    return 'ORDER-' + str(uuid.uuid4().hex.upper()[0:6])
+
