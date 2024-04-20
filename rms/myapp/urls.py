@@ -3,7 +3,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-
     path('', views.index, name='index'),
     path('ap/', views.ap, name='ap'),
     path('admin_page/', views.admin_page, name='admin_page'),
@@ -43,13 +42,7 @@ urlpatterns = [
     path('dine-in-details/', views.dine_in_details, name='dine_in_details'),
     path('complete_orders/', views.complete_orders, name='complete_orders'),
     path('cancel-order/', views.cancel_order, name='cancel_order'),
-
-
-
-
-
-
-
+    path('place_order/', views.place_order, name='place_order'),
 
 ]
 
