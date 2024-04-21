@@ -3,7 +3,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-
     path('', views.index, name='index'),
     path('ap/', views.ap, name='ap'),
     path('admin_page/', views.admin_page, name='admin_page'),
@@ -33,19 +32,17 @@ urlpatterns = [
     path('complete_order/', views.complete_order, name='complete_order'),
     path('ad/', views.ad, name='ad'),
     path('admin_rev/', views.display_reviews, name='admin_rev'),
-    path('add-tables/', views.add_tables_for_day, name='add_tables_for_day'),
+    path('add-tables/', views.add_tables_for_30_days, name='add_tables_for_30_days'),
     path('foods/', views.dine, name='dine'),
     path('admin_login/', views.admin_login, name='admin_login'),
     path('send_confirmation_email/', views.send_confirmation_email, name='send_confirmation_email'),
     path('send_sorry_email/', views.send_sorry_email, name='send_sorry_email'),
-
-
-
-
-
-
-
-
+    path('confirm-order/', views.confirm_order, name='confirm_order'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('dine-in-details/', views.dine_in_details, name='dine_in_details'),
+    path('complete_orders/', views.complete_orders, name='complete_orders'),
+    path('cancel-order/', views.cancel_order, name='cancel_order'),
+    path('place_order/', views.place_order, name='place_order'),
 
 ]
 
