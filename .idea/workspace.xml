@@ -4,22 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!">
-      <change afterPath="$PROJECT_DIR$/rms/myapp/migrations/0018_staff.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_cred.html" afterDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Major changes like complete wipe out of">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__1_50_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__1_52_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_10_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_10_PM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_11_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_11_PM__Changes_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__3_08_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__3_09_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__3_09_PM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_8_24__8_26_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_8_24__8_27_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_10_24__6_53_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_24__3_17_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_7_2024_7_52_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_7_24__7_08_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_8_24__7_11_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_cred.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_cred.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_dash.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/common.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/rms/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/rms/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +84,7 @@
     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;piyush__made__it__easy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
@@ -437,7 +449,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712924705960</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Major changes like complete wipe out of">
+      <option name="closed" value="true" />
+      <created>1713592555376</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1713592555376</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Major changes like complete wipe out of">
+      <option name="closed" value="true" />
+      <created>1713592565378</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1713592565378</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,7 +498,9 @@
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
     <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!" />
+    <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
+    <MESSAGE value="Major changes like complete wipe out of" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major changes like complete wipe out of" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
