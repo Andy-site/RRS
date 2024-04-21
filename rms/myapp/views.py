@@ -302,6 +302,10 @@ def admin_login(request):
     return render(request, "myapp/admin_cred.html", {})
 
 
+def take_away_admin(request):
+    return render(request, "myapp/ap_2.html", {})
+
+
 def admin_page(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -310,15 +314,18 @@ def admin_page(request):
         try:
             admin_user = Staff.objects.get(username=username)
             if admin_user.password == password:
-                # Perform login and store the admin username in the session
+                # Perform login and store the admin username and role in the session
                 request.session['admin_username'] = admin_user.username
-                return JsonResponse({'success': True, 'username': admin_user.username})
+                request.session['admin_role'] = admin_user.role
+                return JsonResponse({'success': True, 'username': admin_user.username, 'role': admin_user.role})
+
             else:
                 return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
         except Staff.DoesNotExist:
             return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
 
     return HttpResponse('admin_page')
+
 
 
 def handle1(request):

@@ -120,6 +120,7 @@ class Staff(models.Model):
     objects = StaffAdminManager()
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=100)
+    role = models.CharField(max_length=100, default='Admin')
 
     def __str__(self):
         return self.username

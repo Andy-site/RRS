@@ -212,7 +212,7 @@ margin-left: 350px;}
     <div class="admin-profile-icon">{{ request.session.admin_username|slice:":1"|upper }}</div>
     <span class="admin-profile-name">{{ request.session.admin_username }}</span>
     <div class="admin-profile-dropdown">
-        <a href="#">Settings</a>
+        <a href="#">{{ request.session.admin_role }}</a>
         <a href="{% url 'lout1' %}">Logout</a>
     </div>
 </div>
