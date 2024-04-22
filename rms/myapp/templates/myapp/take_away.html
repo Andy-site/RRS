@@ -2,57 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Takeaway</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
-        /* styles.css */
         .menu-item {
             display: flex;
             align-items: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             margin-bottom: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .menu-item img {
             width: 100px;
             height: 100px;
             margin-right: 1rem;
+            border-radius: 5px;
         }
 
         .order-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
             margin-bottom: 0.5rem;
         }
 
         .order-item button {
             margin-left: 1rem;
         }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #ff6347;
+            border-color: #ff6347;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff4d2e;
+            border-color: #ff4d2e;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Takeaway</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Takeaway</h1>
     <div class="row">
         <div class="col-md-8">
-            <h2>Menu</h2>
+            <h2 class="mb-3">Menu</h2>
             <div id="menu-items"></div>
         </div>
         <div class="col-md-4">
-            <h2>Your Order</h2>
-            <div id="order-summary"></div>
-            <div class="form-group">
-                <label for="pickup-time">Pickup Time:</label>
+            <h2 class="mb-3">Your Order</h2>
+            <div id="order-summary" class="mb-3"></div>
+            <div class="form-group mb-3">
+                <label for="pickup-time" class="form-label">Pickup Time:</label>
                 <input type="datetime-local" class="form-control" id="pickup-time" required>
             </div>
-            <div class="form-group">
-                <label for="pickup-location">Pickup Location:</label>
-                <input type="text" class="form-control" id="pickup-location" required>
+            <div class="form-group mb-3">
+                <label for="pickup-location" class="form-label">Pickup Location:</label>
+                <select class="form-control" id="pickup-location" required>
+                    <option value="Chabahil">Chabahil</option>
+                    <option value="Basundhara">Basundhara</option>
+                    <option value="Naxal">Naxal</option>
+                    <option value="New Road">New Road</option>
+                    <option value="Thamel">Thamel</option>
+                </select>
             </div>
-            <button class="btn btn-primary" id="place-order">Place Order</button>
+            <button class="btn btn-primary d-block mx-auto mb-3" id="place-order">
+                <i class="fas fa-shopping-cart me-2"></i> Place Order
+            </button>
+            <button class="btn btn-secondary d-block mx-auto" data-bs-toggle="modal" data-bs-target="#orderHistoryModal">
+                <i class="fas fa-history me-2"></i> Order History
+            </button>
         </div>
     </div>
 </div>
+
+<!-- Order History Modal -->
+<div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderHistoryModalLabel">Order History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="order-history"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
 <script>
     // takeaway.js
 document.addEventListener('DOMContentLoaded', () => {
@@ -95,74 +153,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function addToOrder(item) {
-    order.push(item);
-    renderOrderSummary();
-  }
+   function addToOrder(item) {
+        // Check if the item already exists in the order
+        const existingItem = order.find(orderItem => orderItem.id === item.id);
 
-  function removeFromOrder(index) {
-    order.splice(index, 1);
-    renderOrderSummary();
-  }
+        if (existingItem) {
+            // If item exists, increase its quantity
+            existingItem.quantity++;
+        } else {
+            // If item doesn't exist, add it to the order with quantity 1
+            item.quantity = 1;
+            order.push(item);
+        }
 
-  function renderOrderSummary() {
+        renderOrderSummary();
+    }
+
+function removeFromOrder(index) {
+    const item = order[index];
+    if (item.quantity > 1) {
+        // If the quantity is greater than 1, decrease the quantity
+        item.quantity--;
+    } else {
+        // If the quantity is 1, remove the item from the order
+        order.splice(index, 1);
+    }
+    renderOrderSummary();
+}
+
+
+function renderOrderSummary() {
     orderSummary.innerHTML = '';
 
     order.forEach((item, index) => {
-      const orderItem = document.createElement('div');
-      orderItem.classList.add('order-item');
+        const orderItem = document.createElement('div');
+        orderItem.classList.add('order-item');
 
-      const itemName = document.createElement('span');
-      itemName.textContent = item.name;
-      orderItem.appendChild(itemName);
+        const itemName = document.createElement('span');
+        itemName.textContent = `${item.name} x ${item.quantity}`; // Displaying item name and quantity
+        orderItem.appendChild(itemName);
 
-      const itemPrice = document.createElement('span');
-      itemPrice.textContent = `$${item.price.toFixed(2)}`;
-      orderItem.appendChild(itemPrice);
+        const itemPrice = document.createElement('span');
+        itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`; // Calculating total price for the item
+        orderItem.appendChild(itemPrice);
 
-      const removeButton = document.createElement('button');
-      removeButton.classList.add('btn', 'btn-danger');
-      removeButton.textContent = 'Remove';
-      removeButton.addEventListener('click', () => removeFromOrder(index));
-      orderItem.appendChild(removeButton);
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('btn', 'btn-danger');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => removeFromOrder(index));
+        orderItem.appendChild(removeButton);
 
-      orderSummary.appendChild(orderItem);
+        orderSummary.appendChild(orderItem);
     });
-  }
+}
+
 
   placeOrderButton.addEventListener('click', () => {
-    const pickupTime = document.getElementById('pickup-time').value;
-    const pickupLocation = document.getElementById('pickup-location').value;
+        const pickupTime = document.getElementById('pickup-time').value;
+        const pickupLocation = document.getElementById('pickup-location').value;
 
-    if (order.length > 0 && pickupTime && pickupLocation) {
-      // Send the order details to the server
-      fetch('{% url "place_order" %}', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          items: order,
-          pickupTime,
-          pickupLocation,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          alert(`Order confirmed! Your order number is: ${data.orderNumber}`);
-          order = [];
-          renderOrderSummary();
-        })
-        .catch((error) => {
-          console.error('Error placing order:', error);
-          alert('There was an error placing your order. Please try again later.');
-        });
-    } else {
-      alert('Please fill in all the required fields.');
-    }
-  });
+        if (order.length > 0 && pickupTime && pickupLocation) {
+            // Send the order details to the server
+            fetch('{% url "place_order" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    items: order,
+                    pickupTime,
+                    pickupLocation,
+                }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(`Order confirmed! Your order number is: ${data.orderNumber}`);
+                order = [];
+                renderOrderSummary();
+            })
+            .catch((error) => {
+                console.error('Error placing order:', error);
+                alert('There was an error placing your order. Please try again later.');
+            });
+        } else {
+            alert('Please fill in all the required fields.');
+        }
+    });
 
-  renderMenuItems();
+    renderMenuItems();
 });
 </script>
 </body>

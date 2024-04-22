@@ -39,7 +39,7 @@ admin.site.register(Food, FoodAdmin)
 
 
 class StaffAdmin(admin.ModelAdmin):
-    list_display = ('username', 'password')
+    list_display = ('username', 'password', 'role')
 
 
 admin.site.register(Staff, StaffAdmin)
