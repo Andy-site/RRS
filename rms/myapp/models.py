@@ -147,16 +147,16 @@ class DineInOrderItem(models.Model):
     objects = DineInOrderItemManager()
 
 
-class Order11Manager:
+class Order123Manager:
     pass
 
 
-class Order11(models.Model):
+class Order123(models.Model):
     items = models.JSONField()
     pickup_time = models.DateTimeField()
     pickup_location = models.CharField(max_length=255)
     order_number = models.CharField(max_length=50, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    objects = Order11Manager()
+    user_name = models.CharField(default='none')
+    objects = Order123Manager()

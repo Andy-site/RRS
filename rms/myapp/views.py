@@ -9,7 +9,7 @@ from datetime import date
 from django.core.mail import send_mail
 from psycopg2 import DatabaseError, IntegrityError
 
-from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order11
+from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -536,16 +536,18 @@ def place_order(request):
         items = data['items']
         pickup_time = data['pickupTime']
         pickup_location = data['pickupLocation']
+        username = data.get('username', None)  # Get the username from the request data
 
         # Generate a unique order number
         order_number = generate_order_number()
 
         # Create a new order and save it to the database
-        order = Order11.objects.create(
+        order = Order123.objects.create(
             items=items,
             pickup_time=pickup_time,
             pickup_location=pickup_location,
-            order_number=order_number
+            order_number=order_number,
+            user_name=username  # Set the user_name field with the received username
         )
         order.save()
 

@@ -209,36 +209,41 @@ function renderOrderSummary() {
 
 
   placeOrderButton.addEventListener('click', () => {
-        const pickupTime = document.getElementById('pickup-time').value;
-        const pickupLocation = document.getElementById('pickup-location').value;
+    const pickupTime = document.getElementById('pickup-time').value;
+    const pickupLocation = document.getElementById('pickup-location').value;
 
-        if (order.length > 0 && pickupTime && pickupLocation) {
-            // Send the order details to the server
-            fetch('{% url "place_order" %}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    items: order,
-                    pickupTime,
-                    pickupLocation,
-                }),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                alert(`Order confirmed! Your order number is: ${data.orderNumber}`);
-                order = [];
-                renderOrderSummary();
-            })
-            .catch((error) => {
-                console.error('Error placing order:', error);
-                alert('There was an error placing your order. Please try again later.');
-            });
-        } else {
-            alert('Please fill in all the required fields.');
-        }
-    });
+    if (order.length > 0 && pickupTime && pickupLocation) {
+        // Get the current user's username
+        const username = '{{ request.user.username }}';
+
+        // Send the order details to the server
+        fetch('{% url "place_order" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({
+                items: order,
+                pickupTime,
+                pickupLocation,
+                username,
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            alert(`Order confirmed! Your order number is: ${data.orderNumber}`);
+            order = [];
+            renderOrderSummary();
+        })
+        .catch((error) => {
+            console.error('Error placing order:', error);
+            alert('There was an error placing your order. Please try again later.');
+        });
+    } else {
+        alert('Please fill in all the required fields.');
+    }
+});
 
     renderMenuItems();
 });
