@@ -44,6 +44,7 @@ urlpatterns = [
     path('cancel-order/', views.cancel_order, name='cancel_order'),
     path('place_order/', views.place_order, name='place_order'),
     path('take_away_admin/', views.take_away_admin, name='take_away_admin'),
+    path('order_page_dynamic/', views.order_page_dynamic, name='order_page_dynamic'),
 
 ]
 

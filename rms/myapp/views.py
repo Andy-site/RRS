@@ -274,6 +274,10 @@ def ap(request):
     return render(request, "myapp/admin_page.html", {})
 
 
+def order_page_dynamic(request):
+    return render(request, "myapp/order_page.html", {})
+
+
 def common(request):
     return render(request, "myapp/common.html", {})
 
