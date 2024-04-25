@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Minor Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Minor Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +34,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;adampokharel&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/PIYUSHPHUYAL/RRS.git&quot;,
+    &quot;accountId&quot;: &quot;65d454b0-8eba-417a-b564-a2be9e9e0115&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
