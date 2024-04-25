@@ -81,6 +81,7 @@
         .back-btn:hover {
             background-color: #45a049;
         }
+
     </style>
 </head>
 <body>
@@ -95,9 +96,9 @@
 <div class="F1">
     <form id="reservation-form">
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date">
+        <input type="date" id="date" name="date" required>
         <label for="size">Table Size:</label>
-        <select name="size" id="size">
+        <select name="size" id="size" required>
             <option value="1">Table of 1</option>
             <option value="2">Table of 2</option>
             <option value="4">Table of 4</option>
@@ -115,11 +116,11 @@
 <form id="order-form" action="/book/" class="F2" method="post">
     {% csrf_token %}
     <label for="order-date">Date:</label>
-    <input type="date" id="order-date" name="order-date">
+    <input type="date" id="order-date" name="order-date" required>
     <label for="order-time">Time:</label>
-    <input type="time" id="order-time" name="order-time">
+    <input type="time" id="order-time" name="order-time" required>
     <label for="number-of-people">Number of People:</label>
-    <input type="number" id="number-of-people" name="number-of-people" min="1" max="8">
+    <input type="number" id="number-of-people" name="number-of-people" min="1" max="8" required>
     <label for="order-message">Message:</label>
     <textarea id="order-message" name="order-message" rows="4"></textarea>
     <button class="b2" type="submit">Confirm Order</button>
@@ -129,21 +130,15 @@
 
 <script>
     document.getElementById('show-tables').addEventListener('click', function() {
-        // Get the selected date and table size
         var date = document.getElementById('date').value;
         var size = parseInt(document.getElementById('size').value);
 
-        // Fetch table data from the server
         fetch(`/get-tables/?date=${date}&size=${size}`)
             .then(response => response.json())
             .then(data => {
-                // Get the table container element
                 var tableContainer = document.getElementById('table-container');
-
-                // Clear previous table elements
                 tableContainer.innerHTML = '';
 
-                // Create and append table elements based on server response
                 data.forEach(function(tableData) {
                     var tableElement = document.createElement('div');
                     tableElement.textContent = `Table no.${tableData.number}`;
@@ -157,11 +152,11 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
-                            if (confirm('Please Book the Table from Confirm your Order section!')) {
+                            if (confirm('Do you want to book this table?')) {
                                 document.getElementById('order-date').value = date;
-                                // You may want to set other values as well based on the selected table
+                                document.getElementById('order-time').value = ''; // Clear time
                                 document.getElementById('number-of-people').value = size;
-                                // Scroll to the order form
+                                document.getElementById('order-message').value = ''; // Clear message
                                 document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
                             }
                         });
@@ -169,7 +164,34 @@
 
                     tableContainer.appendChild(tableElement);
                 });
+            })
+            .catch(error => {
+                console.error('Error fetching table data:', error);
+                alert('Failed to fetch table data. Please try again later.');
             });
+    });
+
+    document.getElementById('order-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Reservation successful!');
+                // Additional actions after successful reservation, e.g., redirecting to a confirmation page
+            } else {
+                throw new Error('Reservation failed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error making reservation:', error);
+            alert('Failed to make reservation. Please try again.');
+        });
     });
 </script>
 </body>
