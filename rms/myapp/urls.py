@@ -44,6 +44,11 @@ urlpatterns = [
     path('cancel-order/', views.cancel_order, name='cancel_order'),
     path('place_order/', views.place_order, name='place_order'),
     path('take_away_admin/', views.take_away_admin, name='take_away_admin'),
+    path('get_order_history/', views.get_order_history, name='get_order_history'),
+    path('cancel-order/<str:order_number>/', views.cancel_order_takeaway, name='cancel_order_takeaway'),
+
+
+
 
 ]
 

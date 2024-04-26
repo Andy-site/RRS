@@ -247,6 +247,132 @@ function renderOrderSummary() {
 
     renderMenuItems();
 });
+
+
+ document.addEventListener('DOMContentLoaded', () => {
+    // ...
+
+    const orderHistoryButton = document.querySelector('[data-bs-target="#orderHistoryModal"]');
+    const orderHistoryModal = document.getElementById('orderHistoryModal');
+    const orderHistoryContainer = document.getElementById('order-history');
+
+    orderHistoryButton.addEventListener('click', () => {
+        fetch('{% url "get_order_history" %}', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            renderOrderHistory(data.order_history);
+        })
+        .catch((error) => {
+            console.error('Error fetching order history:', error);
+        });
+    });
+
+function renderOrderHistory(orderHistory) {
+    orderHistoryContainer.innerHTML = '';
+
+    if (orderHistory.length === 0) {
+        const noOrdersMessage = document.createElement('p');
+        noOrdersMessage.textContent = 'No orders for today.';
+        orderHistoryContainer.appendChild(noOrdersMessage);
+        return;
+    }
+
+    let currentOrderNumber = null;
+
+    orderHistory.forEach((order) => {
+        if (order.order_number !== currentOrderNumber) {
+            if (currentOrderNumber !== null) {
+                orderHistoryContainer.appendChild(document.createElement('hr'));
+            }
+
+            const heading = document.createElement('h3');
+            heading.textContent = `Order Number: ${order.order_number}`;
+            orderHistoryContainer.appendChild(heading);
+
+            currentOrderNumber = order.order_number;
+        }
+
+        const orderElement = document.createElement('div');
+        orderElement.classList.add('order-history-item');
+
+        const itemsList = document.createElement('ul');
+        order.items.forEach((item) => {
+            const itemElement = document.createElement('li');
+            itemElement.textContent = `${item.name} x ${item.quantity}`;
+            itemsList.appendChild(itemElement);
+        });
+        orderElement.appendChild(itemsList);
+
+        const pickupTime = document.createElement('p');
+        const pickupTimeDate = new Date(order.pickup_time);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        pickupTime.textContent = `Pickup Time: ${pickupTimeDate.toLocaleString(undefined, options)}`;
+        orderElement.appendChild(pickupTime);
+
+        const pickupLocation = document.createElement('p');
+        pickupLocation.textContent = `Pickup Location: ${order.pickup_location}`;
+        orderElement.appendChild(pickupLocation);
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel Order';
+        cancelButton.classList.add('btn', 'btn-danger');
+        cancelButton.addEventListener('click', () => cancelOrder(order.order_number));
+        orderElement.appendChild(cancelButton);
+
+        orderHistoryContainer.appendChild(orderElement);
+    });
+}
+
+function cancelOrder(orderNumber) {
+    fetch(`/cancel-order/${orderNumber}/`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+    })
+    .then((response) => {
+        if (response.ok) {
+            alert('Order canceled successfully!');
+            // Fetch the updated order history
+            fetch('{% url "get_order_history" %}', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                renderOrderHistory(data.order_history);
+            })
+            .catch((error) => {
+                console.error('Error fetching order history:', error);
+                alert('An error occurred while fetching the order history.');
+            });
+        } else {
+            return response.json().then((data) => {
+                alert(data.error);
+            });
+        }
+    })
+    .catch((error) => {
+        console.error('Error canceling order:', error);
+        alert('An error occurred while canceling the order.');
+    });
+}
+});
+
+
+
+
+
 </script>
 </body>
 </html>

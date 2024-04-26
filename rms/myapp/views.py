@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
 from datetime import date
@@ -327,7 +329,6 @@ def admin_page(request):
     return HttpResponse('admin_page')
 
 
-
 def handle1(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -374,13 +375,15 @@ def handle2(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_staff:
-                login(request, user)
-                return JsonResponse({'success': True, 'username': user.username})
-            else:
-                return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+        try:
+            user = MyUser123.objects.get(username=username)
+        except MyUser123.DoesNotExist:
+            return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+
+        if user.check_password(password):
+            login(request, user)
+            return JsonResponse({'success': True, 'username': user.username})
+
         else:
             return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
 
@@ -560,3 +563,43 @@ def generate_order_number():
     # Generate a unique order number using UUID
     return 'ORDER-' + str(uuid.uuid4().hex.upper()[0:6])
 
+
+@login_required
+def get_order_history(request):
+    if request.method == 'GET':
+        today = date.today()
+        orders = Order123.objects.filter(
+            user_name=request.user.username,
+            created_at__date=today
+        ).order_by('-created_at').values(
+            'order_number', 'items', 'pickup_location', 'pickup_time'
+        )
+        order_history = []
+        for order in orders:
+            pickup_time = int(order['pickup_time'].timestamp() * 1000)  # Convert to Unix timestamp in milliseconds
+            order_data = {
+                'order_number': order['order_number'],
+                'items': order['items'],
+                'pickup_location': order['pickup_location'],
+                'pickup_time': pickup_time,
+            }
+            order_history.append(order_data)
+        return JsonResponse({'order_history': order_history})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+def cancel_order_takeaway(request, order_number):
+    if request.method == 'DELETE':
+        try:
+            order = Order123.objects.get(order_number=order_number)
+            now = timezone.now()
+            time_diff = now - order.created_at
+            if time_diff.total_seconds() <= 1800:  # 30 minutes in seconds
+                order.delete()
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'error': 'You can only cancel an order within 30 minutes of placing it.'}, status=400)
+        except Order123.DoesNotExist:
+            return JsonResponse({'error': 'Order not found.'}, status=404)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
