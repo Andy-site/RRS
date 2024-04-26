@@ -11,9 +11,7 @@
             padding: 0;
         }
         form {
-        margin-left:-300px;
             width: 300px;
-            height: 300px;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -24,7 +22,9 @@
             margin-bottom: 13px;
         }
         input[type="date"],
-        select {
+        input[type="time"],
+        select,
+        textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 16px;
@@ -32,18 +32,7 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
-        .b1 {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 90px;
-            margin-top: 50px;
-        }
-
-                .b2 {
+        .b1, .b2 {
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
@@ -51,18 +40,14 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
-
-
-        .b1:hover,.b2:hover {
+        .b1:hover, .b2:hover {
             background-color: #45a049;
         }
         #table-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 550px;
-            margin-left: -650px;
+            margin-top: 20px;
         }
         .table {
             margin: 10px;
@@ -73,6 +58,7 @@
             text-align: center;
             font-weight: bold;
             color: white;
+            cursor: pointer;
         }
         .reserved {
             background-color: #FF6347; /* Tomato */
@@ -80,65 +66,21 @@
         .unreserved {
             background-color: #32CD32; /* LimeGreen */
         }
-        .d2{
-        position: absolute;
-        font-size: 30px;
-        left: 300px;
-        top: 130px;
-
+        .back-btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
-                .d1{
-        position: absolute;
-        font-size: 30px;
-        left: 1000px;
-        top: 130px;
-
+        .back-btn:hover {
+            background-color: #45a049;
         }
-
-
-
-        .F1{
-        position: absolute;
-        left: 550px;
-        top: 200px;
-        }
-
-
-               .F2{
-        position: absolute;
-        left: 1260px;
-        top: 200px;
-        }
-
-        #l1{
-        position: absolute;
-        margin-left: 150px;
-        margin-top:-54px;
-        }
-
-             .l2{
-        position: absolute;
-        margin-left: 90px;
-
-        }
-.back-btn {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.back-btn:hover {
-    background-color: #45a049;
-}
-
 
     </style>
 </head>
@@ -147,75 +89,56 @@
     Confirm Your Order
 </div>
 
-
 <div class="d2">
     Table Availability
 </div>
 
 <div class="F1">
-       <form id="table-form">
+    <form id="reservation-form">
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date">
+        <input type="date" id="date" name="date" required>
         <label for="size">Table Size:</label>
-        <select name="size" id="size">
+        <select name="size" id="size" required>
             <option value="1">Table of 1</option>
             <option value="2">Table of 2</option>
             <option value="4">Table of 4</option>
             <option value="6">Table of 6</option>
             <option value="8">Table of 8</option>
         </select>
-        <button class = "b1" type="submit">Show Tables</button>
+        <button class="b1" type="button" id="show-tables">Show Tables</button>
     </form>
-
 </div>
 
-
-    <div id="table-container">
-        <!-- Table data will be inserted here -->
-    </div>
-
-
-
-<!--for confirming to book a table providing all details-->
-<div class="F2">
-    <form id="order-form"  action="/book/"  class="form" method='post'>
-            {% csrf_token %}
-        <label for="order-date">Date:</label>
-        <input type="date" id="order-date" name="order-date">
-        <label for="order-time">Time:</label>
-        <input type="time" id="order-time" name="order-time">
-        <label id = 'l1' for="number-of-people">Number of People:</label>
-        <input class= 'l2' type="number" id="number-of-people" name="number-of-people" min="1" max="8">
-        <label for="order-message">Message:</label>
-        <textarea id="order-message" name="order-message" rows="4"></textarea>
-        <button class = "b2" type="submit">Confirm Order</button>
-    </form>
-
+<div id="table-container">
+    <!-- Table data will be inserted here -->
 </div>
 
+<form id="order-form" action="/book/" class="F2" method="post">
+    {% csrf_token %}
+    <label for="order-date">Date:</label>
+    <input type="date" id="order-date" name="order-date" required>
+    <label for="order-time">Time:</label>
+    <input type="time" id="order-time" name="order-time" required>
+    <label for="number-of-people">Number of People:</label>
+    <input type="number" id="number-of-people" name="number-of-people" min="1" max="8" required>
+    <label for="order-message">Message:</label>
+    <textarea id="order-message" name="order-message" rows="4"></textarea>
+    <button class="b2" type="submit">Confirm Order</button>
+</form>
 
 <a href="/" class="back-btn">Back to Home</a>
 
-
 <script>
-    document.getElementById('table-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Get the selected date and table size
+    document.getElementById('show-tables').addEventListener('click', function() {
         var date = document.getElementById('date').value;
         var size = parseInt(document.getElementById('size').value);
 
-        // Fetch table data from the server
         fetch(`/get-tables/?date=${date}&size=${size}`)
             .then(response => response.json())
             .then(data => {
-                // Get the table container element
                 var tableContainer = document.getElementById('table-container');
-
-                // Clear previous table elements
                 tableContainer.innerHTML = '';
 
-                // Create and append table elements based on server response
                 data.forEach(function(tableData) {
                     var tableElement = document.createElement('div');
                     tableElement.textContent = `Table no.${tableData.number}`;
@@ -229,17 +152,47 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
-                            if (confirm('Please Book the Table from Confirm your Order section!')) {
-
+                            if (confirm('Do you want to book this table?')) {
+                                document.getElementById('order-date').value = date;
+                                document.getElementById('order-time').value = ''; // Clear time
+                                document.getElementById('number-of-people').value = size;
+                                document.getElementById('order-message').value = ''; // Clear message
+                                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
                             }
                         });
                     }
 
                     tableContainer.appendChild(tableElement);
                 });
+            })
+            .catch(error => {
+                console.error('Error fetching table data:', error);
+                alert('Failed to fetch table data. Please try again later.');
             });
     });
-</script>
 
+    document.getElementById('order-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Reservation successful!');
+                // Additional actions after successful reservation, e.g., redirecting to a confirmation page
+            } else {
+                throw new Error('Reservation failed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error making reservation:', error);
+            alert('Failed to make reservation. Please try again.');
+        });
+    });
+</script>
 </body>
 </html>
