@@ -160,4 +160,5 @@ class Order123(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_name = models.CharField(default='none')
+    status = models.CharField(default='none')
     objects = Order123Manager()

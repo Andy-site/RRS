@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -304,10 +304,6 @@ def admin_login(request):
     return render(request, "myapp/admin_cred.html", {})
 
 
-def take_away_admin(request):
-    return render(request, "myapp/ap_2.html", {})
-
-
 def admin_page(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -603,3 +599,37 @@ def cancel_order_takeaway(request, order_number):
         except Order123.DoesNotExist:
             return JsonResponse({'error': 'Order not found.'}, status=404)
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+def admin_orders(request):
+    # Fetch orders from the database
+    orders = Order123.objects.all()
+    return render(request, 'myapp/ap_2.html', {'orders': orders})
+
+
+def cancel_order_ta(request):
+    if request.method == 'POST':
+        order_number = request.POST.get('order_number')
+        order = get_object_or_404(Order123, order_number=order_number)
+        order.delete()
+        return JsonResponse({'message': 'Order canceled successfully'})
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+@csrf_exempt
+@require_POST
+def complete_order_ta(request):
+        order_number = request.POST.get('order_number')
+        try:
+            order = Order123.objects.get(order_number=order_number)
+            order.status = 'Completed'
+            order.save()
+            return JsonResponse({'success': True, 'message': 'Order marked as completed.'})
+        except Order123.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)}, status=500)
+
+
+
