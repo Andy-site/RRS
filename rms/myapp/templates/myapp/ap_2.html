@@ -50,6 +50,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Customer Name</th>
                     <th>Order Number</th>
                     <th>Items</th>
                     <th>Pickup Time</th>
@@ -60,6 +61,7 @@
             <tbody>
 {% for order in orders %}
 <tr{% if order.status == 'Completed' %} class="completed-row"{% endif %}>
+    <td>{{ order.user_name }}</td>
     <td>{{ order.order_number }}</td>
     <td>
         <ul>
