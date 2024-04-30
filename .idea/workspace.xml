@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added a new column on the admin side to display username of take-away" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Now User can easity look for their oder and cancel it with in 30 minutes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/take_away_for_admin" />
+    <option name="BRANCH" value="origin/dashboard_details_Django_Backend" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -56,7 +59,7 @@
     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;take__away__for__admin&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }

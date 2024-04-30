@@ -1,3 +1,4 @@
+import stripe
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -535,6 +536,7 @@ def place_order(request):
         items = data['items']
         pickup_time = data['pickupTime']
         pickup_location = data['pickupLocation']
+        total = data['total']
         username = data.get('username', None)  # Get the username from the request data
 
         # Generate a unique order number
@@ -546,6 +548,7 @@ def place_order(request):
             pickup_time=pickup_time,
             pickup_location=pickup_location,
             order_number=order_number,
+            total=total,
             user_name=username  # Set the user_name field with the received username
         )
         order.save()
@@ -595,7 +598,8 @@ def cancel_order_takeaway(request, order_number):
                 order.delete()
                 return JsonResponse({'success': True})
             else:
-                return JsonResponse({'error': 'You can only cancel an order within 30 minutes of placing it.'}, status=400)
+                return JsonResponse({'error': 'You can only cancel an order within 30 minutes of placing it.'},
+                                    status=400)
         except Order123.DoesNotExist:
             return JsonResponse({'error': 'Order not found.'}, status=404)
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
@@ -620,16 +624,13 @@ def cancel_order_ta(request):
 @csrf_exempt
 @require_POST
 def complete_order_ta(request):
-        order_number = request.POST.get('order_number')
-        try:
-            order = Order123.objects.get(order_number=order_number)
-            order.status = 'Completed'
-            order.save()
-            return JsonResponse({'success': True, 'message': 'Order marked as completed.'})
-        except Order123.DoesNotExist:
-            return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
-        except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)}, status=500)
-
-
-
+    order_number = request.POST.get('order_number')
+    try:
+        order = Order123.objects.get(order_number=order_number)
+        order.status = 'Completed'
+        order.save()
+        return JsonResponse({'success': True, 'message': 'Order marked as completed.'})
+    except Order123.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)

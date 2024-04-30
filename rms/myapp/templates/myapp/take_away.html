@@ -181,6 +181,9 @@ function removeFromOrder(index) {
     renderOrderSummary();
 }
 
+function calculateTotalPrice() {
+    return order.reduce((total, item) => total + item.price * item.quantity, 0);
+}
 
 function renderOrderSummary() {
     orderSummary.innerHTML = '';
@@ -205,12 +208,16 @@ function renderOrderSummary() {
 
         orderSummary.appendChild(orderItem);
     });
+     const totalPriceContainer = document.createElement('div');
+    totalPriceContainer.textContent = `Total: $${calculateTotalPrice().toFixed(2)}`;
+    orderSummary.appendChild(totalPriceContainer);
 }
 
 
   placeOrderButton.addEventListener('click', () => {
     const pickupTime = document.getElementById('pickup-time').value;
     const pickupLocation = document.getElementById('pickup-location').value;
+    const total = calculateTotalPrice();
 
     if (order.length > 0 && pickupTime && pickupLocation) {
         // Get the current user's username
@@ -227,6 +234,7 @@ function renderOrderSummary() {
                 items: order,
                 pickupTime,
                 pickupLocation,
+                total,
                 username,
             }),
         })
@@ -318,6 +326,7 @@ function renderOrderHistory(orderHistory) {
         const pickupLocation = document.createElement('p');
         pickupLocation.textContent = `Pickup Location: ${order.pickup_location}`;
         orderElement.appendChild(pickupLocation);
+
 
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancel Order';

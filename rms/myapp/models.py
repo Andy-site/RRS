@@ -161,4 +161,5 @@ class Order123(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user_name = models.CharField(default='none')
     status = models.CharField(default='none')
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     objects = Order123Manager()
