@@ -61,7 +61,7 @@ admin.site.register(DineInOrder, DineInOrderAdmin)
 
 class Order123Admin(admin.ModelAdmin):
     list_display = ('items', 'pickup_time', 'pickup_location', 'order_number', 'created_at', 'updated_at',
-                    'user_name', 'status')
+                    'user_name', 'status', 'total')
 
 
 admin.site.register(Order123, Order123Admin)
