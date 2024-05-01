@@ -2,10 +2,12 @@ import stripe
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites import requests
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils.http import urlencode
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
 from datetime import date
@@ -22,7 +24,11 @@ from django.db.models import Count, Q
 from django.conf import settings
 from datetime import timedelta
 import calendar
+import hashlib
+import hmac
+import base64
 import uuid
+from django.urls import reverse
 
 
 def get_tables(request):
@@ -634,3 +640,8 @@ def complete_order_ta(request):
         return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
     except Exception as e:
         return JsonResponse({'success': False, 'message': str(e)}, status=500)
+
+
+
+
+
