@@ -255,7 +255,9 @@
                 height: 498px;
                 font-size: 24px;
                 color: #12464d;
+
               "
+
             >
               <div
                 style="
@@ -3381,6 +3383,59 @@
         src="/static/images/group-1.svg"
       />
     </div>
+<style>
+    .quantity {
+      display: flex;
+      top:200px;
+    }
+
+    .order-input {
+      width: 50px;
+      text-align: center;
+    }
+
+    .minus-btn, .plus-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .minus-btn:hover, .plus-btn:hover {
+      background-color: #e9ecef;
+    }
+
+    .minus-btn {
+      border-radius: 5px 0 0 5px;
+    }
+
+    .plus-btn {
+      border-radius: 0 5px 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="quantity">
+    <button class="minus-btn" type="button" onclick="decrement()">-</button>
+    <input id="order-input" type="text" class="order-input" value="1">
+    <button class="plus-btn" type="button" onclick="increment()">+</button>
+  </div>
+
+  <script>
+    function increment() {
+      var input = document.getElementById('order-input');
+      var currentValue = parseInt(input.value);
+      input.value = currentValue + 1;
+    }
+
+    function decrement() {
+      var input = document.getElementById('order-input');
+      var currentValue = parseInt(input.value);
+      if (currentValue > 1) {
+        input.value = currentValue - 1;
+      }
+    }
 
     <script>
       var groupContainer = document.getElementById("groupContainer");
