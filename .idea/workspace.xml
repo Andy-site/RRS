@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added modal on Confirmation to E-SEWA Payment Gateway on Customer page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/ap_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Used E-Sewa API for seamless transaction in take-away section" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -454,7 +445,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713673757715</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Used E-Sewa API for seamless transaction in take-away section">
+      <option name="closed" value="true" />
+      <created>1714656065568</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1714656065568</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +489,8 @@
     <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
     <MESSAGE value="Major changes like complete wipe out of" />
     <MESSAGE value="Minor Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes" />
+    <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
+    <option name="LAST_COMMIT_MESSAGE" value="Used E-Sewa API for seamless transaction in take-away section" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
