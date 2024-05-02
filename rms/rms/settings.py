@@ -109,7 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
+
 
 USE_I18N = True
 
@@ -149,3 +150,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'piyushphuyal77@gmail.com'
 EMAIL_HOST_PASSWORD = 'kwav hfpt ugzl jjab'
+
