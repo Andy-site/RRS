@@ -152,6 +152,10 @@ class Order123Manager:
     pass
 
 
+class Order69Manager:
+    pass
+
+
 class Order123(models.Model):
     items = models.JSONField()
     pickup_time = models.DateTimeField()
@@ -162,4 +166,9 @@ class Order123(models.Model):
     user_name = models.CharField(default='none')
     status = models.CharField(default='none')
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    is_paid = models.BooleanField(default=False)
+    paid_amount = models.IntegerField(null=True, blank=True)
     objects = Order123Manager()
+
+
+

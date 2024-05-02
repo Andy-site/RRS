@@ -1,19 +1,15 @@
-import stripe
+import xmltodict
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
-from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.template.loader import render_to_string
 from django.utils import timezone
-from django.utils.http import urlencode
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from datetime import date
 from django.core.mail import send_mail
-from psycopg2 import DatabaseError, IntegrityError
-
 from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
 import re
 from .models import Table
@@ -642,6 +638,52 @@ def complete_order_ta(request):
         return JsonResponse({'success': False, 'message': str(e)}, status=500)
 
 
+def esewa(request):
+    return render(request, "myapp/esewa.html", {})
 
 
+def orders69(request):
+    orders = Order123.objects.all()  # Assuming Order is the model containing order data
+    return render(request, "myapp/Orders.html", {'orders': orders})
 
+
+def co(request):
+    return render(request, "myapp/order_checkout.html", {})
+
+
+def order_checkout(request, id):
+    order = Order123.objects.get(id=id)
+    context = {"order": order}
+    return render(request, 'myapp/order_checkout.html', context)
+
+
+def esewa_callback_view(request):
+    oid = request.GET.get("oid")
+    amt = request.GET.get("amt")
+    refId = request.GET.get("refId")
+    url = "https://uat.esewa.com.np/epay/transrec"
+    data = {
+        'amt': amt,
+        'scd': 'EPAYTEST',
+        'rid': refId,
+        'pid': oid,
+    }
+    response = requests.post(url, data=data)
+    json_response = xmltodict.parse(response.content)
+    status = json_response["response"]["response_code"]
+
+    if status == "Success":
+        return redirect("payment_failed")
+    else:
+        order = get_object_or_404(Order123, order_id=oid)
+        order.is_paid = True
+        order.paid_amount = int(float(amt))
+        order.save()
+
+
+def payment_failed(request):
+    return render(request, 'myapp/payment_failed.html')
+
+
+def esewa_callback(request):
+    return render(request, 'myapp/esewa_callback.html')
