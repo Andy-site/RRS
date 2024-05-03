@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.utils import timezone
 
 
 class TableManager(models.Manager):
@@ -148,18 +147,16 @@ class DineInOrderItem(models.Model):
     objects = DineInOrderItemManager()
 
 
-class Order123Manager:
+class Order11Manager:
     pass
 
 
-class Order123(models.Model):
+class Order11(models.Model):
     items = models.JSONField()
     pickup_time = models.DateTimeField()
     pickup_location = models.CharField(max_length=255)
     order_number = models.CharField(max_length=50, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user_name = models.CharField(default='none')
-    status = models.CharField(default='none')
-    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    objects = Order123Manager()
+
+    objects = Order11Manager()
