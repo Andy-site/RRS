@@ -1,15 +1,16 @@
+import xmltodict
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
-from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.contrib.auth.decorators import login_required
+from django.contrib.sites import requests
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from datetime import date
 from django.core.mail import send_mail
-from psycopg2 import DatabaseError, IntegrityError
-
-from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order11
+from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
 import re
 from .models import Table
 from django.core.exceptions import ValidationError
@@ -19,7 +20,11 @@ from django.db.models import Count, Q
 from django.conf import settings
 from datetime import timedelta
 import calendar
+import hashlib
+import hmac
+import base64
 import uuid
+from django.urls import reverse
 
 
 def get_tables(request):
@@ -302,10 +307,6 @@ def admin_login(request):
     return render(request, "myapp/admin_cred.html", {})
 
 
-def take_away_admin(request):
-    return render(request, "myapp/ap_2.html", {})
-
-
 def admin_page(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -325,7 +326,6 @@ def admin_page(request):
             return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
 
     return HttpResponse('admin_page')
-
 
 
 def handle1(request):
@@ -374,13 +374,15 @@ def handle2(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_staff:
-                login(request, user)
-                return JsonResponse({'success': True, 'username': user.username})
-            else:
-                return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+        try:
+            user = MyUser123.objects.get(username=username)
+        except MyUser123.DoesNotExist:
+            return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
+
+        if user.check_password(password):
+            login(request, user)
+            return JsonResponse({'success': True, 'username': user.username})
+
         else:
             return JsonResponse({'success': False, 'error_message': 'Invalid Credentials, Please Try Again!!'})
 
@@ -536,16 +538,20 @@ def place_order(request):
         items = data['items']
         pickup_time = data['pickupTime']
         pickup_location = data['pickupLocation']
+        total = data['total']
+        username = data.get('username', None)  # Get the username from the request data
 
         # Generate a unique order number
         order_number = generate_order_number()
 
         # Create a new order and save it to the database
-        order = Order11.objects.create(
+        order = Order123.objects.create(
             items=items,
             pickup_time=pickup_time,
             pickup_location=pickup_location,
-            order_number=order_number
+            order_number=order_number,
+            total=total,
+            user_name=username  # Set the user_name field with the received username
         )
         order.save()
 
@@ -558,3 +564,126 @@ def generate_order_number():
     # Generate a unique order number using UUID
     return 'ORDER-' + str(uuid.uuid4().hex.upper()[0:6])
 
+
+@login_required
+def get_order_history(request):
+    if request.method == 'GET':
+        today = date.today()
+        orders = Order123.objects.filter(
+            user_name=request.user.username,
+            created_at__date=today
+        ).order_by('-created_at').values(
+            'order_number', 'items', 'pickup_location', 'pickup_time'
+        )
+        order_history = []
+        for order in orders:
+            pickup_time = int(order['pickup_time'].timestamp() * 1000)  # Convert to Unix timestamp in milliseconds
+            order_data = {
+                'order_number': order['order_number'],
+                'items': order['items'],
+                'pickup_location': order['pickup_location'],
+                'pickup_time': pickup_time,
+            }
+            order_history.append(order_data)
+        return JsonResponse({'order_history': order_history})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+def cancel_order_takeaway(request, order_number):
+    if request.method == 'DELETE':
+        try:
+            order = Order123.objects.get(order_number=order_number)
+            now = timezone.now()
+            time_diff = now - order.created_at
+            if time_diff.total_seconds() <= 1800:  # 30 minutes in seconds
+                order.delete()
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'error': 'You can only cancel an order within 30 minutes of placing it.'},
+                                    status=400)
+        except Order123.DoesNotExist:
+            return JsonResponse({'error': 'Order not found.'}, status=404)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+def admin_orders(request):
+    # Fetch orders from the database
+    orders = Order123.objects.all()
+    return render(request, 'myapp/ap_2.html', {'orders': orders})
+
+
+def cancel_order_ta(request):
+    if request.method == 'POST':
+        order_number = request.POST.get('order_number')
+        order = get_object_or_404(Order123, order_number=order_number)
+        order.delete()
+        return JsonResponse({'message': 'Order canceled successfully'})
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+@csrf_exempt
+@require_POST
+def complete_order_ta(request):
+    order_number = request.POST.get('order_number')
+    try:
+        order = Order123.objects.get(order_number=order_number)
+        order.status = 'Completed'
+        order.save()
+        return JsonResponse({'success': True, 'message': 'Order marked as completed.'})
+    except Order123.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)
+
+
+def esewa(request):
+    return render(request, "myapp/esewa.html", {})
+
+
+def orders69(request):
+    orders = Order123.objects.all()  # Assuming Order is the model containing order data
+    return render(request, "myapp/Orders.html", {'orders': orders})
+
+
+def co(request):
+    return render(request, "myapp/order_checkout.html", {})
+
+
+def order_checkout(request, id):
+    order = Order123.objects.get(id=id)
+    context = {"order": order}
+    return render(request, 'myapp/order_checkout.html', context)
+
+
+def esewa_callback_view(request):
+    oid = request.GET.get("oid")
+    amt = request.GET.get("amt")
+    refId = request.GET.get("refId")
+    url = "https://uat.esewa.com.np/epay/transrec"
+    data = {
+        'amt': amt,
+        'scd': 'EPAYTEST',
+        'rid': refId,
+        'pid': oid,
+    }
+    response = requests.post(url, data=data)
+    json_response = xmltodict.parse(response.content)
+    status = json_response["response"]["response_code"]
+
+    if status == "Success":
+        return redirect("payment_failed")
+    else:
+        order = get_object_or_404(Order123, order_id=oid)
+        order.is_paid = True
+        order.paid_amount = int(float(amt))
+        order.save()
+
+
+def payment_failed(request):
+    return render(request, 'myapp/payment_failed.html')
+
+
+def esewa_callback(request):
+    return render(request, 'myapp/esewa_callback.html')

@@ -1,0 +1,27 @@
+{% extends 'myapp/esewa.html' %}
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f8f8f8; padding: 20px;">
+    <div style="max-width: 600px; width: 100%; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; color: #008000; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Order Checkout</h2>
+        <div class="card">
+            <div class="card-body">
+                <p style="font-size: 18px; color: #333; margin-bottom: 15px;"><strong>Name:</strong> {{order.user_name}}</p>
+                <p style="font-size: 18px; color: #333; margin-bottom: 15px;"><strong>Price:</strong> {{order.total}}</p>
+                <p style="font-size: 18px; color: #333; margin-bottom: 30px;"><strong>Paid:</strong> {{order.is_paid}}</p>
+                <form action="https://uat.esewa.com.np/epay/main" method="POST" style="text-align: center;">
+                    <input value="{{order.total}}" name="tAmt" type="hidden">
+                    <input value="{{order.total}}" name="amt" type="hidden">
+                    <input value="0" name="txAmt" type="hidden">
+                    <input value="0" name="psc" type="hidden">
+                    <input value="0" name="pdc" type="hidden">
+                    <input value="EPAYTEST" name="scd" type="hidden">
+                    <input value="{{order.order_number}}" name="pid" type="hidden">
+                    <input value="http://127.0.0.1:8000/esewa-callback/" type="hidden" name="su">
+                    <input value="http://127.0.0.1:8000/payment-failed/" type="hidden" name="fu">
+                    <input value="Pay With Esewa" type="submit" class="btn btn-success" style="background-color: #008000; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; color: #fff; font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
