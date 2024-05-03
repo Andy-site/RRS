@@ -283,8 +283,6 @@ confirmPaymentButton.addEventListener('click', () => {
         // Redirect to the payment.html page
          window.location.href="{% url 'orders69' %}";
 
-        // You can optionally pass the orderNumber as a query parameter
-        // window.location.href = `/payment.html?orderNumber=${data.orderNumber}`;
 
         order = [];
         renderOrderSummary();
