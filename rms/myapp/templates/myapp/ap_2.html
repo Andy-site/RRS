@@ -56,6 +56,7 @@
                     <th>Pickup Time</th>
                     <th>Pickup Location</th>
                     <th>Payment</th>
+                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -84,6 +85,7 @@
         </span>
     {% endif %}
 </td>
+<td>{{ "Rs" }} {{ order.paid_amount }}</td>
 
     <td class="action-buttons">
         <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
