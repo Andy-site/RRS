@@ -1,30 +1,30 @@
+import random
+import urllib
+import urllib.parse
+import urllib.request
 import xmltodict
+import calendar
+import json
+import re
+import uuid
+from datetime import date
+from datetime import timedelta
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites import requests
+from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.utils.dateparse import parse_date
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from datetime import date
-from django.core.mail import send_mail
+
 from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
-import re
 from .models import Table
-from django.core.exceptions import ValidationError
-from django.utils.dateparse import parse_date
-import json
-from django.db.models import Count, Q
-from django.conf import settings
-from datetime import timedelta
-import calendar
-import hashlib
-import hmac
-import base64
-import uuid
-from django.urls import reverse
 
 
 def get_tables(request):
@@ -561,8 +561,8 @@ def place_order(request):
 
 
 def generate_order_number():
-    # Generate a unique order number using UUID
-    return 'ORDER-' + str(uuid.uuid4().hex.upper()[0:6])
+    # Generate a random 4-digit order number
+    return str(random.randint(1000, 9999))
 
 
 @login_required
@@ -662,23 +662,25 @@ def esewa_callback_view(request):
     amt = request.GET.get("amt")
     refId = request.GET.get("refId")
     url = "https://uat.esewa.com.np/epay/transrec"
-    data = {
+    data = urllib.parse.urlencode({
         'amt': amt,
         'scd': 'EPAYTEST',
         'rid': refId,
         'pid': oid,
-    }
-    response = requests.post(url, data=data)
-    json_response = xmltodict.parse(response.content)
+    }).encode()
+
+    response = urllib.request.urlopen(url, data=data).read()
+    json_response = xmltodict.parse(response)
     status = json_response["response"]["response_code"]
 
     if status == "Success":
-        return redirect("payment_failed")
-    else:
-        order = get_object_or_404(Order123, order_id=oid)
+        order = get_object_or_404(Order123, order_number=oid)
         order.is_paid = True
         order.paid_amount = int(float(amt))
         order.save()
+        return render(request, 'myapp/esewa_callback.html')
+    else:
+        return redirect("payment_failed")
 
 
 def payment_failed(request):
