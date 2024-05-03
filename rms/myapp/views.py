@@ -671,7 +671,6 @@ def esewa_callback_view(request):
     response = requests.post(url, data=data)
     json_response = xmltodict.parse(response.content)
     status = json_response["response"]["response_code"]
-
     if status == "Success":
         return redirect("payment_failed")
     else:
