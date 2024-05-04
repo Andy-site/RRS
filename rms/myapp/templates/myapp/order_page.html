@@ -1,10 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Order Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa; /* Light gray background */
+    }
+    header {
+        background-color: #343a40; /* Dark gray header */
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    .navbar {
+        background-color: #343a40; /* Dark gray navbar */
+        overflow: hidden;
+    }
+    .navbar a {
+        float: right;
+        display: block;
+        color: #fff;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    .navbar a:hover {
+        background-color: #555; /* Darker gray on hover */
+        color: white;
+    }
+    .order-now-btn {
+        background-color: #007bff; /* Blue color for the button */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .order-now-btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    .container {
+        width: 100%;
+        margin: 20px auto;
+        padding: 5px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+    }
+    .menu-item {
+        padding: 60px;
+        background-color: #f8f9fa; /* Light gray menu item */
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .menu-item h2 {
+        margin-top: 0;
+    }
+    .menu-item img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .quantity-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .quantity-bar input {
+        width: 50px;
+        text-align: center;
+        margin: 0 10px;
+    }
+    .quantity-bar button {
+        padding: 5px 10px;
+        background-color: #343a40; /* Dark gray buttons */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
+
+<header>
+    <h1>Restaurant Menu</h1>
+</header>
+
+<div class="navbar">
+    <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
+</div>
+
+<div class="container" id="menuContainer">
+    <div class="menu-item" id="item1">
+        <h2>Item 1</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 1 Image">
+        <p>Description of Item 1.</p>
+        <p>Price: $10</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item1')">-</button>
+            <input type="text" id="quantity-item1" value="0" readonly>
+            <button onclick="increaseQuantity('item1')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item2">
+        <h2>Item 2</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 2 Image">
+        <p>Description of Item 2.</p>
+        <p>Price: $12</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item2')">-</button>
+            <input type="text" id="quantity-item2" value="0" readonly>
+            <button onclick="increaseQuantity('item2')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item3">
+        <h2>Item 3</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 3 Image">
+        <p>Description of Item 3.</p>
+        <p>Price: $8</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item3')">-</button>
+            <input type="text" id="quantity-item3" value="0" readonly>
+            <button onclick="increaseQuantity('item3')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item4">
+        <h2>Item 4</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 4 Image">
+        <p>Description of Item 4.</p>
+        <p>Price: $15</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item4')">-</button>
+            <input type="text" id="quantity-item4" value="0" readonly>
+            <button onclick="increaseQuantity('item4')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item5">
+        <h2>Item 5</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 5 Image">
+        <p>Description of Item 5.</p>
+        <p>Price: $11</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item5')">-</button>
+            <input type="text" id="quantity-item5" value="0" readonly>
+            <button onclick="increaseQuantity('item5')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item6">
+        <h2>Item 6</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 6 Image">
+        <p>Description of Item 6.</p>
+        <p>Price: $13</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item6')">-</button>
+            <input type="text" id="quantity-item6" value="0" readonly>
+            <button onclick="increaseQuantity('item6')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item7">
+        <h2>Item 7</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 7 Image">
+        <p>Description of Item 7.</p>
+        <p>Price: $9</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item7')">-</button>
+            <input type="text" id="quantity-item7" value="0" readonly>
+            <button onclick="increaseQuantity('item7')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item8">
+        <h2>Item 8</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 8 Image">
+        <p>Description of Item 8.</p>
+        <p>Price: $14</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item8')">-</button>
+            <input type="text" id="quantity-item8" value="0" readonly>
+            <button onclick="increaseQuantity('item8')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item9">
+        <h2>Item 9</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 9 Image">
+        <p>Description of Item 9.</p>
+        <p>Price: $16</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item9')">-</button>
+            <input type="text" id="quantity-item9" value="0" readonly>
+            <button onclick="increaseQuantity('item9')">+</button>
+        </div>
+    </div>
+
+    <div class="menu-item" id="item10">
+        <h2>Drink 1</h2>
+        <img src="https://via.placeholder.com/150" alt="Drink 1 Image">
+        <p>Description of Drink 1.</p>
+        <p>Price: $5</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item10')">-</button>
+            <input type="text" id="quantity-item10" value="0" readonly>
+            <button onclick="increaseQuantity('item10')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item11">
+        <h2>Drink 2</h2>
+        <img src="https://via.placeholder.com/150" alt="Drink 2 Image">
+        <p>Description of Drink 2.</p>
+        <p>Price: $6</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item11')">-</button>
+            <input type="text" id="quantity-item11" value="0" readonly>
+            <button onclick="increaseQuantity('item11')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item12">
+        <h2>Drink 3</h2>
+        <img src="https://via.placeholder.com/150" alt="Drink 3 Image">
+        <p>Description of Drink 3.</p>
+        <p>Price: $4</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item12')">-</button>
+            <input type="text" id="quantity-item12" value="0" readonly>
+            <button onclick="increaseQuantity('item12')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item13">
+        <h2>Beverage 1</h2>
+        <img src="https://via.placeholder.com/150" alt="Beverage 1 Image">
+        <p>Description of Beverage 1.</p>
+        <p>Price: $3</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item13')">-</button>
+            <input type="text" id="quantity-item13" value="0" readonly>
+            <button onclick="increaseQuantity('item13')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item14">
+        <h2>Beverage 2</h2>
+        <img src="https://via.placeholder.com/150" alt="Beverage 2 Image">
+        <p>Description of Beverage 2.</p>
+        <p>Price: $4</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item14')">-</button>
+            <input type="text" id="quantity-item14" value="0" readonly>
+            <button onclick="increaseQuantity('item14')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item15">
+        <h2>Beverage 3</h2>
+        <img src="https://via.placeholder.com/150" alt="Beverage 3 Image">
+        <p>Description of Beverage 3.</p>
+        <p>Price: $3</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item15')">-</button>
+            <input type="text" id="quantity-item15" value="0" readonly>
+            <button onclick="increaseQuantity('item15')">+</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function increaseQuantity(itemId) {
+        var quantityInput = document.getElementById('quantity-' + itemId);
+        var currentQuantity = parseInt(quantityInput.value);
+        quantityInput.value = currentQuantity + 1;
+    }
+
+    function decreaseQuantity(itemId) {
+        var quantityInput = document.getElementById('quantity-' + itemId);
+        var currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > 0) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    }
+
+    function placeOrder() {
+        var totalQuantity = 0;
+        var quantityInputs = document.querySelectorAll('.quantity-bar input');
+        quantityInputs.forEach(function(input) {
+            totalQuantity += parseInt(input.value);
+        });
+        if (totalQuantity > 0) {
+            alert("Your order has been placed!");
+            window.location.reload(); // Refresh the page
+        } else {
+            alert("Please add items to your order.");
+        }
+    }
+</script>
 
 </body>
 </html>
