@@ -160,3 +160,4 @@ class Order11(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = Order11Manager()
+
