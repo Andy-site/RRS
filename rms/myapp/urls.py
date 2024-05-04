@@ -49,9 +49,7 @@ urlpatterns = [
     path('cancel-order-ta/', views.cancel_order_ta, name='cancel_order_ta'),
     path('complete-order-ta/', views.complete_order_ta, name='complete_order_ta'),
     path('esewa/', views.esewa, name='esewa'),
-    path('orders69/', views.orders69, name='orders69'),
-    path('co/', views.co, name='co'),
-    path('checkout/<int:id>/', views.order_checkout, name="order_checkout"),
+    path('orders69/<int:id>/', views.orders69, name='orders69'),
     path('payment-failed/', views.payment_failed, name='payment_failed'),
     path('esewa-callback/', views.esewa_callback_view, name='esewa_callback'),
 
