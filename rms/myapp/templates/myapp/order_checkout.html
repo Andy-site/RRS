@@ -6,8 +6,10 @@
         <div class="card">
             <div class="card-body">
                 <p style="font-size: 18px; color: #333; margin-bottom: 15px;"><strong>Name:</strong> {{order.user_name}}</p>
+                <p style="font-size: 18px; color: #333; margin-bottom: 15px;"><strong>Order Number:</strong> {{order.order_number}}</p>
                 <p style="font-size: 18px; color: #333; margin-bottom: 15px;"><strong>Price:</strong> {{order.total}}</p>
-                <p style="font-size: 18px; color: #333; margin-bottom: 30px;"><strong>Paid:</strong> {{order.is_paid}}</p>
+                <p style="font-size: 18px; color: #333; margin-bottom: 30px;"><strong>Paid:</strong> {% if order.is_paid %}Yes{% else %}No{% endif %}</p>
+
                 <form action="https://uat.esewa.com.np/epay/main" method="POST" style="text-align: center;">
                     <input value="{{order.total}}" name="tAmt" type="hidden">
                     <input value="{{order.total}}" name="amt" type="hidden">
