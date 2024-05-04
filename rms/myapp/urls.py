@@ -43,22 +43,7 @@ urlpatterns = [
     path('complete_orders/', views.complete_orders, name='complete_orders'),
     path('cancel-order/', views.cancel_order, name='cancel_order'),
     path('place_order/', views.place_order, name='place_order'),
-    path('get_order_history/', views.get_order_history, name='get_order_history'),
-    path('cancel-order/<str:order_number>/', views.cancel_order_takeaway, name='cancel_order_takeaway'),
-    path('take_away_admin/', views.admin_orders, name='take_away_admin'),
-    path('cancel-order-ta/', views.cancel_order_ta, name='cancel_order_ta'),
-    path('complete-order-ta/', views.complete_order_ta, name='complete_order_ta'),
-    path('esewa/', views.esewa, name='esewa'),
-    path('orders69/', views.orders69, name='orders69'),
-    path('co/', views.co, name='co'),
-    path('checkout/<int:id>/', views.order_checkout, name="order_checkout"),
-    path('payment-failed/', views.payment_failed, name='payment_failed'),
-    path('esewa-callback/', views.esewa_callback_view, name='esewa_callback'),
-
-
-
-
-
+    path('take_away_admin/', views.take_away_admin, name='take_away_admin'),
 
 ]
 

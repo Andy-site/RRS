@@ -688,5 +688,3 @@ def payment_failed(request):
 
 def esewa_callback(request):
     return render(request, 'myapp/esewa_callback.html')
-
-
