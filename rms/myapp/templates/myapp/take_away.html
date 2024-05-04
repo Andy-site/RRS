@@ -81,6 +81,83 @@
     overflow-y: auto; /* Enable vertical scrolling */
     padding-right: 20px; /* Add some padding to avoid the scrollbar overlapping content */
 }
+.menu-item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.price-container {
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6347;
+    background-color: rgba(255, 230, 230, 0.5);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.add-to-order {
+    align-self: flex-end;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-order:hover {
+    background-color: #ff4d2e;
+}
+
+.order-summary-container {
+    max-height: 300px; /* Adjust this value to set the desired maximum height */
+    overflow-y: auto; /* This will add a vertical scrollbar when needed */
+}
+
+
+        /* Customizing scroll bars */
+
+/* For WebKit browsers like Chrome and Safari */
+::-webkit-scrollbar {
+    width: 3px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Radius of the scrollbar thumb */
+}
+
+
+
+/* For Firefox */
+/* Note: Firefox does not support styling scrollbars directly, but you can use scrollbar-width property */
+/* This will apply to all scrollbars in Firefox, including the ones in the menu and order summary containers */
+/* You can adjust the width and color as needed */
+/* For more advanced customization in Firefox, you can use scrollbar-color property, but it's not widely supported yet */
+.menu-container,
+.order-summary-container {
+    scrollbar-width: thin; /* Adjust the width as needed */
+    scrollbar-color: #ff6347 #f5f5f5; /* Thumb and track colors */
+}
+
+/* For Microsoft Edge and Internet Explorer */
+/* Note: Microsoft browsers do not support styling scrollbars directly, but you can use -ms-overflow-style property */
+/* This will hide the default scrollbar in Edge and IE, and they will display a native scrollbar */
+/* You can adjust this property to 'auto' if you want to revert back to the default scrollbar appearance */
+.menu-container,
+.order-summary-container {
+    -ms-overflow-style: none; /* Hide the default scrollbar */
+}
+
+/* For all browsers, show a fallback style for the scrollbar */
+.menu-container,
+.order-summary-container {
+    overflow-y: auto; /* Enable vertical scrolling */
+}
 
     </style>
 </head>
@@ -102,7 +179,9 @@
 
             <div class="col-md-4">
                 <h2 class="mb-3">Your Order</h2>
-                <div id="order-summary" class="mb-3"></div>
+    <div class="order-summary-container">
+        <div id="order-summary" class="mb-3"></div>
+    </div>
                 <div class="form-group mb-3">
                     <label for="pickup-time" class="form-label">Pickup Time:</label>
                     <input type="datetime-local" class="form-control" id="pickup-time" required>
@@ -165,7 +244,7 @@
     </div>
 
     <div class="footer">
-        <p>&copy; Takeaway</p>
+        <p>&copy; OneBitesFoods</p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -190,32 +269,43 @@
 
         let order = [];
 
-  function renderMenuItems() {
+function renderMenuItems() {
     menuItems.forEach((item) => {
-      const menuItem = document.createElement('div');
-      menuItem.classList.add('menu-item');
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
 
-      const image = document.createElement('img');
-      image.src = `/static/images/${item.image}`;
-      menuItem.appendChild(image);
+        const image = document.createElement('img');
+        image.src = `/static/images/${item.image}`;
+        menuItem.appendChild(image);
 
-      const name = document.createElement('h3');
-      name.textContent = item.name;
-      menuItem.appendChild(name);
+        const menuItemDetails = document.createElement('div');
+        menuItemDetails.classList.add('menu-item-details');
 
-      const price = document.createElement('p');
-      price.textContent = `$${item.price.toFixed(2)}`;
-      menuItem.appendChild(price);
+        const name = document.createElement('h4');
+        name.textContent = item.name;
+        menuItemDetails.appendChild(name);
 
-      const addButton = document.createElement('button');
-      addButton.classList.add('btn', 'btn-primary');
-      addButton.textContent = 'Add to Order';
-      addButton.addEventListener('click', () => addToOrder(item));
-      menuItem.appendChild(addButton);
+        const priceContainer = document.createElement('div');
+        priceContainer.classList.add('price-container');
 
-      menuContainer.appendChild(menuItem);
+        const price = document.createElement('span');
+        price.classList.add('price');
+        price.textContent = `Rs ${item.price.toFixed(2)}`;
+        priceContainer.appendChild(price);
+        menuItemDetails.appendChild(priceContainer);
+
+        const addButton = document.createElement('button');
+        addButton.classList.add('btn', 'btn-primary', 'btn-sm', 'add-to-order');
+        addButton.innerHTML = '<i class="fas fa-plus"></i> Add to Order';
+        addButton.dataset.itemId = item.id;
+        addButton.addEventListener('click', () => addToOrder(item));
+        menuItemDetails.appendChild(addButton);
+
+        menuItem.appendChild(menuItemDetails);
+        menuContainer.appendChild(menuItem);
     });
-  }
+}
+
 
    function addToOrder(item) {
         // Check if the item already exists in the order
@@ -273,7 +363,8 @@ function renderOrderSummary() {
         orderSummary.appendChild(orderItem);
     });
      const totalPriceContainer = document.createElement('div');
-    totalPriceContainer.textContent = `Total: $${calculateTotalPrice().toFixed(2)}`;
+  totalPriceContainer.textContent = `Total: Rs ${calculateTotalPrice().toFixed(2)}`; // Displaying the total price with "Rs" prefix
+
     orderSummary.appendChild(totalPriceContainer);
 }
 
