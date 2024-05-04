@@ -642,18 +642,14 @@ def esewa(request):
     return render(request, "myapp/esewa.html", {})
 
 
-def orders69(request):
-    orders = Order123.objects.all()  # Assuming Order is the model containing order data
-    return render(request, "myapp/Orders.html", {'orders': orders})
+def orders69(request, id):
+    # Retrieve the order details based on the order_number
+    order = get_object_or_404(Order123, order_number=id)
 
-
-def co(request):
-    return render(request, "myapp/order_checkout.html", {})
-
-
-def order_checkout(request, id):
-    order = Order123.objects.get(id=id)
-    context = {"order": order}
+    context = {
+        'order': order,
+        'order_number': id,
+    }
     return render(request, 'myapp/order_checkout.html', context)
 
 
