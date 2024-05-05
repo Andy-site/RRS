@@ -83,18 +83,20 @@ margin-top: 300px;
 
 {% block body%}
 
- <img
-        style="
-          position: absolute;
-          top: 38px;
-          left: 144px;
-          width: 119px;
-          height: 95px;
-          object-fit: cover;
-        "
-        alt=""
-        src="/static/images/logo.png"
-      />
+<a href="{% url 'index' %}">
+  <img
+    style="
+      position: absolute;
+      top: 12px;
+      left: 70px;
+      width: 119px;
+      height: 95px;
+      object-fit: cover;
+    "
+    alt=""
+    src="/static/images/logo.png"
+  />
+</a>
 <div class="allme">
     <section id="why-us" class="why-us">
       <div class="container">
