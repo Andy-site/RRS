@@ -668,6 +668,7 @@ def esewa_callback_view(request):
     response = urllib.request.urlopen(url, data=data).read()
     json_response = xmltodict.parse(response)
     status = json_response["response"]["response_code"]
+
     if status == "Success":
         order = get_object_or_404(Order123, order_number=oid)
         order.is_paid = True

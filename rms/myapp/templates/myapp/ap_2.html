@@ -1,11 +1,180 @@
 {% extends 'myapp/admin_page.html' %}
-{% block welcome %}{% endblock %}
+
 {% block title %}Take-Away{% endblock %}
 
 {% block css %}
+    table {
+        width: 70%;
+        border-collapse: collapse;
+        margin-left: 295px;
+        margin-top: 100px;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .action-buttons button {
+        margin-right: 5px;
+    }
+        .pp{
+        position: absolute;
+        font-size: 30px;
+        left: 650px;
+        top: 76px;
+        }
+    .completed-row {
+    background-color: #d9edf7; /* Light blue color */
+    position: relative;
+}
+
+.completed-row::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: green; /* Green color for the line */
+}
 
 {% endblock %}
 
 {% block content %}
+      <div class="pp">Take-Away</div>
+    <div class="container">
+        <h2>Orders</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Order Number</th>
+                    <th>Items</th>
+                    <th>Pickup Time</th>
+                    <th>Pickup Location</th>
+                    <th>Payment</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+{% for order in orders %}
+<tr{% if order.status == 'Completed' %} class="completed-row"{% endif %}>
+    <td>{{ order.user_name }}</td>
+    <td>{{ order.order_number }}</td>
+    <td>
+        <ul>
+            {% for item in order.items %}
+            <li>{{ item.name }} x {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
+    </td>
+    <td>{{ order.pickup_time }}</td>
+    <td>{{ order.pickup_location }}</td>
+    <td>
+    {% if order.is_paid %}
+        <span class="text-success">
+            <i class="bi bi-check-circle-fill"></i> <!-- Green check mark -->
+        </span>
+    {% else %}
+        <span class="text-danger">
+            <i class="bi bi-x-circle-fill"></i> <!-- Red cross mark -->
+        </span>
+    {% endif %}
+</td>
+<td>{{ "Rs" }} {{ order.paid_amount }}</td>
+
+    <td class="action-buttons">
+        <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
+        <button class="btn btn-success" onclick="completeOrder('{{ order.order_number }}')">Completed</button>
+    </td>
+</tr>
+{% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+// HTML template scripts block
+function cancelOrder(orderNumber) {
+    // Show a confirmation dialog before canceling the order
+    if (confirm("Are you sure you want to cancel this order?")) {
+        // Get the CSRF token from the cookie
+        const csrftoken = getCookie('csrftoken');
+
+        $.ajax({
+            url: '/cancel-order-ta/',  // Updated URL
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken  // Include CSRF token in the headers
+            },
+            data: {
+                order_number: orderNumber
+            },
+            success: function(response) {
+                console.log('Order canceled successfully:', response);
+                // Reload the page or update the UI as needed
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error canceling order:', error);
+                // Handle errors or display a message to the user
+                alert('An error occurred while canceling the order. Please try again.');
+            }
+        });
+    }
+}
+
+// Function to get the CSRF token from the cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Check if the cookie name matches the CSRF token cookie name
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+        function completeOrder(orderNumber) {
+    if (confirm("Are you sure you want to mark this order as completed?")) {
+        const csrftoken = getCookie('csrftoken');
+        const row = $(`tr td:first-child:contains(${orderNumber})`).parent();
+
+        $.ajax({
+            url: '/complete-order-ta/', // Replace with your server-side URL to handle order completion
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            data: {
+                order_number: orderNumber
+            },
+            success: function(response) {
+                console.log('Order completed successfully:', response);
+                row.addClass('completed-row'); // Add the CSS class for the line
+                // Optionally, you can disable the "Completed" button or perform other UI updates
+            },
+            error: function(xhr, status, error) {
+                console.error('Error completing order:', error);
+                alert('An error occurred while completing the order. Please try again.');
+            }
+        });
+    }
+}
+    </script>
+
 
 {% endblock %}
