@@ -4,10 +4,10 @@
 
 {% block css %}
     table {
-        width: 70%;
+        width: 80%;
         border-collapse: collapse;
         margin-left: 295px;
-        margin-top: 100px;
+
     }
     th, td {
         border: 1px solid #dddddd;
@@ -20,84 +20,106 @@
     .action-buttons button {
         margin-right: 5px;
     }
-        .pp{
+    .pp {
         position: absolute;
         font-size: 30px;
         left: 650px;
         top: 76px;
-        }
+    }
     .completed-row {
-    background-color: #d9edf7; /* Light blue color */
-    position: relative;
-}
+        background-color: #d9edf7; /* Light blue color */
+        position: relative;
+    }
 
-.completed-row::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background-color: green; /* Green color for the line */
-}
+    .completed-row::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background-color: green; /* Green color for the line */
+    }
+    .table-container {
+margin-top:130px;
+        max-height: 500px; /* Adjust the height as needed */
+        overflow-y: auto;
+    }
 
+    .orders-container {
+        overflow-x: auto;
+    }
+
+    /* New styles for fixed table headers */
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    tbody {
+        max-height: 400px; /* Adjust the height as needed */
+        overflow-y: auto;
+    }
 {% endblock %}
 
 {% block content %}
-      <div class="pp">Take-Away</div>
-    <div class="container">
+<div class="pp">Take-Away</div>
+<div class="container">
+    <div class="table-container">
         <h2>Orders</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Customer Name</th>
-                    <th>Order Number</th>
-                    <th>Items</th>
-                    <th>Pickup Time</th>
-                    <th>Pickup Location</th>
-                    <th>Payment</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-{% for order in orders %}
-<tr{% if order.status == 'Completed' %} class="completed-row"{% endif %}>
-    <td>{{ order.user_name }}</td>
-    <td>{{ order.order_number }}</td>
-    <td>
-        <ul>
-            {% for item in order.items %}
-            <li>{{ item.name }} x {{ item.quantity }}</li>
-            {% endfor %}
-        </ul>
-    </td>
-    <td>{{ order.pickup_time }}</td>
-    <td>{{ order.pickup_location }}</td>
-    <td>
-    {% if order.is_paid %}
-        <span class="text-success">
-            <i class="bi bi-check-circle-fill"></i> <!-- Green check mark -->
-        </span>
-    {% else %}
-        <span class="text-danger">
-            <i class="bi bi-x-circle-fill"></i> <!-- Red cross mark -->
-        </span>
-    {% endif %}
-</td>
-<td>{{ "Rs" }} {{ order.paid_amount }}</td>
+        <div class="orders-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Order Number</th>
+                        <th>Items</th>
+                        <th>Pickup Time</th>
+                        <th>Pickup Location</th>
+                        <th>Payment</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr{% if order.status == 'Completed' %} class="completed-row"{% endif %}>
+                        <td>{{ order.user_name }}</td>
+                        <td>{{ order.order_number }}</td>
+                        <td>
+                            <ul>
+                                {% for item in order.items %}
+                                <li>{{ item.name }} x {{ item.quantity }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>{{ order.pickup_time }}</td>
+                        <td>{{ order.pickup_location }}</td>
+                        <td>
+                            {% if order.is_paid %}
+                            <span class="text-success">
+                                <i class="bi bi-check-circle-fill"></i> <!-- Green check mark -->
+                            </span>
+                            {% else %}
+                            <span class="text-danger">
+                                <i class="bi bi-x-circle-fill"></i> <!-- Red cross mark -->
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td>{{ "Rs" }} {{ order.paid_amount }}</td>
 
-    <td class="action-buttons">
-        <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
-        <button class="btn btn-success" onclick="completeOrder('{{ order.order_number }}')">Completed</button>
-    </td>
-</tr>
-{% endfor %}
-            </tbody>
-        </table>
+                        <td class="action-buttons">
+                            <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
+                            <button class="btn btn-success" onclick="completeOrder('{{ order.order_number }}')">Completed</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-
-
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 // HTML template scripts block
