@@ -5,33 +5,73 @@
     <title>Reservation</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e9ecef;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('/static/images/image3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+        .container {
+            width: 100%;
+            max-width: 600px;
         }
-        table {
-            border-collapse: collapse;
-            width: 70%;
+        form {
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
+        label {
+            display: block;
+            margin-bottom: 13px;
         }
-        th {
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .b1, .b2 {
+            width: 100%;
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .b1:hover, .b2:hover {
+            background-color: #45a049;
         }
         #table-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .table {
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            width: 100px;
             text-align: center;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
         }
         .reserved {
             background-color: #FF6347; /* Tomato */
@@ -51,6 +91,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
         .back-btn:hover {
             background-color: #45a049;
@@ -58,43 +101,56 @@
     </style>
 </head>
 <body>
-<table>
-    <thead>
-        <tr>
-            <th colspan="4">Reservation Information</th>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Number of People</th>
-            <th>Message</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="date" id="order-date" name="order-date"></td>
-            <td><input type="time" id="order-time" name="order-time"></td>
-            <td><input type="number" id="number-of-people" name="number-of-people" min="1" max="8"></td>
-            <td><textarea id="order-message" name="order-message" rows="4"></textarea></td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="d1">
+        Confirm Your Order
+    </div>
 
-<div id="table-container">
-    <!-- Table data will be inserted here -->
+    <form id="reservation-form">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="size">Table Size:</label>
+        <select name="size" id="size" required>
+            <option value="1">Table of 1</option>
+            <option value="2">Table of 2</option>
+            <option value="4">Table of 4</option>
+            <option value="6">Table of 6</option>
+            <option value="8">Table of 8</option>
+        </select>
+        <button class="b1" type="button" id="show-tables">Show Tables</button>
+    </form>
+
+    <div class="d2">
+        Table Availability
+    </div>
+
+    <div id="table-container">
+        <!-- Table data will be inserted here -->
+    </div>
+
+    <form id="order-form" action="/book/" class="F2" method="post">
+    <label for="order-date">Date:</label>
+    <input type="date" id="order-date" name="order-date" required>
+    <label for="order-time">Time:</label>
+    <input type="time" id="order-time" name="order-time" required>
+    <label for="number-of-people">Number of People:</label>
+    <input type="number" id="number-of-people" name="number-of-people" min="1" max="8" required>
+    <label for="order-message">Message:</label>
+    <textarea id="order-message" name="order-message" rows="4"></textarea>
+    <button class="b2" type="submit">Confirm Order</button>
+</form>
+
+    <a href="/" class="back-btn">Back to Home</a>
 </div>
-
-<button class="b2" type="submit">Confirm Order</button>
-
-<a href="/" class="back-btn">Back to Home</a>
 
 <script>
     document.getElementById('show-tables').addEventListener('click', function() {
         // Get the selected date and table size
-        var date = document.getElementById('order-date').value; // Using the common date input
+        var date = document.getElementById('date').value;
+        var size = parseInt(document.getElementById('size').value);
 
         // Fetch table data from the server
-        fetch(`/get-tables/?date=${date}`)
+        fetch(`/get-tables/?date=${date}&size=${size}`)
             .then(response => response.json())
             .then(data => {
                 // Get the table container element
@@ -118,6 +174,7 @@
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
                             if (confirm('Please Book the Table from Confirm your Order section!')) {
+                                document.getElementById('order-date').value = date;
                                 // You may want to set other values as well based on the selected table
                                 document.getElementById('number-of-people').value = size;
                                 // Scroll to the order form
