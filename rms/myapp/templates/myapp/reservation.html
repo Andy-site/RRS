@@ -5,17 +5,29 @@
     <title>Reservation</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e9ecef;
-            margin: 0;
-            padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/static/images/image3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+        .container {
+            width: 100%;
+            max-width: 600px;
         }
         form {
-            width: 300px;
+            width: 100%;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         label {
             display: block;
@@ -25,7 +37,7 @@
         input[type="time"],
         select,
         textarea {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 16px;
             border-radius: 4px;
@@ -33,6 +45,7 @@
             box-sizing: border-box;
         }
         .b1, .b2 {
+            width: 100%;
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
@@ -77,23 +90,22 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
         .back-btn:hover {
             background-color: #45a049;
         }
-
     </style>
 </head>
 <body>
-<div class="d1">
-    Confirm Your Order
-</div>
+<div class="container">
+    <div class="d1">
+        Confirm Your Order
+    </div>
 
-<div class="d2">
-    Table Availability
-</div>
-
-<div class="F1">
     <form id="reservation-form">
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
@@ -107,14 +119,16 @@
         </select>
         <button class="b1" type="button" id="show-tables">Show Tables</button>
     </form>
-</div>
 
-<div id="table-container">
-    <!-- Table data will be inserted here -->
-</div>
+    <div class="d2">
+        Table Availability
+    </div>
 
-<form id="order-form" action="/book/" class="F2" method="post">
-    {% csrf_token %}
+    <div id="table-container">
+        <!-- Table data will be inserted here -->
+    </div>
+
+    <form id="order-form" action="/book/" class="F2" method="post">
     <label for="order-date">Date:</label>
     <input type="date" id="order-date" name="order-date" required>
     <label for="order-time">Time:</label>
@@ -126,19 +140,26 @@
     <button class="b2" type="submit">Confirm Order</button>
 </form>
 
-<a href="/" class="back-btn">Back to Home</a>
+    <a href="/" class="back-btn">Back to Home</a>
+</div>
 
 <script>
     document.getElementById('show-tables').addEventListener('click', function() {
+        // Get the selected date and table size
         var date = document.getElementById('date').value;
         var size = parseInt(document.getElementById('size').value);
 
+        // Fetch table data from the server
         fetch(`/get-tables/?date=${date}&size=${size}`)
             .then(response => response.json())
             .then(data => {
+                // Get the table container element
                 var tableContainer = document.getElementById('table-container');
+
+                // Clear previous table elements
                 tableContainer.innerHTML = '';
 
+                // Create and append table elements based on server response
                 data.forEach(function(tableData) {
                     var tableElement = document.createElement('div');
                     tableElement.textContent = `Table no.${tableData.number}`;
@@ -152,11 +173,11 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
-                            if (confirm('Do you want to book this table?')) {
+                            if (confirm('Please Book the Table from Confirm your Order section!')) {
                                 document.getElementById('order-date').value = date;
-                                document.getElementById('order-time').value = ''; // Clear time
+                                // You may want to set other values as well based on the selected table
                                 document.getElementById('number-of-people').value = size;
-                                document.getElementById('order-message').value = ''; // Clear message
+                                // Scroll to the order form
                                 document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
                             }
                         });
@@ -164,34 +185,7 @@
 
                     tableContainer.appendChild(tableElement);
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching table data:', error);
-                alert('Failed to fetch table data. Please try again later.');
             });
-    });
-
-    document.getElementById('order-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var formData = new FormData(this);
-
-        fetch(this.action, {
-            method: this.method,
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Reservation successful!');
-                // Additional actions after successful reservation, e.g., redirecting to a confirmation page
-            } else {
-                throw new Error('Reservation failed.');
-            }
-        })
-        .catch(error => {
-            console.error('Error making reservation:', error);
-            alert('Failed to make reservation. Please try again.');
-        });
     });
 </script>
 </body>
