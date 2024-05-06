@@ -55,6 +55,8 @@
                     <th>Items</th>
                     <th>Pickup Time</th>
                     <th>Pickup Location</th>
+                    <th>Payment</th>
+                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -72,6 +74,19 @@
     </td>
     <td>{{ order.pickup_time }}</td>
     <td>{{ order.pickup_location }}</td>
+    <td>
+    {% if order.is_paid %}
+        <span class="text-success">
+            <i class="bi bi-check-circle-fill"></i> <!-- Green check mark -->
+        </span>
+    {% else %}
+        <span class="text-danger">
+            <i class="bi bi-x-circle-fill"></i> <!-- Red cross mark -->
+        </span>
+    {% endif %}
+</td>
+<td>{{ "Rs" }} {{ order.paid_amount }}</td>
+
     <td class="action-buttons">
         <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
         <button class="btn btn-success" onclick="completeOrder('{{ order.order_number }}')">Completed</button>

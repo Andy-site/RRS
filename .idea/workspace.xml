@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Now User can easity look for their oder and cancel it with in 30 minutes">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_11_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_24__2_11_PM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_2024_12_53_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor issue with restaurant logo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/dashboard_details_Django_Backend" />
+    <option name="BRANCH" value="origin/final_touch_piyush" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -38,18 +36,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;adampokharel&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/PIYUSHPHUYAL/RRS.git&quot;,
-    &quot;accountId&quot;: &quot;9ed1f553-169b-4789-84f6-5a71ec9c6de2&quot;
-  }
-}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -73,15 +59,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/templates/myapp&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
       <recent name="$PROJECT_DIR$/rms/myapp/static" />
-      <recent name="$PROJECT_DIR$/rms/myapp/templates/myapp" />
       <recent name="$PROJECT_DIR$/rms/myapp" />
       <recent name="$PROJECT_DIR$/rms/rms" />
     </key>
@@ -461,7 +447,31 @@
       <option name="project" value="LOCAL" />
       <updated>1713673757715</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Used E-Sewa API for seamless transaction in take-away section">
+      <option name="closed" value="true" />
+      <created>1714656065568</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1714656065568</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fixed A major Bug created by one of the developers">
+      <option name="closed" value="true" />
+      <created>1714905983087</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1714905983087</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Fixed minor issue with restaurant logo">
+      <option name="closed" value="true" />
+      <created>1714907105674</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1714907105674</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,7 +507,10 @@
     <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
     <MESSAGE value="Major changes like complete wipe out of" />
     <MESSAGE value="Minor Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes" />
+    <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
+    <MESSAGE value="Fixed A major Bug created by one of the developers" />
+    <MESSAGE value="Fixed minor issue with restaurant logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor issue with restaurant logo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
