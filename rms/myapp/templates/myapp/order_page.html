@@ -1,336 +1,3417 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Page</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
+{% extends 'myapp/common.html' %}
+
+{% block title%} Menu  {% endblock %}
+
+{% block head%}
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+
+    <style>
+      body {
         margin: 0;
-        padding: 0;
-        background-color: #f8f9fa; /* Light gray background */
-    }
-    header {
-        background-color: #343a40; /* Dark gray header */
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-    }
-    .navbar {
-        background-color: #343a40; /* Dark gray navbar */
-        overflow: hidden;
-    }
-    .navbar a {
-        float: right;
-        display: block;
-        color: #fff;
-        text-align: center;
-        padding: 14px 20px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-    .navbar a:hover {
-        background-color: #555; /* Darker gray on hover */
-        color: white;
-    }
-    .order-now-btn {
-        background-color: #007bff; /* Blue color for the button */
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-    .order-now-btn:hover {
-        background-color: #0056b3; /* Darker blue on hover */
-    }
-    .container {
+        line-height: normal;
+      }
+    </style>
+{% endblock %}
+
+
+
+
+
+{% block body%}
+    <div
+      style="
         width: 100%;
-        margin: 20px auto;
-        padding: 5px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 30px;
-    }
-    .menu-item {
-        padding: 60px;
-        background-color: #f8f9fa; /* Light gray menu item */
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    .menu-item h2 {
-        margin-top: 0;
-    }
-    .menu-item img {
-        max-width: 100%;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    .quantity-bar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-    }
-    .quantity-bar input {
-        width: 50px;
-        text-align: center;
-        margin: 0 10px;
-    }
-    .quantity-bar button {
-        padding: 5px 10px;
-        background-color: #343a40; /* Dark gray buttons */
+        position: relative;
+        background-color: #e9ecef;
+        height: 4085px;
+        overflow: hidden;
+        text-align: left;
+        font-size: 20px;
         color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-</style>
-</head>
-<body>
-
-<header>
-    <h1>Restaurant Menu</h1>
-</header>
-
-<div class="navbar">
-    <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
-    <button onclick="viewCart()">View Cart</button>
-</div>
-
-<div class="container" id="menuContainer">
-    <div class="menu-item" id="item1">
-        <h2>Item 1</h2>
-        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 1 Image">
-        <p>Pizza</p>
-        <p>Price: Rs 150</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item1')">-</button>
-            <input type="text" id="quantity-item1" value="0" readonly>
-            <button onclick="increaseQuantity('item1')">+</button>
+        font-family: Poppins;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 144px;
+          left: 1063px;
+          width: 198px;
+          height: 48px;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          width: 25.42%;
+          top: 211px;
+          left: 11.04%;
+          font-size: 48px;
+          line-height: 52px;
+          text-transform: capitalize;
+          font-weight: 600;
+          color: #093035;
+          display: inline-block;
+          height: 53px;
+        "
+      >
+        view Our Menu
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 225px;
+          left: 654px;
+          background-color: #e9ecef;
+          width: 548px;
+          height: 24px;
+          text-align: center;
+          color: #000;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            height: 100%;
+            width: 12.77%;
+            top: 0%;
+            right: 72.45%;
+            bottom: 0%;
+            left: 14.78%;
+            cursor: pointer;
+          "
+          id="groupContainer"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              line-height: 24px;
+              font-weight: 600;
+            "
+          >
+            Starter
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item2">
-        <h2>Item 2</h2>
-        <img src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/shaikh.khalid7-gmail.com/Chicken_Momos_Recipe_Delicious_Steamed_Chicken_Dumplings.jpg" alt="Item 2 Image">
-        <p>Momo</p>
-        <p>Price: Rs 250</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item2')">-</button>
-            <input type="text" id="quantity-item2" value="0" readonly>
-            <button onclick="increaseQuantity('item2')">+</button>
+        <div
+          style="
+            position: absolute;
+            height: 100%;
+            width: 4.74%;
+            top: 0%;
+            right: 95.26%;
+            bottom: 0%;
+            left: 0%;
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              line-height: 24px;
+              font-weight: 600;
+            "
+          >
+            All
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item3">
-        <h2>Item 3</h2>
-        <img src="https://t4.ftcdn.net/jpg/04/71/38/61/360_F_471386161_7zbsd1wU7G52UbZwBCk9r9OjltHyPHWz.jpg" alt="Item 3 Image">
-        <p>Chowmein</p>
-        <p>Price: Rs 270</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item3')">-</button>
-            <input type="text" id="quantity-item3" value="0" readonly>
-            <button onclick="increaseQuantity('item3')">+</button>
+        <div
+          style="
+            position: absolute;
+            height: 100%;
+            width: 25.36%;
+            top: 0%;
+            right: 36.86%;
+            bottom: 0%;
+            left: 37.77%;
+            cursor: pointer;
+          "
+          id="groupContainer2"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              line-height: 24px;
+              font-weight: 600;
+            "
+          >
+            Main Courses
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item4">
-        <h2>Item 4</h2>
-        <img src="https://cdn.jwplayer.com/v2/media/kaaLtKhn/poster.jpg?width=720" alt="Item 4 Image">
-        <p>Burge</p>
-        <p>Price: Rs 250</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item4')">-</button>
-            <input type="text" id="quantity-item4" value="0" readonly>
-            <button onclick="increaseQuantity('item4')">+</button>
+        <div
+          style="
+            position: absolute;
+            height: 100%;
+            width: 9.67%;
+            top: 0%;
+            right: 20.62%;
+            bottom: 0%;
+            left: 69.71%;
+            cursor: pointer;
+          "
+          id="groupContainer3"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              line-height: 24px;
+              font-weight: 600;
+            "
+          >
+            Drink
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item5">
-        <h2>Item 5</h2>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Crispy_Chicken_Strips_-_FotoosVanRobin.jpg/640px-Crispy_Chicken_Strips_-_FotoosVanRobin.jpg" alt="Item 5 Image">
-        <p>chicken fingers</p>
-        <p>Price: Rs 250</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item5')">-</button>
-            <input type="text" id="quantity-item5" value="0" readonly>
-            <button onclick="increaseQuantity('item5')">+</button>
+        <div
+          style="
+            position: absolute;
+            height: 100%;
+            width: 14.05%;
+            top: 0%;
+            right: 0%;
+            bottom: 0%;
+            left: 85.95%;
+            cursor: pointer;
+          "
+          id="groupContainer4"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              line-height: 24px;
+              font-weight: 600;
+            "
+          >
+            Dessert
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item6">
-        <h2>Item 6</h2>
-        <img src="https://i.ytimg.com/vi/pMCS1TR4Wyo/maxresdefault.jpg" alt="Item 6 Image">
-        <p>chicken chilli</p>
-        <p>Price: Rs 1300</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item6')">-</button>
-            <input type="text" id="quantity-item6" value="0" readonly>
-            <button onclick="increaseQuantity('item6')">+</button>
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 328px;
+          left: calc(50% - 560px);
+          height: 3736px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          text-align: center;
+          font-size: 48px;
+          color: #bf9a22;
+        "
+      >
+        <div style="width: 1120px; position: relative; height: 596px">
+          <div
+            style="
+              position: absolute;
+              top: 0px;
+              left: 476px;
+              width: 168px;
+              height: 52px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                line-height: 52px;
+                text-transform: capitalize;
+                font-weight: 600;
+              "
+              data-scroll-to="starterText"
+            >
+              Starter
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 84px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+              font-size: 18px;
+              color: #d4af37;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 498px;
+                font-size: 24px;
+                color: #12464d;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+                  width: 48px;
+                  height: 48px;
+                  overflow: hidden;
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 54px;
+                  line-height: 28px;
+                  display: inline-block;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Risotto ai Funghi</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Creamy Arborio rice infused with a medley of wild mushrooms,
+                Parmesan cheese, and a hint of truffle oil.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-1.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  color: #d4af37;
+                  text-align: left;
+                "
+                >Rs.200</b
+              >
+            </div>
+            <img
+              style="
+                position: absolute;
+                top: 426px;
+                left: 77px;
+                width: 152px;
+                height: 31px;
+                object-fit: cover;
+              "
+              alt=""
+              src="/static/images/group-54@2x.png"
+            />
+
+            <img
+              style="
+                position: absolute;
+                top: 426px;
+                left: 77px;
+                width: 152px;
+                height: 31px;
+                object-fit: cover;
+              "
+              alt=""
+              src="/static/images/group-54@2x.png"
+            />
+
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 30px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 287px;
+                  height: 32px;
+                "
+                >Grilled Lemon Chicken</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Tender chicken marinated in zesty herbs and grilled to juicy
+                perfection.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-2.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 400</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 38px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 261px;
+                  height: 32px;
+                "
+                >Creamy Garlic Pasta</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Silky pasta coated in a decadent garlic parmesan sauce.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-3.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 240</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item7">
-        <h2>Item 7</h2>
-        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 7 Image">
-        <p>Description of Item 7.</p>
-        <p>Price: Rs 9</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item7')">-</button>
-            <input type="text" id="quantity-item7" value="0" readonly>
-            <button onclick="increaseQuantity('item7')">+</button>
+        <div
+          style="
+            width: 1120px;
+            position: relative;
+            height: 1140px;
+            font-size: 18px;
+            color: #d4af37;
+          "
+          data-scroll-to="mainCoursesContainer"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0px;
+              left: 394px;
+              width: 333px;
+              height: 52px;
+              font-size: 48px;
+              color: #bf9a22;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 333px;
+                height: 52px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+                  line-height: 52px;
+                  text-transform: capitalize;
+                  font-weight: 600;
+                "
+              >
+                Main Courses
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 84px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 40px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 264px;
+                  height: 32px;
+                "
+                >Crispy Baked Salmon</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Succulent salmon fillet baked to crispy perfection, served with
+                a side of seasonal veggies.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-4.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 140</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 30px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 313px;
+                  height: 32px;
+                "
+                >Mouthwatering BBQ Ribs</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Fall-off-the-bone tender ribs slathered in smoky barbecue sauce.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-5.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 340</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 38px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 261px;
+                  height: 32px;
+                "
+                >Fresh Caprese Salad</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Luscious tomatoes, creamy mozzarella, and fragrant basil
+                drizzled with balsamic glaze.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-6.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 120</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 628px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 30px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 293px;
+                  height: 32px;
+                "
+                >Vegetarian Lentil Curry</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Aromatic lentil curry simmered with a blend of spices and served
+                with fluffy rice.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-7.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 600</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 54px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Hearty Beef Stew
+              </b>
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Rich and flavorful stew packed with tender beef, root
+                vegetables, and aromatic herbs.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-8.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 560</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 30px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 276px;
+                  height: 32px;
+                "
+                >Sizzling Shrimp Fajitas</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Sautéed shrimp with bell peppers and onions, served sizzling hot
+                with warm tortillas.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-9.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 480</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="menu-item" id="item8">
-        <h2>Item 8</h2>
-        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 8 Image">
-        <p>Description of Item 8.</p>
-        <p>Price: Rs 30</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item8')">-</button>
-            <input type="text" id="quantity-item8" value="0" readonly>
-            <button onclick="increaseQuantity('item8')">+</button>
+        <div
+          style="
+            width: 1120px;
+            position: relative;
+            height: 1140px;
+            font-size: 18px;
+            color: #d4af37;
+          "
+          data-scroll-to="drinkContainer"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0px;
+              left: 497px;
+              width: 127px;
+              height: 52px;
+              font-size: 48px;
+              color: #bf9a22;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                line-height: 52px;
+                text-transform: capitalize;
+                font-weight: 600;
+              "
+            >
+              Drink
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 84px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 54px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Zesty Citrus Mojito</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Refreshing blend of lime, mint, and rum, topped with a splash of
+                soda water.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-10.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 320</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 31px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 305px;
+                  height: 32px;
+                "
+                >Velvety Cappuccino</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                A perfect balance of rich espresso and frothy steamed milk,
+                dusted with cocoa.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-11.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 214px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 240</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 246px;
+                  left: 38px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 285px;
+                  height: 32px;
+                "
+                >Tropical Pineapple Smoothie</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Creamy blend of pineapple, coconut milk, and banana, served
+                chilled.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-12.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 120</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    width: 142px;
+                    border-radius: 30px;
+                    background-color: #093035;
+                    height: 48px;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    box-sizing: border-box;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      width: 109px;
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                      display: none;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 628px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 245px;
+                  left: 22px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 311px;
+                  height: 32px;
+                "
+                >Spicy Jalapeño Margarita</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Fiery twist on the classic margarita with muddled jalapeños and
+                a chili salt rim.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-13.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 140</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 261px;
+                  left: 38px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 285px;
+                  height: 32px;
+                "
+                >Iced Vanilla Chai Latte</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Cool and creamy chai tea infused with vanilla and served over
+                ice.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-14.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 180</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 54px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Soothing Green Tea</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                <p style="margin: 0">
+                  Steaming cup of pure green tea, perfect for relaxation and
+                  rejuvenation.
+                </p>
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-15.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 160</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div
+          style="width: 1120px; position: relative; height: 596px"
+          data-scroll-to="desertContainer"
+        >
+          <div
+            style="
+              position: absolute;
+              top: 0px;
+              left: 468px;
+              width: 184px;
+              height: 52px;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                line-height: 52px;
+                text-transform: capitalize;
+                font-weight: 600;
+              "
+            >
+              Dessert
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              top: 84px;
+              left: 0px;
+              width: 1120px;
+              height: 512px;
+              font-size: 18px;
+              color: #d4af37;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 246px;
+                  left: 62px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Decadent Chocolate Fondue</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                <p style="margin: 0">
+                  Dive into a luxurious pool of melted chocolate served with an
+                  assortment of fresh fruits and marshmallows for dipping.
+                </p>
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-16.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 160</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 384px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 251px;
+                  left: 54px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Classic New York Cheesecake</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                Indulge in a rich and creamy cheesecake atop a buttery graham ,
+                finished with a luscious layer of sour cream.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-17.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 710</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 0px;
+                left: 768px;
+                width: 352px;
+                height: 512px;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 58px;
+                  left: 0px;
+                  border-radius: 8px;
+                  background-color: #e8f9e6;
+                  width: 352px;
+                  height: 440px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 273px;
+                  left: 54px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  display: inline-block;
+                  color: #12464d;
+                  width: 245px;
+                  height: 32px;
+                "
+                >Warm Apple Crisp</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 311px;
+                  left: 30px;
+                  font-size: 18px;
+                  line-height: 22px;
+                  color: #266a72;
+                  display: inline-block;
+                  width: 293px;
+                  height: 88px;
+                "
+              >
+                  A comforting treat of tender baked apples, cinnamon , topped
+                  with a buttery oat crumble and served with a scoop of vanilla
+                  ice cream.
+              </div>
+              <img
+                style="
+                  position: absolute;
+                  top: 0px;
+                  left: 64px;
+                  width: 224px;
+                  height: 224px;
+                  object-fit: cover;
+                "
+                alt=""
+                src="/static/images/adampokharel-18.png"
+              />
+
+              <div
+                style="
+                  position: absolute;
+                  top: 150px;
+                  left: 214px;
+                  border-radius: 50%;
+                  background-color: #093035;
+                  width: 72px;
+                  height: 72px;
+                "
+              ></div>
+              <b
+                style="
+                  position: absolute;
+                  top: 177px;
+                  left: 216px;
+                  font-size: 22px;
+                  line-height: 22px;
+                  text-align: left;
+                "
+                >Rs 190</b
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: 464px;
+                  left: 87px;
+                  width: 142px;
+                  height: 48px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 30px;
+                    background-color: #093035;
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 35px;
+                    gap: 10px;
+                  "
+                >
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/check.svg"
+                  />
+
+                  <div
+                    style="
+                      position: relative;
+                      line-height: 24px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                    "
+                  >
+                    Order Now
+                  </div>
+                  <img
+                    style="
+                      width: 24px;
+                      position: relative;
+                      height: 24px;
+                      overflow: hidden;
+                      flex-shrink: 0;
+                      display: none;
+                    "
+                    alt=""
+                    src="/static/images/next.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        style="
+          position: absolute;
+          top: 38px;
+          left: 144px;
+          width: 119px;
+          height: 95px;
+          object-fit: cover;
+        "
+        alt=""
+        src="/static/images/logo.png"
+      />
+
+      <img
+        style="
+          position: absolute;
+          top: 225px;
+          left: 1243px;
+          width: 24px;
+          height: 24px;
+          overflow: hidden;
+        "
+        alt=""
+        src="/static/images/mdicartoutline.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 20.6%;
+          left: 310px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 20.6%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 20.6%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 98%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 98%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 98%;
+          left: 310px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 80.9%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 80.9%;
+          left: 310px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 67.5%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 67.5%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 50.8%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 67.5%;
+          left: 310px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 50.8%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 50.8%;
+          left: 310px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 37.3%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 80.9%;
+          left: 1080px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 37.3%;
+          left: 700px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
+
+      <img
+        style="
+          position: absolute;
+          height: 0.5%;
+          width: 8.54%;
+          top: 37.3%;
+          left: 300px;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+        "
+        alt=""
+        src="/static/images/group-1.svg"
+      />
     </div>
 
-    <div class="menu-item" id="item9">
-        <h2>Item 9</h2>
-        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 9 Image">
-        <p>Description of Item 9.</p>
-        <p>Price: Rs 300</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item9')">-</button>
-            <input type="text" id="quantity-item9" value="0" readonly>
-            <button onclick="increaseQuantity('item9')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item10">
-        <h2>Drink 1</h2>
-        <img src="https://www.brokenwood.com.au/assets/client/Image/BLOG/12.jpg" alt="Drink 1 Image">
-        <p>Wine</p>
-        <p>Price: Rs 310</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item10')">-</button>
-            <input type="text" id="quantity-item10" value="0" readonly>
-            <button onclick="increaseQuantity('item10')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item11">
-        <h2>Drink 2</h2>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/01/whiskey-glass-bourbon-liquor-1296x728-header-1296x728.jpg" alt="Drink 2 Image">
-        <p>Whiskey</p>
-        <p>Price: Rs 530</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item11')">-</button>
-            <input type="text" id="quantity-item11" value="0" readonly>
-            <button onclick="increaseQuantity('item11')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item12">
-        <h2>Drink 3</h2>
-        <img src="https://post.healthline.com/wp-content/uploads/2019/10/beer-glass-bar-1296x728-header-1296x728.jpg" alt="Drink 3 Image">
-        <p>Beer</p>
-        <p>Price: Rs 630</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item12')">-</button>
-            <input type="text" id="quantity-item12" value="0" readonly>
-            <button onclick="increaseQuantity('item12')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item13">
-        <h2>Beverage 1</h2>
-        <img src="https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumFantaOrange_Glass_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off" alt="Beverage 1 Image">
-        <p>Fanta</p>
-        <p>Price: Rs 540</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item13')">-</button>
-            <input type="text" id="quantity-item13" value="0" readonly>
-            <button onclick="increaseQuantity('item13')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item14">
-        <h2>Beverage 2</h2>
-        <img src="https://t3.ftcdn.net/jpg/07/43/56/00/360_F_743560056_bgprjqq82VB3BcDhdBo9WJ1gtVwTLYoF.jpg" alt="Beverage 2 Image">
-        <p>Coke</p>
-        <p>Price: Rs 650</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item14')">-</button>
-            <input type="text" id="quantity-item14" value="0" readonly>
-            <button onclick="increaseQuantity('item14')">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item" id="item15">
-        <h2>Beverage 3</h2>
-        <img src="https://s.yimg.com/ny/api/res/1.2/nluNmqd239Kb9ApYTZj.NQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1OQ--/https://media.zenfs.com/en/mashed_603/69f6cab7638949ef3c77c6fbe6a5b0d6" alt="Beverage 3 Image">
-        <p>Sprite</p>
-        <p>Price: Rs 780</p>
-        <div class="quantity-bar">
-            <button onclick="decreaseQuantity('item15')">-</button>
-            <input type="text" id="quantity-item15" value="0" readonly>
-            <button onclick="increaseQuantity('item15')">+</button>
-        </div>
-    </div>
-
-</div>
-
-
-<script>
-    function increaseQuantity(itemId) {
-        var quantityInput = document.getElementById('quantity-' + itemId);
-        var currentQuantity = parseInt(quantityInput.value);
-        quantityInput.value = currentQuantity + 1;
-    }
-
-    function decreaseQuantity(itemId) {
-        var quantityInput = document.getElementById('quantity-' + itemId);
-        var currentQuantity = parseInt(quantityInput.value);
-        if (currentQuantity > 0) {
-            quantityInput.value = currentQuantity - 1;
-        }
-    }
-
-    function placeOrder() {
-        var orders = [];
-        var quantityInputs = document.querySelectorAll('.quantity-bar input');
-        quantityInputs.forEach(function(input) {
-            var itemId = input.id.replace('quantity-', '');
-            var quantity = parseInt(input.value);
-            if (quantity > 0) {
-                orders.push({ itemId: itemId, quantity: quantity });
-            }
+    <script>
+      var groupContainer = document.getElementById("groupContainer");
+      if (groupContainer) {
+        groupContainer.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='starterText']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
         });
-        if (orders.length > 0) {
-            localStorage.setItem('orders', JSON.stringify(orders));
-            alert("Your order has been placed!");
-            window.location.reload(); // Refresh the page
-        } else {
-            alert("Please add items to your order.");
-        }
-    }
+      }
 
-    function viewCart() {
-        var orders = JSON.parse(localStorage.getItem('orders'));
-        if (orders && orders.length > 0) {
-            var cartContent = "Your Cart:\n";
-            orders.forEach(function(order) {
-                cartContent += "Item ID: " + order.itemId + ", Quantity: " + order.quantity + "\n";
-            });
-            alert(cartContent);
-        } else {
-            alert("Your cart is empty.");
-        }
-    }
-</script>
+      var groupContainer2 = document.getElementById("groupContainer2");
+      if (groupContainer2) {
+        groupContainer2.addEventListener("click", function () {
+          var anchor = document.querySelector(
+            "[data-scroll-to='mainCoursesContainer']"
+          );
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
 
-</body>
-</html>
+      var groupContainer3 = document.getElementById("groupContainer3");
+      if (groupContainer3) {
+        groupContainer3.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='drinkContainer']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+
+      var groupContainer4 = document.getElementById("groupContainer4");
+      if (groupContainer4) {
+        groupContainer4.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='desertContainer']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      </script>
+
+{% endblock %}

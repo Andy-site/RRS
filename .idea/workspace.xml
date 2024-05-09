@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added orner now .html file">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="some minor changes in order now page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -471,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715008200692</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="some minor changes in order now page">
+      <option name="closed" value="true" />
+      <created>1715096576987</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1715096576987</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -510,7 +518,8 @@
     <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
     <MESSAGE value="Fixed A major Bug created by one of the developers" />
     <MESSAGE value="Added orner now .html file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added orner now .html file" />
+    <MESSAGE value="some minor changes in order now page" />
+    <option name="LAST_COMMIT_MESSAGE" value="some minor changes in order now page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
