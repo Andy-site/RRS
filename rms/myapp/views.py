@@ -307,6 +307,8 @@ def admin_login(request):
     return render(request, "myapp/admin_cred.html", {})
 
 
+
+
 def admin_page(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -685,3 +687,7 @@ def payment_failed(request):
 
 def esewa_callback(request):
     return render(request, 'myapp/esewa_callback.html')
+
+
+def order_now(request):
+    return render(request, "myapp/order_page.html", {})
