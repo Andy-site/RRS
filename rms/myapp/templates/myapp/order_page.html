@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Page</title>
+<title>Order Page</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -18,21 +18,20 @@
         text-align: center;
     }
     .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         background-color: #343a40; /* Dark gray navbar */
-        overflow: hidden;
+        padding: 10px 20px; /* Adjust padding as needed */
     }
-    .navbar a {
-        float: right;
-        display: block;
+    .navbar a.navbar-link {
         color: #fff;
-        text-align: center;
-        padding: 14px 20px;
         text-decoration: none;
         transition: background-color 0.3s;
+        padding: 10px; /* Adjust padding as needed */
     }
-    .navbar a:hover {
+    .navbar a.navbar-link:hover {
         background-color: #555; /* Darker gray on hover */
-        color: white;
     }
     .order-now-btn {
         background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
@@ -41,9 +40,7 @@
         padding: 10px 20px;
         text-align: center;
         text-decoration: none;
-        display: inline-block;
         font-size: 16px;
-
     }
     .order-now-btn:hover {
         background-color: #0056b3; /* Darker blue on hover */
@@ -105,8 +102,13 @@
 </header>
 
 <div class="navbar">
-    <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
+    <a href="#" class="navbar-link">Home</a>
+    <a href="#" class="navbar-link">About Us</a>
+    <a href="#" class="navbar-link">Menu</a>
+    <a href="#" class="navbar-link">Reviews</a>
     <button onclick="viewCart()">View Cart</button>
+    <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
+
 </div>
 
 <div class="container" id="menuContainer">
@@ -198,7 +200,7 @@
             <button onclick="increaseQuantity('item8')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item9">
         <h2>Item 9</h2>
         <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 9 Image">
@@ -210,7 +212,7 @@
             <button onclick="increaseQuantity('item9')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item10">
         <h2>Drink 1</h2>
         <img src="https://www.brokenwood.com.au/assets/client/Image/BLOG/12.jpg" alt="Drink 1 Image">
@@ -222,7 +224,7 @@
             <button onclick="increaseQuantity('item10')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item11">
         <h2>Drink 2</h2>
         <img src="https://post.healthline.com/wp-content/uploads/2020/01/whiskey-glass-bourbon-liquor-1296x728-header-1296x728.jpg" alt="Drink 2 Image">
@@ -234,7 +236,7 @@
             <button onclick="increaseQuantity('item11')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item12">
         <h2>Drink 3</h2>
         <img src="https://post.healthline.com/wp-content/uploads/2019/10/beer-glass-bar-1296x728-header-1296x728.jpg" alt="Drink 3 Image">
@@ -246,7 +248,7 @@
             <button onclick="increaseQuantity('item12')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item13">
         <h2>Beverage 1</h2>
         <img src="https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumFantaOrange_Glass_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off" alt="Beverage 1 Image">
@@ -258,7 +260,7 @@
             <button onclick="increaseQuantity('item13')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item14">
         <h2>Beverage 2</h2>
         <img src="https://t3.ftcdn.net/jpg/07/43/56/00/360_F_743560056_bgprjqq82VB3BcDhdBo9WJ1gtVwTLYoF.jpg" alt="Beverage 2 Image">
@@ -270,7 +272,7 @@
             <button onclick="increaseQuantity('item14')">+</button>
         </div>
     </div>
-    
+
     <div class="menu-item" id="item15">
         <h2>Beverage 3</h2>
         <img src="https://s.yimg.com/ny/api/res/1.2/nluNmqd239Kb9ApYTZj.NQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1OQ--/https://media.zenfs.com/en/mashed_603/69f6cab7638949ef3c77c6fbe6a5b0d6" alt="Beverage 3 Image">
@@ -282,9 +284,7 @@
             <button onclick="increaseQuantity('item15')">+</button>
         </div>
     </div>
-    
 </div>
-
 
 <script>
     function increaseQuantity(itemId) {

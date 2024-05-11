@@ -52,7 +52,7 @@ urlpatterns = [
     path('orders69/<int:id>/', views.orders69, name='orders69'),
     path('payment-failed/', views.payment_failed, name='payment_failed'),
     path('esewa-callback/', views.esewa_callback_view, name='esewa_callback'),
-
+    path('order_now/', views.order_now, name='order_now'),
 
 
 

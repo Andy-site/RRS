@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added some images and a add to cat button to see&#10;the items which have been ordered">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/order_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/order_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -463,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714905983087</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Added some images and a add to cat button to see&#10;the items which have been ordered">
+      <option name="closed" value="true" />
+      <created>1715269220389</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1715269220389</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +513,9 @@
     <MESSAGE value="Minor Changes" />
     <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
     <MESSAGE value="Fixed A major Bug created by one of the developers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed A major Bug created by one of the developers" />
+    <MESSAGE value="Added button in menu page to redirect to order now page and some change in button at order now page" />
+    <MESSAGE value="Added some images and a add to cat button to see&#10;the items which have been ordered" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some images and a add to cat button to see&#10;the items which have been ordered" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
