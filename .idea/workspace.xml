@@ -132,14 +132,6 @@
       <option name="presentableId" value="Default" />
       <updated>1710944822890</updated>
     </task>
-    <task id="LOCAL-00001" summary="dfgdg">
-      <option name="closed" value="true" />
-      <created>1710955906052</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1710955906052</updated>
-    </task>
     <task id="LOCAL-00002" summary="dfgdg">
       <option name="closed" value="true" />
       <created>1710956360652</created>
@@ -524,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715435264917</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fixing minor bugs in Reservation">
+      <option name="closed" value="true" />
+      <created>1715482867478</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1715482867481</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
