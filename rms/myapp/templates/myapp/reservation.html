@@ -110,7 +110,7 @@
     <div id="table-container">
         <!-- Table data will be inserted here -->
     </div>
-<!--for confirming to book a table providing all details-->
+
     <div>
         <h2>Confirm Your Order</h2>
         <form id="order-form" action="/book/"  class="form" method='post'>
@@ -173,6 +173,32 @@
                     tableContainer.appendChild(tableElement);
                 });
             });
+    });
+
+    document.getElementById('order-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the form data
+        var formData = new FormData(this);
+
+        // Send the form data to the server using fetch
+        fetch('/book/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // If the response is successful, display a confirmation message
+                alert('Order confirmed successfully!');
+            } else {
+                // If there's an error, display an error message
+                alert('There was an error confirming the order. Please try again later.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again later.');
+        });
     });
 </script>
 </body>
