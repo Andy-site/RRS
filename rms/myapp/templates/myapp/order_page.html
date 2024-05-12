@@ -24,15 +24,27 @@
         background-color: #343a40; /* Dark gray navbar */
         padding: 10px 20px; /* Adjust padding as needed */
     }
-    .navbar a.navbar-link {
-        color: #fff;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        padding: 10px; /* Adjust padding as needed */
-    }
-    .navbar a.navbar-link:hover {
-        background-color: #555; /* Darker gray on hover */
-    }
+.navbar a.navbar-link,
+.navbar button {
+    background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar a.navbar-link:hover,
+.navbar button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-radius: 20px;
+    background-size: 100% auto;
+    font-family: inherit;
+    transition: none; /* Remove transition */
+}
+
+
     .order-now-btn {
         background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
         border: none;
@@ -102,10 +114,7 @@
 </header>
 
 <div class="navbar">
-    <a href="#" class="navbar-link">Home</a>
-    <a href="#" class="navbar-link">About Us</a>
-    <a href="#" class="navbar-link">Menu</a>
-    <a href="#" class="navbar-link">Reviews</a>
+    <a href="javascript:history.go(-1);" class="back-arrow">&#8592;</a>
     <button onclick="viewCart()">View Cart</button>
     <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
 
