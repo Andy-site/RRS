@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Added some images and a add to cat button to see&#10;the items which have been ordered">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="minor change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/order_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/order_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +32,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Customer_dynamic_menu" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -475,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715269220389</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="minor change">
+      <option name="closed" value="true" />
+      <created>1715405031737</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1715405031737</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dfgdg" />
     <MESSAGE value="first push" />
     <MESSAGE value="second push" />
     <MESSAGE value="third push" />
@@ -515,7 +519,8 @@
     <MESSAGE value="Fixed A major Bug created by one of the developers" />
     <MESSAGE value="Added button in menu page to redirect to order now page and some change in button at order now page" />
     <MESSAGE value="Added some images and a add to cat button to see&#10;the items which have been ordered" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some images and a add to cat button to see&#10;the items which have been ordered" />
+    <MESSAGE value="minor change" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
