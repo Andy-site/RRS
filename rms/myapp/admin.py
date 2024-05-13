@@ -67,3 +67,6 @@ class Order123Admin(admin.ModelAdmin):
 admin.site.register(Order123, Order123Admin)
 
 
+# class Menu(admin.ModelAdmin):
+#     list_display = ('items', 'pickup_time', 'pickup_location', 'order_number', 'created_at', 'updated_at',
+#                     'user_name', 'status', 'total', 'is_paid', 'paid_amount')
