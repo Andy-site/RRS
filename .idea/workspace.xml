@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="minor change">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_2024_11_37_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_2024_11_37_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_24__2_48_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_24__2_48_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2024_2_03_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2024_2_03_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_24__8_38_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_24__8_38_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_24__7_13_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_24__7_13_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2024_7_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2024_7_42_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,20 +40,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Toya01"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="a0161de5-70bb-44ec-8891-365c4a432ef4" />
-        <option name="url" value="https://github.com/PIYUSHPHUYAL/RRS.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -78,7 +62,7 @@
     &quot;Python.main.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Menu__dynamin&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;bug__fix__piyush&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
@@ -126,7 +110,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -483,23 +467,39 @@
       <option name="project" value="LOCAL" />
       <updated>1714905983087</updated>
     </task>
-    <task id="LOCAL-00044" summary="Added some images and a add to cat button to see&#10;the items which have been ordered">
+    <task id="LOCAL-00044" summary="Minor Changes in functionality">
       <option name="closed" value="true" />
-      <created>1715269220389</created>
+      <created>1715514907463</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1715269220389</updated>
+      <updated>1715514907463</updated>
     </task>
-    <task id="LOCAL-00045" summary="minor change">
+    <task id="LOCAL-00045" summary="Pre-Booking food and reserve table from reservation">
       <option name="closed" value="true" />
-      <created>1715405031737</created>
+      <created>1715558858986</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1715405031737</updated>
+      <updated>1715558858986</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Some Functionality changes in Pre-Booking for food in reservation">
+      <option name="closed" value="true" />
+      <created>1715560261306</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1715560261306</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Fixed minor bug">
+      <option name="closed" value="true" />
+      <created>1715560737289</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1715560737289</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -514,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first push" />
     <MESSAGE value="second push" />
     <MESSAGE value="third push" />
     <MESSAGE value="foutrh  push @Piyush_Dev" />
@@ -529,17 +528,18 @@
     <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
     <MESSAGE value="Fixed minor bugs related to admin_dash" />
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
-    <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!" />
     <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
     <MESSAGE value="Major changes like complete wipe out of" />
     <MESSAGE value="Minor Changes" />
     <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
     <MESSAGE value="Fixed A major Bug created by one of the developers" />
-    <MESSAGE value="Added button in menu page to redirect to order now page and some change in button at order now page" />
-    <MESSAGE value="Added some images and a add to cat button to see&#10;the items which have been ordered" />
     <MESSAGE value="minor change" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor change" />
+    <MESSAGE value="Minor Changes in functionality" />
+    <MESSAGE value="Pre-Booking food and reserve table from reservation" />
+    <MESSAGE value="Some Functionality changes in Pre-Booking for food in reservation" />
+    <MESSAGE value="Fixed minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -403,6 +403,15 @@ placeOrderButton.addEventListener('click', () => {
     pickupLocation = document.getElementById('pickup-location').value;
     total = calculateTotalPrice();
 
+    // Check if the selected pickup time is in the past
+    const selectedPickupTime = new Date(pickupTime);
+    const currentTime = new Date();
+
+    if (selectedPickupTime < currentTime) {
+        alert('Sorry! Takeaway is not meant in past time!');
+        return; // Exit the function if the selected time is in the past
+    }
+
     if (order.length > 0 && pickupTime && pickupLocation) {
         const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
         paymentModal.show();
