@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Minor Changes in functionality">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2024_8_40_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_3_2024_8_40_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Pre-Booking food and reserve table from reservation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -475,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715514907463</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Pre-Booking food and reserve table from reservation">
+      <option name="closed" value="true" />
+      <created>1715558858986</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1715558858986</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dfgdg" />
     <MESSAGE value="first push" />
     <MESSAGE value="second push" />
     <MESSAGE value="third push" />
@@ -515,7 +519,8 @@
     <MESSAGE value="Fixed A major Bug created by one of the developers" />
     <MESSAGE value="minor change" />
     <MESSAGE value="Minor Changes in functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes in functionality" />
+    <MESSAGE value="Pre-Booking food and reserve table from reservation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pre-Booking food and reserve table from reservation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
