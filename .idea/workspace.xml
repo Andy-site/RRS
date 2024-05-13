@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="A major update regarding the payment settlement of unpaid order numbers and little bit of minor changes as instructed!">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_24__2_48_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_11_24__2_48_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_24__8_38_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_24__8_38_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_24__7_13_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_13_24__7_13_AM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +26,13 @@
   </component>
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="bug_fix_piyush" />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="OPTIONS">
+      <set>
+        <option value="SQUASH" />
+      </set>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
