@@ -1,5 +1,3 @@
-<!-- admin_order.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +15,9 @@
     <!-- Button to go back to the previous page -->
     <button onclick="goBack()">Go Back</button>
 
+    <!-- Button to display error message -->
+    <button id="errorButton" style="display: none;">Failed to fetch orders. Please try again later.</button>
+
     <script>
         function fetchOrders() {
             // Make an AJAX request to fetch orders from the server
@@ -29,7 +30,8 @@
                     // Display the fetched orders
                     displayOrders(orders);
                 } else {
-                    console.error('Failed to fetch orders');
+                    // If fetching fails, show the error button
+                    document.getElementById('errorButton').style.display = 'block';
                 }
             };
             xhr.send();
