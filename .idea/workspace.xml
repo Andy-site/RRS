@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Some Functionality changes in Pre-Booking for food in reservation" />
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -485,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715560261306</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fixed minor bug">
+      <option name="closed" value="true" />
+      <created>1715560737289</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1715560737289</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -514,7 +524,6 @@
     <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
     <MESSAGE value="Fixed minor bugs related to admin_dash" />
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
-    <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!" />
     <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
     <MESSAGE value="Major changes like complete wipe out of" />
@@ -525,7 +534,8 @@
     <MESSAGE value="Minor Changes in functionality" />
     <MESSAGE value="Pre-Booking food and reserve table from reservation" />
     <MESSAGE value="Some Functionality changes in Pre-Booking for food in reservation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some Functionality changes in Pre-Booking for food in reservation" />
+    <MESSAGE value="Fixed minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
