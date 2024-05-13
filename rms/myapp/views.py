@@ -689,3 +689,35 @@ def esewa_callback(request):
 
 def order_now(request):
     return render(request, 'myapp/order_page.html', {})
+
+from django.shortcuts import render, redirect
+from .models import Order
+
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def my_view(request):
+    return HttpResponse("Hello world")
+def place_order(request):
+    if request.method == 'POST':
+        orders = request.POST.getlist('orders[]')
+        for order in orders:
+            item_id, quantity = order.split(',')
+            Order.objects.create(item_id=item_id, quantity=int(quantity))
+        return redirect('customer_menu')  # Redirect to menu page after placing order
+    return redirect('customer_menu')  # If not a POST request, redirect to menu page
+
+def view_orders(request):
+    orders = Order.objects.all()
+    return render(request, 'admin_menu.html', {'orders': orders})
+
+def handle_order_request(request):
+    if request.method == 'POST':
+        # Process the order data here
+        order_data = request.POST.get('orders')  # Assuming orders are sent as form data
+        # Save the order data to the database or perform any necessary actions
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
