@@ -121,7 +121,7 @@
         <h2>Table Availability</h2>
         <form id="table-form">
             <label for="date">Date:</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" min="" >
             <label for="size">Table Size:</label>
             <select name="size" id="size">
                 <option value="1">Table of 1</option>
@@ -184,6 +184,8 @@
 </div>
 
 <script>
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
     document.getElementById('table-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -218,10 +220,6 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
-                            if (confirm('Do you really wish to book this table?')) {
-                                // Code to book the table goes here
-                                alert('Table booked successfully!');
-                            }
                         });
                     }
 
