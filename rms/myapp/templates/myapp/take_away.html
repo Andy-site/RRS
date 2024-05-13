@@ -222,23 +222,27 @@
         </div>
     </div>
 
-    <!-- Order History Modal -->
-    <div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="orderHistoryModalLabel">Order History</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="order-history"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+<!-- Order History Modal -->
+<div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderHistoryModalLabel">Order History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Note about cancellation policy -->
+                <p><strong>Note:</strong> Cancellation is valid within 30 minutes only.</p>
+                <!-- Order history container -->
+                <div id="order-history"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Payment Modal -->
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -323,21 +327,27 @@ function renderMenuItems() {
 }
 
 
-   function addToOrder(item) {
-        // Check if the item already exists in the order
-        const existingItem = order.find(orderItem => orderItem.id === item.id);
+function addToOrder(item) {
+    // Check if the total quantity of this item in the order is less than 5
+    const existingItem = order.find(orderItem => orderItem.id === item.id);
 
-        if (existingItem) {
-            // If item exists, increase its quantity
+    if (existingItem) {
+        // If the item already exists in the order, check if its quantity is less than 5
+        if (existingItem.quantity < 5) {
             existingItem.quantity++;
         } else {
-            // If item doesn't exist, add it to the order with quantity 1
-            item.quantity = 1;
-            order.push(item);
+            alert("You can only order up to 5 of this item.");
         }
-
-        renderOrderSummary();
+    } else {
+        // If the item doesn't exist in the order, add it with quantity 1
+        item.quantity = 1;
+        order.push(item);
     }
+
+    renderOrderSummary();
+}
+
+
 
 function removeFromOrder(index) {
     const item = order[index];
@@ -367,7 +377,7 @@ function renderOrderSummary() {
         orderItem.appendChild(itemName);
 
         const itemPrice = document.createElement('span');
-        itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`; // Calculating total price for the item
+        itemPrice.textContent = `Rs ${(item.price * item.quantity).toFixed(2)}`; // Calculating total price for the item
         orderItem.appendChild(itemPrice);
 
         const removeButton = document.createElement('button');
@@ -402,6 +412,7 @@ placeOrderButton.addEventListener('click', () => {
 });
 
 const confirmPaymentButton = document.getElementById('confirmPaymentButton');
+
 
 confirmPaymentButton.addEventListener('click', () => {
     // Get the current user's username
@@ -469,6 +480,7 @@ confirmPaymentButton.addEventListener('click', () => {
         });
     });
 
+
 function renderOrderHistory(orderHistory) {
     orderHistoryContainer.innerHTML = '';
 
@@ -494,6 +506,7 @@ function renderOrderHistory(orderHistory) {
             currentOrderNumber = order.order_number;
         }
 
+
         const orderElement = document.createElement('div');
         orderElement.classList.add('order-history-item');
 
@@ -515,6 +528,18 @@ function renderOrderHistory(orderHistory) {
         pickupLocation.textContent = `Pickup Location: ${order.pickup_location}`;
         orderElement.appendChild(pickupLocation);
 
+        const isPaidStatus = document.createElement('p');
+        isPaidStatus.textContent = `Paid: ${order.is_paid ? 'Yes' : 'No'}`;
+        orderElement.appendChild(isPaidStatus);
+
+                // Add the "Settle Payment" button if the order is not paid
+        if (!order.is_paid) {
+            const settlePaymentButton = document.createElement('button');
+            settlePaymentButton.textContent = 'Settle Payment';
+            settlePaymentButton.classList.add('btn', 'btn-primary');
+            settlePaymentButton.addEventListener('click', () => settlePayment(order.order_number));
+            orderElement.appendChild(settlePaymentButton);
+        }
 
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancel Order';
@@ -523,8 +548,12 @@ function renderOrderHistory(orderHistory) {
         orderElement.appendChild(cancelButton);
 
         orderHistoryContainer.appendChild(orderElement);
+
+
+
     });
 }
+
 
 function cancelOrder(orderNumber) {
     fetch(`/cancel-order/${orderNumber}/`, {
@@ -567,7 +596,25 @@ function cancelOrder(orderNumber) {
 });
 
 
-
+function settlePayment(orderNumber) {
+    fetch(`/get-order-details/${orderNumber}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        // Redirect to the orders69 view with the orderNumber as the id parameter
+        const redirectUrl = "{% url 'orders69' id=999 %}".replace('999', orderNumber);
+        window.location.href = redirectUrl;
+    })
+    .catch((error) => {
+        console.error('Error fetching order details:', error);
+        alert('An error occurred while fetching the order details.');
+    });
+}
 
 
 </script>

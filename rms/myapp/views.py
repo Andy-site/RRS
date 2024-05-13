@@ -573,7 +573,7 @@ def get_order_history(request):
             user_name=request.user.username,
             created_at__date=today
         ).order_by('-created_at').values(
-            'order_number', 'items', 'pickup_location', 'pickup_time'
+            'order_number', 'items', 'pickup_location', 'pickup_time', 'is_paid' # Include is_paid field
         )
         order_history = []
         for order in orders:
@@ -583,6 +583,7 @@ def get_order_history(request):
                 'items': order['items'],
                 'pickup_location': order['pickup_location'],
                 'pickup_time': pickup_time,
+                'is_paid': order['is_paid'],
             }
             order_history.append(order_data)
         return JsonResponse({'order_history': order_history})
@@ -689,3 +690,14 @@ def esewa_callback(request):
 
 def order_now(request):
     return render(request, 'myapp/order_page.html', {})
+
+
+def get_order_details(request, order_number):
+    order = Order123.objects.get(order_number=order_number)
+    order_details = {
+        'items': order.items,
+        'pickup_time': order.pickup_time.isoformat(),
+        'pickup_location': order.pickup_location,
+        'total': float(order.total),
+    }
+    return JsonResponse(order_details)
