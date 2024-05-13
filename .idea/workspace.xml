@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Pre-Booking food and reserve table from reservation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Some Functionality changes in Pre-Booking for food in reservation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -480,7 +477,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715558858986</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Some Functionality changes in Pre-Booking for food in reservation">
+      <option name="closed" value="true" />
+      <created>1715560261306</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1715560261306</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -495,7 +500,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first push" />
     <MESSAGE value="second push" />
     <MESSAGE value="third push" />
     <MESSAGE value="foutrh  push @Piyush_Dev" />
@@ -520,7 +524,8 @@
     <MESSAGE value="minor change" />
     <MESSAGE value="Minor Changes in functionality" />
     <MESSAGE value="Pre-Booking food and reserve table from reservation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pre-Booking food and reserve table from reservation" />
+    <MESSAGE value="Some Functionality changes in Pre-Booking for food in reservation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some Functionality changes in Pre-Booking for food in reservation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
