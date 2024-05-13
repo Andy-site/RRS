@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Minor Changes in Reservation">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/take_away.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/final_touch_piyush" />
+    <option name="BRANCH" value="origin/Esewa_API_Integration" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -32,23 +31,11 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;adampokharel&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/PIYUSHPHUYAL/RRS.git&quot;,
-    &quot;accountId&quot;: &quot;9ed1f553-169b-4789-84f6-5a71ec9c6de2&quot;
-  }
-}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -468,39 +455,47 @@
       <option name="project" value="LOCAL" />
       <updated>1714656065568</updated>
     </task>
-    <task id="LOCAL-00043" summary="Finalized giving touches to Take-away section">
+    <task id="LOCAL-00043" summary="Fixed A major Bug created by one of the developers">
       <option name="closed" value="true" />
-      <created>1714808258308</created>
+      <created>1714905983087</created>
       <option name="number" value="00043" />
       <option name="presentableId" value="LOCAL-00043" />
       <option name="project" value="LOCAL" />
-      <updated>1714808258308</updated>
+      <updated>1714905983087</updated>
     </task>
-    <task id="LOCAL-00044" summary="Finalized giving touches to Take-away section">
+    <task id="LOCAL-00044" summary="Minor Changes in functionality">
       <option name="closed" value="true" />
-      <created>1714808284163</created>
+      <created>1715514907463</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1714808284163</updated>
+      <updated>1715514907463</updated>
     </task>
-    <task id="LOCAL-00045" summary="Minor Changes in Reservation">
+    <task id="LOCAL-00045" summary="Pre-Booking food and reserve table from reservation">
       <option name="closed" value="true" />
-      <created>1715406836777</created>
+      <created>1715558858986</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1715406836777</updated>
+      <updated>1715558858986</updated>
     </task>
-    <task id="LOCAL-00046" summary="Minor Changes in Reservation">
+    <task id="LOCAL-00046" summary="Some Functionality changes in Pre-Booking for food in reservation">
       <option name="closed" value="true" />
-      <created>1715406893547</created>
+      <created>1715560261306</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1715406893547</updated>
+      <updated>1715560261306</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fixed minor bug">
+      <option name="closed" value="true" />
+      <created>1715560737289</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1715560737289</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -515,8 +510,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dfgdg" />
-    <MESSAGE value="first push" />
     <MESSAGE value="second push" />
     <MESSAGE value="third push" />
     <MESSAGE value="foutrh  push @Piyush_Dev" />
@@ -531,15 +524,18 @@
     <MESSAGE value="Changes in some functionality and adjusted animation on landing page with HTML JS and CSS" />
     <MESSAGE value="Fixed minor bugs related to admin_dash" />
     <MESSAGE value="Addecd missing syles on admin_dashboard" />
-    <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="Major changes like complete wipe out of landing page and reconstructing with features like mail confirmation and apologies along with encryption added to login/signup!" />
     <MESSAGE value="Redesigned Admin Panel with a Classy look and a more organized elements" />
     <MESSAGE value="Major changes like complete wipe out of" />
     <MESSAGE value="Minor Changes" />
     <MESSAGE value="Used E-Sewa API for seamless transaction in take-away section" />
-    <MESSAGE value="Finalized giving touches to Take-away section" />
-    <MESSAGE value="Minor Changes in Reservation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor Changes in Reservation" />
+    <MESSAGE value="Fixed A major Bug created by one of the developers" />
+    <MESSAGE value="minor change" />
+    <MESSAGE value="Minor Changes in functionality" />
+    <MESSAGE value="Pre-Booking food and reserve table from reservation" />
+    <MESSAGE value="Some Functionality changes in Pre-Booking for food in reservation" />
+    <MESSAGE value="Fixed minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
