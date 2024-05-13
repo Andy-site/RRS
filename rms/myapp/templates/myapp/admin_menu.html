@@ -1,12 +1,55 @@
-{% extends 'myapp/admin_page.html' %}
+<!-- admin_order.html -->
 
-{% block title %}Menu{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Sales</title>
+</head>
+<body>
+    <h1>Daily Sales</h1>
+    <div id="orderList"></div> <!-- Div to display the fetched orders -->
 
-{% block css %}
+    <!-- Button to fetch and display orders -->
+    <button onclick="fetchOrders()">Show Orders</button>
 
-{% endblock %}
+    <!-- Button to go back to the previous page -->
+    <button onclick="goBack()">Go Back</button>
 
-{% block content %}
+    <script>
+        function fetchOrders() {
+            // Make an AJAX request to fetch orders from the server
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/admin/myapp/order/', true); // Update the URL according to your Django URL configuration
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Parse the JSON response
+                    var orders = JSON.parse(xhr.responseText);
+                    // Display the fetched orders
+                    displayOrders(orders);
+                } else {
+                    console.error('Failed to fetch orders');
+                }
+            };
+            xhr.send();
+        }
 
-{% endblock %}
+        function displayOrders(orders) {
+            var orderListDiv = document.getElementById('orderList');
+            orderListDiv.innerHTML = ''; // Clear previous content
+            var ul = document.createElement('ul');
+            orders.forEach(function (order) {
+                var li = document.createElement('li');
+                li.textContent = 'Order ID: ' + order.id + ', Date: ' + order.date_ordered + ', Item: ' + order.item + ', Quantity: ' + order.quantity;
+                ul.appendChild(li);
+            });
+            orderListDiv.appendChild(ul);
+        }
 
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
