@@ -9,20 +9,30 @@
             background-image: url("/static/images/image3.png");
             background-size: cover;
             background-position: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            height: 130vh;
         }
         .container {
-            width: 600px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* added background color with opacity */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Set position to relative */
+    top: 100px;
+    left: 510px;
+}
+.header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.1rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Set position to absolute */
+    left: 50%; /* Set left to 50% */
+    transform: translateX(-50%); /* Translate horizontally by -50% of its own width */
+}
         label, input, select, textarea {
             display: block;
             margin-bottom: 13px;
@@ -68,12 +78,11 @@
             cursor: pointer;
         }
         .reserved {
-            background-color: #FF6347; /* Tomato */
+            background-color: #FF6347;
         }
         .unreserved {
-            background-color: #32CD32; /* LimeGreen */
+            background-color: #32CD32;
         }
-
         /* Styling for the message textarea */
         #order-message {
             margin-top: 10px;
@@ -89,7 +98,25 @@
     </style>
 </head>
 <body>
+<a href="{% url 'index' %}">
+  <img
+    style="
+      position: absolute;
+      top: 12px;
+      left: 70px;
+      width: 119px;
+      height: 95px;
+      object-fit: cover;
+    "
+    alt=""
+    src="/static/images/logo.png"
+  />
+</a>
+    <div class="header">
+        <h1>Reservation</h1>
+    </div>
 <div class="container">
+    <!-- Table Availability Form -->
     <div>
         <h2>Table Availability</h2>
         <form id="table-form">
@@ -107,24 +134,46 @@
         </form>
     </div>
 
+    <!-- Table Container -->
     <div id="table-container">
         <!-- Table data will be inserted here -->
     </div>
 
+    <!-- Menu Section -->
+    <div>
+        <h2>Menu</h2>
+        <ul id="menu">
+            <li>Thakali Khana - Rs.500</li>
+            <li>MoMo - Rs.120</li>
+            <li>Pizza - Rs.450</li>
+        </ul>
+        <!-- Add to Message Box -->
+        <label for="order-item">Add Item to Order:</label>
+        <select id="order-item">
+            <option value="Thakali Khana">Thakali Khana</option>
+            <option value="MoMo">MoMo</option>
+            <option value="Pizza">Pizza</option>
+        </select>
+        <button id="add-item-btn">Add Item</button>
+    </div>
+
+    <!-- Confirm Your Order Form -->
     <div>
         <h2>Confirm Your Order</h2>
-        <form id="order-form" action="/book/"  class="form" method='post'>
+        <form id="order-form" action="/book/" class="form" method='post'>
             {% csrf_token %}
-            <input type="hidden" id="order-date" name="order-date"> <!-- Hidden input for the date -->
+            <input type="hidden" id="order-date" name="order-date">
             <label for="order-time">Time:</label>
             <input type="time" id="order-time" name="order-time">
             <label id="l1" for="number-of-people">Number of People:</label>
-            <input class="l2" type="number" id="number-of-people" name="number-of-people" min="1" max="8" value="1"> <!-- Set default value to 1 -->
-            <label for="order-message">Message:</label>
+            <input class="l2" type="number" id="number-of-people" name="number-of-people" min="1" max="8" value="1">
+            <h2>Pre-Order Items</h2>
+            <label for="order-message"></label>
             <textarea id="order-message" name="order-message" rows="4"></textarea>
             <button class="b2" type="submit">Confirm Order</button>
         </form>
     </div>
+
     <!-- Back to Home button -->
     <a href="/" class="back-btn">Back to Home</a>
 </div>
@@ -191,7 +240,6 @@
             if (response.ok) {
                 // If the response is successful, display a confirmation message
                 alert('Order confirmed successfully!');
-                window.location.href = "/";
             } else {
                 // If there's an error, display an error message
                 alert('There was an error confirming the order. Please try again later.');
@@ -202,6 +250,31 @@
             alert('An unexpected error occurred. Please try again later.');
         });
     });
+
+    document.getElementById('add-item-btn').addEventListener('click', function(event) {
+        // Get selected item and its price
+        var selectedItem = document.getElementById('order-item').value;
+        var selectedPrice = getPrice(selectedItem);
+
+        // Append item and price to message box
+        var messageBox = document.getElementById('order-message');
+        messageBox.value += `${selectedItem}\n`;
+    });
+
+    function getPrice(item) {
+        // Function to get price based on item
+        switch (item) {
+            case 'Thakali Khana':
+                return 500;
+            case 'MoMo':
+                return 120;
+            case 'Pizza':
+                return 450;
+            // Add cases for more items if needed
+            default:
+                return 0; // Default price
+        }
+    }
 </script>
 </body>
 </html>
