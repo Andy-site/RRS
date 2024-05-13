@@ -536,7 +536,7 @@ function cancelOrder(orderNumber) {
     })
     .then((response) => {
         if (response.ok) {
-            alert('Order canceled successfully!');
+            alert('Order cancelled successfully!');
             // Fetch the updated order history
             fetch('{% url "get_order_history" %}', {
                 method: 'GET',
