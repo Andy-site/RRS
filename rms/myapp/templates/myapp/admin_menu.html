@@ -1,57 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Sales</title>
-</head>
+{% extends 'myapp/admin_page.html' %}
 <body>
-    <h1>Daily Sales</h1>
-    <div id="orderList"></div> <!-- Div to display the fetched orders -->
+<div class="container" id="menuContainer">
+    <div class="menu-item" id="item1">
+        <h2>Item 1</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 1 Image">
+        <p>Pizza</p>
+        <p>Price: Rs 150</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item1')">-</button>
+            <input type="text" id="quantity-item1" value="0" readonly>
+            <button onclick="increaseQuantity('item1')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item2">
+        <h2>Item 2</h2>
+        <img src="https://www.archanaskitchen.com/images/archanaskitchen/1-Author/shaikh.khalid7-gmail.com/Chicken_Momos_Recipe_Delicious_Steamed_Chicken_Dumplings.jpg" alt="Item 2 Image">
+        <p>Momo</p>
+        <p>Price: Rs 250</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item2')">-</button>
+            <input type="text" id="quantity-item2" value="0" readonly>
+            <button onclick="increaseQuantity('item2')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item3">
+        <h2>Item 3</h2>
+        <img src="https://t4.ftcdn.net/jpg/04/71/38/61/360_F_471386161_7zbsd1wU7G52UbZwBCk9r9OjltHyPHWz.jpg" alt="Item 3 Image">
+        <p>Chowmein</p>
+        <p>Price: Rs 270</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item3')">-</button>
+            <input type="text" id="quantity-item3" value="0" readonly>
+            <button onclick="increaseQuantity('item3')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item4">
+        <h2>Item 4</h2>
+        <img src="https://cdn.jwplayer.com/v2/media/kaaLtKhn/poster.jpg?width=720" alt="Item 4 Image">
+        <p>Burge</p>
+        <p>Price: Rs 250</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item4')">-</button>
+            <input type="text" id="quantity-item4" value="0" readonly>
+            <button onclick="increaseQuantity('item4')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item5">
+        <h2>Item 5</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Crispy_Chicken_Strips_-_FotoosVanRobin.jpg/640px-Crispy_Chicken_Strips_-_FotoosVanRobin.jpg" alt="Item 5 Image">
+        <p>chicken fingers</p>
+        <p>Price: Rs 250</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item5')">-</button>
+            <input type="text" id="quantity-item5" value="0" readonly>
+            <button onclick="increaseQuantity('item5')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item6">
+        <h2>Item 6</h2>
+        <img src="https://i.ytimg.com/vi/pMCS1TR4Wyo/maxresdefault.jpg" alt="Item 6 Image">
+        <p>chicken chilli</p>
+        <p>Price: Rs 1300</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item6')">-</button>
+            <input type="text" id="quantity-item6" value="0" readonly>
+            <button onclick="increaseQuantity('item6')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item7">
+        <h2>Item 7</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 7 Image">
+        <p>Description of Item 7.</p>
+        <p>Price: Rs 9</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item7')">-</button>
+            <input type="text" id="quantity-item7" value="0" readonly>
+            <button onclick="increaseQuantity('item7')">+</button>
+        </div>
+    </div>
+    <div class="menu-item" id="item8">
+        <h2>Item 8</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 8 Image">
+        <p>Description of Item 8.</p>
+        <p>Price: Rs 30</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item8')">-</button>
+            <input type="text" id="quantity-item8" value="0" readonly>
+            <button onclick="increaseQuantity('item8')">+</button>
+        </div>
+    </div>
 
-    <!-- Button to fetch and display orders -->
-    <button onclick="fetchOrders()">Show Orders</button>
+    <div class="menu-item" id="item9">
+        <h2>Item 9</h2>
+        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Item 9 Image">
+        <p>Description of Item 9.</p>
+        <p>Price: Rs 300</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item9')">-</button>
+            <input type="text" id="quantity-item9" value="0" readonly>
+            <button onclick="increaseQuantity('item9')">+</button>
+        </div>
+    </div>
 
-    <!-- Button to go back to the previous page -->
-    <button onclick="goBack()">Go Back</button>
+    <div class="menu-item" id="item10">
+        <h2>Drink 1</h2>
+        <img src="https://www.brokenwood.com.au/assets/client/Image/BLOG/12.jpg" alt="Drink 1 Image">
+        <p>Wine</p>
+        <p>Price: Rs 310</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item10')">-</button>
+            <input type="text" id="quantity-item10" value="0" readonly>
+            <button onclick="increaseQuantity('item10')">+</button>
+        </div>
+    </div>
 
-    <!-- Button to display error message -->
-    <button id="errorButton" style="display: none;">Failed to fetch orders. Please try again later.</button>
+    <div class="menu-item" id="item11">
+        <h2>Drink 2</h2>
+        <img src="https://post.healthline.com/wp-content/uploads/2020/01/whiskey-glass-bourbon-liquor-1296x728-header-1296x728.jpg" alt="Drink 2 Image">
+        <p>Whiskey</p>
+        <p>Price: Rs 530</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item11')">-</button>
+            <input type="text" id="quantity-item11" value="0" readonly>
+            <button onclick="increaseQuantity('item11')">+</button>
+        </div>
+    </div>
 
-    <script>
-        function fetchOrders() {
-            // Make an AJAX request to fetch orders from the server
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/admin/myapp/order/', true); // Update the URL according to your Django URL configuration
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    // Parse the JSON response
-                    var orders = JSON.parse(xhr.responseText);
-                    // Display the fetched orders
-                    displayOrders(orders);
-                } else {
-                    // If fetching fails, show the error button
-                    document.getElementById('errorButton').style.display = 'block';
-                }
-            };
-            xhr.send();
-        }
+    <div class="menu-item" id="item12">
+        <h2>Drink 3</h2>
+        <img src="https://post.healthline.com/wp-content/uploads/2019/10/beer-glass-bar-1296x728-header-1296x728.jpg" alt="Drink 3 Image">
+        <p>Beer</p>
+        <p>Price: Rs 630</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item12')">-</button>
+            <input type="text" id="quantity-item12" value="0" readonly>
+            <button onclick="increaseQuantity('item12')">+</button>
+        </div>
+    </div>
 
-        function displayOrders(orders) {
-            var orderListDiv = document.getElementById('orderList');
-            orderListDiv.innerHTML = ''; // Clear previous content
-            var ul = document.createElement('ul');
-            orders.forEach(function (order) {
-                var li = document.createElement('li');
-                li.textContent = 'Order ID: ' + order.id + ', Date: ' + order.date_ordered + ', Item: ' + order.item + ', Quantity: ' + order.quantity;
-                ul.appendChild(li);
-            });
-            orderListDiv.appendChild(ul);
-        }
+    <div class="menu-item" id="item13">
+        <h2>Beverage 1</h2>
+        <img src="https://s7d1.scene7.com/is/image/mcdonalds/Header_MediumFantaOrange_Glass_832x472:1-3-product-tile-desktop?wid=765&hei=472&dpr=off" alt="Beverage 1 Image">
+        <p>Fanta</p>
+        <p>Price: Rs 540</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item13')">-</button>
+            <input type="text" id="quantity-item13" value="0" readonly>
+            <button onclick="increaseQuantity('item13')">+</button>
+        </div>
+    </div>
 
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    <div class="menu-item" id="item14">
+        <h2>Beverage 2</h2>
+        <img src="https://t3.ftcdn.net/jpg/07/43/56/00/360_F_743560056_bgprjqq82VB3BcDhdBo9WJ1gtVwTLYoF.jpg" alt="Beverage 2 Image">
+        <p>Coke</p>
+        <p>Price: Rs 650</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item14')">-</button>
+            <input type="text" id="quantity-item14" value="0" readonly>
+            <button onclick="increaseQuantity('item14')">+</button>
+        </div>
+    </div>
+
+    <div class="menu-item" id="item15">
+        <h2>Beverage 3</h2>
+        <img src="https://s.yimg.com/ny/api/res/1.2/nluNmqd239Kb9ApYTZj.NQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1OQ--/https://media.zenfs.com/en/mashed_603/69f6cab7638949ef3c77c6fbe6a5b0d6" alt="Beverage 3 Image">
+        <p>Sprite</p>
+        <p>Price: Rs 780</p>
+        <div class="quantity-bar">
+            <button onclick="decreaseQuantity('item15')">-</button>
+            <input type="text" id="quantity-item15" value="0" readonly>
+            <button onclick="increaseQuantity('item15')">+</button>
+        </div>
+    </div>
+</div>
 </body>
-</html>

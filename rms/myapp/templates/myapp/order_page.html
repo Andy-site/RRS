@@ -321,17 +321,9 @@
             }
         });
         if (orders.length > 0) {
-        debugger;
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://127.0.0.1:8000/admin/myapp/order/", true);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Your order has been placed!");
-                    window.location.reload(); // Refresh the page
-                }
-            };
-            xhr.send(JSON.stringify(orders));
+            // Store orders in local storage
+            localStorage.setItem('orders', JSON.stringify(orders));
+            alert("Your order has been placed!");
         } else {
             alert("Please add items to your order.");
         }
@@ -359,39 +351,8 @@
         if (confirmed) {
             localStorage.removeItem('orders');
             alert("Your order has been canceled.");
-            window.location.reload(); // Refresh the page
         }
     }
- function placeOrder() {
-        var orders = [];
-        var quantityInputs = document.querySelectorAll('.quantity-bar input');
-        quantityInputs.forEach(function(input) {
-            var itemId = input.id.replace('quantity-', '');
-            var quantity = parseInt(input.value);
-            if (quantity > 0) {
-                orders.push({ itemId: itemId, quantity: quantity });
-            }
-        });
-        if (orders.length > 0) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/place_order/", true); // Send POST request to the correct URL
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        alert("Your order has been placed!");
-                        window.location.reload(); // Refresh the page
-                    } else {
-                        alert("Failed to place order. Please try again later.");
-                    }
-                }
-            };
-            xhr.send(JSON.stringify(orders));
-        } else {
-            alert("Please add items to your order.");
-        }
-    }
-
 </script>
 
 
