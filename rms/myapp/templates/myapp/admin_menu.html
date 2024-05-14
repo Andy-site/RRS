@@ -253,12 +253,12 @@
     </div>
 
 
-<body>
+
 
 
 
 <div class="menu-item">
-    <h2>Add New Food Item</h2>
+   <h2>Add New Food Item</h2>
     <form id="addItemForm">
         <label for="itemName">Item Name:</label>
         <input type="text" id="itemName" name="itemName" required>
@@ -271,39 +271,64 @@
 
         <button type="submit">Add Item</button>
     </form>
-
 </div>
 
 <button id="addItemButton">Add Item</button>
 
-</body>
+   </body>
 
 <script>
-document.getElementById("addItemForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+    // Define an array to store the menu items as objects
+    var menuItems = [];
 
-    var itemName = document.getElementById("itemName").value;
-    var itemImageURL = document.getElementById("itemImageURL").value;
-    var itemPrice = document.getElementById("itemPrice").value;
+    // Function to add a new item to the menu
+    function addItemToMenu(itemName, itemImageURL, itemPrice) {
+        var newItem = {
+            name: itemName,
+            imageURL: itemImageURL,
+            price: itemPrice
+        };
+        menuItems.push(newItem);
+        renderMenu();
+    }
 
-    var newItem = document.createElement("div");
-    newItem.classList.add("menu-item");
-    newItem.innerHTML = `
-        <h2>${itemName}</h2>
-        <img src="${itemImageURL}" alt="${itemName} Image">
-        <p>${itemName}</p>
-        <p>Price: Rs ${itemPrice}</p>
-    `;
+    // Function to render the menu
+    function renderMenu() {
+        var menuContainer = document.getElementById("menuContainer");
+        menuContainer.innerHTML = ""; // Clear previous content
 
-    document.getElementById("menuContainer").appendChild(newItem);
-    document.getElementById("addItemForm").reset();
-});
+        // Loop through the menu items array and create HTML for each item
+        menuItems.forEach(function(item) {
+            var newItemHTML = `
+                <div class="menu-item">
+                    <h2>${item.name}</h2>
+                    <img src="${item.imageURL}" alt="${item.name} Image">
+                    <p>${item.name}</p>
+                    <p>Price: Rs ${item.price}</p>
+                </div>
+            `;
+            menuContainer.innerHTML += newItemHTML;
+        });
+    }
 
-document.getElementById("addItemButton").addEventListener("click", function() {
-    var formContainer = document.getElementById("addItemFormContainer");
-    formContainer.style.display = (formContainer.style.display === "none") ? "block" : "none";
-});
+    // Event listener for the form submission
+    document.getElementById("addItemForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var itemName = document.getElementById("itemName").value;
+        var itemImageURL = document.getElementById("itemImageURL").value;
+        var itemPrice = document.getElementById("itemPrice").value;
+
+        addItemToMenu(itemName, itemImageURL, itemPrice);
+
+        // Reset the form after adding the item
+        document.getElementById("addItemForm").reset();
+    });
+
+    // Initial rendering of the menu
+    renderMenu();
 </script>
+
 
 {% endblock %}
 
