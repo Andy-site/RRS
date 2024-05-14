@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list.">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed the take-away date issue where user were able to take away in past time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,13 +23,6 @@
   </component>
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="bug_fix_piyush" />
-  </component>
-  <component name="Git.Pull.Settings">
-    <option name="OPTIONS">
-      <set>
-        <option value="SQUASH" />
-      </set>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -125,6 +119,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710944822890</updated>
+    </task>
+    <task id="LOCAL-00001" summary="dfgdg">
+      <option name="closed" value="true" />
+      <created>1710955906052</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710955906052</updated>
+    </task>
+    <task id="LOCAL-00002" summary="dfgdg">
+      <option name="closed" value="true" />
+      <created>1710956360652</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710956360652</updated>
+    </task>
+    <task id="LOCAL-00003" summary="dfgdg">
+      <option name="closed" value="true" />
+      <created>1710957187631</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710957187631</updated>
+    </task>
+    <task id="LOCAL-00004" summary="dfgdg">
+      <option name="closed" value="true" />
+      <created>1711012208988</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711012208988</updated>
+    </task>
+    <task id="LOCAL-00005" summary="dfgdg">
+      <option name="closed" value="true" />
+      <created>1711012224290</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711012224290</updated>
     </task>
     <task id="LOCAL-00006" summary="dfgdg">
       <option name="closed" value="true" />
@@ -478,47 +512,7 @@
       <option name="project" value="LOCAL" />
       <updated>1715589599354</updated>
     </task>
-    <task id="LOCAL-00050" summary="Fixed the reservation date issue where user were able to reserve in past date and time.">
-      <option name="closed" value="true" />
-      <created>1715614722631</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1715614722631</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Fixed minor bug in the reservation date.">
-      <option name="closed" value="true" />
-      <created>1715615777623</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1715615777623</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Fixed pre-ordering item listing in reservation.">
-      <option name="closed" value="true" />
-      <created>1715654276377</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1715654276377</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Fixed pre-ordering item limiting item listing in reservation.">
-      <option name="closed" value="true" />
-      <created>1715654937120</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1715654937120</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list.">
-      <option name="closed" value="true" />
-      <created>1715662044035</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1715662044035</updated>
-    </task>
-    <option name="localTasksCounter" value="55" />
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,6 +527,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="third push" />
+    <MESSAGE value="foutrh  push @Piyush_Dev" />
+    <MESSAGE value="fifth push @Piyush_Dev" />
+    <MESSAGE value="Before creating three brances this was the master/main branch" />
+    <MESSAGE value="check" />
     <MESSAGE value="final in master" />
     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
     <MESSAGE value="Fixed Minor Bugs and Its Completed Now!" />
@@ -553,12 +552,7 @@
     <MESSAGE value="Some Functionality changes in Pre-Booking for food in reservation" />
     <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="A major update regarding the payment settlement of unpaid order numbers and little bit of minor changes as instructed!" />
-    <MESSAGE value="Fixed the reservation date issue where user were able to reserve in past date and time." />
-    <MESSAGE value="Fixed minor bug in the reservation date." />
-    <MESSAGE value="Fixed pre-ordering item listing in reservation." />
-    <MESSAGE value="Fixed pre-ordering item limiting item listing in reservation." />
-    <MESSAGE value="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list." />
+    <option name="LAST_COMMIT_MESSAGE" value="A major update regarding the payment settlement of unpaid order numbers and little bit of minor changes as instructed!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
