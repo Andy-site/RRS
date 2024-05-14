@@ -170,8 +170,10 @@
             <input type="hidden" id="order-date" name="order-date">
             <label for="order-time">Time:</label>
             <input type="time" id="order-time" name="order-time">
-            <label id="l1" for="number-of-people">Number of People:</label>
-            <input class="l2" type="number" id="number-of-people" name="number-of-people" min="1" max="8" value="1">
+            <label id="l1" for="number-of-people">Table Number:</label>
+            <select id="number-of-people" name="number-of-people">
+            <!-- Table numbers will be dynamically populated here -->
+        </select>
             <h2>Pre-Order Items</h2>
             <label for="order-message"></label>
             <textarea id="order-message" name="order-message" rows="4" readonly></textarea>
@@ -202,15 +204,25 @@
             .then(data => {
                 // Get the table container element
                 var tableContainer = document.getElementById('table-container');
+                var tableNumberSelect = document.getElementById('number-of-people');
 
                 // Clear previous table elements
                 tableContainer.innerHTML = '';
+                tableNumberSelect.innerHTML = '';
 
                 // Create and append table elements based on server response
                 data.forEach(function(tableData) {
                     var tableElement = document.createElement('div');
                     tableElement.textContent = `Table no.${tableData.number}`;
                     tableElement.className = 'table';
+
+                    // Add table number as an option in the select dropdown if not reserved
+                    if (!tableData.reserved) {
+                        var option = document.createElement('option');
+                        option.value = tableData.number;
+                        option.textContent = `Table no.${tableData.number}`;
+                        tableNumberSelect.appendChild(option);
+                    }
 
                     if (tableData.reserved) {
                         tableElement.classList.add('reserved');
@@ -269,20 +281,72 @@
     });
 
     document.getElementById('add-item-btn').addEventListener('click', function(event) {
-        // Get selected item
+        // Get selected item and its price
         var selectedItem = document.getElementById('order-item').value;
 
-        // Append item to message box
+        // Check if the item already exists in the message box
         var messageBox = document.getElementById('order-message');
-        messageBox.value += `${selectedItem}\n`;
+        var lines = messageBox.value.split('\n');
+        var updated = false;
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var parts = line.split(' x ');
+            var itemName = parts[0];
+            var quantity = parseInt(parts[1]);
+
+            if (itemName === selectedItem) {
+                // Check if the quantity is less than 10
+                if (quantity < 10) {
+                    // Update the quantity and price of the existing item
+                    quantity++;
+                    lines[i] = `${itemName} x ${quantity}`;
+                    updated = true;
+                    break;
+                } else {
+                    // Alert the user that the limit has been reached
+                    alert('You have reached the maximum limit for this item (10).');
+                    return; // Exit the function
+                }
+            }
+        }
+
+        // If the item doesn't exist, add it to the message box
+        if (!updated) {
+            messageBox.value += `${selectedItem} x 1 \n`;
+        } else {
+            // Update the message box with the modified lines
+            messageBox.value = lines.join('\n');
+        }
     });
 
     document.getElementById('remove-item-btn').addEventListener('click', function(event) {
-        // Remove last item from message box
+        // Get selected item and its price
+        var selectedItem = document.getElementById('order-item').value;
+
+        // Check if the item already exists in the message box
         var messageBox = document.getElementById('order-message');
         var lines = messageBox.value.split('\n');
-        lines.pop(); // Remove last item
-        messageBox.value = lines.join('\n');
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var parts = line.split(' x ');
+            var itemName = parts[0];
+            var quantity = parseInt(parts[1]);
+
+            if (itemName === selectedItem && quantity > 1) {
+                // Decrement the quantity and update the message box
+                quantity--;
+                lines[i] = `${itemName} x ${quantity}`;
+                messageBox.value = lines.join('\n');
+                return; // Exit the loop since the item is found and decremented
+            }
+        }
+
+        // If the item has only one quantity, remove it from the message box
+        messageBox.value = lines.filter(line => {
+            return line.indexOf(selectedItem) === -1;
+        }).join('\n');
     });
 </script>
 </body>
