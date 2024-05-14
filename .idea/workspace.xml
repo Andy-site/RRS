@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed the reservation date issue where user were able to reserve in past date and time.">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed minor bug in the reservation date.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
     </list>
@@ -126,14 +126,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710944822890</updated>
-    </task>
-    <task id="LOCAL-00002" summary="dfgdg">
-      <option name="closed" value="true" />
-      <created>1710956360652</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1710956360652</updated>
     </task>
     <task id="LOCAL-00003" summary="dfgdg">
       <option name="closed" value="true" />
@@ -519,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715614722631</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fixed minor bug in the reservation date.">
+      <option name="closed" value="true" />
+      <created>1715615777623</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1715615777623</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -534,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="foutrh  push @Piyush_Dev" />
     <MESSAGE value="fifth push @Piyush_Dev" />
     <MESSAGE value="Before creating three brances this was the master/main branch" />
     <MESSAGE value="check" />
@@ -559,7 +558,8 @@
     <MESSAGE value="Fixed minor bug" />
     <MESSAGE value="A major update regarding the payment settlement of unpaid order numbers and little bit of minor changes as instructed!" />
     <MESSAGE value="Fixed the reservation date issue where user were able to reserve in past date and time." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the reservation date issue where user were able to reserve in past date and time." />
+    <MESSAGE value="Fixed minor bug in the reservation date." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug in the reservation date." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
