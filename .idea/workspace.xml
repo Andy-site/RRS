@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed pre-ordering item listing in reservation.">
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed pre-ordering item limiting item listing in reservation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/admin_reservation_control.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/rms/myapp/templates/myapp/reservation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,14 +127,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710944822890</updated>
-    </task>
-    <task id="LOCAL-00004" summary="dfgdg">
-      <option name="closed" value="true" />
-      <created>1711012208988</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1711012208988</updated>
     </task>
     <task id="LOCAL-00005" summary="dfgdg">
       <option name="closed" value="true" />
@@ -519,7 +512,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715654276377</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Fixed pre-ordering item limiting item listing in reservation.">
+      <option name="closed" value="true" />
+      <created>1715654937120</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1715654937120</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -534,7 +535,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Before creating three brances this was the master/main branch" />
     <MESSAGE value="check" />
     <MESSAGE value="final in master" />
     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
@@ -559,7 +559,8 @@
     <MESSAGE value="Fixed the reservation date issue where user were able to reserve in past date and time." />
     <MESSAGE value="Fixed minor bug in the reservation date." />
     <MESSAGE value="Fixed pre-ordering item listing in reservation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed pre-ordering item listing in reservation." />
+    <MESSAGE value="Fixed pre-ordering item limiting item listing in reservation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed pre-ordering item limiting item listing in reservation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

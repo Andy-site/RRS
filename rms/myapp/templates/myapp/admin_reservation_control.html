@@ -9,11 +9,16 @@
         background-color: #f4f4f4;
         margin: 0;
         padding: 0;
+        overflow: hidden; /* Prevent body from scrolling */
     }
 
     .container {
-    position: absolute;
-left: 290px;
+        position: absolute;
+        left: 290px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto; /* Enable scrolling within the container */
     }
 
     .page-title {
@@ -111,7 +116,7 @@ left: 290px;
                     <th>Email</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Number of People</th>
+                    <th>Table Number</th>
                     <th>Pre-Order Food</th>
                     <th>Confirm</th>
                     <th>Actions</th>
@@ -290,7 +295,5 @@ function completeOrder(orderId) {
         }
     });
 }
-
-
     </script>
 {% endblock %}

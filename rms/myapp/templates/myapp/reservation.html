@@ -170,8 +170,10 @@
             <input type="hidden" id="order-date" name="order-date">
             <label for="order-time">Time:</label>
             <input type="time" id="order-time" name="order-time">
-            <label id="l1" for="number-of-people">Number of People:</label>
-            <input class="l2" type="number" id="number-of-people" name="number-of-people" min="1" max="8" value="1">
+            <label id="l1" for="number-of-people">Table Number:</label>
+            <select id="number-of-people" name="number-of-people">
+            <!-- Table numbers will be dynamically populated here -->
+        </select>
             <h2>Pre-Order Items</h2>
             <label for="order-message"></label>
             <textarea id="order-message" name="order-message" rows="4" readonly></textarea>
@@ -202,15 +204,25 @@
             .then(data => {
                 // Get the table container element
                 var tableContainer = document.getElementById('table-container');
+                var tableNumberSelect = document.getElementById('number-of-people');
 
                 // Clear previous table elements
                 tableContainer.innerHTML = '';
+                tableNumberSelect.innerHTML = '';
 
                 // Create and append table elements based on server response
                 data.forEach(function(tableData) {
                     var tableElement = document.createElement('div');
                     tableElement.textContent = `Table no.${tableData.number}`;
                     tableElement.className = 'table';
+
+                    // Add table number as an option in the select dropdown if not reserved
+                    if (!tableData.reserved) {
+                        var option = document.createElement('option');
+                        option.value = tableData.number;
+                        option.textContent = `Table no.${tableData.number}`;
+                        tableNumberSelect.appendChild(option);
+                    }
 
                     if (tableData.reserved) {
                         tableElement.classList.add('reserved');
