@@ -284,11 +284,18 @@
             var quantity = parseInt(parts[1]);
 
             if (itemName === selectedItem) {
-                // Update the quantity and price of the existing item
-                quantity++;
-                lines[i] = `${itemName} x ${quantity}`;
-                updated = true;
-                break;
+                // Check if the quantity is less than 10
+                if (quantity < 10) {
+                    // Update the quantity and price of the existing item
+                    quantity++;
+                    lines[i] = `${itemName} x ${quantity}`;
+                    updated = true;
+                    break;
+                } else {
+                    // Alert the user that the limit has been reached
+                    alert('You have reached the maximum limit for this item (10).');
+                    return; // Exit the function
+                }
             }
         }
 
