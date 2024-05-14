@@ -23,7 +23,7 @@ from django.utils.dateparse import parse_date
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
+from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123, Menu
 from .models import Table
 
 
