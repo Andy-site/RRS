@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c95a76d0-2a7c-496d-99aa-fa2d72b8e3f5" name="Changes" comment="some minor fixes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,18 +56,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/piyush/PycharmProjects/RMS/rms/myapp/static/images&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Testing",
+    "last_opened_file_path": "/home/piyush/PycharmProjects/RMS/rms/myapp/static/images",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rms/myapp/static/images" />
@@ -125,22 +123,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710944822890</updated>
-    </task>
-    <task id="LOCAL-00006" summary="dfgdg">
-      <option name="closed" value="true" />
-      <created>1711023143611</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1711023143611</updated>
-    </task>
-    <task id="LOCAL-00007" summary="first push">
-      <option name="closed" value="true" />
-      <created>1711095307016</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1711095307016</updated>
     </task>
     <task id="LOCAL-00008" summary="first push">
       <option name="closed" value="true" />
@@ -518,7 +500,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715662044035</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="some minor fixes">
+      <option name="closed" value="true" />
+      <created>1715832677287</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1715832677288</updated>
+    </task>
+    <task id="LOCAL-00056" summary="some minor fixes">
+      <option name="closed" value="true" />
+      <created>1715832688679</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1715832688679</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,7 +531,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="final in master" />
     <MESSAGE value="Login/Signup for both admin and customer is completed with beautiful css and JS and many funcionalities like table availability check, Reviews Section, Number of Active orders Basically, Dashboard section for admin going on wheras Cuistomer section is beautifully embraced with html,css,JS" />
     <MESSAGE value="Fixed Minor Bugs and Its Completed Now!" />
     <MESSAGE value="Trying to merge django backend work from this branch to the master1" />
@@ -558,7 +555,8 @@
     <MESSAGE value="Fixed pre-ordering item listing in reservation." />
     <MESSAGE value="Fixed pre-ordering item limiting item listing in reservation." />
     <MESSAGE value="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed missing table number in reservation list and fixed some bug while fixing table number and adding page scrolling functionality in staff reservation list." />
+    <MESSAGE value="some minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
