@@ -68,8 +68,8 @@ admin.site.register(Order123, Order123Admin)
 
 
 
-class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'price', 'image_url')
-
-
-admin.site.register(MenuItem, MenuItemAdmin)
+# class MenuItemAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'description', 'price', 'image_url')
+#
+#
+# admin.site.register(MenuItem, MenuItemAdmin)

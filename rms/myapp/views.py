@@ -26,10 +26,6 @@ from django.views.decorators.http import require_POST
 from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
 from .models import Table
 
-from django.shortcuts import render, redirect
-# from .forms import MenuItemForm
-from .models import MenuItem
-
 
 def get_tables(request):
     if request.method == 'GET':
@@ -693,19 +689,3 @@ def esewa_callback(request):
 
 def order_now(request):
     return render(request, 'myapp/order_page.html', {})
-
-
-def menu(request):
-    menu_items = MenuItem.objects.all()
-    form = MenuItemForm(request.POST or None)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('menu')
-
-    context = {
-        'menu_items': menu_items,
-        'form': form,
-    }
-    return render(request, 'myapp/admin_menu.html', context)
