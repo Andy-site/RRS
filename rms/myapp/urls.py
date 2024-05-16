@@ -53,7 +53,7 @@ urlpatterns = [
     path('payment-failed/', views.payment_failed, name='payment_failed'),
     path('esewa-callback/', views.esewa_callback_view, name='esewa_callback'),
     path('order_now/', views.order_now, name='order_now'),
-    path('place_order/', views.place_order, name='place_order'),
+
 
 
 
