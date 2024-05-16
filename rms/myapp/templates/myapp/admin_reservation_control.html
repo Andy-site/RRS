@@ -137,7 +137,7 @@
                             <label for="confirm_checkbox_{{ order.id }}"></label>
                         </td>
                         <td>
-                            <button class="btn" onclick="saveOrder({{ order.id }}) ; sendConfirmationEmail({{ order.id }}, '{{ order.username }}', '{{ order.email }}','{{ order.date }}', '{{ order.time }}', {{ order.number_of_people }}, '{{ order.message }}')">Confirm</button>
+                            <button class="btn" onclick="saveOrder({{ order.id }}) ; sendConfirmationEmail({{ order.id }}, '{{ order.username }}', '{{ order.email }}', '{{ order.date }}', '{{ order.time }}', {{ order.number_of_people }}, '{{ order.message|escapejs }}')">Confirm</button>
 
                             <button class="btn" id="complete_order_button_{{ order.id }}" onclick="completeOrder({{ order.id }})">Completed</button>
                         </td>
@@ -237,10 +237,12 @@ function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeo
             success: function(data) {
                 // Handle success response
                 console.log('Email sent successfully!');
+                alert('Email sent successfully!');
             },
             error: function(xhr, status, error) {
                 // Handle error response
                 console.error('Failed to send email:', error);
+                alert('Failed to send email. Please try again later.');
             }
         });
     } else {
@@ -261,10 +263,12 @@ function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeo
             success: function(data) {
                 // Handle success response
                 console.log('Sorry email sent successfully!');
+                alert('Apology email sent successfully!');
             },
             error: function(xhr, status, error) {
                 // Handle error response
-                console.error('Failed to send sorry email:', error);
+                console.error('Failed to send apology email:', error);
+                 alert('Failed to send apology email. Please try again later.');
             }
         });
     }
