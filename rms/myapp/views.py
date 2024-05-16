@@ -689,3 +689,10 @@ def esewa_callback(request):
 
 def order_now(request):
     return render(request, 'myapp/order_page.html', {})
+
+
+from .models import MenuItem
+
+def admin_menu(request):
+    menu_items = MenuItem.objects.all()
+    return render(request, "myapp/admin_menu.html", {'menu_items': menu_items})
