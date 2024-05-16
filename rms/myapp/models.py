@@ -3,6 +3,11 @@ from django.db import models
 from django.utils import timezone
 
 
+from django.shortcuts import render, redirect
+# from .forms import MenuItemForm
+from django.apps import apps
+
+
 class TableManager(models.Manager):
     pass
 
@@ -171,14 +176,23 @@ class Order123(models.Model):
     objects = Order123Manager()
 
 
-class Foody(models.Manager):
-    pass
 
 
 class MenuItem(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     image_url = models.URLField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+
 
     def __str__(self):
         return self.name
+
+    class MenuItem(models.Model):
+        name = models.CharField(max_length=100)
+        description = models.TextField()
+        price = models.DecimalField(max_digits=8, decimal_places=2)
+        image_url = models.URLField()
+
+        def __str__(self):
+            return self.name

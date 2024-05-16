@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Foody
-from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder, Order123, Foody
-
+from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder, Order123, MenuItem
 
 class MyUser123Admin(admin.ModelAdmin):
     list_display = ('username',)  # Display username in the list view
@@ -67,11 +65,11 @@ class Order123Admin(admin.ModelAdmin):
 
 admin.site.register(Order123, Order123Admin)
 
-from .models import Foody
 
 
-class MenuItem(admin.ModelAdmin):
-    list_display = ('item', 'image_url', 'price')
+
+class MenuItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'price', 'image_url')
 
 
-admin.site.register(Foody, Menu)
+admin.site.register(MenuItem, MenuItemAdmin)
