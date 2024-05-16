@@ -256,26 +256,26 @@
 
 
 
-<h1>Menu Items</h1>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Menu Item</button>
-  </form>
+<div class="menu-item">
+   <h2>Add New Food Item</h2>
+    <form id="addItemForm">
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" required>
 
-  <ul>
-    {% for item in menu_items %}
-      <li>
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
-        <p>Price: {{ item.price }}</p>
-        <img src="{{ item.image_url }}" alt="{{ item.name }}">
-      </li>
-    {% endfor %}
-  </ul>
+        <label for="itemImageURL">Image URL:</label>
+        <input type="text" id="itemImageURL" name="itemImageURL" required>
 
-    </body>
+        <label for="itemPrice">Price (Rs):</label>
+        <input type="number" id="itemPrice" name="itemPrice" required>
+
+        <button type="submit">Add Item</button>
+    </form>
+</div>
+
+<button id="addItemButton">Add Item</button>
+
+ </body>
 
 <script>
 document.getElementById("addItemForm").addEventListener("submit", function(event) {
