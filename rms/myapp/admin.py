@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder, Order123, MenuItem
 
+
 class MyUser123Admin(admin.ModelAdmin):
     list_display = ('username',)  # Display username in the list view
     search_fields = ('username',)  # Add username to search functionality
@@ -66,10 +67,8 @@ class Order123Admin(admin.ModelAdmin):
 admin.site.register(Order123, Order123Admin)
 
 
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'price', 'image_url')
 
 
-# class MenuItemAdmin(admin.ModelAdmin):
-#     list_display = ('name', 'description', 'price', 'image_url')
-#
-#
-# admin.site.register(MenuItem, MenuItemAdmin)
+admin.site.register(MenuItem, MenuAdmin)

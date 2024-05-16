@@ -2,9 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 
-
 from django.shortcuts import render, redirect
-# from .forms import MenuItemForm
 from django.apps import apps
 
 
@@ -178,21 +176,9 @@ class Order123(models.Model):
 
 
 
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    image_url = models.URLField()
-
-
-    def __str__(self):
-        return self.name
-
-    class MenuItem(models.Model):
-        name = models.CharField(max_length=100)
-        description = models.TextField()
-        price = models.DecimalField(max_digits=8, decimal_places=2)
-        image_url = models.URLField()
-
-        def __str__(self):
-            return self.name
+    image_url = models.URLField(default="https://t3.ftcdn.net/jpg/07/43/56/00/360_F_743560056_bgprjqq82VB3BcDhdBo9WJ1gtVwTLYoF.jpg")

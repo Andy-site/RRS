@@ -257,25 +257,27 @@
 
 
 
-<div class="menu-item">
-   <h2>Add New Food Item</h2>
-    <form id="addItemForm">
-        <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName" name="itemName" required>
+<div id="addItemFormContainer" style="display: none;">
+    <div class="menu-item">
+        <h2>Add New Food Item</h2>
+        <form id="addItemForm">
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" name="itemName" required>
 
-        <label for="itemImageURL">Image URL:</label>
-        <input type="text" id="itemImageURL" name="itemImageURL" required>
+            <label for="itemImageURL">Image URL:</label>
+            <input type="text" id="itemImageURL" name="itemImageURL" required>
 
-        <label for="itemPrice">Price (Rs):</label>
-        <input type="number" id="itemPrice" name="itemPrice" required>
+            <label for="itemPrice">Price (Rs):</label>
+            <input type="number" id="itemPrice" name="itemPrice" required>
 
-        <button type="submit">Add Item</button>
-    </form>
+            <button type="submit">Add Item</button>
+        </form>
+    </div>
 </div>
 
 <button id="addItemButton">Add Item</button>
 
-    </body>
+     </body>
 
 <script>
 document.getElementById("addItemForm").addEventListener("submit", function(event) {
@@ -296,6 +298,16 @@ document.getElementById("addItemForm").addEventListener("submit", function(event
 
     document.getElementById("menuContainer").appendChild(newItem);
     document.getElementById("addItemForm").reset();
+
+    // Update the HTML code
+    var menuHTML = document.getElementById("menuContainer").innerHTML;
+    menuHTML += `<div class="menu-item" id="item${document.querySelectorAll('.menu-item').length + 1}">
+                    <h2>${itemName}</h2>
+                    <img src="${itemImageURL}" alt="${itemName} Image">
+                    <p>${itemName}</p>
+                    <p>Price: Rs ${itemPrice}</p>
+                </div>`;
+    document.getElementById("menuContainer").innerHTML = menuHTML;
 });
 
 document.getElementById("addItemButton").addEventListener("click", function() {
