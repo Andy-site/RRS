@@ -171,7 +171,7 @@
             <label for="order-time">Time:</label>
             <input type="time" id="order-time" name="order-time">
             <label id="l1" for="number-of-people">Table Number:</label>
-            <select id="number-of-people" name="number-of-people">
+            <select class="l2" type="number" id="number-of-people" name="number-of-people">
             <!-- Table numbers will be dynamically populated here -->
         </select>
             <h2>Pre-Order Items</h2>
@@ -232,6 +232,7 @@
                     } else {
                         tableElement.classList.add('unreserved');
                         tableElement.addEventListener('click', function() {
+                        document.getElementById('number-of-people').value = tableData.number;
                         });
                     }
 
@@ -264,7 +265,7 @@
             .then(response => {
                 if (response.ok) {
                     // If the response is successful, display a confirmation message
-                    alert('Order confirmed successfully!');
+                    alert('Order has been placed! Please check your mail for order confirmation!');
                     window.location.href = "/";
                 } else {
                     // If there's an error, display an error message

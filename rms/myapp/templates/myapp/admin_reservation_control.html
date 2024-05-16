@@ -9,11 +9,16 @@
         background-color: #f4f4f4;
         margin: 0;
         padding: 0;
+        overflow: hidden; /* Prevent body from scrolling */
     }
 
     .container {
-    position: absolute;
-left: 290px;
+        position: absolute;
+        left: 290px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto; /* Enable scrolling within the container */
     }
 
     .page-title {
@@ -111,8 +116,8 @@ left: 290px;
                     <th>Email</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Number of People</th>
-                    <th>Message</th>
+                    <th>Table Number</th>
+                    <th>Pre-Order Food</th>
                     <th>Confirm</th>
                     <th>Actions</th>
                 </tr>
@@ -132,7 +137,7 @@ left: 290px;
                             <label for="confirm_checkbox_{{ order.id }}"></label>
                         </td>
                         <td>
-                            <button class="btn" onclick="saveOrder({{ order.id }}) ; sendConfirmationEmail({{ order.id }}, '{{ order.username }}', '{{ order.email }}', '{{ order.date }}', '{{ order.time }}', {{ order.number_of_people }}, '{{ order.message|escapejs }}')">Confirm</button>
+                            <button class="btn" onclick="saveOrder({{ order.id }}) ; sendConfirmationEmail({{ order.id }}, '{{ order.username }}', '{{ order.email }}','{{ order.date }}', '{{ order.time }}', {{ order.number_of_people }}, '{{ order.message }}')">Confirm</button>
 
                             <button class="btn" id="complete_order_button_{{ order.id }}" onclick="completeOrder({{ order.id }})">Completed</button>
                         </td>
@@ -232,12 +237,10 @@ function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeo
             success: function(data) {
                 // Handle success response
                 console.log('Email sent successfully!');
-                alert('Email sent successfully!');
             },
             error: function(xhr, status, error) {
                 // Handle error response
                 console.error('Failed to send email:', error);
-                    alert('Failed to send email. Please try again later.');
             }
         });
     } else {
@@ -258,12 +261,10 @@ function sendConfirmationEmail(orderId, username, email, date, time, numberOfPeo
             success: function(data) {
                 // Handle success response
                 console.log('Sorry email sent successfully!');
-                alert('Apology email sent successfully!');
             },
             error: function(xhr, status, error) {
                 // Handle error response
-                 console.error('Failed to send apology email:', error);
-                 alert('Failed to send apology email. Please try again later.');
+                console.error('Failed to send sorry email:', error);
             }
         });
     }
@@ -294,7 +295,5 @@ function completeOrder(orderId) {
         }
     });
 }
-
-
     </script>
 {% endblock %}
