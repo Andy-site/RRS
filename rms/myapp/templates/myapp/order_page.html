@@ -114,10 +114,10 @@
 </header>
 
 <div class="navbar">
-    <button onclick="goBack()">Back</button>
+    <a href="javascript:history.go(-1);" class="back-arrow">&#8592;</a>
     <button onclick="viewCart()">View Cart</button>
     <a href="#" class="order-now-btn" onclick="placeOrder()">Order Now</a>
-    <button onclick="cancelOrder()">Cancel Order</button> <!-- New cancel button -->
+
 </div>
 
 <div class="container" id="menuContainer">
@@ -321,17 +321,9 @@
             }
         });
         if (orders.length > 0) {
-        debugger;
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://127.0.0.1:8000/admin/myapp/order/", true);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Your order has been placed!");
-                    window.location.reload(); // Refresh the page
-                }
-            };
-            xhr.send(JSON.stringify(orders));
+            localStorage.setItem('orders', JSON.stringify(orders));
+            alert("Your order has been placed!");
+            window.location.reload(); // Refresh the page
         } else {
             alert("Please add items to your order.");
         }
@@ -349,51 +341,7 @@
             alert("Your cart is empty.");
         }
     }
-
-    function goBack() {
-        window.history.back();
-    }
-
-    function cancelOrder() {
-        var confirmed = confirm("Are you sure you want to cancel your order?");
-        if (confirmed) {
-            localStorage.removeItem('orders');
-            alert("Your order has been canceled.");
-            window.location.reload(); // Refresh the page
-        }
-    }
- function placeOrder() {
-        var orders = [];
-        var quantityInputs = document.querySelectorAll('.quantity-bar input');
-        quantityInputs.forEach(function(input) {
-            var itemId = input.id.replace('quantity-', '');
-            var quantity = parseInt(input.value);
-            if (quantity > 0) {
-                orders.push({ itemId: itemId, quantity: quantity });
-            }
-        });
-        if (orders.length > 0) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/place_order/", true); // Send POST request to the correct URL
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        alert("Your order has been placed!");
-                        window.location.reload(); // Refresh the page
-                    } else {
-                        alert("Failed to place order. Please try again later.");
-                    }
-                }
-            };
-            xhr.send(JSON.stringify(orders));
-        } else {
-            alert("Please add items to your order.");
-        }
-    }
-
 </script>
-
 
 </body>
 </html>
