@@ -696,5 +696,14 @@ def order_now(request):
     return render(request, 'myapp/order_page.html', {})
 
 
+def get_order_details(request, order_number):
+    order = Order123.objects.get(order_number=order_number)
+    order_details = {
+        'items': order.items,
+        'pickup_time': order.pickup_time.isoformat(),
+        'pickup_location': order.pickup_location,
+        'total': float(order.total),
+    }
+    return JsonResponse(order_details)
 
 
