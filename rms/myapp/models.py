@@ -171,3 +171,8 @@ class Order123(models.Model):
     objects = Order123Manager()
 
 
+class MenuItem(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    image_url = models.URLField(default="https://t3.ftcdn.net/jpg/07/43/56/00/360_F_743560056_bgprjqq82VB3BcDhdBo9WJ1gtVwTLYoF.jpg")

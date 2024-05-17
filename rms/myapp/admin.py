@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder, Order123
+from .models import MyUser123, Table, Rev, Order, Food, Staff, DineInOrderItem, DineInOrder, Order123, MenuItem
 
 
 class MyUser123Admin(admin.ModelAdmin):
@@ -66,4 +66,10 @@ class Order123Admin(admin.ModelAdmin):
 
 admin.site.register(Order123, Order123Admin)
 
+
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'price', 'image_url')
+
+
+admin.site.register(MenuItem, MenuAdmin)
 

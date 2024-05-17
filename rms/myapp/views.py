@@ -25,6 +25,9 @@ from django.views.decorators.http import require_POST
 
 from .models import MyUser123, Rev, Order, Food, Staff, DineInOrder, DineInOrderItem, Order123
 from .models import Table
+from django.contrib.admin.views.decorators import staff_member_required
+from .models import Order123
+from .models import MenuItem
 
 
 def get_tables(request):
@@ -179,7 +182,7 @@ def send_confirmation_email(request):
 
         # Construct the email message
         subject = 'Order Confirmation'
-        body = f'Dear {username},\n\nThank you for your order.\n\nOrder Details:\nOrder ID: {order_id}\nDate: {date}\nTime: {time}\nNumber of People: {number_of_people}\nMessage: {message}\n\nWe look forward to serving you. If you have any further questions, please don\'t hesitate to contact us.\n\nBest regards,\nOne Bites Foods'
+        body = f'Dear {username},\n\nThank you for your order.\n\nOrder Details:\nOrder ID: {order_id}\nDate: {date}\nTime: {time}\nTable Number: {number_of_people}\nPre- Order: {message}\n\nIf you want to cancel the reservation then mail on piyushphuyal77@gmail.com We look forward to serving you. If you have any further questions, please don\'t hesitate to contact us.\n\nBest regards,\nOne Bites Foods'
         from_email = settings.EMAIL_HOST_USER
         to_email = [email]
 
@@ -288,7 +291,8 @@ def about(request):
 
 
 def menu(request):
-    return render(request, "myapp/menu.html", {})
+    menu_items = MenuItem.objects.all()
+    return render(request, "myapp/menu.html", {'menu_items': menu_items})
 
 
 def take_away(request):
@@ -412,7 +416,8 @@ def lout1(request):
 
 
 def admin_menu(request):
-    return render(request, "myapp/admin_menu.html", {})
+    menu_items = MenuItem.objects.all()
+    return render(request, "myapp/admin_menu.html", {'menu_items': menu_items})
 
 
 def name(request):
@@ -573,7 +578,7 @@ def get_order_history(request):
             user_name=request.user.username,
             created_at__date=today
         ).order_by('-created_at').values(
-            'order_number', 'items', 'pickup_location', 'pickup_time', 'is_paid' # Include is_paid field
+            'order_number', 'items', 'pickup_location', 'pickup_time'
         )
         order_history = []
         for order in orders:
@@ -583,7 +588,6 @@ def get_order_history(request):
                 'items': order['items'],
                 'pickup_location': order['pickup_location'],
                 'pickup_time': pickup_time,
-                'is_paid': order['is_paid'],
             }
             order_history.append(order_data)
         return JsonResponse({'order_history': order_history})
@@ -692,12 +696,5 @@ def order_now(request):
     return render(request, 'myapp/order_page.html', {})
 
 
-def get_order_details(request, order_number):
-    order = Order123.objects.get(order_number=order_number)
-    order_details = {
-        'items': order.items,
-        'pickup_time': order.pickup_time.isoformat(),
-        'pickup_location': order.pickup_location,
-        'total': float(order.total),
-    }
-    return JsonResponse(order_details)
+
+
