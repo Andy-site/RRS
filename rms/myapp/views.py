@@ -287,8 +287,11 @@ def about(request):
     return render(request, "myapp/aboutus.html", {})
 
 
+from .models import MenuItem
+
 def menu(request):
-    return render(request, "myapp/menu.html", {})
+    menu_items = MenuItem.objects.all()
+    return render(request, "myapp/menu.html", {'menu_items': menu_items})
 
 
 def take_away(request):

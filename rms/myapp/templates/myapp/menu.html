@@ -1,3429 +1,552 @@
-{% extends 'myapp/common.html' %}
-
-{% block title%} Menu  {% endblock %}
-
-{% block head%}
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    />
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {% endblock %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block title %}Menu{% endblock %}</title>
     <style>
-      body {
-        margin: 0;
-        line-height: normal;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        header {
+            background-color: #343a40; /* Dark gray header */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #343a40; /* Dark gray navbar */
+            padding: 10px 20px; /* Adjust padding as needed */
+        }
+
+        .navbar a.navbar-link,
+        .navbar button {
+            background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a.navbar-link:hover,
+        .navbar button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-radius: 20px;
+            background-size: 100% auto;
+            font-family: inherit;
+            transition: none; /* Remove transition */
+        }
+
+        .order-now-btn {
+            background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .order-now-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-radius: 20px;
+            background-size: 100% auto;
+            font-family: inherit;
+        }
+
+        .container {
+            width: 100%;
+            margin: auto;
+            margin-left: 100px;
+            margin-top: 150px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Add overflow property to enable vertical scrolling */
+            max-height: 700px; /* Set a maximum height for the container */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .menu-item {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .menu-item h2 {
+            margin-top: 0;
+        }
+
+        .menu-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .quantity-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .quantity-bar input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .quantity-bar button {
+            padding: 5px 10px;
+            background-color: #343a40; /* Dark gray buttons */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            color: #28a745;
+            background-color: #fff;
+            border-color: #fff;
+        }
+
+        .card {
+            width: 400px;
+            border: none;
+        }
+
+        .btr {
+            border-top-right-radius: 5px !important;
+        }
+
+        .btl {
+            border-top-left-radius: 5px !important;
+        }
+
+        .btn-dark {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-dark:hover {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        a {
+            color: #28a745;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #28a745;
+        }
+
+        .nav-pills {
+            display: table !important;
+            width: 100%;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: #28a745;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 0px;
+            border-bottom: 1px solid #0d6efd40;
+        }
+
+        .nav-item {
+            display: table-cell;
+            background: #0dfd462e;
+        }
+
+        .form {
+            padding: 10px;
+            height: 300px;
+        }
+
+        .form input {
+            margin-bottom: 12px;
+            border-radius: 3px;
+        }
+
+        .form input:focus {
+            box-shadow: none;
+        }
+
+        .form button {
+            margin-top: 20px;
+        }
+
+        .connect-link {
+            color: white;
+            cursor: pointer;
+        }
+
+        .connect-link:hover {
+            color: green;
+        }
+
+        #dropdownMenu {
+            text-decoration: none;
+            display: block;
+            margin-bottom: 20px;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+
+        #connect-links-container {
+            background-color: rgba(0, 0, 0, 0.1); /* Black with 80% opacity */
+            font-size: 20px;
+            position: absolute;
+            display: flex;
+            top: 50px;
+            left: 430px;
+            width: 620px;
+            border-radius: 10px; /* Adjust the value as needed */
+        }
+
+        .me:hover {
+            color: red !important;
+        }
+
+        .connect-link.active {
+            color: green; /* Setting the active link color */
+        }
     </style>
-{% endblock %}
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
 
 
-
-
-
-{% block body%}
-    <div
-      style="
-        width: 100%;
-        position: relative;
-        background-color: #e9ecef;
-        height: 4085px;
-        overflow: hidden;
-        text-align: left;
-        font-size: 20px;
-        color: #fff;
-        font-family: Poppins;
-      "
-    >
-      <div
-        style="
-          position: absolute;
-          top: 144px;
-          left: 1063px;
-          width: 198px;
-          height: 48px;
-        "
-      ></div>
-      <div
-        style="
-          position: absolute;
-          width: 25.42%;
-          top: 211px;
-          left: 11.04%;
-          font-size: 48px;
-          line-height: 52px;
-          text-transform: capitalize;
-          font-weight: 600;
-          color: #093035;
-          display: inline-block;
-          height: 53px;
-        "
-      >
-        view Our Menu
-      </div>
-      <div
-        style="
-          position: absolute;
-          top: 225px;
-          left: 654px;
-          background-color: #e9ecef;
-          width: 548px;
-          height: 24px;
-          text-align: center;
-          color: #000;
-        "
-      >
-        <div
-          style="
-            position: absolute;
-            height: 100%;
-            width: 12.77%;
-            top: 0%;
-            right: 72.45%;
-            bottom: 0%;
-            left: 14.78%;
-            cursor: pointer;
-          "
-          id="groupContainer"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0%;
-              left: 0%;
-              line-height: 24px;
-              font-weight: 600;
-            "
-          >
-            Starter
-          </div>
+ <div class="container" id="menuContainer">
+        {% for item in menu_items %}
+        <div class="menu-item">
+            <h2>{{ item.name }}</h2>
+            <img src="{{ item.image_url }}" alt="{{ item.name }} Image">
+            <p>{{ item.description }}</p>
+            <p>Price: Rs {{ item.price }}</p>
         </div>
-        <div
-          style="
-            position: absolute;
-            height: 100%;
-            width: 4.74%;
-            top: 0%;
-            right: 95.26%;
-            bottom: 0%;
-            left: 0%;
-          "
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0%;
-              left: 0%;
-              line-height: 24px;
-              font-weight: 600;
-            "
-          >
-            All
-          </div>
-        </div>
-        <div
-          style="
-            position: absolute;
-            height: 100%;
-            width: 25.36%;
-            top: 0%;
-            right: 36.86%;
-            bottom: 0%;
-            left: 37.77%;
-            cursor: pointer;
-          "
-          id="groupContainer2"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0%;
-              left: 0%;
-              line-height: 24px;
-              font-weight: 600;
-            "
-          >
-            Main Courses
-          </div>
-        </div>
-        <div
-          style="
-            position: absolute;
-            height: 100%;
-            width: 9.67%;
-            top: 0%;
-            right: 20.62%;
-            bottom: 0%;
-            left: 69.71%;
-            cursor: pointer;
-          "
-          id="groupContainer3"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0%;
-              left: 0%;
-              line-height: 24px;
-              font-weight: 600;
-            "
-          >
-            Drink
-          </div>
-        </div>
-        <div
-          style="
-            position: absolute;
-            height: 100%;
-            width: 14.05%;
-            top: 0%;
-            right: 0%;
-            bottom: 0%;
-            left: 85.95%;
-            cursor: pointer;
-          "
-          id="groupContainer4"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0%;
-              left: 0%;
-              line-height: 24px;
-              font-weight: 600;
-            "
-          >
-            Dessert
-          </div>
-        </div>
-      </div>
-      <div
-        style="
-          position: absolute;
-          top: 328px;
-          left: calc(50% - 560px);
-          height: 3736px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          text-align: center;
-          font-size: 48px;
-          color: #bf9a22;
-        "
-      >
-        <div style="width: 1120px; position: relative; height: 596px">
-          <div
-            style="
-              position: absolute;
-              top: 0px;
-              left: 476px;
-              width: 168px;
-              height: 52px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                line-height: 52px;
-                text-transform: capitalize;
-                font-weight: 600;
-              "
-              data-scroll-to="starterText"
-            >
-              Starter
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 84px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-              font-size: 18px;
-              color: #d4af37;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 498px;
-                font-size: 24px;
-                color: #12464d;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 0px;
-                  width: 48px;
-                  height: 48px;
-                  overflow: hidden;
-                "
-              ></div>
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 54px;
-                  line-height: 28px;
-                  display: inline-block;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Risotto ai Funghi</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Creamy Arborio rice infused with a medley of wild mushrooms,
-                Parmesan cheese, and a hint of truffle oil.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-1.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  color: #d4af37;
-                  text-align: left;
-                "
-                >Rs.200</b
-              >
-            </div>
-            <img
-              style="
-                position: absolute;
-                top: 426px;
-                left: 77px;
-                width: 152px;
-                height: 31px;
-                object-fit: cover;
-              "
-              alt=""
-              src="/static/images/group-54@2x.png"
-            />
-
-            <img
-              style="
-                position: absolute;
-                top: 426px;
-                left: 77px;
-                width: 152px;
-                height: 31px;
-                object-fit: cover;
-              "
-              alt=""
-              src="/static/images/group-54@2x.png"
-            />
-
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 30px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 287px;
-                  height: 32px;
-                "
-                >Grilled Lemon Chicken</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Tender chicken marinated in zesty herbs and grilled to juicy
-                perfection.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-2.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 400</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 38px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 261px;
-                  height: 32px;
-                "
-                >Creamy Garlic Pasta</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Silky pasta coated in a decadent garlic parmesan sauce.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-3.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 240</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          style="
-            width: 1120px;
-            position: relative;
-            height: 1140px;
-            font-size: 18px;
-            color: #d4af37;
-          "
-          data-scroll-to="mainCoursesContainer"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0px;
-              left: 394px;
-              width: 333px;
-              height: 52px;
-              font-size: 48px;
-              color: #bf9a22;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 333px;
-                height: 52px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 0px;
-                  line-height: 52px;
-                  text-transform: capitalize;
-                  font-weight: 600;
-                "
-              >
-                Main Courses
-              </div>
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 84px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 40px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 264px;
-                  height: 32px;
-                "
-                >Crispy Baked Salmon</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Succulent salmon fillet baked to crispy perfection, served with
-                a side of seasonal veggies.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-4.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 140</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 30px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 313px;
-                  height: 32px;
-                "
-                >Mouthwatering BBQ Ribs</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Fall-off-the-bone tender ribs slathered in smoky barbecue sauce.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-5.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 340</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 38px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 261px;
-                  height: 32px;
-                "
-                >Fresh Caprese Salad</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Luscious tomatoes, creamy mozzarella, and fragrant basil
-                drizzled with balsamic glaze.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-6.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 120</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 628px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 30px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 293px;
-                  height: 32px;
-                "
-                >Vegetarian Lentil Curry</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Aromatic lentil curry simmered with a blend of spices and served
-                with fluffy rice.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-7.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 600</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 54px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Hearty Beef Stew
-              </b>
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Rich and flavorful stew packed with tender beef, root
-                vegetables, and aromatic herbs.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-8.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 560</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 30px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 276px;
-                  height: 32px;
-                "
-                >Sizzling Shrimp Fajitas</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Sautéed shrimp with bell peppers and onions, served sizzling hot
-                with warm tortillas.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-9.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 480</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          style="
-            width: 1120px;
-            position: relative;
-            height: 1140px;
-            font-size: 18px;
-            color: #d4af37;
-          "
-          data-scroll-to="drinkContainer"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0px;
-              left: 497px;
-              width: 127px;
-              height: 52px;
-              font-size: 48px;
-              color: #bf9a22;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                line-height: 52px;
-                text-transform: capitalize;
-                font-weight: 600;
-              "
-            >
-              Drink
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 84px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 54px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Zesty Citrus Mojito</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Refreshing blend of lime, mint, and rum, topped with a splash of
-                soda water.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-10.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 320</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 31px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 305px;
-                  height: 32px;
-                "
-                >Velvety Cappuccino</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                A perfect balance of rich espresso and frothy steamed milk,
-                dusted with cocoa.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-11.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 214px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 240</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 246px;
-                  left: 38px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 285px;
-                  height: 32px;
-                "
-                >Tropical Pineapple Smoothie</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Creamy blend of pineapple, coconut milk, and banana, served
-                chilled.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-12.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 120</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    width: 142px;
-                    border-radius: 30px;
-                    background-color: #093035;
-                    height: 48px;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    box-sizing: border-box;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      width: 109px;
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                      display: none;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 628px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 245px;
-                  left: 22px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 311px;
-                  height: 32px;
-                "
-                >Spicy Jalapeño Margarita</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Fiery twist on the classic margarita with muddled jalapeños and
-                a chili salt rim.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-13.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 140</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 261px;
-                  left: 38px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 285px;
-                  height: 32px;
-                "
-                >Iced Vanilla Chai Latte</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Cool and creamy chai tea infused with vanilla and served over
-                ice.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-14.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 180</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 54px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Soothing Green Tea</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                <p style="margin: 0">
-                  Steaming cup of pure green tea, perfect for relaxation and
-                  rejuvenation.
-                </p>
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-15.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 160</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          style="width: 1120px; position: relative; height: 596px"
-          data-scroll-to="desertContainer"
-        >
-          <div
-            style="
-              position: absolute;
-              top: 0px;
-              left: 468px;
-              width: 184px;
-              height: 52px;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                line-height: 52px;
-                text-transform: capitalize;
-                font-weight: 600;
-              "
-            >
-              Dessert
-            </div>
-          </div>
-          <div
-            style="
-              position: absolute;
-              top: 84px;
-              left: 0px;
-              width: 1120px;
-              height: 512px;
-              font-size: 18px;
-              color: #d4af37;
-            "
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 246px;
-                  left: 62px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Decadent Chocolate Fondue</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                <p style="margin: 0">
-                  Dive into a luxurious pool of melted chocolate served with an
-                  assortment of fresh fruits and marshmallows for dipping.
-                </p>
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-16.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 160</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 384px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 251px;
-                  left: 54px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Classic New York Cheesecake</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                Indulge in a rich and creamy cheesecake atop a buttery graham ,
-                finished with a luscious layer of sour cream.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-17.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 710</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                position: absolute;
-                top: 0px;
-                left: 768px;
-                width: 352px;
-                height: 512px;
-              "
-            >
-              <div
-                style="
-                  position: absolute;
-                  top: 58px;
-                  left: 0px;
-                  border-radius: 8px;
-                  background-color: #e8f9e6;
-                  width: 352px;
-                  height: 440px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 273px;
-                  left: 54px;
-                  font-size: 24px;
-                  line-height: 28px;
-                  display: inline-block;
-                  color: #12464d;
-                  width: 245px;
-                  height: 32px;
-                "
-                >Warm Apple Crisp</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 311px;
-                  left: 30px;
-                  font-size: 18px;
-                  line-height: 22px;
-                  color: #266a72;
-                  display: inline-block;
-                  width: 293px;
-                  height: 88px;
-                "
-              >
-                  A comforting treat of tender baked apples, cinnamon , topped
-                  with a buttery oat crumble and served with a scoop of vanilla
-                  ice cream.
-              </div>
-              <img
-                style="
-                  position: absolute;
-                  top: 0px;
-                  left: 64px;
-                  width: 224px;
-                  height: 224px;
-                  object-fit: cover;
-                "
-                alt=""
-                src="/static/images/adampokharel-18.png"
-              />
-
-              <div
-                style="
-                  position: absolute;
-                  top: 150px;
-                  left: 214px;
-                  border-radius: 50%;
-                  background-color: #093035;
-                  width: 72px;
-                  height: 72px;
-                "
-              ></div>
-              <b
-                style="
-                  position: absolute;
-                  top: 177px;
-                  left: 216px;
-                  font-size: 22px;
-                  line-height: 22px;
-                  text-align: left;
-                "
-                >Rs 190</b
-              >
-              <div
-                style="
-                  position: absolute;
-                  top: 464px;
-                  left: 87px;
-                  width: 142px;
-                  height: 48px;
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                  justify-content: flex-start;
-                  text-align: left;
-                "
-              >
-                <div
-                  style="
-                    border-radius: 30px;
-                    background-color: #093035;
-                    display: none;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 12px 35px;
-                    gap: 10px;
-                  "
-                >
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/check.svg"
-                  />
-
-                  <div
-                    style="
-                      position: relative;
-                      line-height: 24px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                    "
-                  >
-                    Order Now
-                  </div>
-                  <img
-                    style="
-                      width: 24px;
-                      position: relative;
-                      height: 24px;
-                      overflow: hidden;
-                      flex-shrink: 0;
-                      display: none;
-                    "
-                    alt=""
-                    src="/static/images/next.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img
-        style="
-          position: absolute;
-          top: 38px;
-          left: 144px;
-          width: 119px;
-          height: 95px;
-          object-fit: cover;
-        "
-        alt=""
-        src="/static/images/logo.png"
-      />
-
-      <img
-        style="
-          position: absolute;
-          top: 225px;
-          left: 1243px;
-          width: 24px;
-          height: 24px;
-          overflow: hidden;
-        "
-        alt=""
-        src="/static/images/mdicartoutline.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 20.6%;
-          left: 310px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 20.6%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 20.6%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 98%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 98%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 98%;
-          left: 310px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 80.9%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 80.9%;
-          left: 310px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 67.5%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 67.5%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 50.8%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 67.5%;
-          left: 310px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 50.8%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 50.8%;
-          left: 310px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 37.3%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 80.9%;
-          left: 1080px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 37.3%;
-          left: 700px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
-<button class="btn" onclick="window.location.href='{% url 'order_now' %}'"
-        style="position: absolute;
-               top: 212px;
-               left: 87%;
-               border: none;
-               color: #fff;
-               background-image: linear-gradient(30deg, #0bd107, #4ce3f7);
-               border-radius: 20px;
-               background-size: 100% auto;
-               font-family: inherit;
-               font-size: 17px;
-               padding: 0.6em 1.5em;">Order now</button>
-
-      <img
-        style="
-          position: absolute;
-          height: 0.5%;
-          width: 8.54%;
-          top: 37.3%;
-          left: 300px;
-          max-width: 100%;
-          overflow: hidden;
-          max-height: 100%;
-        "
-        alt=""
-        src="/static/images/group-1.svg"
-      />
+        {% endfor %}
     </div>
 
-    <script>
-      var groupContainer = document.getElementById("groupContainer");
-      if (groupContainer) {
-        groupContainer.addEventListener("click", function () {
-          var anchor = document.querySelector("[data-scroll-to='starterText']");
-          if (anchor) {
-            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
-          }
-        });
-      }
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-      var groupContainer2 = document.getElementById("groupContainer2");
-      if (groupContainer2) {
-        groupContainer2.addEventListener("click", function () {
-          var anchor = document.querySelector(
-            "[data-scroll-to='mainCoursesContainer']"
-          );
-          if (anchor) {
-            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
-          }
-        });
-      }
+<!-- to trigger Login modal -->
+<div id="connect-links-container">
+    <span class="connect-link {% if request.path == '/index/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; "
+          onmousedown="preventDefaultAndNavigate('{% url 'index' %}');">Home</span>
+    <span class="connect-link {% if request.path == '/about/' %}active{% endif %}" style="display: block;margin-bottom: 15px; margin-left: 50px; margin-top: 22px;"
+          onmousedown="preventDefaultAndNavigate('{% url 'about' %}');">About Us</span>
+    <span class="connect-link {% if request.path == '/menu/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;"
+          onmousedown="preventDefaultAndNavigate('{% url 'menu' %}');">Menu</span>
+    <span class="connect-link {% if request.path == '/rev123/' %}active{% endif %}" style="display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px;"
+          onmousedown="preventDefaultAndNavigate('{% url 'rev123' %}');">Reviews</span>
 
-      var groupContainer3 = document.getElementById("groupContainer3");
-      if (groupContainer3) {
-        groupContainer3.addEventListener("click", function () {
-          var anchor = document.querySelector("[data-scroll-to='drinkContainer']");
-          if (anchor) {
-            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
-          }
-        });
-      }
+    {% if user.is_authenticated %}
+        <div class="me" style="cursor: pointer; display: block; margin-bottom: 15px; margin-left: 50px; margin-top: 22px; color: white;"
+             data-toggle="modal" data-target="#logoutModal">
+            {{ request.user }}
+        </div>
+    {% else %}
+        <span class="connect-link" data-toggle="modal" data-target="#loginModal"
+              style="display: block;margin-bottom: 5px; margin-left: 50px; margin-top: 22px; ">Connect</span>
+    {% endif %}
+</div>
 
-      var groupContainer4 = document.getElementById("groupContainer4");
-      if (groupContainer4) {
-        groupContainer4.addEventListener("click", function () {
-          var anchor = document.querySelector("[data-scroll-to='desertContainer']");
-          if (anchor) {
-            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
-          }
-        });
-      }
-      </script>
+{% if messages %}
+    <div class="container">
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show"
+                 role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
-{% endblock %}
+<div class="modal" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card">
+            <div class="modal-header">
+                <h5 class="modal-title">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Connect with us</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item text-center">
+                    <a class="nav-link active btl" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                       aria-controls="pills-home" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link btr" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                       aria-controls="pills-profile" aria-selected="false">Signup</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="form px-4 pt-5">
+                        <form id="admin-login-form" action="/handle2/" method='post'>
+                            <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
+                            <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-dark btn-block">Login</button>
+                        </form>
+                        <div class="error-message text-danger"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="form px-4">
+                        <form id="admin-login-form2" action="/handle1/" method='post'>
+                            <input type="text" name="username" class="form-control" placeholder="Name" autocomplete="off">
+                            <input type="text" name="email" class="form-control" placeholder="Email" autocomplete="off">
+                            <input type="text" name="phone" class="form-control" placeholder="Phone" autocomplete="off">
+                            <input type="text" name="password" class="form-control" placeholder="Password" autocomplete="off">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-dark btn-block">Signup</button>
+                        </form>
+                        <div class="error-message2 text-danger"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Logout Success Modal -->
+<div class="modal fade" id="logoutSuccessModal" tabindex="-1" role="dialog" aria-labelledby="logoutSuccessModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutSuccessModalLabel">Logout Successful</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="logoutSuccessModalCloseBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You have been successfully logged out.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        id="logoutSuccessModalCancelBtn">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('admin-login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    // Update the username in the welcome modal
+                    document.getElementById('welcome-username').textContent = data.username;
+
+                    // Hide the login modal
+                    $('#loginModal').modal('hide');
+
+                    // Show the welcome modal
+                    var welcomeModal = document.getElementById('welcomeModal');
+                    $(welcomeModal).modal('show');
+
+                    // Add event listeners to the close and cancel buttons
+                    var closeButton = welcomeModal.querySelector('.close');
+                    var cancelButton = welcomeModal.querySelector('.btn-secondary');
+
+                    closeButton.addEventListener('click', redirectToIndex);
+                    cancelButton.addEventListener('click', redirectToIndex);
+                } else {
+                    // Display the error message in the login modal
+                    document.querySelector('.error-message').textContent = data.error_message;
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    });
+
+    function redirectToIndex() {
+        // Redirect to the index page
+        window.location.href = "{% url 'index' %}";
+    }
+</script>
+
+<script>
+    document.getElementById('admin-login-form2').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    // Update the username in the welcome modal
+                    document.getElementById('welcome-username').textContent = data.username;
+
+                    // Hide the login modal
+                    $('#loginModal').modal('hide');
+
+                    // Show the welcome modal
+                    var welcomeModal = document.getElementById('welcomeModal');
+                    $(welcomeModal).modal('show');
+
+                    // Add event listeners to the close and cancel buttons
+                    var closeButton = welcomeModal.querySelector('.close');
+                    var cancelButton = welcomeModal.querySelector('.btn-secondary');
+
+                    closeButton.addEventListener('click', redirectToIndex);
+                    cancelButton.addEventListener('click', redirectToIndex);
+                } else {
+                    // Display the error message in the login modal
+                    document.querySelector('.error-message2').textContent = data.error_message;
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    });
+
+    function redirectToIndex() {
+        // Redirect to the index page
+        window.location.href = "{% url 'index' %}";
+    }
+</script>
+
+<script>
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        if (dropdownMenu.style.display === "none") {
+            dropdownMenu.style.display = "block";
+        } else {
+            dropdownMenu.style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    function preventDefaultAndNavigate(url) {
+        event.preventDefault();
+        window.location.href = url;
+    }
+</script>
+
+<script>
+    function logout() {
+        fetch("{% url 'lout' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    // Hide the logout modal
+                    $('#logoutModal').modal('hide');
+
+                    // Show the logout success modal
+                    $('#logoutSuccessModal').modal('show');
+
+                    // Add an event listener to the logout success modal's close button
+                    var closeButton = document.getElementById('logoutSuccessModalCloseBtn');
+                    closeButton.addEventListener('click', function () {
+                        // Redirect to the index page
+                        window.location.href = "{% url 'index' %}";
+                    });
+
+                    // Add an event listener to the logout success modal's cancel button
+                    var cancelButton = document.getElementById('logoutSuccessModalCancelBtn');
+                    cancelButton.addEventListener('click', function () {
+                        // Redirect to the index page
+                        window.location.href = "{% url 'index' %}";
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+</script>
+
+</body>
+</html>
