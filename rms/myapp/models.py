@@ -160,7 +160,7 @@ class Order123(models.Model):
     items = models.JSONField()
     pickup_time = models.DateTimeField()
     pickup_location = models.CharField(max_length=255)
-    order_number = models.IntegerField(unique=True)
+    order_number = models.IntegerField(unique=True, default=1012)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_name = models.CharField(default='none')

@@ -578,7 +578,7 @@ def get_order_history(request):
             user_name=request.user.username,
             created_at__date=today
         ).order_by('-created_at').values(
-            'order_number', 'items', 'pickup_location', 'pickup_time'
+            'order_number', 'items', 'pickup_location', 'pickup_time', 'is_paid'
         )
         order_history = []
         for order in orders:
@@ -588,6 +588,7 @@ def get_order_history(request):
                 'items': order['items'],
                 'pickup_location': order['pickup_location'],
                 'pickup_time': pickup_time,
+                'is_paid': order['is_paid'],
             }
             order_history.append(order_data)
         return JsonResponse({'order_history': order_history})
@@ -703,7 +704,21 @@ def get_order_details(request, order_number):
         'pickup_time': order.pickup_time.isoformat(),
         'pickup_location': order.pickup_location,
         'total': float(order.total),
+        'is_paid': order.is_paid,
     }
     return JsonResponse(order_details)
 
 
+@csrf_exempt
+@require_POST
+def handle_cash_payment(request):
+    order_number = request.POST.get('order_number')
+    try:
+        order = Order123.objects.get(order_number=order_number)
+        order.is_paid = True
+        order.save()
+        return JsonResponse({'success': True, 'message': 'Cash payment handled successfully.'})
+    except Order123.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'Order not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)

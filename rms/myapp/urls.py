@@ -54,6 +54,7 @@ urlpatterns = [
     path('esewa-callback/', views.esewa_callback_view, name='esewa_callback'),
     path('order_now/', views.order_now, name='order_now'),
     path('get-order-details/<int:order_number>/', views.get_order_details, name='get_order_details'),
+    path('handle-cash-payment/', views.handle_cash_payment, name='handle_cash_payment'),
 
 
 

@@ -78,7 +78,7 @@ margin-top:130px;
                         <th>Items</th>
                         <th>Pickup Time</th>
                         <th>Pickup Location</th>
-                        <th>Payment</th>
+                        <th>Payment Status</th>
                         <th>Amount</th>
                         <th>Action</th>
                     </tr>
@@ -108,11 +108,14 @@ margin-top:130px;
                             </span>
                             {% endif %}
                         </td>
-                        <td>{{ "Rs" }} {{ order.paid_amount }}</td>
+                        <td>{{ "Rs" }} {{ order.total }}</td>
 
                         <td class="action-buttons">
                             <button class="btn btn-danger" onclick="cancelOrder('{{ order.order_number }}')">Cancel</button>
                             <button class="btn btn-success" onclick="completeOrder('{{ order.order_number }}')">Completed</button>
+                             {% if not order.is_paid %}
+        <button class="btn btn-primary" onclick="handleCashPayment('{{ order.order_number }}')">Cash Payment</button>
+    {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -197,6 +200,33 @@ function getCookie(name) {
         });
     }
 }
+
+     function handleCashPayment(orderNumber) {
+    if (confirm("Is the payment done through cash?")) {
+        const csrftoken = getCookie('csrftoken');
+
+        $.ajax({
+            url: '/handle-cash-payment/', // Add a new URL for handling cash payments
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            data: {
+                order_number: orderNumber
+            },
+            success: function(response) {
+                console.log('Cash payment handled successfully:', response);
+                // Optionally, you can update the UI to reflect the payment status
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error handling cash payment:', error);
+                alert('An error occurred while handling the cash payment. Please try again.');
+            }
+        });
+    }
+}
+
     </script>
 
 
